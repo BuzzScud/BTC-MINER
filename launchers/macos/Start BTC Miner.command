@@ -1,5 +1,5 @@
 #!/bin/bash
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
 "$ROOT/bin/btc-miner" ui
 RESULT=$?

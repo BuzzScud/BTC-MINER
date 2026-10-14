@@ -3,7 +3,7 @@
 ## Current release gate — October 7, 2026
 
 The [master plan](MASTER_PLAN.md) defines source/object/assumption admission and
-isolated packaging. The [portable proof report](research/proof-evidence/report.html)
+isolated packaging. The [portable proof report](../../research/proof-evidence/report.html)
 binds 299 audited roots and 123 named statements across the repaired six-module
 closure. Five exact closed-Nat products have supported executable translations.
 These proofs do not establish full runtime refinement or SHA search reduction.

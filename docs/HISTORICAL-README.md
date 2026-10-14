@@ -117,7 +117,7 @@ and hypotheses are preserved; the larger scaling count is proved in 19 blocks.
 The gate rejects false arithmetic, admitted proofs, and custom assumptions.
 
 See the [portable proof report](research/proof-evidence/report.html) and
-[project contracts](MASTER_PLAN.md). Run
+[project contracts](project/MASTER_PLAN.md). Run
 `python3 -B scripts/verify_proof_evidence.py` to verify current mathematical
 sources, retained objects and both assumption inventories without external paths.
 The release gate additionally validates the typed executable catalogue and registry.
@@ -234,7 +234,7 @@ and familiar keys stay at the bottom. Open **BTC Miner.app** or
 
 All existing commands, setup steps and mining controls retain their behavior.
 The layout adapts to small windows and keeps detailed math under `/math`.
-See [EMBER-IMPLEMENTATION.md](EMBER-IMPLEMENTATION.md) for implementation and checks.
+See [EMBER-IMPLEMENTATION.md](project/EMBER-IMPLEMENTATION.md) for implementation and checks.
 
 ## Version 1.2.4 — Regtest difficulty controls
 
@@ -242,14 +242,14 @@ Use `/difficulty up`, `/difficulty down`, `/difficulty reset`, or `/difficulty 2
 on a configured Bitcoin Core regtest connection. Ember shows the current multiplier.
 Changes while stopped only save; changes while mining restart the session and reset
 its counters. Multiplier 1 is the easiest valid setting. Public-network and pool
-targets are unchanged. See [DIFFICULTY.md](DIFFICULTY.md) for setup, limits and checks.
+targets are unchanged. See [DIFFICULTY.md](project/DIFFICULTY.md) for setup, limits and checks.
 
 ### Version 1.2.3 — Exact ellipse math and dynamic prime rods
 
 Dynamic prime rods now perform the primality checks used to select THESIS2's
 qualifying primes. The exact pq ellipse, eccentricity intervals, bounded Fermat
 search and CRT rod extension are implemented in `btcminer/pqmath.py` and shown by
-`/math`. See [MATH-IMPLEMENTATION.md](MATH-IMPLEMENTATION.md) for the theorem mapping,
+`/math`. See [MATH-IMPLEMENTATION.md](project/MATH-IMPLEMENTATION.md) for the theorem mapping,
 runtime integration and validation. The bundled Lean sources are preserved unchanged;
 the Python port is tested, not formally verified. These factor-search identities do
 not establish a Bitcoin nonce filter or a SHA256 shortcut.

@@ -1,6 +1,6 @@
 #!/bin/bash
-ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-exec /usr/bin/osascript - "$ROOT/Start BTC Miner.command" <<'APPLESCRIPT'
+LAUNCHERS="$(cd "$(dirname "$0")/../../.." && pwd)"
+exec /usr/bin/osascript - "$LAUNCHERS/Start BTC Miner.command" <<'APPLESCRIPT'
 on run argv
     set commandPath to item 1 of argv
     tell application "Terminal"

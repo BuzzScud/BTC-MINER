@@ -17,21 +17,23 @@ BTC MINER/
 ├── tests/                   Offline miner and mathematics regression tests
 ├── scripts/                 Build and audit commands (build.py creates the package)
 ├── bin/                     Stable terminal launch commands
+├── launchers/               Optional macOS app/commands and PowerShell launcher
 ├── research/                Formula catalogue, consumer relationships and proof registry
 ├── reference/               Preserved mathematical source material
 ├── validation/              Versioned test, audit and proof evidence
-├── docs/                    Layout map and documentation
+├── docs/                    User guide, documentation index and layout map
+│   └── project/             Project contracts, implementation notes and reports
 ├── logs/                    Local runtime status and logs
 └── dist/                    Packaged releases
 
 Open: ./bin/btc-miner files
-Build: .test-tools/abacus-solver/bin/python3 -B scripts/build.py
+Build: .venv/bin/python -B scripts/build.py
 
 Each moved file has one editable source under src/ or math-library/. The old
-btcminer/ package and native/ source paths contain relative compatibility links.
+btcminer/ package and native/ source paths contain identical compatibility copies.
 These retain existing imports, commands, lazy imports in running processes and
 historical evidence references. Edit the new source path, not a second copy.
-Portable release staging may materialize compatibility copies; the build gate
+Older private workspaces may use relative links instead; the build gate
 requires them to match their canonical sources byte for byte.
 
 Native binaries remain in native/ so loaded-library paths and rebuild commands

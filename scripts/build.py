@@ -5,7 +5,7 @@ MUST admit current proof sources, objects, assumptions and typed translations
 before publication. SHALL recheck them in the copied stage and record scope in
 BUILD-INFO. MUST exclude credentials, logs and live settings, and MUST NOT start
 or control the user's miner/node. Offline tests run only in temporary staging.
-See ../MASTER_PLAN.md RELEASE-01, PROOF-01, PUBLISH-01 and LIVE-01.
+See ../docs/project/MASTER_PLAN.md RELEASE-01, PROOF-01, PUBLISH-01 and LIVE-01.
 """
 import argparse
 import datetime
@@ -48,13 +48,13 @@ def release_files(root, evidence):
         return sorted(files)
     # Explicit inputs prevent saved credentials, session logs and optional
     # third-party libraries from entering a distributable archive.
-    files = ["README.md", "LICENSE", "SOURCE-NOTES.md", ".gitignore",
-             "BUILD-ASSESSMENT.md", "IMPLEMENTATION-PLAN.md",
-             "Start BTC Miner.command", "install.command",
-             "THESIS2 Implementation Report.html", "optional/README.md",
+    files = ["README.md", "LICENSE", "docs/project/SOURCE-NOTES.md", ".gitignore",
+             "docs/project/BUILD-ASSESSMENT.md", "docs/project/IMPLEMENTATION-PLAN.md",
+             "launchers/macos/Start BTC Miner.command", "launchers/macos/install.command",
+             "docs/project/THESIS2 Implementation Report.html", "optional/README.md",
              "native/build.sh", "native/hasher_fast.c", "scripts/build.py", "scripts/regtest.py",
              "bin/btc-miner", "bin/minerctl.sh", "bin/miner-ui.sh",
-             "BTC Miner.app/Contents/Info.plist", "BTC Miner.app/Contents/MacOS/launcher"]
+             "launchers/macos/BTC Miner.app/Contents/Info.plist", "launchers/macos/BTC Miner.app/Contents/MacOS/launcher"]
     files += [str(path.relative_to(root)) for path in (root / "btcminer").rglob("*.py")]
     files += ["docs/GEOMETRY-CODEC.txt", "research/geometry-codec-contract.json"]
     files += ["docs/SCALE-GRAPH-TRAVERSAL.txt", "research/scale-graph-runtime.json"]
@@ -78,14 +78,14 @@ def release_files(root, evidence):
               if path.is_file() and path.suffix in (".c", ".h")]
     files += ["reference/thesis2-math-in-pictures.html", "scripts/capacity_real_report.py"]
     files += [str(path.relative_to(root)) for path in (root / "validation").glob("*.json")]
-    files += ["VALIDATION.md", "TERMINAL-COMMANDS.md", "MATH-IMPLEMENTATION.md"]
-    files += ["EMBER-IMPLEMENTATION.md", "validation/ember/pty-check.json",
+    files += ["docs/project/VALIDATION.md", "docs/project/TERMINAL-COMMANDS.md", "docs/project/MATH-IMPLEMENTATION.md"]
+    files += ["docs/project/EMBER-IMPLEMENTATION.md", "validation/ember/pty-check.json",
               "scripts/check_ember_terminal.py"]
     files += ["scripts/check_loop_terminal.py", "validation/fullscreen-loop-20261011/pty-check.json"]
     files += ["scripts/check_copper_terminal.py", "scripts/check_copper_hub.py",
               "validation/copper/pty-check.json", "validation/copper/hub-check.json"]
-    files += ["DIFFICULTY.md", "validation/difficulty/regtest.json"]
-    files += ["ARISTOTLE-MONITOR.md", "scripts/monitor_aristotle_math.py", "scripts/apply_math_update.py"]
+    files += ["docs/project/DIFFICULTY.md", "validation/difficulty/regtest.json"]
+    files += ["docs/project/ARISTOTLE-MONITOR.md", "scripts/monitor_aristotle_math.py", "scripts/apply_math_update.py"]
     files += [str(path.relative_to(root)) for path in
               (root / "reference/aristotle-core-primes").glob("*") if path.is_file()]
     files += [str(path.relative_to(root)) for path in
@@ -94,7 +94,7 @@ def release_files(root, evidence):
               ("EllipseSearch.lean", "DynamicRods.lean", "ELLIPSE_AND_RODS.md")]
     files += ["validation/ellipse-rods/" + name for name in
               ("source-provenance.json", "unit-tests.log", "math-inspect.json", "regtest.json")]
-    files += ["MASTER_PLAN.md", "scripts/verify_proof_evidence.py", "scripts/publish_archive_calculations.py",
+    files += ["docs/project/MASTER_PLAN.md", "scripts/verify_proof_evidence.py", "scripts/publish_archive_calculations.py",
               "scripts/refresh_research_metadata.py", "scripts/bounded_miner_proof_audit.py", "research/proof-registry.json",
               "research/provider-coverage-ledger.json", "research/provider-coverage-reference.json",
               "research/proof-evidence/manifest.json", "research/proof-evidence/report.html"]
@@ -172,7 +172,7 @@ def main():
         print("Building native SHA256d in a clean staging folder...", flush=True)
         run([sys.executable, "scripts/build_native.py"], stage, env)
         if platform.system() == "Darwin":
-            run(["codesign", "--force", "--sign", "-", "BTC Miner.app"], stage, env)
+            run(["codesign", "--force", "--sign", "-", "launchers/macos/BTC Miner.app"], stage, env)
         print("Checking native hashing and the regression suite...", flush=True)
         run([sys.executable, "-B", "-m", "btcminer", "self-test", "--require-native"], stage, env)
         unit_result = run([sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests"], stage, env,

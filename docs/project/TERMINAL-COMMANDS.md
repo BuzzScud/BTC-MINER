@@ -204,4 +204,4 @@ Use `/provider formulas --query rod`,
 `/provider calculate --expression '11*15*17'`,
 `/provider watch --seconds 10`, or `/provider check`.
 Shell equivalent: `./bin/btc-miner provider ...`.
-See [provider authentication and scope](docs/PROVIDER-API.txt).
+See [provider authentication and scope](../PROVIDER-API.txt).

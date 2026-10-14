@@ -399,7 +399,7 @@ class Engine:
             self.awake = subprocess.Popen(["/usr/bin/caffeinate","-i","-w",str(os.getpid())],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         self.emit("start",f"Started · {self.c['connection']} · {self.c['strategy']} · {self.c['workers']} workers")
         if not self.hasher.lib:
-            self.emit("notice","Using Python hashing; run install.command to build native acceleration")
+            self.emit("notice","Using Python hashing; run setup.sh (setup.ps1 on Windows) to build native acceleration")
         self.connection.start()
         try:
             self.resources.start()

@@ -31,7 +31,7 @@
 
 <section id="math">
 <h2>The source mathematics, mapped to code</h2>
-<p>All twelve sections of the supplied reference are represented as implemented mathematical operations or attributed source-status information. The module is <a href="btcminer/thesis2.py">btcminer/thesis2.py</a>. Integer arithmetic uses exact Python integers. Trigonometry, distances and packing fills use floating point.</p>
+<p>All twelve sections of the supplied reference are represented as implemented mathematical operations or attributed source-status information. The module is <a href="../../btcminer/thesis2.py">btcminer/thesis2.py</a>. Integer arithmetic uses exact Python integers. Trigonometry, distances and packing fills use floating point.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Reference section</th><th>Formula or rule</th><th>Implementation and role</th></tr></thead><tbody>
 <tr><td>1 · Clock</td><td>Period = N / gcd(N, k). Every mark is visited when gcd(N, k) = 1.</td><td><code>dial_loop</code>; coprime step validation controls field-exponent ordering. Both clock sizes appear in the inspector.</td></tr>
@@ -111,11 +111,11 @@
 
 <section id="provenance">
 <h2>Source identity</h2>
-<p><strong>Authoritative supplied reference:</strong> <a href="reference/thesis2-math-in-pictures.html">thesis2-math-in-pictures.html</a>. Its bundled bytes match the Desktop original.</p>
+<p><strong>Authoritative supplied reference:</strong> <a href="../../reference/thesis2-math-in-pictures.html">thesis2-math-in-pictures.html</a>. Its bundled bytes match the Desktop original.</p>
 <p class="small digest">SHA-256: <code>42a1e58b4ac4bbc2a9650516fbe5d4b8889b4bf145b404fbe7d67552b477c401</code></p>
 <p><strong>Original BTC source:</strong> <code>Downloads/GIT backup - 28sep/MINER-MAY-2026-main/backend/miner_server</code>. The retained legacy math and native hasher originate there. The new local control layer and THESIS2 adapter live in this independent package.</p>
 <p><strong>UX reference:</strong> <code>Desktop/PROJECTS/XMR MINER</code>. BTC Miner follows its local terminal workflow without including the Monero hashing engine or fleet infrastructure.</p>
-<p><a href="README.md">Usage README</a> · <a href="SOURCE-NOTES.md">Source notes</a> · <a href="FILES.sha256.json">Package file digests</a></p>
+<p><a href="../../README.md">Usage README</a> · <a href="SOURCE-NOTES.md">Source notes</a> · <a href="../../FILES.sha256.json">Package file digests</a></p>
 </section>
 <footer>Prepared for Christian Tavarez · BTC Miner 1.1.0 · September 29, 2026<br>This report is self-contained and works offline. Reference and code links resolve inside the copied miner folder.</footer>
 </main></body></html>

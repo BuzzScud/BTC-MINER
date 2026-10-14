@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
-Set-Location $PSScriptRoot
-$python = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
+$root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+Set-Location $root
+$python = Join-Path $root '.venv\Scripts\python.exe'
 if (!(Test-Path $python)) { throw 'Run .\setup.ps1 first.' }
 $env:PYTHONDONTWRITEBYTECODE = '1'
 $env:PYTHONUTF8 = '1'
