@@ -96,10 +96,8 @@ hashes, check descriptions and source digests. Packaging verifies those digests
 before setting `core_regtest_validated` in BUILD-INFO.json. That run covered its
 then-current Ember and difficulty-control code; it used only disposable mining services.
 The existing Bitcoin-Qt installation and normal node data were not used or modified.
-The previous report is preserved in `validation/difficulty/before-regtest.json`;
-the new report is also copied to `validation/difficulty/regtest.json`.
-The run includes the dynamic-rods primality implementation in THESIS2. The previous
-evidence is preserved in `validation/ellipse-rods/before-implementation/`.
+The previous and duplicate difficulty reports remain available in Git history.
+The run includes the dynamic-rods primality implementation in THESIS2.
 
 ## Ellipse and dynamic rods
 
@@ -111,8 +109,8 @@ intervals and Fermat budgets are checked, including algebra on integers whose pr
 exceeds 8192 bits. Those large example factors are not claimed prime.
 
 The code-to-theorem mapping and a correction to the source's informal shape explanation
-are in `MATH-IMPLEMENTATION.md`. Logs and exact `/math` output are saved under
-`validation/ellipse-rods/`. A later independent check rebuilt the completed
+are in `MATH-IMPLEMENTATION.md`. Earlier logs and exact `/math` output remain in
+Git history. A later independent check rebuilt the completed
 Aristotle task's EllipseSearch, DynamicRods and CorePrimes plus 10 local dependencies.
 The axiom union for their 83 theorem roots contains only `propext`,
 `Classical.choice`, and `Quot.sound`. This checks the Lean sources, not the Python
@@ -139,7 +137,8 @@ default diagnostics (sampling eligible nonces every 64):
 
 The two-worker default is retained. Diagnostic output is written into a temporary
 directory; these benchmarks send no network requests or shares. Keep-awake and
-idle policies are disabled during measurement. See `validation/performance.json`.
+idle policies are disabled during measurement. The earlier performance receipt
+remains available in Git history.
 
 ```
 ./bin/btc-miner benchmark --strategy thesis2 --seconds 3 --sweep

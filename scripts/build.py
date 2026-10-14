@@ -41,66 +41,12 @@ def run(args, cwd, env, logfile=None):
 def release_files(root, evidence):
     """The explicit export boundary excludes operational/private files."""
     public = root/'.github/manifests/PUBLIC_FILES.json'
-    if public.is_file():
-        files = json.loads(public.read_text())
-        require(isinstance(files,list) and len(files)==len(set(files)), 'Invalid public export inventory')
-        require(all(not Path(name).is_absolute() and '..' not in Path(name).parts for name in files), 'Unsafe export path')
-        return sorted(files)
-    # Explicit inputs prevent saved credentials, session logs and optional
-    # third-party libraries from entering a distributable archive.
-    files = ["README.md", "LICENSE", "docs/project/SOURCE-NOTES.md", ".gitignore",
-             "docs/project/BUILD-ASSESSMENT.md", "docs/project/IMPLEMENTATION-PLAN.md",
-             "bin/launchers/macos/Start BTC Miner.command", "bin/launchers/macos/install.command",
-             "docs/project/THESIS2 Implementation Report.html", "docs/OPTIONAL-BACKENDS.md",
-             "native/build.sh", "native/hasher_fast.c", "scripts/build.py", "scripts/regtest.py",
-             "bin/btc-miner", "bin/minerctl.sh", "bin/miner-ui.sh",
-             "bin/launchers/macos/BTC Miner.app/Contents/Info.plist", "bin/launchers/macos/BTC Miner.app/Contents/MacOS/launcher"]
-    files += [str(path.relative_to(root)) for path in (root / "btcminer").rglob("*.py")]
-    files += ["docs/GEOMETRY-CODEC.txt", "research/geometry-codec-contract.json"]
-    files += ["docs/SCALE-GRAPH-TRAVERSAL.txt", "research/scale-graph-runtime.json"]
-    files += ["src/ui/modelling.html", "docs/LIVE-MODELLING.txt"]
-    files += ["docs/PROVIDER-API.txt"]
-    files += [str(path.relative_to(root)) for path in (root/'reference/fractal-abacus').iterdir() if path.is_file()]
-    files += ["docs/project-layout.json", "docs/PROJECT-STRUCTURE.txt",
-              "native/latcalc/PROVENANCE.json", "math-library/native/latcalc/PROVENANCE.json"]
-    files += [str(path.relative_to(root)) for folder in ("src", "math-library")
-              for path in (root / folder).rglob("*")
-              if path.is_file() and path.suffix in (".py", ".c", ".h")]
-    files += [str(path.relative_to(root)) for path in (root / "tests").rglob("*.py")]
-    files += ['docs/PRODUCTION-BLOCK-VALIDATION.txt',
-              'docs/RESOURCE-CONTROL.txt','docs/PROVIDER-SYSTEM-METRICS.txt',
-              'tests/fixtures/core-accepted-block/decoded.json',
-              'tests/fixtures/core-accepted-block/raw.hex']
-    files += ["native/build_rodsieve.sh", "native/build_abacus.sh", "research/claims.json",
-              "research/study-policy.json", "research/integration-status.json", "research/executable-theorems.json",
-              "research/formula-catalogue.json", "research/math-catalogue-reference.json", "research/math-consumers.json"]
-    files += [str(path.relative_to(root)) for path in (root / "native/latcalc").rglob("*")
-              if path.is_file() and path.suffix in (".c", ".h")]
-    files += ["reference/thesis2-math-in-pictures.html", "scripts/capacity_real_report.py"]
-    files += [str(path.relative_to(root)) for path in (root / "validation").glob("*.json")]
-    files += ["docs/project/VALIDATION.md", "docs/project/TERMINAL-COMMANDS.md", "docs/project/MATH-IMPLEMENTATION.md"]
-    files += ["docs/project/EMBER-IMPLEMENTATION.md", "validation/ember/pty-check.json",
-              "scripts/check_ember_terminal.py"]
-    files += ["scripts/check_loop_terminal.py", "validation/fullscreen-loop-20261011/pty-check.json"]
-    files += ["scripts/check_copper_terminal.py", "scripts/check_copper_hub.py",
-              "validation/copper/pty-check.json", "validation/copper/hub-check.json"]
-    files += ["docs/project/DIFFICULTY.md", "validation/difficulty/regtest.json"]
-    files += ["docs/project/ARISTOTLE-MONITOR.md", "scripts/monitor_aristotle_math.py", "scripts/apply_math_update.py"]
-    files += [str(path.relative_to(root)) for path in
-              (root / "reference/aristotle-core-primes").glob("*") if path.is_file()]
-    files += [str(path.relative_to(root)) for path in
-              (root / "reference/aristotle-rods-towers").glob("*") if path.is_file()]
-    files += ["reference/aristotle-ellipse-rods/" + name for name in
-              ("EllipseSearch.lean", "DynamicRods.lean", "ELLIPSE_AND_RODS.md")]
-    files += ["validation/ellipse-rods/" + name for name in
-              ("source-provenance.json", "unit-tests.log", "math-inspect.json", "regtest.json")]
-    files += ["docs/project/MASTER_PLAN.md", "scripts/verify_proof_evidence.py", "scripts/publish_archive_calculations.py",
-              "scripts/refresh_research_metadata.py", "scripts/bounded_miner_proof_audit.py", "research/proof-registry.json",
-              "research/provider-coverage-ledger.json", "research/provider-coverage-reference.json",
-              "research/proof-evidence/manifest.json", "research/proof-evidence/report.html"]
-    files += list(evidence['manifest']['workspace_sources'])
-    files += ["research/proof-evidence/" + relative for relative in evidence['manifest']['objects']]
-    return sorted(set(files))
+    require(public.is_file(), 'Missing public export inventory')
+    files = json.loads(public.read_text())
+    require(isinstance(files,list) and len(files)==len(set(files)), 'Invalid public export inventory')
+    require(all(isinstance(name,str) and not Path(name).is_absolute() and '..' not in Path(name).parts
+                for name in files), 'Unsafe export path')
+    return sorted(files)
 
 
 def check_release_inputs(root, *, check_manifest=True):

@@ -23,7 +23,6 @@ repository root.
 - [Mathematics implementation](project/MATH-IMPLEMENTATION.md)
 - [Retained proof report](../research/proof-evidence/report.html)
 
-[Project notes and reports](project/) retain implementation plans, earlier build
-assessments, terminal procedures, and the HTML implementation report. Historical
-results describe their recorded versions; they are not current release guarantees.
-The [historical README](HISTORICAL-README.md) retains the earlier research narrative.
+The repository retains sources, tests, release contracts, and the proof material
+needed to verify and maintain the miner. Older plans and test receipts remain in
+Git history; they are not part of the current checkout or release package.

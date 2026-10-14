@@ -54,9 +54,8 @@ does not claim new math, hash performance, telemetry or real-network validation.
   PENDIN bookkeeping flag when comparing terminal attributes. No lifecycle commands
   were allowed in these sessions. The check is reproducible with the included
   `scripts/check_ember_terminal.py`; its report records the tested source hashes.
-- Working-folder fixture frames and the pseudo-terminal report are under `validation/ember/`.
-  The PNG is rendered from the implemented renderer's ANSI output, using invented
-  session data. It is not a live mining measurement.
+- The check writes its pseudo-terminal report under `validation/ember/` when run.
+  Earlier fixture frames and reports remain available in Git history.
 - The portable build runs native SHA256d self-tests and the complete offline
   regression suite in a clean staging folder. Its manifest records exact packaged
   file hashes. Historical Core regtest evidence is not asserted to cover the new

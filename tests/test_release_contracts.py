@@ -38,6 +38,12 @@ class ReleaseContracts(unittest.TestCase):
         self.assertTrue(all('research/proof-evidence/'+r in names for r in proof['manifest']['objects']))
         self.assertFalse(any(Path(name).parts[0] in ('logs','node','.venv') or name.endswith('settings.json') for name in names))
 
+    def test_missing_public_inventory_cannot_fall_back_to_an_implicit_export(self):
+        root = self.fixture()
+        (root/'.github/manifests/PUBLIC_FILES.json').unlink()
+        with self.assertRaisesRegex(EvidenceError, 'Missing public export inventory'):
+            build.release_files(root, verify(root))
+
     def test_staged_release_is_portable(self):
         result = build.check_release_inputs(self.fixture())
         self.assertEqual(result['status'],'passed')

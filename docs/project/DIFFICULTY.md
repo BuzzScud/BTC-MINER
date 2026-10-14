@@ -66,8 +66,8 @@ simultaneous difficulty commands, and verified no-op/invalid commands preserve t
 running process. A regtest → testnet4 → regtest round trip restored the configured
 private node and multiplier without starting mining.
 
-Evidence: `validation/difficulty/regtest.json` and `validation/regtest.json`.
-Detailed follow-up logs are under `validation/difficulty/audit/`.
+The retained evidence is `validation/regtest.json`; the duplicate report and
+detailed follow-up logs remain available in Git history.
 Reproduce with `python3 -B scripts/regtest.py`; supply `--bitcoind /path/to/bitcoind`
 if needed. This creates and cleans up its own test node, not a persistent regtest
 connection for the dashboard.

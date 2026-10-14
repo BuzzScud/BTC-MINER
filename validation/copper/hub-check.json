@@ -1,8 +1,0 @@
-{
-  "ok": true,
-  "fixture_only": true,
-  "reused_server": true,
-  "occupied_port_fallback": true,
-  "synthetic_study_started": false,
-  "live_hashes": "123"
-}

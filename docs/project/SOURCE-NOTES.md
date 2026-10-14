@@ -38,16 +38,16 @@ math remains selectable through `thesis` and `hybrid`.
 The HTML's theorem counts describe its source project. The underlying Lean proof
 files are not included here. Neither this Python port nor its Bitcoin integration
 inherits those proof claims. No implementation tests or performance measurements
-were run for this addition, as requested. See `THESIS2 Implementation Report.html`
-for the formula mapping, integration details, handoff and source digest.
+were run for this addition, as requested. The original implementation report
+remains available in Git history; the current source and tests define the build.
 
 ## Offline build validation — version 1.1.1, 29 September 2026
 
 Added standard-library regression tests for native hashing, nonce scan counts,
 target boundaries, mathematical traversal, serialization, connection state,
 local control parsing, and scheduler accounting. The original HTML implementation
-report and the initial BUILD-ASSESSMENT.md are historical records; the current
-build status is documented in README.md and IMPLEMENTATION-PLAN.md.
+report and initial build assessment remain in Git history. The current build
+status is determined by the release checks and CI.
 
 Fixed Stratum target rounding and malformed local control input handling. Added
 native-aware self-tests and scripts/build.py for a clean tested package without

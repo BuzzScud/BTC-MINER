@@ -211,6 +211,6 @@ from having a block accepted by Bitcoin Core.
 See [public release design and checks](PUBLIC-RELEASE.md),
 [security and publication](../.github/SECURITY.md), and [source provenance](project/SOURCE-NOTES.md).
 CI builds native libraries and runs tests on macOS, Linux, and Windows.
-`docs/HISTORICAL-README.md` preserves the earlier research narrative; paths to
-unbundled private experiments are historical references, not setup prerequisites.
+Older research narratives and test receipts are available in Git history. Paths
+to unbundled private experiments are not setup prerequisites.
 License: GPL-3.0; see [LICENSE](../LICENSE).

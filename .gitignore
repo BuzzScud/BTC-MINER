@@ -37,3 +37,11 @@ node/
 *.exp
 BUILD-INFO.json
 validation/package-regression.log
+validation/copper/*.json
+validation/ember/*.json
+validation/fullscreen-loop-20261011/*.json
+validation/ellipse-rods/*.json
+validation/ellipse-rods/*.log
+validation/difficulty/regtest.json
+validation/performance.json
+validation/relocation.json

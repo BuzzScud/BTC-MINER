@@ -12,8 +12,8 @@ The existing complete-tile ordering and native SHA256d acceptance checks are pre
 
 ## Source and executable counterparts
 
-Unmodified source copies are in `reference/aristotle-ellipse-rods/`; their hashes and
-the Desktop export location are recorded in `validation/ellipse-rods/source-provenance.json`.
+Unmodified source copies are in `reference/aristotle-ellipse-rods/`; their earlier
+source provenance report remains available in Git history.
 The Python routines are ports tested against the mathematical statements. They are
 not Lean-extracted code or formally verified Python. A subsequent independent
 check compiled the completed task's EllipseSearch, DynamicRods and CorePrimes
