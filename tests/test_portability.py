@@ -148,7 +148,10 @@ raise SystemExit(service.serve())
                             process.terminate();out,err=process.communicate(timeout=5)
                             self.fail('Control fixture did not start: '+err.decode(errors='replace'))
                         time.sleep(.05)
-                self.assertEqual(reply['pid'],process.pid)
+                # Windows venv python.exe can redirect to a child interpreter.
+                import psutil
+                owned={process.pid,*(p.pid for p in psutil.Process(process.pid).children(recursive=True))}
+                self.assertIn(reply['pid'],owned)
                 self.assertEqual(reply['hashes'],0)
                 self.assertTrue(service._request(address,'pause',{})['ok'])
                 self.assertEqual(service._request(address,'status',{})['state'],'PAUSED')

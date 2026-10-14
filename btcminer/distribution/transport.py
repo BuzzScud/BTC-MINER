@@ -187,7 +187,7 @@ class Client:
         atomic_json(self.journal,dict(binding=self.binding,request=request))
         # atomic_json uses a mode-600 temporary file; fsync before sending so a
         # worker process crash cannot discard its operation identity.
-        with self.journal.open('rb') as handle: os.fsync(handle.fileno())
+        with self.journal.open('r+b') as handle: os.fsync(handle.fileno())
         return self._send(request)
 
 
