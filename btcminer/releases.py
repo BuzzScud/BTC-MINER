@@ -328,12 +328,14 @@ class Repository:
                      '+refs/heads/stable:refs/remotes/origin/stable',timeout=15)
             target = self.git('rev-parse','refs/remotes/origin/stable^{commit}').strip()
             head = self.git('rev-parse','HEAD').strip()
-            if target == head:
+            edited = bool(self.git('status','--porcelain','--untracked-files=no').strip())
+            if target == head and not edited:
                 if not on_open:
                     self.notice('Up to date: '+head[:7]+'.')
                 return False
             if check:
-                self.notice('Release available: '+head[:7]+' → '+target[:7]+'. Run update to install it.')
+                self.notice(('Local source edits will be backed up and restored to stable. ' if edited else '')+
+                            'Release: '+head[:7]+' → '+target[:7]+'. Run update to install it.')
                 return False
             stage = self.area/('stage-'+uuid.uuid4().hex)
             stage.mkdir()

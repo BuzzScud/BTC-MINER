@@ -139,6 +139,8 @@ release. **It stays stopped until the user starts it.** Settings, credentials,
 wallets and logs remain local. Tracked edits are saved in Git stash and local
 commits in a `backup/` branch. Untracked-file collisions postpone the update;
 nothing runs `git clean` or a forced checkout. Follower pushes are disabled locally.
+Tracked edits are backed up and restored to the release even when the commit ID
+is already current; use the main role for the checkout where you develop changes.
 `role main` restores publishing capability; changing roles never changes math.
 
 When dependencies change, dashboard launch postpones the update. Manual `update`

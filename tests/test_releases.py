@@ -103,6 +103,14 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(git(self.root,'show','stash@{0}:README.md'),'uncommitted user edit')
         self.assertFalse((self.root/'local-code.py').exists())
 
+    def test_same_commit_with_source_edits_restores_the_release_and_keeps_backup(self):
+        (self.root/'README.md').write_text('local edit on current release\n')
+        self.assertTrue(self.repo.update())
+        self.assertEqual(git(self.root,'rev-parse','HEAD'),self.before)
+        self.assertEqual((self.root/'README.md').read_text(),'first release\n')
+        self.assertEqual(git(self.root,'show','stash@{0}:README.md'),'local edit on current release')
+        self.stop.assert_called_once()
+
     def test_failed_post_switch_check_restores_source_index_and_native_files(self):
         self.publish()
         (self.root/'README.md').write_text('staged edit\n');git(self.root,'add','README.md')
