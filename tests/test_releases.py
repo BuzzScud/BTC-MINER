@@ -81,6 +81,7 @@ class ReleaseTests(unittest.TestCase):
         self.assertTrue(self.repo.update())
         self.assertEqual(git(self.root,'rev-parse','HEAD'),target)
         self.assertEqual(git(self.root,'branch','--show-current'),'stable')
+        self.assertEqual(git(self.root,'rev-parse','--abbrev-ref','@{upstream}'),'origin/stable')
         self.assertEqual((self.root/'machine.local.json').read_text(),'{"fixture":"local-only"}')
         self.assertEqual((self.root/'.env').read_text(),'LOCAL_FIXTURE=retained\n')
         self.assertEqual((self.root/'logs/session.txt').read_text(),'retained')

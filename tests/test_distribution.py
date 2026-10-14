@@ -318,10 +318,13 @@ class EngineDistributionTests(unittest.TestCase):
                         keep_awake=False,stop_after_block=True,workers=2,pruning_enabled=False,
                         distribution_enabled=True,distribution_port=0,provider_enabled=False)
             engine=Engine(config,logs=Path(folder))
-            engine.connection=Mock();engine.connection.valid.return_value=True
+            engine.connection=Mock(label='local fixture',connected=True);engine.connection.valid.return_value=True
             engine.connection.submit.return_value=(True,'simulated accepted block',True)
             work=Work(GENESIS,(1<<256)-1,(1<<256)-1,0,'','fixture',1)
             try:
+                # Exercise status serialization even when the first batch wins
+                # before the coordinator's normal periodic tick.
+                engine.tick()
                 with ThreadPoolExecutor(2) as executor:engine.round(executor,work)
                 self.assertEqual(engine.state['blocks_accepted'],1)
                 self.assertEqual(engine.connection.submit.call_count,1)

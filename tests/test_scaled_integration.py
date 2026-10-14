@@ -94,7 +94,9 @@ class AdaptiveTests(unittest.TestCase):
         from btcminer.adaptive import retain_candidates
         n=z3.BitVec('nonce',8); solver=z3.Solver()
         solver.add((n*3+7)&15==2)
-        result=retain_candidates(solver,n,list(range(256)),time.monotonic()+5)
+        # This checks a completed exhaustive result, not host scheduling speed.
+        # The separate unknown test exercises the conservative timeout path.
+        result=retain_candidates(solver,n,list(range(256)),time.monotonic()+30,slice_ms=10000)
         self.assertEqual(result['keep'],[v for v in range(256) if (v*3+7)&15==2])
         self.assertFalse(result['unknown'])
 

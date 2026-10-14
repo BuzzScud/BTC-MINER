@@ -80,6 +80,8 @@ class Repository:
     def require_checkout(self):
         if not self.available():
             raise UpdateError('Updates require a Git clone. Clone BTC-MINER and run setup; preserve your local settings.')
+        if Path(self.git('rev-parse','--show-toplevel').strip()).resolve() != self.root:
+            raise UpdateError('Git points to a different working directory; no update was applied.')
         origin = self.git('remote', 'get-url', 'origin', check=False).strip()
         allowed = {self.upstream}
         if self.upstream == UPSTREAM:
@@ -297,6 +299,8 @@ class Repository:
                     write_json(pointer, {'environment':environment})
                 self.run([python,'-B','-m','btcminer','self-test','--require-native'], self.root, self.area/'validation.log')
                 self.set_role('follower')
+                self.git('config','branch.stable.remote','origin')
+                self.git('config','branch.stable.merge','refs/heads/stable')
                 self.transaction.unlink()
             except BaseException:
                 try:
