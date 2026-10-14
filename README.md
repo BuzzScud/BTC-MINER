@@ -14,7 +14,7 @@ It never starts mining or installs a startup service.
 **macOS (Apple Silicon or Intel) and Linux (64-bit):**
 
 ```sh
-git clone https://github.com/BuzzScud/BTC-MINER.git
+git clone --branch stable https://github.com/BuzzScud/BTC-MINER.git
 cd BTC-MINER
 sh setup.sh
 ./bin/btc-miner ui
@@ -23,7 +23,7 @@ sh setup.sh
 **Windows x64 (PowerShell / Windows Terminal):**
 
 ```powershell
-git clone https://github.com/BuzzScud/BTC-MINER.git
+git clone --branch stable https://github.com/BuzzScud/BTC-MINER.git
 cd BTC-MINER
 powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 .\btc-miner.cmd ui
@@ -96,6 +96,63 @@ See [provider details](docs/PROVIDER-API.txt) and
 [work distribution](docs/FRACTAL-DISTRIBUTION.txt).
 The external Algorithm Observatory opened by `/hub` is a separate optional project;
 it is not required for mining or bundled in this release.
+
+## Send and receive updates
+
+This follows the XMR miner's main/follower model. `stable` is the release channel;
+a push to `main` alone does not update followers. Every Git installation defaults
+to follower. It checks for a release when the dashboard opens, or with `update`.
+Checks use a 15-second Git network timeout; offline, the installed version opens.
+A new release takes longer because it builds and validates before switching.
+Nothing polls or interrupts a miner while its dashboard stays open.
+
+**On your publishing machine, once:**
+
+```sh
+./bin/btc-miner role main
+```
+
+Review changes, refresh the public manifest, and commit only the reviewed public
+files. Then publish with:
+
+```sh
+./bin/btc-miner release
+```
+
+The command requires [Gitleaks](https://github.com/gitleaks/gitleaks), or
+`release --gitleaks PATH`. It checks the exact source inventory, preserved math,
+proof evidence, and secrets; pushes the committed revision to `main`; waits for
+all platform CI checks; then publishes `main` and `stable` in an atomic Git push.
+It never stages or commits arbitrary local files. If CI fails, `stable` stays put.
+Git authentication is needed only on the publisher. `--yes` skips its final prompt.
+
+**On other machines:** reopen the dashboard, or run:
+
+```sh
+./bin/btc-miner update --check
+./bin/btc-miner update
+```
+
+Use `.\btc-miner.cmd` instead of `./bin/btc-miner` on Windows. A follower builds
+and tests the candidate first, then stops only its own miner and switches to the
+release. **It stays stopped until the user starts it.** Settings, credentials,
+wallets and logs remain local. Tracked edits are saved in Git stash and local
+commits in a `backup/` branch. Untracked-file collisions postpone the update;
+nothing runs `git clean` or a forced checkout. Follower pushes are disabled locally.
+`role main` restores publishing capability; changing roles never changes math.
+
+When dependencies change, dashboard launch postpones the update. Manual `update`
+asks before installing the pinned packages into a separate environment, keeping
+the old environment for rollback. Missing system compiler tools require setup's
+separate approval. A failed switch restores the prior source, binaries and runtime;
+`update --rollback` recovers an interrupted switch. Recovery refuses to overwrite
+concurrent user edits. Details and retained backups are in ignored `.updates/`.
+
+An installation from before this updater needs a one-time `git pull --ff-only`
+and setup; resolve any Git conflicts first. ZIP-only copies need a Git clone to
+follow releases. Publishing a release cannot directly change an offline machine
+or a checkout that has not installed the updater. Existing open dashboards see
+updates on their next launch.
 
 ## Mathematics and evidence
 

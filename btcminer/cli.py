@@ -63,13 +63,18 @@ def setup():
 
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv[:1] in (['role'], ['release'], ['update']):
+        from .releases import main as release_main
+        return release_main(argv)
     if argv[:1] == ['cluster']:
         from .distribution.cli import main as cluster_main
         return cluster_main(argv[1:])
-    parser = argparse.ArgumentParser(prog="btc-miner",description="BTC Miner · native Apple Silicon mining and thesis math")
+    parser = argparse.ArgumentParser(prog="btc-miner",description="BTC Miner · portable native mining and thesis math")
     parser.add_argument("--version",action="version",version=VERSION)
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("ui"); sub.add_parser("setup")
+    for command in ('role','release','update'):
+        sub.add_parser(command,help='Git releases: run '+command+' --help for options')
     sub.add_parser('cluster',help='Fractal node workers, duplex buffers and isolated peer tests')
     p = sub.add_parser("hub", help="Open the local Bitcoin Algorithm Observatory")
     p.add_argument('--path'); p.add_argument('--no-open', action='store_true')

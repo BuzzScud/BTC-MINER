@@ -117,6 +117,8 @@ def start():
         return _start()
 
 def _start():
+    if (ROOT/'.updates/transaction.json').exists():
+        raise ValueError('An update needs recovery. Run btc-miner update --rollback before starting.')
     try:
         existing = request()
         if existing.get("running"):
@@ -134,7 +136,8 @@ def _start():
     (LOGS/"stop.request").unlink(missing_ok=True)
     if not supervisor_running():
         with (LOGS/"service.log").open("a") as output:
-            subprocess.Popen([sys.executable,"-m","btcminer.service","supervise"],cwd=ROOT,
+            from .runtime import interpreter
+            subprocess.Popen([interpreter(ROOT),"-m","btcminer.service","supervise"],cwd=ROOT,
                              stdin=subprocess.DEVNULL,stdout=output,stderr=output,**detached_options())
     deadline = time.monotonic()+6
     while time.monotonic()<deadline:

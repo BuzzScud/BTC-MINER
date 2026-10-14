@@ -137,6 +137,11 @@ class App:
         except (OSError,ValueError):
             pass
         self.note("BTC Miner ready. s starts · /setup connects · q closes this view", "notice")
+        try:
+            notice=json.loads((ROOT/'.updates/last-result.json').read_text())
+            self.note(notice['message'],'notice')
+        except (OSError,ValueError,KeyError,TypeError):
+            pass
         if not CONFIG.exists():
             self.note("First run: type /setup to enter your BTC connection details.","notice")
 

@@ -7,7 +7,7 @@ import re
 import subprocess
 
 ROOT=Path(__file__).resolve().parent.parent
-FORBIDDEN=re.compile(r'(^|/)(?:\.env(?:\..*)?|machine\.local\.json|network-profiles\.local\.json|wallet\.dat|\.cookie|\.venv|\.build|\.test-tools|logs|wallets|node)(/|$)|\.(?:pem|key|sqlite(?:-.*)?|db|pyc|dylib|dll|so)$',re.I)
+FORBIDDEN=re.compile(r'(^|/)(?:\.git|\.env(?:\..*)?|[^/]+\.local\.json|wallet\.dat|\.cookie|\.venv|\.build|\.updates|\.test-tools|logs|wallets|node)(/|$)|\.(?:pem|key|sqlite(?:-.*)?|db|pyc|dylib|dll|so)$',re.I)
 PATTERNS=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',
           rb'gh[pousr]_[A-Za-z0-9]{30,}',rb'github_pat_[A-Za-z0-9_]{30,}',rb'AKIA[A-Z0-9]{16}']
 

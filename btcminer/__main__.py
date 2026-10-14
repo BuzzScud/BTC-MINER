@@ -1,2 +1,2 @@
-from .cli import main
+from .runtime import main
 raise SystemExit(main())

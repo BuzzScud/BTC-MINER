@@ -79,3 +79,29 @@ Run scripts/audit_public.py after staging and Gitleaks on both the public export
 and all Git history before pushing. Generated native binaries and user data stay
 outside Git. CI builds/tests macOS ARM, macOS Intel, Linux x64 and Windows x64.
 CI status is the authoritative record of remote platform results.
+
+## Stable release distribution
+
+The updater in `btcminer/releases.py` is separate from local mathematical reloads.
+Roles live in checkout-local Git config (`btcminer.role`); the default is follower.
+The publisher explicitly promotes a reviewed commit to `stable` only after the
+exact commit passes the release workflow on all platforms and its secret scan.
+The publisher command does not stage changes or commit machine data. A failed
+promotion leaves the previous stable release available.
+
+Followers fetch only the configured official stable source. The updater verifies
+an archive's exact public inventory and file digests before materializing regular
+files; symlinks, private paths, unexpected files and unsafe paths are rejected.
+It stages the build, self-test, preservation checks and regression suite before
+stopping the installed miner. Dependency changes require a manual approval and
+use a separate environment under `.updates/`; unchanged dependencies are reused
+without installation. Compiler installation is never implicit in an update.
+
+A process lock serializes updates. The service lifecycle lock protects the final
+stop/switch, and a persistent transaction prevents mining from starting during an
+incomplete switch. Backups retain the previous commit, tracked edits, native
+libraries and runtime selection. Recovery never uses a forced checkout or removes
+untracked/ignored files; unresolved concurrent edits require manual resolution.
+Backups and retired environments remain local until the user removes them.
+Existing public installations must bootstrap this updater once. No network daemon
+or remote mining-control service is installed.
