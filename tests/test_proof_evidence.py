@@ -5,7 +5,7 @@ changed evidence; no mining, network, provider API or Lean process is started.
 """
 import copy
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import shutil
 import subprocess
 import sys
@@ -50,7 +50,7 @@ class EvidenceTests(unittest.TestCase):
     def test_missing_compiled_object_rejected(self):
         root = self.capsule()
         build = self.accepted['raw_receipt']['builds'][0]
-        path = Path(self.accepted['raw_receipt']['object_directory'])/next(iter(build['artifacts']))
+        path = PurePosixPath(self.accepted['raw_receipt']['object_directory'])/next(iter(build['artifacts']))
         relative = self.accepted['original_files'][str(path)]
         (root/'research/proof-evidence'/relative).unlink()
         with self.assertRaises(EvidenceError):

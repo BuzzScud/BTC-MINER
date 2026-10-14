@@ -16,15 +16,15 @@ FILES = ('btcminer/pqmath.py', 'btcminer/thesis2.py', 'btcminer/coreprimes.py', 
          'native/latcalc/include/latcalc/rns.h', 'native/latcalc/include/latcalc/common.h')
 
 # Include every compiled arithmetic unit and header in update detection.
-FILES = tuple(dict.fromkeys((*FILES, *(str(p.relative_to(ROOT)) for p in
+FILES = tuple(dict.fromkeys((*FILES, *(p.relative_to(ROOT).as_posix() for p in
     sorted((ROOT/'native/latcalc').rglob('*')) if p.suffix in ('.c', '.h')),
     # Target decoding, local difficulty controls and imported legacy modules
     # are part of the loaded implementation too. Track the built libraries so
     # a binary-only replacement cannot appear to be the same implementation.
-    *(str(p.relative_to(ROOT)) for p in sorted((ROOT/'btcminer').rglob('*.py'))),
-    *(str(p.relative_to(ROOT)) for folder in ('src', 'math-library')
+    *(p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'btcminer').rglob('*.py'))),
+    *(p.relative_to(ROOT).as_posix() for folder in ('src', 'math-library')
       for p in sorted((ROOT/folder).rglob('*')) if p.suffix in ('.py', '.c', '.h')),
-    *(str(p.relative_to(ROOT)) for p in sorted((ROOT/'native').iterdir())
+    *(p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'native').iterdir())
       if p.is_file() and p.suffix in ('.so', '.dylib', '.dll')))))
 
 

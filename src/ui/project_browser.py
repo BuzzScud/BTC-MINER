@@ -245,7 +245,7 @@ def inventory(root, *, excluded=(), previous=None):
             continue
         try:
             expected = os.path.relpath(root/new_path, (root/old_path).parent)
-            if os.readlink(root/old_path) == expected and old_path in manifest:
+            if os.path.normpath(os.readlink(root/old_path)) == expected and old_path in manifest:
                 checks[old_path] = {'status': 'match' if hashes[new_path] == manifest[old_path] else 'mismatch',
                                'expected': manifest[old_path], 'actual': hashes[new_path], 'source': new_path}
         except OSError as error:

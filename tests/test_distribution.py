@@ -1,4 +1,5 @@
 import base64
+from contextlib import ExitStack
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
@@ -271,10 +272,10 @@ class BufferTests(unittest.TestCase):
 
 class TransportTests(unittest.TestCase):
     def test_authenticated_real_http_worker_and_retry_journal(self):
-        with tempfile.TemporaryDirectory() as folder:
-            store=Store(Path(folder)/'db'); self.addCleanup(store.close)
+        with tempfile.TemporaryDirectory() as folder, ExitStack() as cleanup:
+            store=Store(Path(folder)/'db'); cleanup.callback(store.close)
             server,thread=serve(store,'127.0.0.1',0,{'A':'a'*64})
-            self.addCleanup(lambda:(server.shutdown(),server.server_close(),thread.join()))
+            cleanup.callback(lambda:(server.shutdown(),server.server_close(),thread.join()))
             url='http://127.0.0.1:'+str(server.server_port)
             client=Client(url,'a'*64,Path(folder)/'journal.json')
             reply=client.call('model.publish',model=MODEL,provenance={})
@@ -295,10 +296,10 @@ class TransportTests(unittest.TestCase):
 
     def test_malformed_http_framing_cannot_publish(self):
         import socket
-        with tempfile.TemporaryDirectory() as folder:
-            store=Store(Path(folder)/'db');self.addCleanup(store.close)
+        with tempfile.TemporaryDirectory() as folder, ExitStack() as cleanup:
+            store=Store(Path(folder)/'db');cleanup.callback(store.close)
             server,thread=serve(store,'127.0.0.1',0,{'A':'a'*64})
-            self.addCleanup(lambda:(server.shutdown(),server.server_close(),thread.join()))
+            cleanup.callback(lambda:(server.shutdown(),server.server_close(),thread.join()))
             for framing in ('Content-Length: 2\r\nContent-Length: 2\r\n',
                             'Content-Length: 2\r\nTransfer-Encoding: chunked\r\n'):
                 with socket.create_connection(('127.0.0.1',server.server_port),timeout=3) as stream:

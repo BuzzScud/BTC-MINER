@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import threading
+import time
 import unittest
 from unittest.mock import patch, Mock
 
@@ -109,5 +110,56 @@ class PortabilityTests(unittest.TestCase):
         if sys.platform=='win32':self.assertEqual(path.name,'Bitcoin')
         elif sys.platform=='darwin':self.assertEqual(path.parts[-3:],('Library','Application Support','Bitcoin'))
         else:self.assertEqual(path.name,'.bitcoin')
+
+    def test_service_process_controls_remain_local_and_stop_cleanly(self):
+        # The real control server and process boundary, with an inert engine.
+        # Hashing/accepted-block integration is independently tested by core_smoke.
+        program='''
+import os,sys,threading
+from pathlib import Path
+from types import SimpleNamespace
+from btcminer import service,engine,diagnostics,settings
+root=Path(sys.argv[1]);logs=root/'logs';logs.mkdir()
+service.ROOT=root;service.LOGS=logs;settings.CONFIG=root/'machine.local.json'
+service.validate_start=lambda c:None
+diagnostics.self_test=lambda *a,**kw:dict(ok=True,hasher='inert control fixture')
+class Fixture:
+    def __init__(self,c):
+        self.stop=threading.Event();self.manual_pause=threading.Event();self.state={}
+        self.connection=SimpleNamespace(close=lambda:None)
+    def emit(self,*a,**kw):pass
+    def snapshot(self):return dict(pid=os.getpid(),state='PAUSED' if self.manual_pause.is_set() else 'IDLE',hashes=0)
+    def run(self):self.stop.wait(20)
+    def summary(self,desktop=True):return str(logs/'fixture-summary.json')
+engine.Engine=Fixture
+raise SystemExit(service.serve())
+'''
+        with tempfile.TemporaryDirectory(prefix='control fixture ') as folder:
+            root=Path(folder);address=service.socket_path(root)
+            process=subprocess.Popen([sys.executable,'-c',program,str(root)],
+                                     stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+                                     **platform.detached_options())
+            try:
+                deadline=time.monotonic()+10
+                while True:
+                    try:reply=service._request(address,'status',{});break
+                    except (OSError,ValueError):
+                        if process.poll() is not None or time.monotonic()>deadline:
+                            process.terminate();out,err=process.communicate(timeout=5)
+                            self.fail('Control fixture did not start: '+err.decode(errors='replace'))
+                        time.sleep(.05)
+                self.assertEqual(reply['pid'],process.pid)
+                self.assertEqual(reply['hashes'],0)
+                self.assertTrue(service._request(address,'pause',{})['ok'])
+                self.assertEqual(service._request(address,'status',{})['state'],'PAUSED')
+                self.assertTrue(service._request(address,'resume',{})['ok'])
+                self.assertEqual(service._request(address,'status',{})['state'],'IDLE')
+                self.assertTrue(service._request(address,'stop',{'summary':False})['ok'])
+                out,err=process.communicate(timeout=10)
+                self.assertEqual(process.returncode,0,err.decode(errors='replace'))
+                self.assertFalse(address.exists())
+            finally:
+                if process.poll() is None:process.terminate();process.communicate(timeout=10)
+                process.stdout.close();process.stderr.close()
 
 if __name__=='__main__':unittest.main()
