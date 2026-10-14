@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC Miner 1.1 · THESIS2 implementation report</title>
+<style>
+:root{color-scheme:light;--ink:#192c36;--muted:#546873;--line:#dce4e8;--blue:#175e89;--paper:#fff;--bg:#eef3f5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1160px;margin:36px auto;padding:0 32px 60px}header{background:#142f41;color:white;padding:44px;border-radius:18px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#b7d9ea}h1{font-size:clamp(30px,5vw,48px);line-height:1.12;letter-spacing:-.035em;margin:18px 0}header p{max-width:740px;color:#d6e5ed;margin:0}h2{font-size:25px;letter-spacing:-.025em;margin:0 0 14px}h3{font-size:18px;margin:24px 0 8px}p{margin:10px 0}a{color:var(--blue);text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:9px 22px;padding:22px 4px;font-size:14px}section{background:var(--paper);padding:32px;margin:18px 0;border:1px solid var(--line);border-radius:14px;scroll-margin-top:18px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.card{background:#edf4f7;padding:20px;border-radius:10px}.card strong{display:block;font-size:23px}.card span{font-size:14px;color:var(--muted)}.callout{border-left:4px solid #c98222;padding:12px 18px;background:#fff7e9;margin:22px 0}.small{font-size:14px;color:var(--muted)}code{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;background:#edf2f5;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{background:#152b39;color:#e1f0f8;padding:20px;border-radius:10px;overflow:auto;font-size:13px;line-height:1.7}pre code{background:none;color:inherit;padding:0;white-space:pre}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th{text-align:left;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;background:#f4f7f9}td,th{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}td:first-child{font-weight:600;min-width:135px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.flow div{padding:16px;background:#edf4f7;border-radius:8px;font-size:14px}.flow b{display:block;color:var(--blue);font-size:12px;letter-spacing:.08em;margin-bottom:7px}li{margin:10px 0}footer{padding:20px 4px;color:var(--muted);font-size:13px}.digest{word-break:break-all}.tag{display:inline-block;font-size:12px;background:#e6f1eb;color:#2b6346;border-radius:20px;padding:4px 10px;margin-right:6px}.tag.neutral{background:#eaf0f5;color:#3c586b}
+@media(max-width:700px){main{margin:16px auto;padding:0 14px 30px}header,section{padding:24px}.cards,.flow{grid-template-columns:1fr}td,th{padding:10px 8px}nav{gap:8px 16px}}
+@media print{body{background:white;font-size:11pt}main{margin:0;padding:0;max-width:none}header{background:white;color:var(--ink);border-bottom:3px solid var(--blue);padding:12px 0 24px;border-radius:0}header p,.eyebrow{color:var(--muted)}nav{display:none}section{padding:20px 0;border:none;border-bottom:1px solid var(--line);border-radius:0}h2,h3{break-after:avoid}tr,.card,.callout,.flow{break-inside:avoid}pre{white-space:pre-wrap;color:var(--ink);background:#f4f7f9}.table-wrap{overflow:visible}a{color:inherit}footer{padding:10px 0}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="eyebrow">Completion report · September 29, 2026 · Version 1.1.0</div>
+<h1>BTC Miner + THESIS2</h1>
+<p>A portable Bitcoin CLI for the 2023 M2 Mac mini, with the supplied mathematical reference integrated into a new default strategy and the original BTC strategies retained.</p>
+</header>
+<nav aria-label="Report sections"><a href="#delivery">Delivery</a><a href="#math">Formula mapping</a><a href="#traversal">Mining integration</a><a href="#controls">Controls</a><a href="#handoff">M2 handoff</a><a href="#status">Build status</a><a href="#provenance">Source identity</a></nav>
+
+<section id="delivery">
+<span class="tag">Implementation complete</span><span class="tag neutral">Runtime testing deferred by request</span>
+<h2 style="margin-top:18px">What is delivered</h2>
+<p><strong>BTC MINER</strong> is a folder-based application with an interactive terminal dashboard, scriptable commands, a native Apple Silicon SHA256d library, Bitcoin Core solo mining, and Bitcoin Stratum V1 pool support. The terminal follows the local XMR MINER reference’s ledger, right rail and command controls.</p>
+<p>Version 1.1 adds <code>thesis2</code> as the default strategy for a fresh configuration. The supplied HTML is included unchanged, its mathematical operations are ported to Python, and the clock/field/CRT operations are composed into a new nonce traversal. The existing <code>thesis</code>, <code>linear</code> and <code>hybrid</code> strategies remain available.</p>
+<div class="cards"><div class="card"><strong>2 workers</strong><span>Conservative default, adjustable CPU use</span></div><div class="card"><strong>4 strategies</strong><span>THESIS2 plus all three retained modes</span></div><div class="card"><strong>Core + pool</strong><span>Local node RPC or Bitcoin Stratum V1</span></div></div>
+<div class="callout"><strong>Scope of the math integration.</strong> The HTML describes mathematical constructions; it does not supply a Bitcoin mining algorithm. The implementation ports those constructions and adds an explicitly application-defined traversal, <code>btc-traversal-v1</code>. Its correctness and mining performance are not established by the source’s theorem counts.</div>
+<p class="small">Deliverables: this report; the complete miner folder; <code>BTC MINER - M2.zip</code> alongside the folder; source reference; README; source notes; and a SHA-256 file manifest. The original backup and XMR MINER project were not modified.</p>
+</section>
+
+<section id="math">
+<h2>The source mathematics, mapped to code</h2>
+<p>All twelve sections of the supplied reference are represented as implemented mathematical operations or attributed source-status information. The module is <a href="btcminer/thesis2.py">btcminer/thesis2.py</a>. Integer arithmetic uses exact Python integers. Trigonometry, distances and packing fills use floating point.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Reference section</th><th>Formula or rule</th><th>Implementation and role</th></tr></thead><tbody>
+<tr><td>1 · Clock</td><td>Period = N / gcd(N, k). Every mark is visited when gcd(N, k) = 1.</td><td><code>dial_loop</code>; coprime step validation controls field-exponent ordering. Both clock sizes appear in the inspector.</td></tr>
+<tr><td>2 · 19 × 19 board</td><td>(a + bi)(c + di) = (ac − bd) + (ad + bc)i, modulo 19; generator 1 + 3i; 360 nonzero points.</td><td><code>multiply_board</code>, <code>board_loop</code>, <code>centered19</code>. The field cycle orders the 360 residues within a tile cell.</td></tr>
+<tr><td>3 · Square / honeycomb</td><td>Square norm x² + y²; honeycomb norm x² − xy + y²; prime classification by representations and residue modulo 12.</td><td><code>square_norm</code>, <code>hex_norm</code>, <code>lattice_points</code>, <code>prime_grid</code>. Diagnostic geometry, with complete integer bounds for the requested norm limit.</td></tr>
+<tr><td>4 · Three wheels</td><td>360 = 8 × 9 × 5; 144000 = 128 × 9 × 125. Pairwise coprime residues uniquely reconstruct a clock position.</td><td><code>reading</code>, <code>crt_weights</code>, <code>from_reading</code>. Exact modular inverses replace the source’s exhaustive small-clock lookup; both wheel sets are used by the traversal.</td></tr>
+<tr><td>5 · Base 60</td><td>Long division of 1/n using repeated remainders. Termination in base 60 requires only factors 2, 3 and 5 in n.</td><td><code>expand</code>, <code>fraction_terminates</code>. Inspector examples include thirds and sevenths; expansions report termination, repetition or a digit limit.</td></tr>
+<tr><td>6 · Qualifying primes</td><td>p ≥ 7, p prime, and p − 1 divides 144000. The reference lists 35 qualifying primes.</td><td><code>is_prime</code>, <code>qualifying_primes</code>. Configured prime defaults to 19 and orders the 400 cells. These primes are coprime to 400.</td></tr>
+<tr><td>7 · Signs</td><td>Keep signed coordinates during addition. Multiplication combines magnitudes and signs separately. For unit vectors, |u + v| = 2 cos(θ/2).</td><td><code>vector_sum</code>, <code>mirror_vector</code>, <code>signed_product</code>, <code>unit_vector_sum</code>. Inspector includes aligned/opposed vectors and a common reflection.</td></tr>
+<tr><td>8 · Gaussian bits</td><td>Base b = −1 + i. Digit = (x + y) mod 2, then exact division by b. b⁴ = −4, b⁸ = 16; eight places give 256 states.</td><td><code>gaussian_weights</code>, <code>encode_gaussian</code>, <code>bits_value</code>. Exact encoding/decoding diagnostics; includes the 12-bit capacity needed for 3600 states.</td></tr>
+<tr><td>9 · Fix: 19²</td><td>361 mod 360 = 1; 361 mod 144000 = 361. Sixteen square roots of 1 on the larger clock; smallest above 1 is 13249.</td><td><code>square_roots_of_one</code> combines the component roots with CRT. Inspector reports both residues and the qualifying root 16001.</td></tr>
+<tr><td>10 · Fix: packing</td><td>A₂ × A₂ has 12 nearest neighbors; D₄ / 24-cell has 24. Fills π²/24 and π²/16 give ratio 1.5.</td><td><code>neighbors_honeycomb_pair</code>, <code>neighbors_24cell</code> and inspector fill calculations. This 4D comparison is not used as a 500D optimality assumption.</td></tr>
+<tr><td>11 · Fix: circles</td><td>Equal-area radius 1/√π. At displacement (½, ½), gap = √(½² + ½²) − 2/√π, approximately −0.421.</td><td><code>circle_gap</code>; inspector includes radius, overlap, tangency distance and displacement scale. The circles overlap at the stated position.</td></tr>
+<tr><td>12 · Proof status</td><td>Source reports 2028 theorems in 145 files through run 37: 2003 standard-axiom results and 25 compiler-evaluated checks. Run 38 is excluded.</td><td>Attributed source metadata, not proof artifacts. The underlying Lean project is not bundled. The source itself excludes speed claims from its checked results.</td></tr>
+</tbody></table></div>
+<p>The three explicit corrections in the reference are carried into the inspector. Signs, Gaussian encoding and geometry are available as mathematical diagnostics; they do not act as nonce filters or replace Bitcoin’s hash target.</p>
+</section>
+
+<section id="traversal">
+<h2>How the new mining strategy is connected</h2>
+<div class="flow" aria-label="Mining pipeline"><div><b>01 · INPUT</b>Actual 76-byte header prefix</div><div><b>02 · ORDER</b>Field cycle + clock phases + CRT tiles</div><div><b>03 · HASH</b>Bounded native SHA256d batches</div><div><b>04 · SUBMIT</b>Rehash candidate, check target, submit work</div></div>
+<ol>
+<li><strong>Seed a job-specific ordering.</strong> Hash a versioned domain separator and the first 76 bytes of the actual block header. Interpret the first eight digest bytes as a little-endian integer. The nonce bytes are excluded. Divide that seed into clock, field, cell and starting-tile phases.</li>
+<li><strong>Order the field cycle.</strong> Visit powers of 1 + 3i at exponents <code>(phase + k × step) mod 360</code>. The step defaults to 7 and must be coprime to 360. Map the nonzero field coordinates to labels <code>a + 19b − 1</code>, giving labels 0 through 359. Reconstruct each label through the small CRT wheels.</li>
+<li><strong>Build one 144000-value tile.</strong> Visit 400 cells using <code>(cell_phase + i × prime) mod 400</code>. Combine each cell with the 360 ordered residues, add the job phase, and reconstruct with the (128, 9, 125) wheels. The tile stores 144000 unsigned 32-bit offsets: 576000 bytes on the target Mac.</li>
+<li><strong>Traverse the uint32 domain.</strong> Cycle through 29827 tiles from the header-derived starting tile. The last tile has 23296 valid values; larger offsets in that tile are skipped instead of wrapped. The ordering is designed to visit each of the 2³² nonce values once if the round finishes.</li>
+<li><strong>Feed the existing hashing engine.</strong> Produce bounded lists, normally 16384 candidates per batch, for the worker threads. The miner counts attempted hashes and resumes unscanned batch tails after pool shares. Python SHA256d rechecks found candidates before submission.</li>
+<li><strong>Respect the current work and user controls.</strong> Job changes, connection validity, stop/pause controls and session/round limits can end a traversal early. A fresh header receives fresh phases. <code>single_nonce_only</code> uses the first THESIS2 nonce.</li>
+</ol>
+<p>The field ordering is a permutation, the prime step permutes the 400 cells, and a clock phase is a modular translation. Together with disjoint tiles, these are the design basis for full coverage. This explanation is a construction argument, not an executed coverage test or a formal proof of the implementation.</p>
+<p class="small">The source does not prescribe the seed, label mapping, 400-cell construction, tile scheduling or Bitcoin adapter. Those are new integration decisions. CRT reconstructs the clock positions; it is not a hash predictor. No mining speedup or measured M2 throughput is claimed.</p>
+</section>
+
+<section id="controls">
+<h2>Controls and diagnostics</h2>
+<div class="table-wrap"><table><thead><tr><th>Action</th><th>Terminal dashboard</th><th>Scriptable equivalent</th></tr></thead><tbody>
+<tr><td>Select THESIS2</td><td><code>/strategy thesis2</code></td><td><code>./bin/btc-miner config set strategy=thesis2</code></td></tr>
+<tr><td>Configure ordering</td><td><code>/set thesis2_step=7 thesis2_prime=19</code></td><td><code>./bin/btc-miner config set thesis2_step=7 thesis2_prime=19</code></td></tr>
+<tr><td>Inspect math</td><td><code>/math</code></td><td><code>./bin/btc-miner math inspect</code></td></tr>
+<tr><td>Inspect legacy math</td><td><code>/math --strategy thesis</code></td><td><code>./bin/btc-miner math inspect --strategy thesis</code></td></tr>
+<tr><td>Historical rank</td><td><code>/backtest --blocks 100</code></td><td><code>./bin/btc-miner backtest --blocks 100 --strategy thesis2</code></td></tr>
+<tr><td>Mode diagnostics</td><td><code>/probe --compare</code></td><td><code>./bin/btc-miner probe --compare</code></td></tr>
+<tr><td>Start / stop</td><td><code>s</code> / <code>t</code></td><td><code>./bin/btc-miner start</code> / <code>./bin/btc-miner stop</code></td></tr>
+</tbody></table></div>
+<p><strong>Inspector context:</strong> <code>math inspect</code> uses a synthetic header and identifies it as such. Live mining seeds the traversal from the actual header. Historical analysis uses each published block’s recorded header and reports where its nonce would occur in this ordering. Full-domain membership is automatic; rank is not a prediction of future success or live multiworker completion order.</p>
+<p><strong>Preserved controls:</strong> legacy entropy bounds, candidate partitions, recurrence, hybrid tail and optional recovery remain available in their legacy modes. THESIS2 has its own validated step/prime controls; those legacy candidate filters do not run inside the new strategy.</p>
+<p><strong>Logging:</strong> THESIS2 records bounded job metadata and the first 20 ordered nonces in <code>logs/thesis2-nonces.jsonl</code>. SUPT mode buffers and comparisons distinguish <code>thesis2</code> from <code>thesis</code>, <code>linear</code> and <code>hybrid</code>. Existing events, counters and session summaries remain available.</p>
+</section>
+
+<section id="handoff">
+<h2>Moving the package to the M2</h2>
+<ol>
+<li>Copy the entire <strong>BTC MINER</strong> folder, or unzip <strong>BTC MINER - M2.zip</strong>, into a writable folder on the Mac mini. Keep all contents together.</li>
+<li>Ensure Python 3.9 or newer is available. There are no pip dependencies. The arm64 SHA256d library is already included; a compiler is only needed if it must be rebuilt.</li>
+<li>Open <strong>BTC Miner.app</strong> or <strong>Start BTC Miner.command</strong>. Opening the dashboard does not start mining. Use <code>/setup</code> to choose Core or a Bitcoin Stratum V1 pool and enter the connection details.</li>
+<li>Use <code>/strategy thesis2</code> if bringing an existing configuration that selected another mode. A fresh configuration already defaults to THESIS2. Press <code>s</code> when ready to start.</li>
+<li>Press <code>t</code> to stop and save a Desktop summary. <code>q</code> and Ctrl+C detach the view while an explicitly started miner continues running.</li>
+</ol>
+<p>Defaults target the M2 with 8 GB RAM: two worker threads, lower process priority and hashing paused until 120 seconds after keyboard/mouse activity. Adjust with <code>/perf</code>, <code>/pause</code>, or <code>/set cpu_duty=50</code>. Worker percentages select a fraction of logical CPUs; they are not an exact system-wide utilization cap.</p>
+<p>Bitcoin Core must be installed and running separately with RPC enabled. Pools must support Bitcoin SHA256d Stratum V1 and accept the worker’s share rate/difficulty. No default payout address or pool is embedded. The package asks for no seed phrase or private key.</p>
+<p class="small">Connection recovery follows the local CLI design: retry, configured backup pool, periodic primary retry, and stale-work invalidation. A lost submission response is recorded as unknown instead of blindly resubmitted. Closing the dashboard preserves the local daemon; reboot recovery is manual and no login service is installed.</p>
+</section>
+
+<section id="status">
+<h2>Build status and remaining validation</h2>
+<p><strong>Implemented and packaged for handoff.</strong> At your request, no implementation tests, live mining, benchmarks, pool connections or Core submissions were run for this release. Python source received syntax-only parsing; that does not execute the modules or establish runtime correctness. The launcher metadata is updated to 1.1.0 and the app is locally ad-hoc signed, not notarized.</p>
+<div class="table-wrap"><table><thead><tr><th>Changed area</th><th>Files</th></tr></thead><tbody>
+<tr><td>Math and traversal</td><td><code>btcminer/thesis2.py</code>; unchanged source HTML under <code>reference/</code></td></tr>
+<tr><td>Runtime integration</td><td><code>settings.py</code>, <code>engine.py</code>, <code>service.py</code></td></tr>
+<tr><td>CLI and dashboard</td><td><code>cli.py</code>, <code>tui.py</code>, <code>diagnostics.py</code></td></tr>
+<tr><td>Separate SUPT mode</td><td><code>btcminer/legacy/config.py</code>, <code>supt_streams.py</code>, <code>supt_probe.py</code></td></tr>
+<tr><td>Version / handoff</td><td><code>btcminer/__init__.py</code>, app metadata/signature, README, source notes, this report, file manifest and transfer ZIP</td></tr>
+</tbody></table></div>
+<p><strong>For your later validation:</strong> M2 startup and native loading; actual Core/pool handshake and submissions; traversal uniqueness and partial-tile bounds; formula parity with the HTML; interruptions/reconnects; dashboard responsiveness; and measured CPU/memory/throughput. These remain unverified in this build.</p>
+<p>Optional legacy <code>libalgorithms</code> / OBJECTIVE 28 math libraries were absent from the source backup. Their interfaces and settings remain, with availability checks; the included native SHA256d library is separate. The THESIS2 strategy does not require those optional libraries.</p>
+</section>
+
+<section id="provenance">
+<h2>Source identity</h2>
+<p><strong>Authoritative supplied reference:</strong> <a href="reference/thesis2-math-in-pictures.html">thesis2-math-in-pictures.html</a>. Its bundled bytes match the Desktop original.</p>
+<p class="small digest">SHA-256: <code>42a1e58b4ac4bbc2a9650516fbe5d4b8889b4bf145b404fbe7d67552b477c401</code></p>
+<p><strong>Original BTC source:</strong> <code>Downloads/GIT backup - 28sep/MINER-MAY-2026-main/backend/miner_server</code>. The retained legacy math and native hasher originate there. The new local control layer and THESIS2 adapter live in this independent package.</p>
+<p><strong>UX reference:</strong> <code>Desktop/PROJECTS/XMR MINER</code>. BTC Miner follows its local terminal workflow without including the Monero hashing engine or fleet infrastructure.</p>
+<p><a href="README.md">Usage README</a> · <a href="SOURCE-NOTES.md">Source notes</a> · <a href="FILES.sha256.json">Package file digests</a></p>
+</section>
+<footer>Prepared for Christian Tavarez · BTC Miner 1.1.0 · September 29, 2026<br>This report is self-contained and works offline. Reference and code links resolve inside the copied miner folder.</footer>
+</main></body></html>

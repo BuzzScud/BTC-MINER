@@ -1,0 +1,161 @@
+BTC miner geometry transport NG1 + negotiated NG2
+
+Consumer: src/workers/pruning.py -> pruning_worker.py. Library implementation:
+math-library/python/geometry_codec.py (btcminer/geometry_codec.py import alias).
+The miner's normal SHA256d scanner, block serialization, pool messages and Bitcoin
+consensus rules do not use this private IPC format. The receiver supports the old
+nonce_codes format for compatibility. NG1 remains the baseline protocol. NG2 requires an exact capability response
+from the persistent worker before use on subsequent requests. This is private
+local worker IPC; it is not a remote service or general file-transfer protocol.
+
+Run inside the miner: /abacus compression
+Shell equivalent: ./bin/btc-miner abacus compression
+It reports exact synthetic round trips and complete JSON-message costs. It does
+not start a mining session or contact a pool. The displayed fixed raw32 baseline
+counts nonce bytes only; complete message costs also include metadata/base64.
+
+Envelope (base64 inside nonce_geometry):
+  NG1 (3 bytes), grammar ID (1), count (1), frame SHA256 (32), grammar payload.
+Count: 1..64. Nonce domain: unsigned 32-bit (Bitcoin's nonce field).
+All fixed-width envelope integers are big-endian. Packed fields within a stream
+are low-bit-first; byte padding must be zero. Unknown versions, mismatched frame
+identities, out-of-range values, extra/truncated bytes and ambiguous encodings
+are rejected. A fingerprint identifies shared structure; it is neither an
+unforgeable certificate nor a replacement for the parent job digest.
+
+Grammar 0, additive orbit:
+  Shared group Z/(2^32), start:uint32, step:uint32; point i=(start+i*step) mod 2^32.
+  All points and their order are checked by the encoder. A singleton has step 0.
+  The orbit may wrap or repeat. No claim that every candidate batch is an orbit.
+
+Grammar 1, bounded residue points:
+  Shared ordered rods (11,19,71,97,109,127). These combine existing clock rods and
+  flower127 as a transport choice, not a mathematically unique or optimal set.
+  Payload: prefix length:uint8, origin:uint32, bound:uint32, packed residues.
+  Select the shortest prefix with capacity M=product(rods)>bound. Encode each
+  offset x-origin, using ceil(log2(m))=(m-1).bit_length() bits per selected rod.
+  The standard coordinate basis is the unit-vector basis of the product of
+  residue rings. CRT is the inverse chart. Decoder checks canonical residues,
+  M>bound, 0<=offset<=bound and 0<=origin<=origin+bound<2^32. Observed min/max
+  offsets must be 0/bound. A caller's bound alone does not prove an original
+  value; encoder replay and the parent's candidate/job digest close this IPC check.
+  General ResidueFrame arithmetic supports arbitrary-size Python integers. The
+  uint32 origin/bound restriction is specific to the miner's nonce protocol.
+
+Grammar 2, Q routes:
+  Shared reviewed scale 33,264,000. p,q are distinct primes with p-1,q-1 dividing
+  that scale. Q=p*q, k=lcm(p-1,q-1). Clock classes are sorted by k; each class is
+  sorted by Q. Encode clock-class index then within-class index, with actual
+  index bit widths; singleton classes need zero within-class bits. The shared
+  immutable snapshot and fingerprint bind both orderings. The within-k index is
+  mandatory: Q=10 and Q=15 both have k=4. This is supported-family dictionary
+  decoding, not a general factoring algorithm from k alone.
+
+Grammar 3, raw32 escape:
+  Shared unsigned 32-bit schema; exactly count*4 bytes. Selected when cheaper
+  than geometric forms. Small batches may retain the original JSON nonce list.
+
+Selection and runtime checks:
+  Compare full JSON bytes including newline and base64 against the raw message.
+  Decode every candidate encoding locally and require identical values/order.
+  Choose only a strictly smaller complete message. Receiver recomputes the job
+  key from decoded values. Parent verifies that key and checks every proposed
+  exclusion with the actual SHA256d function, retaining winners and unknowns.
+  Transport time and saved wire bytes are reported separately. Shared Q arrays,
+  snapshot/object overhead, initial model construction and replay cost are not free.
+
+Proof and scope:
+  research/geometry-codec-contract.json contains explicit mathematical arguments,
+  assumptions, implementation bindings and negative gates. These are reviewed
+  mathematical arguments plus executable tests, not a new Lean acceptance capsule
+  or a universal C/Python refinement proof. No fresh Lean compiler run is claimed.
+  Existing Flower19 positional addresses and fractal research remain separate.
+  Arbitrary fractal routes, user-programmable bases, full-file transfer, remote
+  file-service negotiation and the private calculator's TypeScript/C codec are not
+  implemented by this miner IPC change. No hash-rate advantage is asserted.
+
+The release build tests isolated copies. Installing source does not reload an
+already-running miner process; activation must be coordinated separately.
+
+
+NG2 extensions and canonical metadata
+
+NG2 retains the same 37-byte envelope prefix: magic NG2, mode, count, model
+fingerprint. Mode fingerprints bind the fixed ordered rod table AND the grammar
+rules, including chart, anchor order and tie policies. There is no per-point
+modulus list or byte-length field. Nonces remain exactly32-bit values; an
+arbitrary-file final-byte-tail field has no role in this protocol.
+
+Mode0 rod-delta:
+  Header: prefix:uint8, origin:uint32, bound:uint32. First residue row is raw
+  packed; later rows encode per-rod delta=(new-old+floor(m/2)) mod m-floor(m/2).
+  Range is [-floor(m/2),ceil(m/2)-1]; an even-modulus half-turn chooses negative.
+  Zigzag(delta) uses nonnegative Elias-gamma fields: k zero bits, one bit, then
+  the low k bits of n+1, where k=floor(log2(n+1)). Fields are low-bit-first.
+  Prediction resets with each envelope; packets have no cross-message dependency.
+
+Mode1 hex-shell:
+  Ordinal n=0 maps to (k,j)=(0,0). Otherwise
+  k=(3+isqrt(12n-3))//6 and j=n-[1+3k(k-1)], with 0<=j<6k.
+  A shell flag identifies whether all points share k; if so k is sent once.
+  Otherwise each k is gamma-coded. j uses ceil(log2(6k)) bits, or zero for k=0.
+  E-coordinate convention: max(|a|,|b|,|a-b|). Start(k,0) and traverse six
+  half-open sides using (0,1),(-1,0),(-1,-1),(0,-1),(1,0),(1,1).
+  This is an explicit ordinal-to-lattice chart, not a claim that arbitrary
+  scalar data has intrinsic physical lattice coordinates or lower entropy.
+
+Mode2 root-offset:
+  Same bound header as mode0. For each residue choose the nearest circle anchor
+  in ordered (0,1,m-1), breaking ties by lowest anchor index. Store index in two
+  bits plus gamma(zigzag(shortest_arc(anchor,residue,m))). Decoder checks the
+  same nearest-anchor choice. These are modular anchors, not a sphere-packing
+  theorem or proof of a prime resonance effect.
+
+Mode3 predictive:
+  Same bounds and raw initial row as mode0. For each later row, compare total
+  gamma delta bits against raw residue bits. A one-bit tag chooses deltas only
+  when strictly smaller; ties use raw. The tag itself costs one bit. Whole-message
+  selection against NG1 and raw JSON prevents request-size regressions caused
+  by flags or bad prediction. It does not promise every predictive packet beats
+  raw packed storage.
+
+Mode4 adaptive-rods:
+  Header: origin:uint32, bound:uint32, count-stream byte length:uint8. Each offset
+  selects the minimal rod prefix whose capacity exceeds that offset. Used-counts
+  are sent separately, followed by concatenated raw packed residue rows.
+  Count stream starts with a two-bit form: 0=three-bit (count-1) per point,
+  1=RLE (three-bit count-1, gamma(run-1)), 2=delta-RLE (gamma zigzag count delta,
+  gamma(run-1), initial previous count1). Choose shortest byte representation;
+  ties prefer lower form ID. Runs must end at the envelope count; unused padding
+  is zero. Decoder checks minimal prefixes and exact segment min/max bounds.
+
+All NG2 bodies must re-encode identically after decode. This rejects redundant
+prefixes, noncanonical runs, alternate ties, bad padding and redundant shell
+flags. Independent math tests supplement this shared encoder/decoder check.
+
+Capability exchange and honest costs:
+  On the first request to each worker, parent adds geometry_offer:true. Only an
+  offered request returns geometry_capability, binding the ordered NG2 grammar registry with one SHA256
+  fingerprint (rather than repeating five full fingerprints).
+  Parent first validates the normal job response, then admits an exact matching
+  capability for that process. A missing/unknown capability keeps NG1. Closing
+  or replacing the process clears admission; a prepared NG2 request is decoded
+  and re-encoded using NG1 if the peer dies between selection and transmission.
+  The fresh peer receives a new offer. NoNG2 request relies on an unadvertised
+  extension. Matching fingerprints are model identity checks, not authentication.
+
+  Compression reports show every applicable grammar's complete request bytes,
+  the selected form, raw JSON and raw32 baselines, and the separate one-time
+  offer/response overhead. Default first request uses NG1. Runtime counters expose
+  capability_request_bytes, capability_response_bytes and transport_net_bytes_saved
+  so startup overhead can make net savings negative. Counters account for prepared
+  application messages, not packet captures; failed exchanges do not confirm
+  delivery. Frame/model CPU and memory
+  costs remain additional. No new actual-pool or hashrate claim is made.
+
+Inspection:
+  geometry_codec.describe_points(envelope) exposes symbolic_form, partition_route,
+  frame_fingerprint and certificate_chain_ids, plus exact E-chart points or used
+  rod counts where relevant. Metadata is derived deterministically; no per-point
+  JSON description is added to the hot worker message. Contract IDs name the
+  mathematical arguments/test gates, not kernel-accepted proof objects.

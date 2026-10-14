@@ -1,0 +1,19 @@
+{"plugins": [],
+ "package": "MinerProofRepair",
+ "options": {},
+ "name": "RequestProject.TowerCollapse",
+ "isModule": true,
+ "importArts":
+ {"RequestProject.RodCircles":
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ir",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.server"],
+  "LatticeCalc.Verified.PowSqrtPrime":
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ir",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.server"],
+  "LatticeCalc.Verified.OrderSplit":
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ir",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.server"]},
+ "dynlibs": []}

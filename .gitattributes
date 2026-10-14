@@ -1,0 +1,6 @@
+* text=auto eol=lf
+research/proof-evidence/objects/* -text -diff -whitespace
+*.olean -text
+*.ir -text
+*.png -text
+*.pdf -text

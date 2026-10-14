@@ -1,0 +1,38 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"r": "332542298ce4e2ba.ir",
+  "o":
+  ["22cef97f51d5cb5a.olean",
+   "17ccc1296e8378d7.olean.server",
+   "8a6245cbf611ed80.olean.private"],
+  "i": "fe7a3472109c8019.ilean",
+  "c": "87493faefd62521a.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean /source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean -j1 -M4096 -DElab.async=false /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/TowerCollapse.lean -o /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean -i /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.ilean -c /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/TowerCollapse.c --setup /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/TowerCollapse.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["RequestProject.TowerCollapse:deps",
+   [["deps",
+     [["MinerProofRepair/RequestProject:extraDep",
+       [["@MinerProofRepair:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["LatticeCalc.Verified.OrderSplit transitive imports (public)",
+         "9043b41ef27a1fb9"],
+        ["LatticeCalc.Verified.OrderSplit:importArts", "73ae2f2a5243c610"],
+        ["RequestProject.RodCircles transitive imports (public)",
+         "00000000000006bb"],
+        ["RequestProject.RodCircles:importArts", "84f3aaf347fcb6ea"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/TowerCollapse.lean",
+   "8c8d4f9b125d93fb"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[-j1, -M4096, -DElab.async=false]", "ac35a80e7dbd4509"]],
+ "depHash": "bfe63da3804fedf4"}

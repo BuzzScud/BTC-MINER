@@ -1,0 +1,596 @@
+module
+
+public import Mathlib.FieldTheory.Finite.Basic
+public import Mathlib.Data.Nat.Factorization.Basic
+public import Mathlib.Tactic.IntervalCases
+public import Mathlib.Tactic.Ring
+
+-- REPAIR CONTRACT: narrow dependencies only; mathematical bodies MUST remain unchanged.
+-- powmodK_eq is the checked bridge used by TowerCollapse's finite certificates.
+-- See ../../../MASTER_PLAN.md and ../../../run_retry.py for the acceptance gate.
+public import LatticeCalc.Verified.PowSqrtPrime
+
+/-!
+# Order splitting: factoring `n = p q` from an exponent that kills every unit, proved
+
+This is the Lean model of the library routine `lc_int_order_split` (`clib/src/ordersplit.c`).
+
+Given `n`, a base `a`, an exponent `E` and the list `rs` of the primes of `E`, the routine
+splits `E = rᵛ · m` (`r ∤ m`) for each `r ∈ rs` and walks the chain
+
+  `a^m, a^(m r), a^(m r²), …, a^(m rᵛ)   (mod n)`,
+
+each term the `r`-th power of the previous one, testing `gcd(x − 1, n)` at every step.
+
+* `powmodK_eq`, `powmodK_eq_powmod` — a fuel-bounded square-and-multiply that the Lean kernel
+  can evaluate on numbers of any size, proved equal to `aᵉ mod m` and to the library's `powmod`.
+* `splitWith_sound` — anything returned is a proper divisor of `n`, with **no hypotheses**.
+* `splitWith_pq` — **completeness** on `n = p q`: if `a^E ≡ 1` modulo both primes, the orders
+  of `a` modulo `p` and modulo `q` differ, and `rs` contains every prime of `E`, a factor is
+  returned.
+* `qToK_pq` — the output is `(p, q)` in some order together with `k = lcm(p − 1, q − 1)`.
+* `prime_of_factored_witness` — Lucas' test with a factorisation of `p − 1` given as prime
+  powers `[(q₁, e₁), …]`: one modular power per *distinct* prime, instead of one per prime
+  factor counted with multiplicity as in `checkCert`.
+
+Cost: at most `Σ_{r ∈ rs} (v_r(E) + 1)` gcd tests and the same number of modular powers, each
+with exponent at most `E`; that is, polynomial in the number of digits of `n` and `E`.  (This
+count is read off the definitions; running time is not itself a Lean theorem.)
+-/
+
+@[expose] public section
+
+namespace LatticeCalc.Verified.OrderSplit
+
+/-! ## A kernel-evaluable modular power -/
+
+/-- Square-and-multiply with an explicit bound `fuel` on the number of bits of the exponent,
+by structural recursion, so the kernel can evaluate it on numbers of thousands of digits. -/
+def powmodKAux : ℕ → ℕ → ℕ → ℕ → ℕ
+  | 0, _, _, m => 1 % m
+  | fuel + 1, b, e, m =>
+    if e = 0 then 1 % m
+    else
+      let r := powmodKAux fuel (b * b % m) (e / 2) m
+      if e % 2 = 1 then r * b % m else r
+
+theorem powmodKAux_eq (fuel b e m : ℕ) (he : e < 2 ^ fuel) :
+    powmodKAux fuel b e m = b ^ e % m := by
+  induction fuel generalizing b e with
+  | zero =>
+    have : e = 0 := by simpa using he
+    subst this; simp [powmodKAux]
+  | succ n ih =>
+    simp only [powmodKAux]
+    split_ifs with h0 h1
+    · subst h0; simp
+    · have hlt : e / 2 < 2 ^ n := by rw [pow_succ] at he; omega
+      rw [ih _ _ hlt, ← Nat.pow_mod, Nat.mul_mod, Nat.mod_mod, ← Nat.mul_mod, ← pow_two,
+        ← pow_mul, ← pow_succ]
+      congr 2; omega
+    · have hlt : e / 2 < 2 ^ n := by rw [pow_succ] at he; omega
+      rw [ih _ _ hlt, ← Nat.pow_mod, ← pow_two, ← pow_mul]
+      congr 2; omega
+
+/-- `powmodK b e m = bᵉ mod m`. -/
+def powmodK (b e m : ℕ) : ℕ := powmodKAux (Nat.log2 e + 1) b e m
+
+theorem powmodK_eq (b e m : ℕ) : powmodK b e m = b ^ e % m :=
+  powmodKAux_eq _ _ _ _ Nat.lt_log2_self
+
+/-- The kernel-evaluable power agrees with the library's `powmod` (the model of
+`lc_int_powmod`). -/
+theorem powmodK_eq_powmod (b e m : ℕ) : (powmodK b e m : ℤ) = powmod b e m := by
+  rw [powmodK_eq, powmod_eq]; push_cast; rfl
+
+lemma zmod_pow_eq_one_iff {p : ℕ} (hp : 1 < p) (a n : ℕ) :
+    ((a : ZMod p) ^ n = 1) ↔ powmodK a n p = 1 := by
+  rw [powmodK_eq, ← Nat.cast_pow, ← Nat.cast_one, ZMod.natCast_eq_natCast_iff',
+    Nat.one_mod_eq_one.2 (by omega)]
+
+/-! ## Lucas' test with a prime-power factorisation -/
+
+/-- **Lucas' test, compressed.** If `p − 1 = ∏ qᵢ^eᵢ` with every `qᵢ` prime, then `a^(p−1) ≡ 1`
+and `a^((p−1)/qᵢ) ≢ 1 (mod p)` for each listed `qᵢ` prove `p` prime.  One check per distinct
+prime. -/
+theorem prime_of_factored_witness (p a : ℕ) (fs : List (ℕ × ℕ)) (hfs : ∀ f ∈ fs, f.1.Prime)
+    (hprod : (fs.map fun f => f.1 ^ f.2).prod = p - 1) (hp : 1 < p)
+    (h1 : powmodK a (p - 1) p = 1) (hq : ∀ f ∈ fs, powmodK a ((p - 1) / f.1) p ≠ 1) :
+    p.Prime := by
+  refine lucas_primality p (a : ZMod p) ((zmod_pow_eq_one_iff hp _ _).2 h1) ?_
+  intro q hqp hd
+  rw [← hprod] at hd
+  obtain ⟨x, hx, hqx⟩ := (Prime.dvd_prod_iff hqp.prime).1 hd
+  obtain ⟨f, hf, rfl⟩ := List.mem_map.1 hx
+  have : q = f.1 := (Nat.prime_dvd_prime_iff_eq hqp (hfs f hf)).1 (hqp.dvd_of_dvd_pow hqx)
+  subst this
+  rw [Ne, zmod_pow_eq_one_iff hp]
+  exact hq f hf
+
+/-! ## Splitting a prime power off the exponent -/
+
+/-- Divide `m` by `r` while possible, at most `f` times; returns `(m', v)` with `m = rᵛ · m'`. -/
+def stripAux : ℕ → ℕ → ℕ → ℕ × ℕ
+  | 0, _, m => (m, 0)
+  | f + 1, r, m =>
+    if m ≠ 0 ∧ m % r = 0 then
+      let s := stripAux f r (m / r)
+      (s.1, s.2 + 1)
+    else (m, 0)
+
+/-- `strip r m = (m', v)` with `m = rᵛ · m'` and `r ∤ m'` (for `m ≠ 0`, `r ≥ 2`). -/
+def strip (r m : ℕ) : ℕ × ℕ := stripAux (Nat.log2 m + 1) r m
+
+theorem stripAux_mul (f r m : ℕ) : r ^ (stripAux f r m).2 * (stripAux f r m).1 = m := by
+  induction f generalizing m with
+  | zero => simp [stripAux]
+  | succ f ih =>
+    simp only [stripAux]
+    split_ifs with h
+    · rw [pow_succ, mul_comm (r ^ _) r, mul_assoc, ih, Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)]
+    · simp
+
+theorem stripAux_not_dvd (f r m : ℕ) (hr : 2 ≤ r) (hm : m ≠ 0) (hf : m < 2 ^ f) :
+    ¬ r ∣ (stripAux f r m).1 := by
+  induction f generalizing m with
+  | zero => simp at hf; omega
+  | succ f ih =>
+    simp only [stripAux]
+    split_ifs with h
+    · have hd : r ∣ m := Nat.dvd_of_mod_eq_zero h.2
+      apply ih
+      · exact (Nat.div_pos (Nat.le_of_dvd (Nat.pos_of_ne_zero hm) hd) (by omega)).ne'
+      · have : m / r ≤ m / 2 := Nat.div_le_div_left hr (by norm_num)
+        rw [pow_succ] at hf
+        omega
+    · intro hd
+      exact h ⟨hm, Nat.mod_eq_zero_of_dvd hd⟩
+
+theorem strip_spec (r m : ℕ) (hr : 2 ≤ r) (hm : m ≠ 0) :
+    r ^ (strip r m).2 * (strip r m).1 = m ∧ ¬ r ∣ (strip r m).1 :=
+  ⟨stripAux_mul _ _ _, stripAux_not_dvd _ _ _ hr hm Nat.lt_log2_self⟩
+
+/-! ## The order-splitting scan -/
+
+/-- Test one residue `x`: return `gcd(x − 1, n)` if it is a proper divisor of `n`. -/
+def check (n x : ℕ) : Option ℕ :=
+  if 1 < Nat.gcd (x + n - 1) n ∧ Nat.gcd (x + n - 1) n < n then some (Nat.gcd (x + n - 1) n)
+  else none
+
+/-- Walk `x, xʳ, x^(r²), …` (`f + 1` terms, all mod `n`), testing each with `check`. -/
+def scan (n r : ℕ) : ℕ → ℕ → Option ℕ
+  | 0, x => check n x
+  | f + 1, x =>
+    match check n x with
+    | some g => some g
+    | none => scan n r f (powmodK x r n)
+
+/-- **Order splitting.** For each prime `r` in the list, split `E = rᵛ · m` and scan the chain
+`a^m, a^(m r), …, a^(m rᵛ) (mod n)`. -/
+def splitWith (n a E : ℕ) : List ℕ → Option ℕ
+  | [] => none
+  | r :: rs =>
+    match scan n r (strip r E).2 (powmodK a (strip r E).1 n) with
+    | some g => some g
+    | none => splitWith n a E rs
+
+/-- **`Q` to `k`.** Split `n`, then return both factors and `k = lcm(p − 1, q − 1)`. -/
+def qToK (n a E : ℕ) (rs : List ℕ) : Option (ℕ × ℕ × ℕ) :=
+  match splitWith n a E rs with
+  | some g => some (g, n / g, Nat.lcm (g - 1) (n / g - 1))
+  | none => none
+
+/-- Try several bases in turn. -/
+def splitAny (n E : ℕ) (rs : List ℕ) : List ℕ → Option ℕ
+  | [] => none
+  | a :: as =>
+    match splitWith n a E rs with
+    | some g => some g
+    | none => splitAny n E rs as
+
+/-! ## Soundness: every answer is a proper divisor -/
+
+theorem check_sound {n x g : ℕ} (h : check n x = some g) : 1 < g ∧ g < n ∧ g ∣ n := by
+  unfold check at h
+  split_ifs at h with h1
+  cases h
+  exact ⟨h1.1, h1.2, Nat.gcd_dvd_right _ _⟩
+
+theorem scan_sound {n r g : ℕ} : ∀ {f x : ℕ}, scan n r f x = some g → 1 < g ∧ g < n ∧ g ∣ n
+  | 0, x, h => check_sound h
+  | f + 1, x, h => by
+    simp only [scan] at h
+    split at h
+    · rename_i g' hg; cases h; exact check_sound hg
+    · exact scan_sound h
+
+theorem splitWith_sound {n a E g : ℕ} :
+    ∀ {rs : List ℕ}, splitWith n a E rs = some g → 1 < g ∧ g < n ∧ g ∣ n
+  | [], h => by simp [splitWith] at h
+  | r :: rs, h => by
+    simp only [splitWith] at h
+    split at h
+    · rename_i g' hg; cases h; exact scan_sound hg
+    · exact splitWith_sound h
+
+theorem splitAny_sound {n E g : ℕ} {rs : List ℕ} :
+    ∀ {as : List ℕ}, splitAny n E rs as = some g → 1 < g ∧ g < n ∧ g ∣ n
+  | [], h => by simp [splitAny] at h
+  | a :: as, h => by
+    simp only [splitAny] at h
+    split at h
+    · rename_i g' hg; cases h; exact splitWith_sound hg
+    · exact splitAny_sound h
+
+/-- A proper divisor of `p q` is `p` or `q`. -/
+theorem proper_dvd_pq {p q g : ℕ} (hp : p.Prime) (hq : q.Prime) (h1 : 1 < g) (h2 : g < p * q)
+    (hd : g ∣ p * q) : g = p ∨ g = q := by
+  by_cases hpg : p ∣ g
+  · obtain ⟨t, rfl⟩ := hpg
+    have ht : t ∣ q := (Nat.mul_dvd_mul_iff_left hp.pos).1 hd
+    rcases (Nat.dvd_prime hq).1 ht with rfl | rfl
+    · left; ring
+    · omega
+  · have hc : Nat.Coprime g p := (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hp).2 hpg))
+    rcases (Nat.dvd_prime hq).1 (hc.dvd_of_dvd_mul_left hd) with rfl | rfl
+    · omega
+    · right; rfl
+
+/-! ## Completeness on `n = p q` -/
+
+lemma dvd_shift_iff {p q x : ℕ} (hpq : 0 < p * q) (a d : ℕ)
+    (hxa : x = a ^ d % (p * q)) :
+    q ∣ x + p * q - 1 ↔ (a : ZMod q) ^ d = 1 := by
+  have hpos : 1 ≤ x + p * q := by omega
+  rw [← ZMod.natCast_eq_zero_iff, Nat.cast_sub hpos]
+  push_cast
+  have hmod : (x : ZMod q) = ((a ^ d : ℕ) : ZMod q) := by
+    rw [ZMod.natCast_eq_natCast_iff]
+    rw [hxa]
+    exact (Nat.mod_modEq _ _).of_mul_left p
+  rw [hmod, ZMod.natCast_self, mul_zero, add_zero, sub_eq_zero]
+  push_cast
+  rfl
+
+/-- If `a^d ≡ 1 (mod q)` but not mod `p`, testing `a^d mod p q` returns a proper divisor. -/
+theorem check_isSome {p q a d : ℕ} (hp : p.Prime) (hq : q.Prime)
+    (h1 : (a : ZMod q) ^ d = 1) (h2 : (a : ZMod p) ^ d ≠ 1) :
+    (check (p * q) (a ^ d % (p * q))).isSome := by
+  set x := a ^ d % (p * q) with hx
+  have hpq : 0 < p * q := Nat.mul_pos hp.pos hq.pos
+  have hqd : q ∣ x + p * q - 1 := (dvd_shift_iff hpq a d hx).2 h1
+  have hpd : ¬ p ∣ x + q * p - 1 := fun h =>
+    h2 ((dvd_shift_iff (p := q) (q := p) (by rwa [mul_comm]) a d
+      (by rw [hx, mul_comm])).1 h)
+  rw [mul_comm q p] at hpd
+  set g := Nat.gcd (x + p * q - 1) (p * q) with hg
+  have hqg : q ∣ g := Nat.dvd_gcd hqd (dvd_mul_left q p)
+  have hpg : ¬ p ∣ g := fun h => hpd (h.trans (Nat.gcd_dvd_left _ _))
+  have hgd : g ∣ p * q := Nat.gcd_dvd_right _ _
+  have hc : Nat.Coprime g p := (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hp).2 hpg))
+  have hgq : g = q := Nat.dvd_antisymm (hc.dvd_of_dvd_mul_left hgd) hqg
+  have hlt : 1 < q ∧ q < p * q := ⟨hq.one_lt, by nlinarith [hp.two_le, hq.two_le]⟩
+  unfold check
+  rw [← hg, hgq, if_pos hlt]
+  rfl
+
+lemma check_isSome_symm {p q a d : ℕ} (hp : p.Prime) (hq : q.Prime)
+    (h1 : (a : ZMod p) ^ d = 1) (h2 : (a : ZMod q) ^ d ≠ 1) :
+    (check (p * q) (a ^ d % (p * q))).isSome := by
+  rw [mul_comm p q]; exact check_isSome hq hp h1 h2
+
+/-- The scan succeeds as soon as one of its `f + 1` steps succeeds. -/
+theorem scan_isSome {n r a : ℕ} : ∀ (f e t : ℕ), t ≤ f →
+    (check n (a ^ (e * r ^ t) % n)).isSome → (scan n r f (a ^ e % n)).isSome
+  | 0, e, t, ht, h => by
+    have : t = 0 := by omega
+    subst this; simpa [scan] using h
+  | f + 1, e, t, ht, h => by
+    simp only [scan]
+    split
+    · rfl
+    · rename_i hc
+      rcases t with _ | t
+      · simp [hc] at h
+      · rw [powmodK_eq, ← Nat.pow_mod, ← pow_mul]
+        apply scan_isSome f (e * r) t (by omega)
+        rwa [mul_assoc, ← pow_succ']
+
+lemma splitWith_isSome_of_mem {n a E r : ℕ} :
+    ∀ {rs : List ℕ}, r ∈ rs → (scan n r (strip r E).2 (powmodK a (strip r E).1 n)).isSome →
+      (splitWith n a E rs).isSome
+  | [], h, _ => by simp at h
+  | r' :: rs, h, hs => by
+    simp only [splitWith]
+    split
+    · rfl
+    · rename_i hc
+      rcases List.mem_cons.1 h with rfl | h
+      · simp [hc] at hs
+      · exact splitWith_isSome_of_mem h hs
+
+/-- The number-theoretic heart: if the order of `a` modulo `p` has a higher power of `r` than
+the order modulo `q`, the `r`-chain meets an exponent killing `a` mod `q` but not mod `p`. -/
+theorem exists_separating_step {E op oq r : ℕ} (hr : r.Prime) (hE : E ≠ 0)
+    (hp : op ∣ E) (hq : oq ∣ E) (hlt : oq.factorization r < op.factorization r) :
+    oq.factorization r ≤ (strip r E).2 ∧ oq ∣ (strip r E).1 * r ^ oq.factorization r ∧
+      ¬ op ∣ (strip r E).1 * r ^ oq.factorization r := by
+  obtain ⟨hmul, hnd⟩ := strip_spec r E hr.two_le hE
+  set m := (strip r E).1
+  set v := (strip r E).2
+  have hE0 : oq ≠ 0 := by rintro rfl; exact hE (zero_dvd_iff.1 hq)
+  have hp0 : op ≠ 0 := by rintro rfl; exact hE (zero_dvd_iff.1 hp)
+  have hm0 : m ≠ 0 := by rintro h; rw [h] at hmul; simp at hmul; exact hE hmul.symm
+  have hEv : E.factorization r = v := by
+    rw [← hmul, Nat.factorization_mul (pow_ne_zero _ hr.ne_zero) hm0]
+    simp [hr.factorization_self, Nat.factorization_eq_zero_of_not_dvd hnd]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [← hEv]; exact (Nat.factorization_le_iff_dvd hE0 hE).2 hq r
+  · conv_lhs => rw [← Nat.ordProj_mul_ordCompl_eq_self oq r]
+    rw [mul_comm (ordProj[r] oq)]
+    apply mul_dvd_mul _ dvd_rfl
+    have hc : Nat.Coprime (ordCompl[r] oq) (r ^ v) :=
+      Nat.Coprime.pow_right _ (Nat.coprime_ordCompl hr hE0).symm
+    apply hc.dvd_of_dvd_mul_left
+    rw [hmul]
+    exact (Nat.ordCompl_dvd oq r).trans hq
+  · intro hd
+    have h1 : r ^ (oq.factorization r + 1) ∣ op :=
+      (pow_dvd_pow r hlt).trans (Nat.ordProj_dvd op r)
+    have h2 := h1.trans hd
+    rw [pow_succ, mul_comm m] at h2
+    exact hnd (Nat.dvd_of_mul_dvd_mul_left (pow_pos hr.pos _) h2)
+
+/-- **Completeness.** On `n = p q`, if `a^E ≡ 1` modulo both primes, the orders of `a` modulo
+`p` and `q` differ, and the list `rs` contains every prime factor of `E`, the algorithm returns a
+proper factor. -/
+theorem splitWith_pq {p q a E : ℕ} (rs : List ℕ) (hp : p.Prime) (hq : q.Prime) (hE : E ≠ 0)
+    (hpE : (a : ZMod p) ^ E = 1) (hqE : (a : ZMod q) ^ E = 1)
+    (hord : orderOf (a : ZMod p) ≠ orderOf (a : ZMod q))
+    (hrs : ∀ r, r.Prime → r ∣ E → r ∈ rs) :
+    (splitWith (p * q) a E rs).isSome := by
+  set op := orderOf (a : ZMod p)
+  set oq := orderOf (a : ZMod q)
+  have hopE : op ∣ E := orderOf_dvd_of_pow_eq_one hpE
+  have hoqE : oq ∣ E := orderOf_dvd_of_pow_eq_one hqE
+  have hop0 : op ≠ 0 := by rintro h; rw [h] at hopE; exact hE (zero_dvd_iff.1 hopE)
+  have hoq0 : oq ≠ 0 := by rintro h; rw [h] at hoqE; exact hE (zero_dvd_iff.1 hoqE)
+  obtain ⟨r, hr⟩ : ∃ r, op.factorization r ≠ oq.factorization r := by
+    by_contra h
+    push_neg at h
+    exact hord (Nat.eq_of_factorization_eq hop0 hoq0 h)
+  have hrp : r.Prime := by
+    by_contra hnp
+    exact hr (by simp [Nat.factorization_eq_zero_of_not_prime _ hnp])
+  have hrE : r ∣ E := by
+    rcases lt_or_gt_of_ne hr with h | h
+    · exact (Nat.dvd_of_factorization_pos (by omega)).trans hoqE
+    · exact (Nat.dvd_of_factorization_pos (by omega)).trans hopE
+  apply splitWith_isSome_of_mem (hrs r hrp hrE)
+  rw [powmodK_eq]
+  rcases lt_or_gt_of_ne hr with h | h
+  · obtain ⟨hle, hdq, hnp⟩ := exists_separating_step hrp hE hoqE hopE h
+    refine scan_isSome _ _ _ hle (check_isSome_symm hp hq ?_ ?_)
+    · exact orderOf_dvd_iff_pow_eq_one.1 hdq
+    · exact fun h' => hnp (orderOf_dvd_iff_pow_eq_one.2 h')
+  · obtain ⟨hle, hdq, hnp⟩ := exists_separating_step hrp hE hopE hoqE h
+    refine scan_isSome _ _ _ hle (check_isSome hp hq ?_ ?_)
+    · exact orderOf_dvd_iff_pow_eq_one.1 hdq
+    · exact fun h' => hnp (orderOf_dvd_iff_pow_eq_one.2 h')
+
+/-- **`Q` to `k`, correctness.** Under the hypotheses of `splitWith_pq`, `qToK` returns the two
+primes (in some order) and `k = lcm(p − 1, q − 1)`. -/
+theorem qToK_pq {p q a E : ℕ} (rs : List ℕ) (hp : p.Prime) (hq : q.Prime) (hE : E ≠ 0)
+    (hpE : (a : ZMod p) ^ E = 1) (hqE : (a : ZMod q) ^ E = 1)
+    (hord : orderOf (a : ZMod p) ≠ orderOf (a : ZMod q))
+    (hrs : ∀ r, r.Prime → r ∣ E → r ∈ rs) :
+    ∃ g h, qToK (p * q) a E rs = some (g, h, Nat.lcm (p - 1) (q - 1)) ∧
+      ((g = p ∧ h = q) ∨ (g = q ∧ h = p)) := by
+  have hs := splitWith_pq rs hp hq hE hpE hqE hord hrs
+  obtain ⟨g, hg⟩ := Option.isSome_iff_exists.1 hs
+  obtain ⟨h1, h2, h3⟩ := splitWith_sound hg
+  unfold qToK
+  rw [hg]
+  dsimp only
+  rcases proper_dvd_pq hp hq h1 h2 h3 with rfl | rfl
+  · refine ⟨g, q, ?_, Or.inl ⟨rfl, rfl⟩⟩
+    rw [Nat.mul_div_cancel_left _ hp.pos]
+  · refine ⟨g, p, ?_, Or.inr ⟨rfl, rfl⟩⟩
+    rw [Nat.mul_div_cancel _ hq.pos, Nat.lcm_comm]
+
+/-- **Several bases.** If some base in the list satisfies the hypotheses of `splitWith_pq`,
+`splitAny` returns a proper factor. -/
+theorem splitAny_pq {p q E : ℕ} (rs : List ℕ) (hp : p.Prime) (hq : q.Prime) (hE : E ≠ 0)
+    (hrs : ∀ r, r.Prime → r ∣ E → r ∈ rs) :
+    ∀ {as : List ℕ}, (∃ a ∈ as, (a : ZMod p) ^ E = 1 ∧ (a : ZMod q) ^ E = 1 ∧
+      orderOf (a : ZMod p) ≠ orderOf (a : ZMod q)) → (splitAny (p * q) E rs as).isSome
+  | [], ⟨a, ha, _⟩ => by simp at ha
+  | b :: as, ⟨a, ha, h1, h2, h3⟩ => by
+    simp only [splitAny]
+    split
+    · rfl
+    · rename_i hc
+      rcases List.mem_cons.1 ha with rfl | ha
+      · have := splitWith_pq rs hp hq hE h1 h2 h3 hrs
+        simp [hc] at this
+      · exact splitAny_pq rs hp hq hE hrs ⟨a, ha, h1, h2, h3⟩
+
+
+
+/-! ## The exact criterion: the split happens iff the two orders differ -/
+
+/-- If `a` has the same order modulo `p` and modulo `q`, no test ever splits `p q`: for every `d`,
+`a^d ≡ 1` holds modulo both primes or modulo neither, so `gcd(a^d − 1, p q)` is `1` or `p q`. -/
+theorem check_none_of_orderOf_eq {p q a : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hord : orderOf (a : ZMod p) = orderOf (a : ZMod q)) (d : ℕ) :
+    check (p * q) (a ^ d % (p * q)) = none := by
+  have hpos : 0 < p * q := Nat.mul_pos hp.pos hq.pos
+  have hiff : (a : ZMod p) ^ d = 1 ↔ (a : ZMod q) ^ d = 1 := by
+    rw [← orderOf_dvd_iff_pow_eq_one, ← orderOf_dvd_iff_pow_eq_one, hord]
+  set x := a ^ d % (p * q) with hx
+  have hqd := dvd_shift_iff (x := x) hpos a d hx
+  have hpd : p ∣ x + p * q - 1 ↔ (a : ZMod p) ^ d = 1 := by
+    rw [mul_comm p q]
+    exact dvd_shift_iff (by rwa [mul_comm]) a d (by rw [hx, mul_comm])
+  set g := Nat.gcd (x + p * q - 1) (p * q) with hg
+  have hgd : g ∣ p * q := Nat.gcd_dvd_right _ _
+  have hcop : Nat.Coprime p q := (Nat.coprime_primes hp hq).2 hpq
+  unfold check
+  rw [← hg, if_neg]
+  rintro ⟨h1, h2⟩
+  by_cases hd : (a : ZMod p) ^ d = 1
+  · have hpg : p ∣ g := Nat.dvd_gcd (hpd.2 hd) (dvd_mul_right p q)
+    have hqg : q ∣ g := Nat.dvd_gcd (hqd.2 (hiff.1 hd)) (dvd_mul_left q p)
+    have := Nat.le_of_dvd (by omega) (hcop.mul_dvd_of_dvd_of_dvd hpg hqg)
+    omega
+  · have hpg : ¬ p ∣ g := fun h => hd (hpd.1 (h.trans (Nat.gcd_dvd_left _ _)))
+    have hqg : ¬ q ∣ g := fun h => hd (hiff.2 (hqd.1 (h.trans (Nat.gcd_dvd_left _ _))))
+    have hc1 : Nat.Coprime g p := (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hp).2 hpg))
+    have hc2 : Nat.Coprime g q := (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hq).2 hqg))
+    have := Nat.Coprime.eq_one_of_dvd (Nat.Coprime.mul_right hc1 hc2) hgd
+    omega
+
+theorem scan_none_of_orderOf_eq {p q a r : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hord : orderOf (a : ZMod p) = orderOf (a : ZMod q)) :
+    ∀ (f e : ℕ), scan (p * q) r f (a ^ e % (p * q)) = none
+  | 0, e => by simp only [scan]; exact check_none_of_orderOf_eq hp hq hpq hord e
+  | f + 1, e => by
+    simp only [scan, check_none_of_orderOf_eq hp hq hpq hord e]
+    rw [powmodK_eq, ← Nat.pow_mod, ← pow_mul]
+    exact scan_none_of_orderOf_eq hp hq hpq hord f _
+
+theorem splitWith_none_of_orderOf_eq {p q a E : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hord : orderOf (a : ZMod p) = orderOf (a : ZMod q)) :
+    ∀ rs : List ℕ, splitWith (p * q) a E rs = none
+  | [] => rfl
+  | r :: rs => by
+    simp only [splitWith]
+    rw [powmodK_eq, scan_none_of_orderOf_eq hp hq hpq hord]
+    exact splitWith_none_of_orderOf_eq hp hq hpq hord rs
+
+/-- **The exact criterion.** On `n = p q` (distinct primes), with `a^E ≡ 1` modulo both primes and
+`rs` listing the primes of `E`, order splitting with base `a` succeeds **if and only if** the order
+of `a` modulo `p` differs from its order modulo `q`.  Geometrically: the two orders are points of
+the divisor lattice of `E`; the scan walks each prime axis and splits exactly when the points
+differ. -/
+theorem splitWith_isSome_iff {p q a E : ℕ} (rs : List ℕ) (hp : p.Prime) (hq : q.Prime)
+    (hpq : p ≠ q) (hE : E ≠ 0) (hpE : (a : ZMod p) ^ E = 1) (hqE : (a : ZMod q) ^ E = 1)
+    (hrs : ∀ r, r.Prime → r ∣ E → r ∈ rs) :
+    (splitWith (p * q) a E rs).isSome ↔ orderOf (a : ZMod p) ≠ orderOf (a : ZMod q) := by
+  constructor
+  · intro h hord
+    rw [splitWith_none_of_orderOf_eq hp hq hpq hord] at h
+    exact absurd h (by simp)
+  · exact fun hord => splitWith_pq rs hp hq hE hpE hqE hord hrs
+
+
+/-! ## Every variation in which a multiple of `k` is known
+
+`E` may be any multiple of `k = lcm(p − 1, q − 1)`: `k` itself, `φ(n)`, `e·d − 1` for an RSA key
+pair, or `144000ʲ` on the `Q`-tower.  Then a working base always exists (`exists_good_base`), so
+`qToK` recovers `p`, `q` and `k` (`qToK_of_multiple`).  If only `p − 1 ∣ E` is known and `a^E ≢ 1`
+mod `q`, the split still happens (`splitWith_one_sided`).  Applied recursively to its own output
+(`splitTree`), the same step factors a product of many primes; the product of the leaves is always
+`n` (`splitTree_prod`). -/
+
+/-- The construction behind `exists_good_base`: `a ≡ g (mod p)` for a generator `g`, `a ≡ 1
+(mod q)`. -/
+lemma base_construction {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) :
+    ∃ a, ¬ p ∣ a ∧ ¬ q ∣ a ∧ orderOf (a : ZMod p) = p - 1 ∧ orderOf (a : ZMod q) = 1 := by
+  haveI := Fact.mk hp
+  obtain ⟨g, hg⟩ := IsCyclic.exists_generator (α := (ZMod p)ˣ)
+  have hord : orderOf g = p - 1 := by
+    rw [orderOf_eq_card_of_forall_mem_zpowers hg, Nat.card_eq_fintype_card, ZMod.card_units]
+  have hcop : Nat.Coprime p q := (Nat.coprime_primes hp hq).2 hpq
+  obtain ⟨c, ha1, ha2⟩ : ∃ c : ℕ, c ≡ (g : ZMod p).val [MOD p] ∧ c ≡ 1 [MOD q] :=
+    ⟨_, (Nat.chineseRemainder hcop _ _).2⟩
+  have hap : ((c : ℕ) : ZMod p) = (g : ZMod p) := by
+    rw [← ZMod.natCast_zmod_val (g : ZMod p), ZMod.natCast_eq_natCast_iff]
+    exact ha1
+  have haq : ((c : ℕ) : ZMod q) = 1 := by
+    rw [← Nat.cast_one, ZMod.natCast_eq_natCast_iff]; exact ha2
+  refine ⟨c, ?_, ?_, ?_, ?_⟩
+  · rw [← ZMod.natCast_eq_zero_iff, hap]; exact g.ne_zero
+  · haveI := Fact.mk hq
+    rw [← ZMod.natCast_eq_zero_iff, haq]; exact one_ne_zero
+  · rw [hap, orderOf_units, hord]
+  · rw [haq, orderOf_one]
+
+/-- **A working base always exists** for distinct primes `p, q`. -/
+theorem exists_good_base {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) :
+    ∃ a, ¬ p ∣ a ∧ ¬ q ∣ a ∧ orderOf (a : ZMod p) ≠ orderOf (a : ZMod q) := by
+  rcases Nat.lt_or_ge 2 p with h | h
+  · obtain ⟨a, h1, h2, h3, h4⟩ := base_construction hp hq hpq
+    exact ⟨a, h1, h2, by rw [h3, h4]; omega⟩
+  · have hp2 : p = 2 := le_antisymm h hp.two_le
+    have hq3 : 2 < q := lt_of_le_of_ne hq.two_le (by omega)
+    obtain ⟨a, h1, h2, h3, h4⟩ := base_construction hq hp (Ne.symm hpq)
+    exact ⟨a, h2, h1, by rw [h3, h4]; omega⟩
+
+lemma pow_eq_one_of_sub_one_dvd {p a E : ℕ} (hp : p.Prime) (ha : ¬ p ∣ a) (hE : p - 1 ∣ E) :
+    (a : ZMod p) ^ E = 1 := by
+  haveI := Fact.mk hp
+  obtain ⟨t, rfl⟩ := hE
+  rw [pow_mul, ZMod.pow_card_sub_one_eq_one (by rwa [Ne, ZMod.natCast_eq_zero_iff]), one_pow]
+
+/-- **Q to k from any multiple of `k`**, for arbitrary distinct primes. -/
+theorem qToK_of_multiple {p q E : ℕ} (rs : List ℕ) (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hpE : p - 1 ∣ E) (hqE : q - 1 ∣ E) (hE : E ≠ 0) (hrs : ∀ r, r.Prime → r ∣ E → r ∈ rs) :
+    ∃ a g h, qToK (p * q) a E rs = some (g, h, Nat.lcm (p - 1) (q - 1)) ∧
+      ((g = p ∧ h = q) ∨ (g = q ∧ h = p)) := by
+  obtain ⟨a, hap, haq, hord⟩ := exists_good_base hp hq hpq
+  obtain ⟨g, h, h1, h2⟩ := qToK_pq rs hp hq hE (pow_eq_one_of_sub_one_dvd hp hap hpE)
+    (pow_eq_one_of_sub_one_dvd hq haq hqE) hord hrs
+  exact ⟨a, g, h, h1, h2⟩
+
+/-- **One-sided splitting**: only `a^E ≡ 1 (mod p)` is needed, with `a^E ≢ 1 (mod q)`. -/
+theorem splitWith_one_sided {p q a E r : ℕ} {rs : List ℕ} (hp : p.Prime) (hq : q.Prime)
+    (hr : 2 ≤ r) (hmem : r ∈ rs) (hE : E ≠ 0)
+    (hpE : (a : ZMod p) ^ E = 1) (hqE : (a : ZMod q) ^ E ≠ 1) :
+    (splitWith (p * q) a E rs).isSome := by
+  apply splitWith_isSome_of_mem hmem
+  rw [powmodK_eq]
+  obtain ⟨hmul, -⟩ := strip_spec r E hr hE
+  refine scan_isSome _ _ (strip r E).2 le_rfl ?_
+  rw [mul_comm (strip r E).1, hmul]
+  exact check_isSome_symm hp hq hpE hqE
+
+/-- **Self-similar splitting**: split, then split each part again, up to depth `f`. -/
+def splitTree (E : ℕ) (rs bases : List ℕ) : ℕ → ℕ → List ℕ
+  | 0, n => [n]
+  | f + 1, n =>
+    match splitAny n E rs bases with
+    | some g => splitTree E rs bases f g ++ splitTree E rs bases f (n / g)
+    | none => [n]
+
+/-- The leaves always multiply back to `n`. -/
+theorem splitTree_prod (E : ℕ) (rs bases : List ℕ) :
+    ∀ f n, (splitTree E rs bases f n).prod = n
+  | 0, n => by simp [splitTree]
+  | f + 1, n => by
+    simp only [splitTree]
+    split
+    · rename_i g hg
+      rw [List.prod_append, splitTree_prod E rs bases f g, splitTree_prod E rs bases f (n / g),
+        Nat.mul_div_cancel' (splitAny_sound hg).2.2]
+    · simp
+
+/-- Every leaf of a tree grown from `n > 1` is `> 1`. -/
+theorem splitTree_gt_one (E : ℕ) (rs bases : List ℕ) :
+    ∀ f n, 1 < n → ∀ m ∈ splitTree E rs bases f n, 1 < m
+  | 0, n, hn, m, hm => by simp [splitTree] at hm; omega
+  | f + 1, n, hn, m, hm => by
+    simp only [splitTree] at hm
+    split at hm
+    · rename_i g hg
+      obtain ⟨h1, h2, h3⟩ := splitAny_sound hg
+      rcases List.mem_append.1 hm with hm | hm
+      · exact splitTree_gt_one E rs bases f g h1 m hm
+      · refine splitTree_gt_one E rs bases f (n / g) ?_ m hm
+        obtain ⟨c, rfl⟩ := h3
+        rw [Nat.mul_div_cancel_left _ (by omega)]
+        by_contra hc
+        interval_cases c <;> simp at h2
+    · simp at hm; omega
+
+end LatticeCalc.Verified.OrderSplit

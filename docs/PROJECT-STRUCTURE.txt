@@ -1,0 +1,49 @@
+BTC MINER/
+├── machine.local.json       Local settings: connection, payout, worker and CPU options
+├── src/                     Miner application
+│   ├── main/                CLI entry and service lifecycle
+│   ├── config/              Settings validation and network definitions
+│   ├── pool/                Pool/Core connections, jobs, submissions and serialization
+│   ├── hash/                SHA constraint model and local difficulty controls
+│   ├── workers/             Engine, nonce traversal, candidate ordering and pruning
+│   ├── backends/            Native CPU SHA-256 C code and Python adapter
+│   ├── stats/               Observational telemetry
+│   ├── ui/                  Terminal dashboard, editable mining loop, project browser
+│   ├── tools/               Diagnostics, explicit provider client and TCMP transport
+│   └── legacy/              Older optional candidate strategies and support modules
+├── math-library/            The mathematics used or exposed by the miner
+│   ├── python/              CRT, rods, geometry, certified intervals and proof gates
+│   └── native/latcalc/       C arithmetic, headers and residue operations
+├── tests/                   Offline miner and mathematics regression tests
+├── scripts/                 Build and audit commands (build.py creates the package)
+├── bin/                     Stable terminal launch commands
+├── research/                Formula catalogue, consumer relationships and proof registry
+├── reference/               Preserved mathematical source material
+├── validation/              Versioned test, audit and proof evidence
+├── docs/                    Layout map and documentation
+├── logs/                    Local runtime status and logs
+└── dist/                    Packaged releases
+
+Open: ./bin/btc-miner files
+Build: .test-tools/abacus-solver/bin/python3 -B scripts/build.py
+
+Each moved file has one editable source under src/ or math-library/. The old
+btcminer/ package and native/ source paths contain relative compatibility links.
+These retain existing imports, commands, lazy imports in running processes and
+historical evidence references. Edit the new source path, not a second copy.
+Portable release staging may materialize compatibility copies; the build gate
+requires them to match their canonical sources byte for byte.
+
+Native binaries remain in native/ so loaded-library paths and rebuild commands
+stay stable. The explicit /provider command integrates the remote Thesis API;
+it is separate from mining workers. No CUDA/OpenCL backend is implemented.
+Pool and solo/Core share the pool/ protocol layer.
+The mathematics is not duplicated inside the miner folders.
+
+The project browser opens the actual math-library/ and src/ folders side by side.
+Root remains available for archives, commands, configuration and compatibility
+paths. Every indexed file remains searchable. Local settings are not embedded.
+
+Machine-readable migration map: docs/project-layout.json
+Historical audit snapshots remain unchanged. A file move preserves its bytes,
+but current source identity and live-process validation are separate facts.

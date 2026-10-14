@@ -1,0 +1,224 @@
+FRACTAL WORK DISTRIBUTION AND MODELED DUPLEX BUFFERS
+October 13, 2026
+
+IMPLEMENTATION
+
+THESIS2 now uses btcminer/distribution/ through Engine.round when
+distribution_enabled=true (the default), except single_nonce_only mode. Legacy
+strategies retain their existing scheduler. Local threads and authenticated
+remote workers draw from the same durable coordinator ledger. The production
+coordinator starts only when the user starts mining and valid work is available.
+Installing this implementation does not start mining or connect remote machines.
+
+BTC_NODE_ID specifies the logical node, using 1..64 letters, digits, dots,
+underscores or hyphens. A remote worker must match the node ID bound to its
+credential. Run one worker process per node ID and state directory; concurrent
+processes sharing one identity on different machines are not separate nodes.
+Local CPU slots use coordinator-owned identities local:NODE_ID:INDEX.
+
+The exact hierarchy is tile ranges -> cells -> labels. Each tile has 400 cells
+and 360 labels per cell. Cell refinement factors are 2^4*5^2; label refinement
+factors are 2^3*3^2*5. Tile ranges split at tile boundaries; progress/exclusion
+residuals use exact bounded intervals. This is an application partition of the
+existing bijective THESIS2 field/flower traversal, not a new hash predictor.
+
+Raw coordinates include 29827*144000 positions. Exactly 120704 are padding
+outside uint32 in the last partial tile. Valid cardinalities exclude padding,
+retaining exactly 2^32 nonces. Padding is not reported as target-based pruning.
+The native generator seeks directly into a region and cannot cross its end.
+Children are disjoint and cover their parent; acknowledged prefixes remain
+completed while expired-lease suffixes become eligible for reassignment.
+
+Work identity includes the first 76 header bytes, share target, network target,
+work key/revision, traversal descriptor, first tile, protocol, and source
+implementation identity. Different nodes must have the same source package;
+ARM and portable native binaries may differ. No full-program compiler or
+hardware equivalence is implied by this source check.
+
+LEASES AND RECOVERY
+
+SQLite stores the tree, job state, leases/epochs, progress, idempotency receipts,
+verified exclusion records and a verified-hit submission outbox. It uses DELETE
+journaling, synchronous=EXTRA and fullfsync=ON. The coordinator holds an exclusive
+process lock. A lease expires after distribution_lease_seconds (default 15).
+The engine renews a separate three-second job heartbeat; a dead coordinator
+cannot issue indefinitely valid jobs. Reactivation fences all previous leases.
+
+Node rates are measured from acknowledged hash count / scan duration and smoothed.
+The scheduler chooses/refines regions toward 0.25 seconds of observed node work,
+bounded to 1,000,000 candidates. Idle nodes pull available regions; unfinished
+expired work is reclaimable. Regions do not overlap under current leases, but
+a disconnected old process can still compute obsolete work until its next
+boundary. Such a result is fenced. This is not a promise of zero duplicated
+physical computation after failures.
+
+Every progress commit names its exact expected cursor and next cursor. The
+coordinator checks cardinality, ownership, epoch, active job and returned hits.
+The worker saves pending HTTP operation identity/intent before sending; exact
+retry returns its existing receipt. Lost response does not advance progress
+twice. Committed progress also supplies the normal sampled miner telemetry.
+Native hash counters credit acknowledged work; discarded attempts made under
+expired leases are not a measured global physical-hash total.
+
+These are cooperating, authenticated miners. A claimed negative scan is trusted
+worker execution, not a cryptographic proof that a malicious worker really
+hashed every candidate. Every positive result is independently SHA256d-checked,
+then submitted only by the existing engine connection. Workers have no Core or
+pool submission authority. A verified nonce is still not an accepted block.
+
+The submission outbox deduplicates nonce results. If the coordinator dies after
+marking a submission as sending, that result becomes unknown on recovery and
+is not automatically submitted again. External Core/pool side effects cannot
+be made exactly-once by a local SQL transaction. Inspect unknown results rather
+than treating them as accepted/rejected.
+
+PRUNING
+
+Before dispatch, the existing bounded full-SHA solver can propose exclusions
+from a small refined region. distribution_pruning_ms bounds this pass (0..2000,
+default 1000); pruning_candidates still bounds the sample (1..64). Unresolved
+candidates remain. Every accepted exclusion is independently hashed against
+the actual header/target, then represented as a terminal singleton child.
+If a remote node acquired the region during solver evaluation, its lease wins
+and the proposal is not applied to assigned work. There is no remote endpoint
+that accepts arbitrary exclusion lists or unverified UNSAT declarations.
+
+This adds partition-aware exclusion and exact retained-work accounting. It does
+not establish a way to discard large SHA256d regions from geometry alone, and
+does not claim maximal pruning or a net reduction in total computation. The
+existing pruner and coordinator gate both verify accepted proposals; account
+for both verification passes as additional hashing. A broad exclusion proof
+must establish the complete job-bound target condition before admission.
+
+The old per-batch heuristic priority reorder is disabled on this path because
+durable progress denotes a contiguous geometric prefix. Capacity-based region
+selection determines distribution; all eligible candidates remain represented.
+
+DUPLEX NETWORK BUFFERS
+
+Each directed pair has an independent durable 16-slot, 4096-byte-per-slot
+buffer. A->B and B->A can operate concurrently with independent credit and ACKs.
+Frames are immutable until receiver acknowledgment. A full lane rejects sends
+with no_credit; it never overwrites unread data. Cumulative ACK releases slots.
+Sequence numbers remain monotonic across slot wrap and coordinator restart.
+Historical send receipts do not recreate an already acknowledged frame.
+
+The shared model maps byte offsets into coprime rods (128,9,125), capacity
+144000. The whole 65536-byte address interval fits uniquely within that capacity.
+The frame includes model identity, directed lane identity, slot, byte bounds,
+residues and exact CRT readback, plus SHA256 of its bytes. A receiver checks
+these bindings and preserves its received frame before ACK. This implements
+the lifetime guarantees of a retained frame buffer for full-duplex messages.
+Payloads are opaque bytes; the current miner peers exchange node/job status.
+
+Every remote worker can independently call the calculator using its own
+BTC_PROVIDER_SESSION. On this Mac, the existing designated Keychain account is
+also supported. Provider credentials never enter peer messages or model files.
+By default the worker checks 16*4096, 128*9*125 and ring wrap arithmetic and
+retains the returned modelPreview fingerprints and request IDs. Exact local
+checks bind the common model. Provider unavailability yields an explicitly
+labeled local-exact fallback, not fabricated provider approval. --no-provider
+selects the local model explicitly. Restart/reinitialize to retry the provider.
+
+The provider currently exposes calculator model previews and working WebSocket
+submitExpression with its CURRENT browser payload. It does not advertise a
+durable cross-peer shared-buffer API; existing feature #1083 remains open.
+Our SQLite/HTTP(S) service is the implemented communication fallback. It is
+not represented as an implementation deployed by the calculator provider.
+Provider fingerprints are provenance, not authentication or durable leases.
+
+SAME-ACCOUNT MODEL ACCESS RECHECK
+
+The user's follow-up identified a narrower path that must not be confused with
+cross-user sharing. Live tests in validation/same-account-models-20261013/ found
+that two WebSocket connections using the SAME login token attach to the same
+provider model and can both update its state. That capability already exists.
+Our installed mining peers currently use separate REST model previews, not a
+shared long-lived provider WebSocket model. Their durable buffers remain local.
+
+Two DIFFERENT login tokens for the SAME account received different models.
+An explicit request naming the first model through the second session silently
+returned/updated the second session's model instead. A nonexistent-model control
+also returned the current model. Closing one of the two same-token connections
+made its still-connected peer report "missing session". Reconnecting created a
+new model, and the old peer's old-model request silently returned that new model.
+Those routing/lifetime defects prevent relying on this path for durable buffers.
+
+The provider needs strict model-ID binding (unknown/stale IDs must fail), shared
+session reference/lease lifetime, and account-owned model listing/reopening with
+explicit server-enforced read-only or read/write handles. Cross-user ACLs are a
+separate capability; they are not required for an account to reopen its own
+models. The published API currently advertises neither an account model catalogue
+nor explicit access-mode mounts. Missing features and reproduced bugs are
+reported separately; see that recheck's summary and submission receipts.
+
+Records/receipts and received frames are retained. Lane credit bounds outstanding
+frame storage, not the complete historical database size. The coordinator is a
+single durable authority, not a replicated consensus service. Hard process
+crashes are tested; physical power failure and real WAN deployment are not.
+
+SETUP
+
+1. Install the same miner source/native backend on participating machines.
+   Create credentials locally (tokens are written mode 600 and never printed):
+
+     ./bin/btc-miner cluster init --auth /ABS/PATH/nodes.json \
+       --node peer-A --node peer-B
+
+   Give each worker only its own credential in a mode-600 JSON file, or set
+   BTC_NODE_TOKEN on that worker. Keep the complete map on the coordinator.
+
+2. Configure the production coordinator while mining is stopped:
+
+     ./bin/btc-miner config set distribution_enabled=true \
+       distribution_port=63221 distribution_host=127.0.0.1 \
+       distribution_auth=/ABS/PATH/nodes.json
+
+   The existing config command can restart an already running miner. These
+   commands are examples, not commands executed by the implementation handoff.
+   Start mining through the normal console when ready. BTC_NODE_ID defaults
+   to coordinator; set it before launching the miner to choose another name.
+
+3. For an isolated local peer, use a separate node/state directory:
+
+     BTC_NODE_ID=peer-A BTC_PROVIDER_SESSION=YOUR_SESSION \
+       ./bin/btc-miner cluster worker --url http://127.0.0.1:63221 \
+       --auth /ABS/PATH/peer-A.json --state /ABS/PATH/peer-A-state \
+       --peer peer-B --peer coordinator
+
+   Start peer-B similarly, with --peer peer-A. Each worker holds an exclusive
+   state-directory process lock. Authentication, rather than a body-supplied
+   node name, controls lane ownership and leases. BTC_NODE_ID must match it.
+   Set BTC_PROVIDER_SESSION through your environment/secret manager, not shell
+   history containing a literal credential. The placeholder above is illustrative.
+
+4. LAN/WAN listeners require distribution_cert and distribution_key plus a
+   non-loopback distribution_host. Workers require https:// and verify the
+   server certificate; --ca accepts a private CA. No insecure TLS option exists.
+   Alternatively use your own authenticated SSH tunnel to the loopback listener.
+   This work did not open a firewall, deploy to remote hosts, or alter TLS assets.
+
+TEST AND INSPECT
+
+  ./bin/btc-miner cluster demo --output /ABS/PATH/FRESH-DEMO-DIRECTORY
+
+Starts two independent worker processes with separate BTC_NODE_ID values and
+calculator model calls. They hash a finite public-header target-zero fixture,
+exchange duplex frames, stop, preserve an unread frame through SIGKILL/server
+restart, restart the workers and consume that same frame. It submits no block
+and does not control production mining. All child processes stop afterward.
+
+  .test-tools/abacus-solver/bin/python -B scripts/verify_distribution.py \
+    --output /ABS/PATH/FRESH-VERIFICATION-DIRECTORY --demo
+
+Compiles 17 Lean contracts, rejects a false proof control, runs the affected
+test suites and the process demo. Contracts prove abstract partition, clipping,
+progress, exclusion, epoch, ACK and address-bound properties. The Python/SQL/
+HTTP/native implementation correspondence is executable evidence, not a new
+whole-program formal proof. Existing traversal correspondence remains separate.
+
+Production state: logs/distribution/ready.json and work.sqlite;
+status --json includes distribution counters. Worker state: process.json,
+pending.json (only while a request needs retry), buffers/model.json and
+buffers/received/SENDER/SEQUENCE.json. Do not edit the ledger while it is active.
+Keep credentials separate from artifacts shared with the calculator provider.

@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "status": "tested_runtime_translation",
+  "sources": [
+    {
+      "source": "/source/user/Desktop/BTC MINER/BTC MINER/validation/aristotle-card-distillation-20261010T184744Z/referenced-material/sources/docs/topics/rods-and-abacus/FRACTAL_ABACUS.md",
+      "copy": "reference/fractal-abacus/FRACTAL_ABACUS.md",
+      "sha256": "a56e6f73e824425f5e2e03e37e55e854521f6dbfff33ec8cb2e481193588c122"
+    },
+    {
+      "source": "/source/user/Desktop/BTC MINER/BTC MINER/validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+      "copy": "reference/fractal-abacus/FractalAbacus.lean",
+      "sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe"
+    },
+    {
+      "source": "/source/user/Desktop/BTC MINER/BTC MINER/validation/miner-math-library-20261010/snapshot/sources/RequestProject/FractalAbacusModels.lean",
+      "copy": "reference/fractal-abacus/FractalAbacusModels.lean",
+      "sha256": "d208c95c19fa886de66a4e8bc0fb4e3955d1d2972faee0c8731c05f47b4fb528"
+    },
+    {
+      "source": "/source/user/Desktop/COMPRESSION.md",
+      "copy": "reference/fractal-abacus/COMPRESSION.md",
+      "sha256": "1428c6463c616c625ea340e73d227a05df04db67d9f62d4cd4fac48483229812"
+    }
+  ],
+  "runtime": [
+    "math-library/python/scale_graph.py",
+    "math-library/python/archive_math.py",
+    "math-library/python/rodmath.py",
+    "src/workers/thesis2.py",
+    "src/backends/hasher_fast.c"
+  ],
+  "reference_theorems": [
+    "FractalAbacus.enc_proj",
+    "FractalAbacus.run_proj",
+    "FractalAbacus.capacity_deepen",
+    "FractalAbacus.arbitrary_precision",
+    "card_fibre"
+  ],
+  "formal_runtime_refinement": false,
+  "new_Lean_build_performed": false,
+  "nonce_exclusion_authority": false,
+  "interpretation": "Exact residue arithmetic and scale graph; descriptor encoding is secondary. Flower order is a new application mapping, not an upstream mining theorem.",
+  "validation": "validation/compression-flower-integration-20261011/",
+  "regtest_orders_accepted": [
+    "field",
+    "flower"
+  ]
+}

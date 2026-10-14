@@ -1,0 +1,6 @@
+/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/WrongArithmetic.lean:1:56: error: Tactic `rfl` failed: The left-hand side
+  0
+is not definitionally equal to the right-hand side
+  1
+
+⊢ 0 = 1

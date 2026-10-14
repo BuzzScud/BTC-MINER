@@ -1,0 +1,702 @@
+{
+  "schema": 1,
+  "source_task": "857374a3-5a8f-4b18-9f97-f889ef5399b8",
+  "scope": "Mapped operational claims and explicit open claims. Other available Lean declarations remain inventory-only until mapped; no blanket validation of all theories.",
+  "claims": [
+    {
+      "id": "coprime-frame",
+      "formula": "M=product(m_i), gcd(m_i,m_j)=1; x -> (x mod m_i)",
+      "domain": "integer/CRT",
+      "implemented_in": "shared_abacus.Frame",
+      "lean_theorems": [
+        "RNS.decode_encode",
+        "RNS.decodeSigned_encode"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Reconstruction interval width < M; distinguish congruence from equality"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "coupled-systems",
+      "formula": "Polynomial formulas and sequential mutable slots evaluated on each rod",
+      "domain": "integer polynomials",
+      "implemented_in": "shared_abacus.Frame.program",
+      "lean_theorems": [
+        "AbacusSystem.Abacus.runSys_enc",
+        "AbacusSystem.Abacus.runProg_spec",
+        "AbacusSystem.Abacus.relation_iff"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Division, gcd, ordering, bitwise operations are not rodwise ring operations",
+        "Tracked interval must cover the integer result"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "shared-views",
+      "formula": "Restriction of a column commutes with formula evaluation",
+      "domain": "coprime subframes",
+      "implemented_in": "shared_abacus.Frame.view / Column.restrict",
+      "lean_theorems": [
+        "AbacusSystem.Abacus.run_view",
+        "AbacusSystem.Abacus.enc_view"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Small view may lose exact read-back capacity; retain modular semantics"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "merge-capacity",
+      "formula": "M(A+B)=M(A)*M(B); concatenate columns of the same formula",
+      "domain": "disjoint mutually coprime frames",
+      "implemented_in": "Frame.merge / Column.merge",
+      "lean_theorems": [
+        "AbacusSystem.Abacus.capacity_merge",
+        "AbacusSystem.Abacus.run_merge"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Cross rods must be coprime",
+        "Caller must establish same inputs and formula; residue equality alone does not do so"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "dynamic-growth",
+      "formula": "Increase rod count and migrate current slot values only on capacity exhaustion",
+      "domain": "signed arbitrary precision, native memory guard 8192 rods",
+      "implemented_in": "Calculation / FramePool",
+      "lean_theorems": [],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Not a proof of unbounded physical resources",
+        "No validation of 300 million digit primality"
+      ],
+      "evidence": [
+        "validation/shared-abacus/progress.json"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "recurrence-jump",
+      "formula": "state_N=T^N state_0 modulo each rod; square-and-multiply",
+      "domain": "linear recurrences order 1..8, int64 coefficients, uint64 depth",
+      "implemented_in": "Frame.jump",
+      "lean_theorems": [
+        "RodJump.powSq_eq",
+        "RodJump.iterate_eq_pow",
+        "RodJump.pow_mulVec_cast"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Exact integer read-back needs independently justified bound",
+        "Depth is not arbitrary precision in the native recurrence ABI"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "soddy-recurrence",
+      "formula": "u_(n+3)=3u_(n+2)+3u_(n+1)-6u_n; (u0,u1,u2)=(1,4,12)",
+      "domain": "defined sequence, separate from geometry",
+      "implemented_in": "Frame.jump((3,3,-6),(1,4,12),N)",
+      "lean_theorems": [
+        "RodJump.soddy_state",
+        "RodJump.soddy_mod"
+      ],
+      "status": "sequence_model_only",
+      "obligations": [
+        "No established all-depth equivalence to actual sphere counts"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "soddy-geometric-growth",
+      "formula": "Do actual sphere generations obey the stated recurrence for every n?",
+      "domain": "Soddy geometry",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "conjecture_not_deployed",
+      "obligations": [
+        "Finite agreement through depth 12 cannot prove every depth"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "rod-montgomery",
+      "formula": "Powers modulo odd p on two rod bases and a redundant rod",
+      "domain": "modular exponentiation",
+      "implemented_in": "Frame.powmod",
+      "lean_theorems": [
+        "RodMont.MontCtx.montMul_spec",
+        "RodMont.MontCtx.rodPow_spec",
+        "RodMont.MontCtx.montMul_out"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Positive odd p; coprime with base A",
+        "Checked capacity inequality and redundant-rod correction bound",
+        "Native C is independently tested, not proved equivalent to Lean"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/formal-progress.json",
+        "validation/aristotle-shared-abacus-857374a3/lake.log",
+        "validation/shared-abacus/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Locally checked mathematical model; C/Python correspondence is tested, not formally proved"
+    },
+    {
+      "id": "core-primes",
+      "formula": "11,19,71,97,109; 19^2-1=360; 71^2-1=5040;109^2-1=33*360",
+      "domain": "selected prime geometry",
+      "implemented_in": "abacus.ResidentModel / shared_frame",
+      "lean_theorems": [
+        "CorePrimes (prior audit)"
+      ],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "These identities do not predict SHA256d"
+      ],
+      "evidence": [
+        "validation/testnet4/integration-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "binary-golay",
+      "formula": "4096=2^12 codewords in 2048=2^11 complement pairs",
+      "domain": "Golay constrained code set",
+      "implemented_in": "ResidentModel.golay",
+      "lean_theorems": [],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "6144 bytes table; not compression of arbitrary hashes"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "e8-geometry",
+      "formula": "240 roots in eight dimensions; squared doubled-coordinate norm=8",
+      "domain": "finite E8 root configuration",
+      "implemented_in": "ResidentModel.e8_roots",
+      "lean_theorems": [],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "Finite root packing check does not establish SHA prediction"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "q-to-k",
+      "formula": "Q=p*q; k=lcm(p-1,q-1); Q restored from (k,index) within dictionary",
+      "domain": "reviewed scales 144000,3024000,33264000",
+      "implemented_in": "scaled_abacus.QCodec",
+      "lean_theorems": [
+        "LosslessReduction (conditional dictionary roundtrip)"
+      ],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "k alone is not injective: Q=10 and15 both k=4",
+        "Unknown values retained raw; dictionary memory counted"
+      ],
+      "evidence": [
+        "validation/testnet4/compression.json"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "thesis2-traversal",
+      "formula": "THESIS2 seeded board/cell traversal permutes all uint32 nonces",
+      "domain": "Bitcoin nonce ordering",
+      "implemented_in": "abacus.Workspace / thesis2.Traversal",
+      "lean_theorems": [
+        "LosslessReduction (coverage conditions)"
+      ],
+      "status": "integrated_runtime_tests_passed",
+      "obligations": [
+        "Board formula now executed on shared rods",
+        "No exclusion implied by traversal order"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "recurrence-sieve",
+      "formula": "Verified period certificate excludes incompatible recurrence positions",
+      "domain": "specified recurrence orbits",
+      "implemented_in": "recurrence.published_certificates",
+      "lean_theorems": [
+        "RodSieveNarrow (prior audit)"
+      ],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "Cannot transfer recurrence exclusions to SHA candidates"
+      ],
+      "evidence": [
+        "validation/testnet4/recurrence.json"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "sha-bit-carry",
+      "formula": "32-bit modular additions, carries, rotations, choice, majority; full SHA256d",
+      "domain": "exact Bitcoin header constraint model",
+      "implemented_in": "constraintmodel.bitcoin_model",
+      "lean_theorems": [
+        "LosslessReduction (conditional sound-reject theorem)"
+      ],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "No theorem proving the entire Python/Z3/native implementation",
+        "Retain unknown/timeouts",
+        "Only complete UNSAT bucket may exclude"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "adaptive-buckets",
+      "formula": "Split unknown buckets; remove a candidate only after completed necessary-condition solve",
+      "domain": "model-specific constraints",
+      "implemented_in": "adaptive.retain_candidates",
+      "lean_theorems": [
+        "LosslessReduction (split and unknown retention)"
+      ],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "Toy exclusion applies only to that toy model"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "toy-ladder",
+      "formula": "Scale word width, rounds, difficulty; freeze retained set before concrete oracle",
+      "domain": "toy SHA compression",
+      "implemented_in": "abacus_lab.toy_check",
+      "lean_theorems": [],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "Measure no-hit cases and total solver cost",
+        "Toy percentages are not Bitcoin reductions"
+      ],
+      "evidence": [
+        "validation/testnet4/integrated-toy-ladder.json"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "likelihood-ranking",
+      "formula": "Smoothed observed-hit scores conditioned on Q/arithmetic labels",
+      "domain": "candidate ordering",
+      "implemented_in": "priority.Priority",
+      "lean_theorems": [],
+      "status": "experimental_no_advantage_demonstrated",
+      "obligations": [
+        "All candidates retained",
+        "Earlier held-out k ranking did not consistently beat uniform prior"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "lossy-nonce-filters",
+      "formula": "mod30/mod210/clock-family rejection",
+      "domain": "former conjectured SHA filters",
+      "implemented_in": "priority labels with complete fallback",
+      "lean_theorems": [],
+      "status": "refuted_as_lossless_filter",
+      "obligations": [
+        "Discarding these values lost valid solutions; therefore never exclusions"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "chain-update",
+      "formula": "Header previous-block hash and work generation follow new Core templates",
+      "domain": "Bitcoin protocol",
+      "implemented_in": "connections.CoreConnection",
+      "lean_theorems": [],
+      "status": "integrated_prior_tests_passed",
+      "obligations": [
+        "Fresh tip changes header; previous winner does not predict next nonce"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "bitcoin-search-reduction",
+      "formula": "Can rod/geometry/Q relations eliminate SHA work losslessly and profitably?",
+      "domain": "research question",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "open_no_demonstrated_advantage",
+      "obligations": [
+        "Requires a necessary-condition theorem for exact SHA256d plus measured total-cost benefit"
+      ],
+      "evidence": [],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "descartes-bends",
+      "formula": "sum(b)^2=3 sum(b_i^2); reflection b_i=sum(b)-2b_i",
+      "domain": "shared recursive bend model; no center coordinates",
+      "implemented_in": "structure_study",
+      "lean_theorems": [],
+      "status": "integrated_finite_checks_passed",
+      "obligations": [
+        "Curvature tuples do not encode sphere centers or prove nonoverlap",
+        "Finite checks do not establish a SHA necessary condition"
+      ],
+      "evidence": [
+        "validation/shared-abacus/progress.json"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "soddy-all-depth-nonoverlap",
+      "formula": "Every reachable sphere pair is tangent or disjoint",
+      "domain": "Coxeter sphere action",
+      "implemented_in": "remote theorem sources; not executable Bitcoin filter",
+      "lean_theorems": [],
+      "status": "remote_claim_not_locally_rebuilt",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "leech-minimum",
+      "formula": "Nonzero lattice vector has squared length at least 4",
+      "domain": "Leech lattice",
+      "implemented_in": "source inventory",
+      "lean_theorems": [],
+      "status": "remote_claim_not_locally_rebuilt",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "lindemann",
+      "formula": "Transcendence needed for nonconstructibility of sqrt(pi)",
+      "domain": "analytic/algebraic number theory",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "open_not_implemented",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "hairy-ball",
+      "formula": "Even-dimensional sphere has no continuous nowhere-zero tangent field",
+      "domain": "topology",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "open_not_implemented",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "torus-crossing",
+      "formula": "min(p(q-1),q(p-1))",
+      "domain": "torus knots under appropriate p,q assumptions",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "open_not_implemented",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "gosper-dimension",
+      "formula": "2 log(3)/log(7)",
+      "domain": "similarity versus Hausdorff dimension",
+      "implemented_in": null,
+      "lean_theorems": [],
+      "status": "open_missing_correspondence",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "crystallographic-order",
+      "formula": "3D lattice finite rotation order in 1,2,3,4,6",
+      "domain": "integer finite-order matrices",
+      "implemented_in": "source inventory",
+      "lean_theorems": [],
+      "status": "remote_claim_not_locally_rebuilt",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "chain-primes",
+      "formula": "Primality certificates for selected 18*10^k+1",
+      "domain": "specific exponents and witnesses",
+      "implemented_in": "source inventory / rod modular arithmetic",
+      "lean_theorems": [],
+      "status": "not_a_general_primality_or_factoring_shortcut",
+      "obligations": [
+        "Keep this model separate from Bitcoin necessary conditions"
+      ],
+      "evidence": [
+        "validation/aristotle-shared-abacus-857374a3/sources/OPEN_ITEMS_STATUS.md"
+      ],
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "id": "executable-claim-calculus",
+      "formula": "Integer equality/divisibility/ordering and Boolean claims",
+      "domain": "exact integer arithmetic",
+      "implemented_in": "claim_calculus.ClaimCalculator",
+      "lean_theorems": [
+        "SharedClaims.Claim.onAbacus_correct",
+        "SharedClaims.dvd_iff_rods",
+        "SharedClaims.Claim.fits_of_fitsB"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "Equalities need a sufficient capacity bound; divisibility is rod-local only when the divisor divides capacity; order reconstructs"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Mathematical model proof is being rechecked; C/Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "crt-polynomial-root-count",
+      "formula": "Number of polynomial roots modulo a complete coprime CRT capacity",
+      "domain": "exact integer arithmetic",
+      "implemented_in": "claim_calculus.count_polynomial_roots",
+      "lean_theorems": [
+        "SharedClaims.card_zeros_eq_prod"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "Complete residue domain only; univariate implementation; not counts on arbitrary nonce intervals"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Mathematical model proof is being rechecked; C/Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "known-k-factor-recovery",
+      "formula": "Given n and closing exponent k, test four gcd candidates to recover p,q",
+      "domain": "exact integer arithmetic",
+      "implemented_in": "archive_math.recover_from_k",
+      "lean_theorems": [
+        "PQRecovery.recoverFromK_pq"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "k is an input; not a free method for obtaining k from n"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Mathematical model proof is being rechecked; C/Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "native-order-split",
+      "formula": "Given n,a,E and factors of E, split orders and recover factors",
+      "domain": "exact integer arithmetic",
+      "implemented_in": "archive_math.order_split",
+      "lean_theorems": [
+        "OrderSplit.splitWith_sound",
+        "OrderSplit.splitWith_pq",
+        "OrderSplit.qToK_pq"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "Known suitable E, complete factor list and differing orders are completeness hypotheses; returned factors independently multiply back to n"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Mathematical model proof is being rechecked; C/Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "persistent-flower-address",
+      "formula": "Exact signed arbitrary-precision coordinates encoded with a resident flower digit table",
+      "domain": "exact integer arithmetic",
+      "implemented_in": "archive_math.Flower",
+      "lean_theorems": [
+        "LatticeCalc.Eis.flower19_tiles",
+        "LatticeCalc.Eis.address_exists",
+        "LatticeCalc.Eis.address_unique"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "19-flower corresponds to the proved case; other radii checked at runtime; no SHA pruning claim"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Mathematical model proof is being rechecked; C/Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "ramanujan-finite-series",
+      "formula": "Truncated product of (1-q^n)^24; tau(1)..tau(60); congruences modulo 691 and 7",
+      "domain": "integer polynomial coefficients",
+      "implemented_in": "archive_math.ramanujan_coefficients",
+      "lean_theorems": [
+        "SharedModels.Ramanujan.deltaProd_map",
+        "SharedModels.Ramanujan.ramanujan_691",
+        "SharedModels.Ramanujan.ramanujan_7",
+        "SharedModels.Ramanujan.clock12"
+      ],
+      "status": "implemented_tests_and_scoped_lean_check_passed",
+      "obligations": [
+        "Finite congruence range n<=60; no proof here of the Leech theta-series identity; no Bitcoin implication"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "The mathematical statement passed the recorded Lean review; compiled finite decisions are compiler-trusted. C/Python correspondence is tested, not formally proved."
+    },
+    {
+      "id": "periodic-four-dimensional-clock",
+      "formula": "R^12=I; R^n applied to v uses the cached table at n mod 12",
+      "domain": "four-dimensional integer lattice",
+      "implemented_in": "archive_math.Clock24 / archive_math.clock_tables",
+      "lean_theorems": [
+        "DialShadow.clockRot_pow_twelve",
+        "TwentyFourCell.auditClock_pow"
+      ],
+      "status": "implemented_tests_and_scoped_lean_check_passed",
+      "obligations": [
+        "Period applies to the specified companion matrix; no SHA round/nonce periodicity follows"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log",
+        "validation/archive-audit/clock-proof-optimization.json"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "The mathematical statement passed the recorded Lean review; compiled finite decisions are compiler-trusted. C/Python correspondence is tested, not formally proved."
+    },
+    {
+      "id": "packed-clock-flags",
+      "formula": "F4 closure has 1152 permutations and its base-flag orbit covers all 1152 flags",
+      "domain": "finite 24-cell geometry",
+      "implemented_in": "archive_math.clock_flags; abacus.ResidentModel",
+      "lean_theorems": [
+        "TwentyFourCell.card_flags",
+        "TwentyFourCell.flag_transitive"
+      ],
+      "status": "implemented_tests_passed_formal_recheck_pending",
+      "obligations": [
+        "The finite clock geometry only; no Bitcoin nonce implication"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Full finite runtime census and orbit comparison; Lean cache equivalence under review; Python correspondence tested, not formally proved"
+    },
+    {
+      "id": "exact-circle-relationships",
+      "formula": "pairDelta=(distance_squared-R1-R2)^2-4*R1*R2; concurrence polynomial Q(W)-R1*determinant^2",
+      "domain": "positive definite integer quadratic form; nonnegative squared radii; noncollinear centres for concurrence",
+      "implemented_in": "archive_math.CircleModel; abacus.ResidentModel factory",
+      "lean_theorems": [
+        "AbacusGeometry.pair_exists_iff",
+        "AbacusGeometry.pair_unique_of_zero",
+        "AbacusGeometry.pair_two_of_neg",
+        "AbacusGeometry.concur_iff",
+        "AbacusGeometry.pair_on_rods",
+        "AbacusGeometry.concur_on_rods"
+      ],
+      "status": "implemented_tests_and_scoped_lean_check_passed",
+      "obligations": [
+        "Preserve positive definiteness and determinant hypotheses; collinear centres return not applicable; no Bitcoin implication"
+      ],
+      "evidence": [
+        "validation/archive-audit/calculation-tests.log"
+      ],
+      "bitcoin_exclusion_authority": false,
+      "formal_scope": "Archived mathematical proof re-elaborated in resident Lean review (compiled finite decisions); Python correspondence independently tested, not formally proved."
+    }
+  ],
+  "latest_source_task": "5f501e9e-d021-4e48-b01a-f9facfee2057"
+}

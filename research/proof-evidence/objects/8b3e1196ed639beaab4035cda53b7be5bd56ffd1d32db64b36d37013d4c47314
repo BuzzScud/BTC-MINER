@@ -1,0 +1,28 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["0442e5b39946ad52.olean"],
+  "i": "65556a64317100d8.ilean",
+  "c": "a32dc73e5b5c6c27.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean /source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean -j1 -M4096 -DElab.async=false /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/ApiSupportNumbers.lean -o /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.olean -i /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.ilean -c /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/ApiSupportNumbers.c --setup /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/ApiSupportNumbers.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["RequestProject.ApiSupportNumbers:deps",
+   [["deps",
+     [["MinerProofRepair/RequestProject:extraDep",
+       [["@MinerProofRepair:extraDep", "00000000000006bb"]]],
+      ["imports", "00000000000006bb"]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/ApiSupportNumbers.lean",
+   "236b84ea0e5ec4fc"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[-j1, -M4096, -DElab.async=false]", "ac35a80e7dbd4509"]],
+ "depHash": "de182cc8775f4a9d"}

@@ -1,0 +1,74 @@
+# Three-module Lean repair
+
+## Objective and acceptance contract
+
+Repair the historical `RodCircles`, `RodScaling`, and `TowerCollapse` proof builds.
+Their original mathematical statements and hypotheses MUST be preserved. Smaller
+lemmas and bounded finite computations MAY replace expensive proof bodies.
+Success SHALL require fresh Lean compilation, complete theorem assumption audits,
+source/artifact hashes, and rejection controls. A successful process exit alone
+MUST NOT be reported as proof acceptance.
+
+These are number-theory models used by the miner research project. Passing them
+does not prove a Bitcoin nonce-pruning advantage, a faster SHA-256 algorithm, or
+refinement of all miner runtime code.
+
+## Read in this order
+
+1. [Historical outcome](../miner-proof-retry-20261007/final-review.json): the failed
+   bounded attempts, preserved unchanged.
+2. [Source manifest](source-manifest.json): exact historical and repaired inputs.
+3. [RodCircles](sources/RequestProject/RodCircles.lean): finite-field conics and CRT
+   multiplication of point counts. Its final proof MUST retain the multiplication
+   expression shape documented in the repair contract.
+4. [RodScaling](sources/RequestProject/RodScaling.lean): three exact finite counts
+   at moduli 121 and 361, with smaller counting steps linked to `formPts`.
+5. [TowerCollapse](sources/RequestProject/TowerCollapse.lean): exponent periods,
+   three/four-level tower reduction, and the 72 distinct finite values.
+6. [Build gate](run_retry.py): fresh local import closure, allowed axiom policy,
+   exact named-root coverage, generated-root audit, failure controls, bindings.
+7. [API review](API_SUPPORT.md): live formula discovery and supporting scalar
+   calculations. Provider status flags MUST NOT substitute for Lean proofs.
+
+## Workflow
+
+`run_file.py` is a bounded diagnostic compiler. Its successful exit MAY guide a
+repair but MUST NOT set final acceptance. Files such as `CircleBase.lean` and
+`CircleCounts.lean` isolate failures; only the original module targets and their
+fresh dependency closure count toward the final repair gate.
+
+`prepare_manifest.py` verifies that every original theorem header is retained,
+binds the supporting API scalar values, and records the current candidate inputs.
+Run it only when intentionally preparing a new candidate revision. After that,
+`run_retry.py` SHALL reject changes to the recorded sources.
+
+The full gate command is `make check`. Its stages are:
+
+```sh
+python3 -B prepare_manifest.py
+python3 -B run_retry.py --target RequestProject.RodCircles --target RequestProject.RodScaling --target RequestProject.TowerCollapse --target RequestProject.ApiSupportNumbers --timeout 180 --memory-mb 3072
+python3 -B run_lake.py --timeout 180
+python3 -B write_review.py
+```
+
+`run_lake.py` creates another fresh project from the exact accepted source bytes.
+Lake builds the local dependency closure, and a second assumption audit MUST
+match the raw Lean audit. Pinned third-party compiled prerequisites are reused;
+this is not a fresh build of Mathlib. `make verify` checks existing bound evidence.
+
+Each attempt has its own output directory. Historical failures and reference
+sources MUST remain available. Final review MUST distinguish compiled diagnostic
+candidates from a successful source-bound gate.
+
+## Findings established so far
+
+The old blanket import-pressure diagnosis was incomplete. A process sample
+located the stall in kernel definitional equality. The final RodCircles proof
+used raw `Nat.mul` congruences against overloaded multiplication in its types;
+the resulting comparison reduced enormous finite counts. Matching the symbolic
+multiplication expression makes this proof check without enumerating those sets.
+
+The API documentation and formula catalog were checked live. No new Lean proof
+endpoint or prime-square conic lifting theorem was found. Five supporting integer
+products agreed with independent arithmetic; their exact returned values are
+also included in the local Lean gate.

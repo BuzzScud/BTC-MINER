@@ -1,0 +1,51 @@
+PROVIDER SYSTEM METRICS CONTRACT AND BACKEND ADAPTER
+October 13, 2026
+
+Status: adapter implemented for installation, NOT deployed to the calculator.
+The accessible host's port60011 listener is owned by sshd-session. It is a relay;
+its hardware counters must not be labeled calculator-backend metrics. A true
+backend deployment route/source is still required. This is an external delivery
+limitation, not an implemented endpoint claim.
+
+src/tools/system_metrics.py exposes a Collector with real cumulative OS CPU
+sampling and host/process memory, load averages, swap and Linux uptime.
+It provides an authenticated aiohttp application:
+  GET /api/system/metrics
+  WebSocket /ws/system-metrics -> {type:systemTelemetry,metrics:{...}}
+REST and WS use the same sampled_at/sample_id. Sampling occurs every2seconds,
+not per connected observer. The default bind is127.0.0.1:60112. BTC_METRICS_TOKEN
+must hold a dedicated token at least32characters long; never put it in argv or
+URLs. No code in the miner auto-starts or deploys this service.
+
+For actual installation at the calculator origin, integrate Collector into its
+existing request-authentication and WebSocket broadcast lifecycle, or deploy the
+adapter on that host behind a reverse proxy. The proxy must validate the user's
+provider credentials and substitute the dedicated internal metrics token; never
+pass arbitrary public requests through. Use TLS outside a trusted local/SSH
+transport. Do not point the normal provider credentials at an unrelated origin.
+The miner supports same-origin /api/... and /ws/... configuration paths; external
+origins and query-string credentials are not accepted as metrics configuration.
+No user/account lists or credentials are exposed by the metrics service.
+
+Contract provider-system-metrics/v1:
+- measurement=os-sampled; scope=host|container|process, explicit instance_id.
+- sample_id unique within an instance, sampled_at UTC Unix seconds.
+- cpu.percent0..100, cores and window_seconds; denominator documented.
+- memory.total_bytes,used_bytes,available_bytes,swap_used_bytes.
+- process.rss_bytes with process-tree scope separately stated.
+- load_average1/5/15-minute values and uptime_seconds where available.
+- active_requests and queue_depth are null until instrumented in the actual
+  calculator application; sidecar socket counts cannot substitute for them.
+A new instance_id marks service restart. Null means unavailable, never zero.
+On Linux the adapter reports host counters, not an inferred container quota.
+Linux memory availability uses MemAvailable. macOS available memory is left
+unknown; used bytes exclude only explicitly free pages. First CPU interval is
+unknown. This avoids inventing measurements or conflating different scopes.
+
+Miner normalization validates the version/scope/units, whitelists fields,
+fingerprints identifiers, deduplicates REST/WS samples, rejects older samples,
+and exposes stale/clock-uncertain availability. It preserves provider-reported
+provenance; authenticated transport alone is not remote attestation of identity.
+Calculation cpuMs/cpuShare have a separate schema and can never be admitted as
+whole-server CPU or RAM. Server availability never overrides local safeguards,
+block verification or the user's stop-after-block gate.

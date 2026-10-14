@@ -1,0 +1,36 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"r": "a02557f95c06868a.ir",
+  "o":
+  ["6e46d642883299e9.olean",
+   "751c5e6e60074e93.olean.server",
+   "5db25d8d94ea4cc0.olean.private"],
+  "i": "6e48936b736d596d.ilean",
+  "c": "d9347769797991e1.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean /source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean -j1 -M4096 -DElab.async=false /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/LatticeCalc/Verified/OrderSplit.lean -o /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean -i /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ilean -c /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/OrderSplit.c --setup /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/OrderSplit.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["LatticeCalc.Verified.OrderSplit:deps",
+   [["deps",
+     [["MinerProofRepair/LatticeCalc:extraDep",
+       [["@MinerProofRepair:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["LatticeCalc.Verified.PowSqrtPrime transitive imports (public)",
+         "00000000000006bb"],
+        ["LatticeCalc.Verified.PowSqrtPrime:importArts",
+         "93d9b0e3a99afbe5"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/LatticeCalc/Verified/OrderSplit.lean",
+   "be1b0a6f1a5c659f"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[-j1, -M4096, -DElab.async=false]", "ac35a80e7dbd4509"]],
+ "depHash": "725a4d9e5e79d1b8"}

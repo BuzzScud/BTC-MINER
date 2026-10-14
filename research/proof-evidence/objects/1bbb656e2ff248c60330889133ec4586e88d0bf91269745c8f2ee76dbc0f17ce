@@ -1,0 +1,35 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"r": "91ddf79d7bb57e53.ir",
+  "o":
+  ["8aea119c5a5be9f8.olean",
+   "8312261d0fe3cda0.olean.server",
+   "a0da17a1d303d44a.olean.private"],
+  "i": "4fa1efff1ed16026.ilean",
+  "c": "1189b3331ff00ffc.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean /source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean -j1 -M4096 -DElab.async=false /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodScaling.lean -o /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean -i /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.ilean -c /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodScaling.c --setup /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodScaling.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["RequestProject.RodScaling:deps",
+   [["deps",
+     [["MinerProofRepair/RequestProject:extraDep",
+       [["@MinerProofRepair:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["RequestProject.RodCircles transitive imports (public)",
+         "00000000000006bb"],
+        ["RequestProject.RodCircles:importArts", "84f3aaf347fcb6ea"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodScaling.lean",
+   "c78355f7d6c793a8"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[-j1, -M4096, -DElab.async=false]", "ac35a80e7dbd4509"]],
+ "depHash": "c7279a9fead82ec2"}

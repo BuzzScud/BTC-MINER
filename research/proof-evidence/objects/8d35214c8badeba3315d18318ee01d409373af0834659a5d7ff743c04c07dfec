@@ -1,0 +1,26 @@
+import Lean
+import RequestProject.RodCircles
+import RequestProject.RodScaling
+import LatticeCalc.Verified.PowSqrtPrime
+import LatticeCalc.Verified.OrderSplit
+import RequestProject.TowerCollapse
+import RequestProject.ApiSupportNumbers
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  let modules : Array Name := #[`RequestProject.RodCircles, `RequestProject.RodScaling, `LatticeCalc.Verified.PowSqrtPrime, `LatticeCalc.Verified.OrderSplit, `RequestProject.TowerCollapse, `RequestProject.ApiSupportNumbers]
+  for name in modules do
+    unless (env.getModuleIdx? name).isSome do
+      throwError "Required module is absent: {name}"
+  let indices := modules.filterMap env.getModuleIdx?
+  let mut seen : Nat := 0
+  for (name, info) in env.constants.toList do
+    let some index := env.getModuleIdxFor? name | continue
+    unless indices.contains index do continue
+    if let .axiomInfo _ := info then
+      throwError "Local axiom declaration is forbidden: {name}"
+    let .thmInfo _ := info | continue
+    let (_, axioms) := ((CollectAxioms.collect name).run env).run {}
+    liftIO <| IO.println s!"ROOT\t{env.header.moduleNames[index.toNat]!}\t{name}\t{String.intercalate "," (axioms.axioms.toList.map Name.toString)}"
+    seen := seen + 1
+  liftIO <| IO.println s!"TOTAL\t{seen}"

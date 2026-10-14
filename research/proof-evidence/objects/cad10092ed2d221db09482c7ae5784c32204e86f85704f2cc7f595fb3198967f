@@ -1,0 +1,2813 @@
+{
+  "schema": "miner-repair-lake-replay-v1",
+  "status": "passed",
+  "ok": true,
+  "started_at_utc": "2026-10-07T19:35:40.728368+00:00",
+  "scope": "Fresh serial Lake builds and fresh full theorem assumption audit of the local repair closure; pinned external objects reused without third-party packages in the Lake build graph.",
+  "workspace": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+  "targets": [
+    "RequestProject.RodCircles",
+    "RequestProject.RodScaling",
+    "RequestProject.TowerCollapse",
+    "RequestProject.ApiSupportNumbers"
+  ],
+  "local_closure": [
+    "RequestProject.RodCircles",
+    "RequestProject.RodScaling",
+    "LatticeCalc.Verified.PowSqrtPrime",
+    "LatticeCalc.Verified.OrderSplit",
+    "RequestProject.TowerCollapse",
+    "RequestProject.ApiSupportNumbers"
+  ],
+  "sources": {
+    "RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "LatticeCalc/Verified/OrderSplit.lean": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+    "LatticeCalc/Verified/PowSqrtPrime.lean": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+    "RequestProject/RodCircles.lean": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+    "RequestProject/RodScaling.lean": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+    "RequestProject/ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "RequestProject/TowerCollapse.lean": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+    "RequestProject/BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "RequestProject/KeyExponent.lean": "6c47c7b6800302ce2491a1ffaa526e109fcc2d77b053a86d045172ef735047cd",
+    "RequestProject/TemporalLattice.lean": "39f9ab1422407d95af4665c4b6d6846249f143ef61007b5c6187573b42c95cb2",
+    "RequestProject/DualSmooth.lean": "86fc9d0859bfbafe820d35b7bb93b2c3594f51e6738a3886f71fe0cc537a713f",
+    "RequestProject/RodsPrinciple.lean": "5c82bb16d481e5acc4af543373609c4dc8f4cd298d9b6c87139b1d3b5f6fa9c9",
+    "RequestProject/RodOrders.lean": "093abc71e0baf297aff125c5dff0d4da0b4dd06f39f5651cf69eeec73fcc89ba",
+    "CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46",
+    "RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed",
+    "RequestProject/ApiSupportNumbers.lean": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef"
+  },
+  "input_bindings": {
+    "run_lake.py": "6417cafc2c5499aa487c8d606921be5c3879e863471a3deca64eb25e96860f33",
+    "run_retry.py": "73a2d9123f5a500d48eb2195d383da4750d235e842058eda24441251c82745e9",
+    "lakefile.toml": "0f3fa20a93e9056c2c589462bdf25f50385918cf59727ccb1d152a8838089146",
+    "lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "source-manifest.json": "8cf21f0c606b2795eeefd9d1d8b5167d6ba7be5961ac53a95d5ea580c950dc2d",
+    "api-support.json": "e6edff1c11592104927bda8d34ae9557dad027a652ee41906e53344682c7a7ed"
+  },
+  "raw_report": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/report.json",
+  "raw_report_sha256": "bd6a9879f73c23eab482fd22180b78e3fa84e92f2f5806836bfaa6b0e8b2085d",
+  "dependency_manifest_sha256": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb",
+  "external_compiled_package_paths": [
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/importGraph/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/proofwidgets/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean"
+  ],
+  "external_links": {
+    ".lake/build/lib/lean/Cache": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Cache",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Mathlib": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Mathlib.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean",
+      "kind": "file",
+      "sha256": "04458a6e792e89d9be7ebc64790cb22a7a296ef73a4528f2345b65257ceb657b"
+    },
+    ".lake/build/lib/lean/Mathlib.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean.hash",
+      "kind": "file",
+      "sha256": "50e13c9386b294b5a6a9ebc2722c1d8aff4b2823bc585c24b9d365e23f38b2b1"
+    },
+    ".lake/build/lib/lean/Mathlib.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir",
+      "kind": "file",
+      "sha256": "22710d77337ef38f73dce182e2366373363f50b603e0d125065adb72ea31bf27"
+    },
+    ".lake/build/lib/lean/Mathlib.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir.hash",
+      "kind": "file",
+      "sha256": "a8fbb2788d9883722345fa8a54cf774ed257593b2e38c1a57cd31788d3877e19"
+    },
+    ".lake/build/lib/lean/Mathlib.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean",
+      "kind": "file",
+      "sha256": "14793affd8089e360d1208522003fd446ab069cb3688bf8e9dad7e54cc996f86"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.hash",
+      "kind": "file",
+      "sha256": "e72a5644c2f8f1638d67908e5799155bcfa4fa5baff6ab33afbb8d2828f6d54a"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private",
+      "kind": "file",
+      "sha256": "d5c76a1cef4d8e62f5195659dbe1650f3146ee9a75a206cca2c797818caf21e0"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private.hash",
+      "kind": "file",
+      "sha256": "83bec956179dfa52e941d97dc6e33ced08dccd1d8fd1340c5c1e05084a5fa644"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server",
+      "kind": "file",
+      "sha256": "7387f3afd6f1dda6af3fcaa11fcb7fc921401ffdb16ee0dcae53274e7eff9a32"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server.hash",
+      "kind": "file",
+      "sha256": "4a323658662235b70b4af16118e747bcb66a5e907a496ae0d8347a9de9b0706f"
+    },
+    ".lake/build/lib/lean/Mathlib.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.trace",
+      "kind": "file",
+      "sha256": "41b9b655379250e671566d63150238932cd6476285a64ab42788a6701ac0dd72"
+    },
+    ".lake/build/lib/lean/Plausible": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Plausible.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean",
+      "kind": "file",
+      "sha256": "4a33899b90475f53450a7fa65b7ece56936085c870a08c76381c0d0e3bfdc3a8"
+    },
+    ".lake/build/lib/lean/Plausible.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean.hash",
+      "kind": "file",
+      "sha256": "eea4e6f77c4de66f3ea59f6d2c1fa627eb0fa7a23498808c36a610ce8375e60e"
+    },
+    ".lake/build/lib/lean/Plausible.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir",
+      "kind": "file",
+      "sha256": "5ad20d4322c153338e5b529c6b60ea5be873b2aa192df08427fe2656892130d5"
+    },
+    ".lake/build/lib/lean/Plausible.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir.hash",
+      "kind": "file",
+      "sha256": "045e4494efa4b8e14d67e3088d63502d98a3efb7d0f0c59b5f01b1a914379b7b"
+    },
+    ".lake/build/lib/lean/Plausible.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean",
+      "kind": "file",
+      "sha256": "368933d377529448721c5a667a2bc12dff99d50b52c777131e1ccd1835be8c97"
+    },
+    ".lake/build/lib/lean/Plausible.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.hash",
+      "kind": "file",
+      "sha256": "733a6a6970a4c52463ba51b38c5de64442f1f6e098d456e150a9e6613f3962d9"
+    },
+    ".lake/build/lib/lean/Plausible.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private",
+      "kind": "file",
+      "sha256": "3c953e87dc091b87b1c2d0834ef747360c2a061445014578d47d6b61661d2d51"
+    },
+    ".lake/build/lib/lean/Plausible.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private.hash",
+      "kind": "file",
+      "sha256": "f80b9b4c4e67f5fd95f415193eed7e1253daa01bfd468e6a851a15dd4a7575cc"
+    },
+    ".lake/build/lib/lean/Plausible.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server",
+      "kind": "file",
+      "sha256": "81a03be690b800a1dbf813eaea7c5289f7a1480ac3def3c5844c69476102cc72"
+    },
+    ".lake/build/lib/lean/Plausible.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server.hash",
+      "kind": "file",
+      "sha256": "c2c0fdac12fb1384fcc9d5df6979fd49a6b2093b1e68dd8db0424facd9b20033"
+    },
+    ".lake/build/lib/lean/Plausible.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.trace",
+      "kind": "file",
+      "sha256": "9846ff35d502cf32405096e522c475b5f48e5aecb4857ca2992cfada17e2f5ac"
+    },
+    ".lake/build/lib/lean/LeanSearchClient": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean",
+      "kind": "file",
+      "sha256": "a8578fe8c3c7898fe9077bdeb02e27229eb5d0673d5c765c31c0cc568d3f9a58"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean.hash",
+      "kind": "file",
+      "sha256": "7c7609d3758b03de18e7d6942ceabe8ba0583860f3bffaa1ac5cab7704543d7e"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir",
+      "kind": "file",
+      "sha256": "bb05ec380d87172fdff38dbc72bc58fe557f5f6d52f44227a15a828c8fef6479"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir.hash",
+      "kind": "file",
+      "sha256": "73f5919f763bcb058e4e969bec007428760f59c8072ac0ef794650618fefc12c"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean",
+      "kind": "file",
+      "sha256": "10f13253e226259ab95c7df852a08d3e872641f54d069ee9a7d609b352171000"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.hash",
+      "kind": "file",
+      "sha256": "517af280e2019013628414f0c683672845b1b42929cfd519c531da76ca25f7fb"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private",
+      "kind": "file",
+      "sha256": "0ffb6dd4d66b16d859217ab59eddc612637e2fcf4a006fcb23c9dbc9c630dc70"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private.hash",
+      "kind": "file",
+      "sha256": "3713668f28db901e99f3c1066b48edc55451b4ac59c58f66dae1c9a0d52c507f"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server",
+      "kind": "file",
+      "sha256": "c53e43537b6bee1e0fd1904e76b15f8bec1a715f3616c3ecaa13141e1874fce1"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server.hash",
+      "kind": "file",
+      "sha256": "6603dcc572343f9942e4dcfb904da93617153d1a318c12071152d9788d1eb47d"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.trace",
+      "kind": "file",
+      "sha256": "2c2185b1e1da4d04326a69311b3484063827155d8ed191799449c27af352218a"
+    },
+    ".lake/build/lib/lean/ImportGraph": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/importGraph/.lake/build/lib/lean/ImportGraph",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/ProofWidgets": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/proofwidgets/.lake/build/lib/lean/ProofWidgets",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Aesop": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Aesop.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean",
+      "kind": "file",
+      "sha256": "0272da450c8b3ccd742032ab3d4042e26cc593b2d6ce0f83875e6fe2b4e92eea"
+    },
+    ".lake/build/lib/lean/Aesop.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean.hash",
+      "kind": "file",
+      "sha256": "9a4c4ba9daaa7eadd79955d4aa921921db05988eb594903d2770a98b7d5d9739"
+    },
+    ".lake/build/lib/lean/Aesop.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir",
+      "kind": "file",
+      "sha256": "68515f4902c09707d37cff1866d665250674cc5e7d1844c540e63befd0a5a07c"
+    },
+    ".lake/build/lib/lean/Aesop.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir.hash",
+      "kind": "file",
+      "sha256": "286b98d933c24ab08fbdd0baaa0366f034ab7ba25949b683fb6d2a0d1cd30ea8"
+    },
+    ".lake/build/lib/lean/Aesop.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean",
+      "kind": "file",
+      "sha256": "2710b73457ec7caa663cc574751c1fa6e6542c64e3921ff02b4704b7829801ee"
+    },
+    ".lake/build/lib/lean/Aesop.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.hash",
+      "kind": "file",
+      "sha256": "c3dba12a2ed8f830c41e5cc7ad8818ce77098475144c53a0b86a44bc37c616ef"
+    },
+    ".lake/build/lib/lean/Aesop.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private",
+      "kind": "file",
+      "sha256": "a5a80e383b8193474b789d66795198c304dd5f4d4451a54f5fb0e647077e472f"
+    },
+    ".lake/build/lib/lean/Aesop.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private.hash",
+      "kind": "file",
+      "sha256": "ba980861eea0d3a8f672692bc64f16f9a9769124d3e9c012034e990c617982e8"
+    },
+    ".lake/build/lib/lean/Aesop.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server",
+      "kind": "file",
+      "sha256": "8d15e93cbb017c53c3e1f92cd0f42d279c2e68ddee81c7b081080f5d88e82384"
+    },
+    ".lake/build/lib/lean/Aesop.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server.hash",
+      "kind": "file",
+      "sha256": "1b9a4ace6e098239abab47ca9e687750a5e4601a2cb16705fdd23725e5de9f3c"
+    },
+    ".lake/build/lib/lean/Aesop.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.trace",
+      "kind": "file",
+      "sha256": "5847f2a3e8d36d0dc1ebf858d2ca92d04bc63d392bb0081c2552fb967e351859"
+    },
+    ".lake/build/lib/lean/Qq": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Qq.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean",
+      "kind": "file",
+      "sha256": "2c44ffcb09a42f95648cb8e23fdfe0d37b74aede277c786d7f1924dcdac695d5"
+    },
+    ".lake/build/lib/lean/Qq.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean.hash",
+      "kind": "file",
+      "sha256": "ef917ce5d415f104b49232c83f4ceb66bd21750dbdf27562157a9a6d1c3e66ef"
+    },
+    ".lake/build/lib/lean/Qq.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir",
+      "kind": "file",
+      "sha256": "3f197fc8294c2fcd3984e43c3e76ae596456b999c5efa5a9fa6634d6386f2fbe"
+    },
+    ".lake/build/lib/lean/Qq.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir.hash",
+      "kind": "file",
+      "sha256": "8399570a7768104d80d9f421011651d92aa922f4e00c631927acf1afb5f55ade"
+    },
+    ".lake/build/lib/lean/Qq.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean",
+      "kind": "file",
+      "sha256": "c99c83745585b57c96559f60124af6e50e544f4d5e5518ad4632c99119022ef4"
+    },
+    ".lake/build/lib/lean/Qq.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.hash",
+      "kind": "file",
+      "sha256": "3eaa1d020161b58b4e669ffadfb2ebf6861768b9d20019679e0535bd7b64a5a2"
+    },
+    ".lake/build/lib/lean/Qq.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private",
+      "kind": "file",
+      "sha256": "4a3045f791702dbddf0753443513ad1ba0ca223c724f0f0103829a79bff45e8d"
+    },
+    ".lake/build/lib/lean/Qq.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private.hash",
+      "kind": "file",
+      "sha256": "284aaf37173e275c7aee1cf147560614c99a348645bf01fe4f005e5d734771f0"
+    },
+    ".lake/build/lib/lean/Qq.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server",
+      "kind": "file",
+      "sha256": "fb7ce4b05d073995538b3b924607838490511bc52c563d629b73be217c5036eb"
+    },
+    ".lake/build/lib/lean/Qq.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server.hash",
+      "kind": "file",
+      "sha256": "192d83b602030ba2836fe2e68c7033dd49f74bb16337398e3e91c0b4ba12ceaf"
+    },
+    ".lake/build/lib/lean/Qq.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.trace",
+      "kind": "file",
+      "sha256": "81bc3af8f3feeee5deff9518d7c2f39042f92a716d6be34d503e5ae5b2689810"
+    },
+    ".lake/build/lib/lean/Batteries": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Batteries.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean",
+      "kind": "file",
+      "sha256": "87d2bfea2057e565d9646149722fdc4f53c349cdae65a776f4091f6b33a596b9"
+    },
+    ".lake/build/lib/lean/Batteries.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean.hash",
+      "kind": "file",
+      "sha256": "a313b5f04334a44d2a51321f10a681b1a54103f7174e373a2d4894d898844bee"
+    },
+    ".lake/build/lib/lean/Batteries.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir",
+      "kind": "file",
+      "sha256": "3215d19ee577a1d8f56222eec6f4291b1c81b23ff80a3b1935fe44c3c714eb27"
+    },
+    ".lake/build/lib/lean/Batteries.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir.hash",
+      "kind": "file",
+      "sha256": "ac9dbcc2e6d26ea1b67635c30c8a3ad7b27c69c27657abac0013c97653c0c5bb"
+    },
+    ".lake/build/lib/lean/Batteries.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean",
+      "kind": "file",
+      "sha256": "4a8c1c3606343febb006731539714ae577affb152b4cfd24195e291e13d3f503"
+    },
+    ".lake/build/lib/lean/Batteries.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.hash",
+      "kind": "file",
+      "sha256": "8ae3029a54702bd19f7caa3cd74c05454fad9c3b83c8c1f4189ca143e929a733"
+    },
+    ".lake/build/lib/lean/Batteries.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private",
+      "kind": "file",
+      "sha256": "b810b8f56fcf4b78c0e7a1be1e1ad9a102d4d7c0abc1d6eee8640a2517d22f52"
+    },
+    ".lake/build/lib/lean/Batteries.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private.hash",
+      "kind": "file",
+      "sha256": "e415d1afa2712535cb8974ea188ebfaac4ccb03f7f4810740598be236b166cac"
+    },
+    ".lake/build/lib/lean/Batteries.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server",
+      "kind": "file",
+      "sha256": "a5672eb9fe4d0f14a3da8781a4937a932c72671a77ddcb3ba24c4df1f6682f0b"
+    },
+    ".lake/build/lib/lean/Batteries.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server.hash",
+      "kind": "file",
+      "sha256": "63e8c53953b0f640c91f0a94afaacc5b8fd3923ea6ea6c311b7332b613c41e93"
+    },
+    ".lake/build/lib/lean/Batteries.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.trace",
+      "kind": "file",
+      "sha256": "da06a39b70605f4204ebb0ddc217e69d5dca15d2794a1fc0481f50969be6b64b"
+    }
+  },
+  "compiler_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+  "lake_sha256": "0e56506385ec20d56bffd7c031c4d48573ab5fdb74e5246ec8c45a220bebc68b",
+  "lean_version": "Lean (version 4.28.0, arm64-apple-darwin24.6.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b, Release)",
+  "lake_version": "Lake version 5.0.0-src+7e01a1b (Lean version 4.28.0)",
+  "negative_controls": {
+    "mode": "reuse_exact_current_raw_gate_evidence",
+    "raw_report_sha256": "bd6a9879f73c23eab482fd22180b78e3fa84e92f2f5806836bfaa6b0e8b2085d",
+    "parser_controls_rechecked": {
+      "missing_total": "rejected",
+      "missing_root": "rejected",
+      "wrong_named_root": "rejected",
+      "wrong_module": "rejected",
+      "duplicate_root": "rejected",
+      "duplicate_total": "rejected",
+      "sorry_assumption": "rejected",
+      "native_assumption": "rejected",
+      "custom_assumption": "rejected",
+      "nested_comment_inventory": "passed"
+    }
+  },
+  "per_target_timeout_seconds": 180,
+  "builds": [
+    {
+      "command": [
+        "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+        "build",
+        "+RequestProject.RodCircles:olean"
+      ],
+      "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+      "exit_code": 0,
+      "seconds": 5.627,
+      "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodCircles.log",
+      "log_sha256": "7cdae56c4adae30b2809e8d01170e2aaed20bebf789809c9da0235c6c929337c",
+      "target": "RequestProject.RodCircles"
+    },
+    {
+      "command": [
+        "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+        "build",
+        "+RequestProject.RodScaling:olean"
+      ],
+      "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+      "exit_code": 0,
+      "seconds": 42.731,
+      "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodScaling.log",
+      "log_sha256": "f4e3927f932165cb5ef1c2ba2658aa780d8d9f147efe458a0c9cbff72c8428da",
+      "target": "RequestProject.RodScaling"
+    },
+    {
+      "command": [
+        "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+        "build",
+        "+RequestProject.TowerCollapse:olean"
+      ],
+      "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+      "exit_code": 0,
+      "seconds": 8.147,
+      "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.TowerCollapse.log",
+      "log_sha256": "e15ac1fb1424bbda058027aba5b054e54f90c02baf6137f8865ceebe3cd3de21",
+      "target": "RequestProject.TowerCollapse"
+    },
+    {
+      "command": [
+        "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+        "build",
+        "+RequestProject.ApiSupportNumbers:olean"
+      ],
+      "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+      "exit_code": 0,
+      "seconds": 0.683,
+      "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.ApiSupportNumbers.log",
+      "log_sha256": "9523627788e1a558c9d8b72cb8afc36bcadf80ee3245deb9e53b637e655271c8",
+      "target": "RequestProject.ApiSupportNumbers"
+    }
+  ],
+  "axiom_audit": {
+    "command": [
+      "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+      "env",
+      "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+      "-j1",
+      "-M4096",
+      "-DElab.async=false",
+      "Audit.lean"
+    ],
+    "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+    "exit_code": 0,
+    "seconds": 12.114,
+    "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/axioms.log",
+    "log_sha256": "7fb23592a2906890cfe3ef7b46f8a3ad26ae85a1613ebd0ba24b0ffc7955439f",
+    "source_sha256": "8d35214c8badeba3315d18318ee01d409373af0834659a5d7ff743c04c07dfec"
+  },
+  "theorem_roots": {
+    "LatticeCalc.Verified.bitsMSB._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_6": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodKAux.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_9": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.PrattEntry.mk.inj": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.rod361_block_02": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.of_residues": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_04._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.core_rod_circles._proof_5": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_10._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith_pq._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.hexConic_card": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.stripAux_not_dvd": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.check_sound": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitTree.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._simp_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "TowerCollapse.dial_units": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_12": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.newton_step_lt._proof_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.core_rod_circles": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.exists_iso_three": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_01": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_4": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_7": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.isPrime_iff": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_15": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.formPts_card_mul._simp_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_14._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_none_of_orderOf_eq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.two_ne_zero_of_odd": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_18._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_4": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.core_modulus_circles": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_08": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.flower_prime_hexCircle": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_03": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith_pq._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_2": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "TowerCollapse.fermat_dvd": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_one._proof_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.isoRoots_eq_pair": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.conic_card_add": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.formPts.eq_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.core_tower3": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_5": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.newtonLoop.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_08._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_03._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.isoRoots_eq_zero": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_4": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.core_tower_sharp": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.prime_of_factored_witness": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.exists_separating_step": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._proof_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.pow_eq_one_of_sub_one_dvd": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.bitsVal.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.powmod_eq": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert_sound_aux": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.hexCircle_eq_hexConic": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitAny_pq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodKAux.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    "LatticeCalc.Verified.isPrime.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.isoRoots_eq_pair._simp_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_13": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.eleven_seventyone_never_flower": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodKAux_eq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitAny_sound": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitTree_gt_one._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_isSome_iff": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_02._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_2.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_3": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_06": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_5": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_pq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkEntry_sound": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_two._proof_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_4": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkEntry_mono": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.core_rod_circles._proof_3": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_4": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.exists_iso_three._simp_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_6": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.bitsVal_bitsMSB": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod_121_square._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.exists_good_base": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_12._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.stripAux.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_5": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.qToK_of_multiple": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ApiSupportNumbers.returned_4": {
+      "module": "RequestProject.ApiSupportNumbers",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.newtonLoop._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.rod361_block_10": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.newton_step_lt": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert_sound": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.hexCircle_card_of_mod_three_eq_one": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_3": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.core_rod_circles._proof_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.powmodLoop.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_sound": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.units_30240": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_3": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_07": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.powmodLoop_spec": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_3": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitTree_gt_one._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.sum_range_blocks": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_two._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.sqrt_le_newton_step": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_5": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.check_isSome": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.three_ne_zero_of_ne": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.exists_cert_list": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.proper_dvd_pq._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.powmod_nat_eq_one_iff": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.dvd_shift_iff._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.of_residues._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.exists_cert": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_11": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod_121_hex._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.powmodLoop.eq_def": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.rod361_block_17": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_17._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_01._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.rod_361_hex": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.of_residues._proof_2": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.proper_dvd_pq._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.qToK_pq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.nineteen_flower": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.PrattEntry.mk.injEq": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.rod_121_square": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.core_units": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1._arg_pusher": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.sum_range_nineteen": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.isqrt_eq": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.core_tower4": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "TowerCollapse.units_72": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.tower_collapse": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.scan_isSome": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.scan.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.stripAux.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_3": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.sqrt_le_newton_step._proof_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_4": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.check_isSome_symm": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.hexCircle_card_of_mod_three_eq_two": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.mod_three_of_cube_root._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.dial_units._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.form_map": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.dvd_shift_iff": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.core_rod_circles._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_6": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.twelve_units._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_13._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_4": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.powmodLoop.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.rod361_block_00": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodKAux.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.sqCircle_card_of_mod_four_eq_one": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.bitsMSB.eq_def": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_11._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_7": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_04": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.bitsMSB.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.scan.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan_isSome._proof_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.sqrt_le_newton_step._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert_append": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_isSome_of_mem": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.scan_none_of_orderOf_eq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.prime_iff_exists_cert": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitTree_prod": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.pow_mod_period": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "ApiSupportNumbers.returned_2": {
+      "module": "RequestProject.ApiSupportNumbers",
+      "axioms": []
+    },
+    "TowerCollapse.tower4_collapse": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_11": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.strip_spec": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitAny.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_one._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_14": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodK_eq_powmod": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.powmodK_eq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_one._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_06._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_16._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_15._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.isoRoots.eq_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isqrt_eq._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ApiSupportNumbers.returned_5": {
+      "module": "RequestProject.ApiSupportNumbers",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_3": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan_isSome._proof_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.dial_tower_two_values": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_09": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitTree_gt_one": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.rod361_block_16": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_09._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkCert.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.PrattEntry.mk.sizeOf_spec": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.splitTree.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_10": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.powmodLoop.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_00._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.stripAux.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.scan.eq_def": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.form_map._simp_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitAny.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.hex361Row._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_05": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.twelve_units": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkCert.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.newtonLoop.eq_def": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "RodCircles.core_rod_circles._proof_4": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ApiSupportNumbers.returned_3": {
+      "module": "RequestProject.ApiSupportNumbers",
+      "axioms": []
+    },
+    "RodCircles.sqCircle_card_of_mod_four_eq_three": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_3": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._proof_12": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.formPts_card_rows": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_07._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.base_construction": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.bitsMSB.eq_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_8": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "TowerCollapse.not_dvd_of_coprime": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitTree.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.hexConic.eq_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.hex361Row.eq_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.stripAux_mul": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.flower_prime_divisor": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.core_modulus_circle_counts": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.formPts_card_mul": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_6": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod_121_hex": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.units_72._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.flower_mod_three": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.proper_dvd_pq": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkEntry_sound._simp_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.instNeZeroNatCoreModulus": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_12": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "ApiSupportNumbers.returned_1": {
+      "module": "RequestProject.ApiSupportNumbers",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_4": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.formPts_card_rows._simp_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_2": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodScaling.0.RodCircles.rod361_block_05._proof_1": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert_mono": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TowerCollapse.dial_tower": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.exists_iso_three._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.newtonLoop_eq": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.sqCircle_eq_conic": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.rod_circles_on_dial": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.rod361_block_18": {
+      "module": "RequestProject.RodScaling",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_2.eq_1": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "RodCircles.twelve_fold": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_2": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkCert.eq_def": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.powmodLoop.match_1.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": []
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_6": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_1.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "LatticeCalc.Verified.OrderSplit.splitAny.eq_2": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": []
+    },
+    "_private.RequestProject.TowerCollapse.0.TowerCollapse.core_tower_sharp._proof_1": {
+      "module": "RequestProject.TowerCollapse",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "RodCircles.conic.eq_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_7": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_3": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert_list._simp_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.splitWith_one_sided": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_three._proof_1": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.isoRoots_eq_pair._simp_3": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.newton_step_lt._proof_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.OrderSplit.scan_sound": {
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_5": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "LatticeCalc.Verified.checkEntry.eq_1": {
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RodCircles.mod_three_of_cube_root": {
+      "module": "RequestProject.RodCircles",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    }
+  },
+  "theorem_count": 299,
+  "module_theorem_counts": {
+    "RequestProject.RodCircles": 67,
+    "RequestProject.RodScaling": 49,
+    "LatticeCalc.Verified.PowSqrtPrime": 68,
+    "LatticeCalc.Verified.OrderSplit": 84,
+    "RequestProject.TowerCollapse": 26,
+    "RequestProject.ApiSupportNumbers": 5
+  },
+  "required_named_theorems": {
+    "RequestProject.RodCircles": [
+      "RodCircles.conic_card_add",
+      "RodCircles.core_modulus_circle_counts",
+      "RodCircles.core_modulus_circles",
+      "RodCircles.core_rod_circles",
+      "RodCircles.eleven_seventyone_never_flower",
+      "RodCircles.exists_iso_three",
+      "RodCircles.flower_mod_three",
+      "RodCircles.flower_prime_divisor",
+      "RodCircles.flower_prime_hexCircle",
+      "RodCircles.formPts_card_mul",
+      "RodCircles.form_map",
+      "RodCircles.hexCircle_card_of_mod_three_eq_one",
+      "RodCircles.hexCircle_card_of_mod_three_eq_two",
+      "RodCircles.hexCircle_eq_hexConic",
+      "RodCircles.hexConic_card",
+      "RodCircles.isoRoots_eq_pair",
+      "RodCircles.isoRoots_eq_zero",
+      "RodCircles.mod_three_of_cube_root",
+      "RodCircles.nineteen_flower",
+      "RodCircles.rod_circles_on_dial",
+      "RodCircles.sqCircle_card_of_mod_four_eq_one",
+      "RodCircles.sqCircle_card_of_mod_four_eq_three",
+      "RodCircles.sqCircle_eq_conic",
+      "RodCircles.three_ne_zero_of_ne",
+      "RodCircles.twelve_fold",
+      "RodCircles.two_ne_zero_of_odd"
+    ],
+    "RequestProject.RodScaling": [
+      "RodCircles.formPts_card_rows",
+      "RodCircles.rod361_block_00",
+      "RodCircles.rod361_block_01",
+      "RodCircles.rod361_block_02",
+      "RodCircles.rod361_block_03",
+      "RodCircles.rod361_block_04",
+      "RodCircles.rod361_block_05",
+      "RodCircles.rod361_block_06",
+      "RodCircles.rod361_block_07",
+      "RodCircles.rod361_block_08",
+      "RodCircles.rod361_block_09",
+      "RodCircles.rod361_block_10",
+      "RodCircles.rod361_block_11",
+      "RodCircles.rod361_block_12",
+      "RodCircles.rod361_block_13",
+      "RodCircles.rod361_block_14",
+      "RodCircles.rod361_block_15",
+      "RodCircles.rod361_block_16",
+      "RodCircles.rod361_block_17",
+      "RodCircles.rod361_block_18",
+      "RodCircles.rod_121_hex",
+      "RodCircles.rod_121_square",
+      "RodCircles.rod_361_hex",
+      "RodCircles.sum_range_blocks",
+      "RodCircles.sum_range_nineteen"
+    ],
+    "LatticeCalc.Verified.PowSqrtPrime": [
+      "LatticeCalc.Verified.bitsVal_bitsMSB",
+      "LatticeCalc.Verified.checkCert_append",
+      "LatticeCalc.Verified.checkCert_mono",
+      "LatticeCalc.Verified.checkCert_sound",
+      "LatticeCalc.Verified.checkCert_sound_aux",
+      "LatticeCalc.Verified.checkEntry_mono",
+      "LatticeCalc.Verified.checkEntry_sound",
+      "LatticeCalc.Verified.exists_cert",
+      "LatticeCalc.Verified.exists_cert_list",
+      "LatticeCalc.Verified.isPrime_iff",
+      "LatticeCalc.Verified.isqrt_eq",
+      "LatticeCalc.Verified.newtonLoop_eq",
+      "LatticeCalc.Verified.newton_step_lt",
+      "LatticeCalc.Verified.powmodLoop_spec",
+      "LatticeCalc.Verified.powmod_eq",
+      "LatticeCalc.Verified.powmod_nat_eq_one_iff",
+      "LatticeCalc.Verified.prime_iff_exists_cert",
+      "LatticeCalc.Verified.sqrt_le_newton_step"
+    ],
+    "LatticeCalc.Verified.OrderSplit": [
+      "LatticeCalc.Verified.OrderSplit.base_construction",
+      "LatticeCalc.Verified.OrderSplit.check_isSome",
+      "LatticeCalc.Verified.OrderSplit.check_isSome_symm",
+      "LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq",
+      "LatticeCalc.Verified.OrderSplit.check_sound",
+      "LatticeCalc.Verified.OrderSplit.dvd_shift_iff",
+      "LatticeCalc.Verified.OrderSplit.exists_good_base",
+      "LatticeCalc.Verified.OrderSplit.exists_separating_step",
+      "LatticeCalc.Verified.OrderSplit.pow_eq_one_of_sub_one_dvd",
+      "LatticeCalc.Verified.OrderSplit.powmodKAux_eq",
+      "LatticeCalc.Verified.OrderSplit.powmodK_eq",
+      "LatticeCalc.Verified.OrderSplit.powmodK_eq_powmod",
+      "LatticeCalc.Verified.OrderSplit.prime_of_factored_witness",
+      "LatticeCalc.Verified.OrderSplit.proper_dvd_pq",
+      "LatticeCalc.Verified.OrderSplit.qToK_of_multiple",
+      "LatticeCalc.Verified.OrderSplit.qToK_pq",
+      "LatticeCalc.Verified.OrderSplit.scan_isSome",
+      "LatticeCalc.Verified.OrderSplit.scan_none_of_orderOf_eq",
+      "LatticeCalc.Verified.OrderSplit.scan_sound",
+      "LatticeCalc.Verified.OrderSplit.splitAny_pq",
+      "LatticeCalc.Verified.OrderSplit.splitAny_sound",
+      "LatticeCalc.Verified.OrderSplit.splitTree_gt_one",
+      "LatticeCalc.Verified.OrderSplit.splitTree_prod",
+      "LatticeCalc.Verified.OrderSplit.splitWith_isSome_iff",
+      "LatticeCalc.Verified.OrderSplit.splitWith_isSome_of_mem",
+      "LatticeCalc.Verified.OrderSplit.splitWith_none_of_orderOf_eq",
+      "LatticeCalc.Verified.OrderSplit.splitWith_one_sided",
+      "LatticeCalc.Verified.OrderSplit.splitWith_pq",
+      "LatticeCalc.Verified.OrderSplit.splitWith_sound",
+      "LatticeCalc.Verified.OrderSplit.stripAux_mul",
+      "LatticeCalc.Verified.OrderSplit.stripAux_not_dvd",
+      "LatticeCalc.Verified.OrderSplit.strip_spec",
+      "LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff"
+    ],
+    "RequestProject.TowerCollapse": [
+      "TowerCollapse.core_tower3",
+      "TowerCollapse.core_tower4",
+      "TowerCollapse.core_tower_sharp",
+      "TowerCollapse.core_units",
+      "TowerCollapse.dial_tower",
+      "TowerCollapse.dial_tower_two_values",
+      "TowerCollapse.dial_units",
+      "TowerCollapse.fermat_dvd",
+      "TowerCollapse.not_dvd_of_coprime",
+      "TowerCollapse.of_residues",
+      "TowerCollapse.pow_mod_period",
+      "TowerCollapse.tower4_collapse",
+      "TowerCollapse.tower_collapse",
+      "TowerCollapse.twelve_units",
+      "TowerCollapse.units_30240",
+      "TowerCollapse.units_72"
+    ],
+    "RequestProject.ApiSupportNumbers": [
+      "ApiSupportNumbers.returned_1",
+      "ApiSupportNumbers.returned_2",
+      "ApiSupportNumbers.returned_3",
+      "ApiSupportNumbers.returned_4",
+      "ApiSupportNumbers.returned_5"
+    ]
+  },
+  "artifacts": {
+    ".lake/build/ir/LatticeCalc/Verified/OrderSplit.c": "f303b98e0f1f8c8846870b19501cd17a76baa6939c6d1852ede0e8c220f2277a",
+    ".lake/build/ir/LatticeCalc/Verified/OrderSplit.c.hash": "6bdc79181417ea87d0ef01e56a6e0365b64fa463d7453cb1a56020c717b85c8e",
+    ".lake/build/ir/LatticeCalc/Verified/OrderSplit.setup.json": "68af43eb67a870e77018a301002928714a7fb20a689731c70987ba26279651af",
+    ".lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.c": "2b0bc8d633ea456a18c9701d97c9a9ac1b280260f035a73c4c53fe01b0516c04",
+    ".lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.c.hash": "3ba86a47752779e302dd188e62f5365059387bc8b278a7631ac00dc71c109b5f",
+    ".lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.setup.json": "2214372288b07d57384022342c8469eabefc1ef5eecdb35f492b632b26382853",
+    ".lake/build/ir/RequestProject/ApiSupportNumbers.c": "89b62bc628eb8dcb9393a3f5ad5db57831f7fe6a24568caa2e312f2bd70a44e8",
+    ".lake/build/ir/RequestProject/ApiSupportNumbers.c.hash": "6a13e1d2f7429553a90221a45e0416bf69b10890af791fde2892f447ff089891",
+    ".lake/build/ir/RequestProject/ApiSupportNumbers.setup.json": "727d2df7522a53510839bb0c258187f3ed1f82651a9697eef0c4eafa9784b1cd",
+    ".lake/build/ir/RequestProject/RodCircles.c": "b8097cfb62df6f72a800ab4b6a5ad28304b4ee6fd0865363fb63de9e4b9e36b6",
+    ".lake/build/ir/RequestProject/RodCircles.c.hash": "c59b7c49f27f70595ebbcc113653b24f728b984dcd32db5225195f8f7020e5de",
+    ".lake/build/ir/RequestProject/RodCircles.setup.json": "8d74ee4430b4aaf0e564a0a6d78573a31121151c567687bb167f0335455bd51e",
+    ".lake/build/ir/RequestProject/RodScaling.c": "06cca9771e269ba7b5ff80842be7689bb09d6b6e09d7bb37e72a358d8fe1f292",
+    ".lake/build/ir/RequestProject/RodScaling.c.hash": "91436a8b2c795e43859e65aa94b4ce4d98521604caa84a262b6a76e4dcfd2779",
+    ".lake/build/ir/RequestProject/RodScaling.setup.json": "845291908cc9e54d037aae58b791850459bd7e620f42b4d0dc48908363346e43",
+    ".lake/build/ir/RequestProject/TowerCollapse.c": "9b48fd994c2f2307ae19b9dd1f98b28351b13ceabd91238f6441d6923e4997ef",
+    ".lake/build/ir/RequestProject/TowerCollapse.c.hash": "d5700edfd2506d62099f03f9f93ce8303d69ed277e5ba3585841cd60ba148902",
+    ".lake/build/ir/RequestProject/TowerCollapse.setup.json": "486635fce2fb131e1c9b36ec7f68425a43af2e220528dae864714b99d47469a6",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ilean": "9c196bc76ace0bd16609e5f7846a1dd5ed9478c931ea5d8fcd6df3ec9bb032ab",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ilean.hash": "618c4e38c32730bafa431170ab7d279d1f090413838172fa499abeb735edc025",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ir": "283e7498dc7fc40d3f8ab47fbdb37caafaf42c3497fcdcaac8bf215eb5fcbc0a",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ir.hash": "dbbbcfc410e49ef526cb02a5afc9831198169d3470ba6a41adcc5dc164d407c7",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean": "9836c0eea010b020ac61bbbb798b047d203802dd18eb2c23c6337eaa789aa7c1",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.hash": "e7f575fec55c99bffb6fdb3dec09c1d693ea5f461dbc20051b3f12534cd9851b",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.private": "a0df1242928e8b175968b65ca49498c13f9d0e684ea4d6f1eb5370c526f9aa2b",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.private.hash": "8bf938dcc83e51b7389e294fb88eb995f4d84870e9eaa364042536b59688e39a",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.server": "964a67d79b50a0a23e8c1291109b83b09f21cb2b2b1453f2cd689f6475d23322",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.server.hash": "ec81b038d878843d4e555e9e9f7487d5b8522d0223d5e379f2c9759f844c508c",
+    ".lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.trace": "1c12d7f97f00f11da9746128e213fc5262a0c42f1d3c3ae8cee56afefb3f4f9d",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ilean": "e7ad402880299184adb06ee7887515cad64fdcaba359c4620f99805279b5b212",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ilean.hash": "999513c8d37545a1b802fa2a8cb009c743d1880325b86bf4020a5550572ac18b",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ir": "442e3305d2c9cdca986d1d342ef937b036f90fa6c4e68ca964b5bbe02cf56b4a",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ir.hash": "a52af02f06bfe07cd925fb08859377e0b8e78132fb1efaeeaec5f7b1e132aa74",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean": "ad32e82fd58d524efcbe3ce10f947ba8e64dc700d3b9dd5a0930303aa563ee51",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.hash": "f27e120847c34c9a0092624d3b706359fe39ffdf4878101387c08980ff792a2c",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.private": "ec0ee09df8bb77332e30ca6ee1e9e6791391cd506e60eac4b08cb015b21b031f",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.private.hash": "60706af80b1e1f037fbb815c80f91842fecb6347b78f9931f46478bc76172754",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.server": "4f034f546b0879930d7e16c15aba00cf9ac3f0a79cd399a2d30a3f8699ab8238",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.server.hash": "85bc8dedf28f4270c5ce0295a684f24577ccbb617ca2b053c943d63deb8914fc",
+    ".lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.trace": "637b75f8f470b55914994a61c83e88936ec7ebff2d76b72f02db0305a4d90301",
+    ".lake/build/lib/lean/RequestProject/ApiSupportNumbers.ilean": "bc64aab561e8bbbbedd370d6bc78a46754b241442224e14c14c2381a8924d01f",
+    ".lake/build/lib/lean/RequestProject/ApiSupportNumbers.ilean.hash": "2525fd7fba4cfa713ae69fa25d7261542811f3b7af0300ae39bb75c18e0f80ab",
+    ".lake/build/lib/lean/RequestProject/ApiSupportNumbers.olean": "bbe2f13056e8cf1bb8c7e3f1d5ed3dafeaa5f8c33c109a17f7743638267c919c",
+    ".lake/build/lib/lean/RequestProject/ApiSupportNumbers.olean.hash": "70b1db4e19e7387a2bc96746608b87829e6e0a885c73994473a044d16525a63d",
+    ".lake/build/lib/lean/RequestProject/ApiSupportNumbers.trace": "8b3e1196ed639beaab4035cda53b7be5bd56ffd1d32db64b36d37013d4c47314",
+    ".lake/build/lib/lean/RequestProject/RodCircles.ilean": "cd6664a329980237f1956fba15b2f5239fe258f996cb0d40935a9b9430306b97",
+    ".lake/build/lib/lean/RequestProject/RodCircles.ilean.hash": "0b881839b147d98dd6b42bc62a586fd35ed50d0612595784da7b46b003f47f69",
+    ".lake/build/lib/lean/RequestProject/RodCircles.ir": "d5ff482e3258842c92c37f56381f5061a9bb1c4c0d14a03a19bdf7f1b71129f0",
+    ".lake/build/lib/lean/RequestProject/RodCircles.ir.hash": "57c4471de75bc502e5326533ebec9d896a4f0f68fa510659e8446be55ea29647",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean": "53dcd5c5b95271bd2155fbb1cc472566f8dd6b8cef9bd9d23b87337b26248606",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean.hash": "0e0bbc1cb168edc4630f53368239f7e2da004d6863c340b3cc7ff7afb3bbf10d",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean.private": "aa4b00ed75b1684921ebfa3c2c178e60e81a25c6b723af1cba15719e847fbf88",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean.private.hash": "147f860d67fcb7a2f4ebfc3635e5c3ff3d41e2c30430b51a5993e3686dde1a51",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean.server": "ffae0aff70c47922ddff5044d6a67108b23c0cd5d7f5e4bba4493ca11998935a",
+    ".lake/build/lib/lean/RequestProject/RodCircles.olean.server.hash": "5dccc1ca687d55d1241a3cbdebba515c306e34fd2a2ba17076c2803839fd2343",
+    ".lake/build/lib/lean/RequestProject/RodCircles.trace": "5f4027c28a27bfb0d2b150f0c7891b5fe691a25ba8f0084c71021e6fb97f3c25",
+    ".lake/build/lib/lean/RequestProject/RodScaling.ilean": "324f12726dbe71d01c371016296733aa051f6c845cdac1204f0d946479aa293c",
+    ".lake/build/lib/lean/RequestProject/RodScaling.ilean.hash": "a2fafe9a49c71863560a962ad2883fed4015565b6d56af5141c6410894809a14",
+    ".lake/build/lib/lean/RequestProject/RodScaling.ir": "1930131cce75195019dc83a8061df20b0694a4e0e41b015b26ed9897b19ef029",
+    ".lake/build/lib/lean/RequestProject/RodScaling.ir.hash": "af9176cbd32d6117f6c47b0f8631c40c9e8e56b403cd6bbe1fc85582eaa96622",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean": "5b734b406183b4fb14aa955cb618d1f975b6451a9fac94190709885fa76975af",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean.hash": "7ddf0eaeca1baac23b1a70e41f088ee39bc6a2679dce929113909b377fcda205",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean.private": "d8c6a18060ededbb87a6f3360882bd339503b9b16982932275e612ad23a9bedd",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean.private.hash": "1cd6bf3719b83e508990423e94007e6abfaa859ef36772726bd8e5e4d1054cfd",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean.server": "ccc2d5c95e81bbd931eae53d714c37d4bf84ad61f5446a5887b38ad7fd3a3af5",
+    ".lake/build/lib/lean/RequestProject/RodScaling.olean.server.hash": "28894f8d70fd9ce7f454a5472784d5571e6f2da07d867980a7cded7d11b548a4",
+    ".lake/build/lib/lean/RequestProject/RodScaling.trace": "1bbb656e2ff248c60330889133ec4586e88d0bf91269745c8f2ee76dbc0f17ce",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.ilean": "01653d13cef198f082c72bcdba74017258e89d0df920106f59406a477074001b",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.ilean.hash": "85e2a6f0c10b95bb47b5ba8e7ad1cb7a9866215aab760c89f78db6a3d37d931d",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.ir": "863fad982c74db018f1477e999a88286e492de53a0805bb8be9b05d5a4677a4e",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.ir.hash": "195014e47a2ec3be68d0c24ca6486473c36daf48e1e0dce571eecb6dce918df8",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean": "70afba642ed0bee8644355b0ab4e3cd80d6684e30187bbe81f1d675b622b703c",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean.hash": "c72c2e9c7b90f32a4b7eb001e8337a0144d2a09c0056f7ce1f73201b0c171981",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean.private": "79ce58a71fe2df281f1d85bbb5a548b26a3872b755aa158baed0e7a24f96686f",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean.private.hash": "4a937fc9870229a32433ebf8a4ae063b93a0ecd34c4cffcd15e9417a12c124ac",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean.server": "9378d66ca84cd55a52667985659448d5febabb710a382e67867c38148769e159",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.olean.server.hash": "0c6e42b3b5ec1b5313d249f490c9bc2985c085a460b1e9d295c651248a355fac",
+    ".lake/build/lib/lean/RequestProject/TowerCollapse.trace": "7891e1e8e4012db8c6b076cff5b14026200781af64f2a45fbb74e8ee2841c53e"
+  },
+  "completed_at_utc": "2026-10-07T19:36:50.101379+00:00"
+}

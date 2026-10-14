@@ -1,0 +1,314 @@
+"""Fresh serial Lake replay of the repaired miner proof modules.
+
+MUST first find a successful, current run_retry.py receipt for all four targets.
+MUST copy its bound local sources into a new workspace, build with Lake, and
+independently re-audit every theorem root against the raw gate inventory. MUST
+preserve source/API/toolchain/configuration bindings throughout the replay.
+MAY reuse the already exercised rejection controls only while their exact code,
+logs, compiler, and receipt remain bound; the report states that reuse explicitly.
+
+Pinned external package objects are prerequisites, not fresh proof builds. Lake
+owns only the local LatticeCalc/RequestProject libraries, so it cannot schedule
+third-party source or cache mutations. See lakefile.toml, MASTER_PLAN.md, and
+run_retry.py. Neither gate demonstrates a Bitcoin mining speed advantage.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+import time
+
+import run_retry as gate
+
+HERE = Path(__file__).resolve().parent
+TARGETS = [
+    'RequestProject.RodCircles',
+    'RequestProject.RodScaling',
+    'RequestProject.TowerCollapse',
+    'RequestProject.ApiSupportNumbers',
+]
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def save(path, value):
+    path.write_text(json.dumps(value, indent=2) + '\n')
+
+
+def checked_file(path, digest, label):
+    if not path.is_file() or sha(path) != digest:
+        raise RuntimeError('Missing/changed ' + label + ': ' + str(path))
+
+
+def run(command, cwd, env, log, timeout):
+    """Bound one process group; preserve diagnostic output for either outcome."""
+    start = time.monotonic()
+    with log.open('x') as stream:
+        process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stream,
+                                   stderr=subprocess.STDOUT, start_new_session=True)
+        try:
+            code = process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            os.killpg(process.pid, signal.SIGKILL)
+            process.wait()
+            stream.write('\nBOUNDED TIMEOUT\n')
+            code = 124
+        except BaseException:
+            if process.poll() is None:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.wait()
+            raise
+    return {'command': command, 'cwd': str(cwd), 'exit_code': code,
+            'seconds': round(time.monotonic() - start, 3),
+            'log': str(log), 'log_sha256': sha(log)}
+
+
+def validate_raw_receipt(path, manifest):
+    """A passing stale or differently scoped receipt MUST not authorize replay."""
+    raw = json.loads(path.read_text())
+    if (raw.get('status') != 'passed' or raw.get('ok') is not True or
+            raw.get('all_requested_modules_compiled') is not True or
+            not set(TARGETS) <= set(raw.get('targets', []))):
+        raise RuntimeError('Raw Lean gate has not accepted all required targets')
+    expected_bindings = {
+        'source_manifest_sha256': sha(HERE / 'source-manifest.json'),
+        'runner_sha256': sha(HERE / 'run_retry.py'),
+        'dependency_manifest_sha256': sha(gate.PINNED / 'lake-manifest.json'),
+        'api_support_sha256': sha(HERE / 'api-support.json'),
+        'compiler_sha256': sha(gate.BIN / 'lean'),
+        'lake_sha256': sha(gate.BIN / 'lake'),
+    }
+    for field, digest in expected_bindings.items():
+        if raw.get(field) != digest:
+            raise RuntimeError('Raw receipt binding differs: ' + field)
+    if raw.get('sources') != manifest['sources']:
+        raise RuntimeError('Raw receipt source inventory differs')
+    expected = raw['required_named_theorems']
+    if set(expected) != set(raw['build_order']):
+        raise RuntimeError('Raw receipt module inventory differs')
+    for name, roots in expected.items():
+        current = gate.named_theorems((gate.SOURCE / (name.replace('.', '/') + '.lean')).read_text())
+        if current != roots:
+            raise RuntimeError('Raw named theorem inventory differs: ' + name)
+    if len(raw.get('builds', [])) != len(raw['build_order']):
+        raise RuntimeError('Raw receipt closure is incomplete')
+    for module, build in zip(raw['build_order'], raw['builds']):
+        if build['module'] != module or build['exit_code'] != 0:
+            raise RuntimeError('Raw receipt has an unsuccessful build')
+        checked_file(Path(build['log']), build['log_sha256'], 'raw build log')
+        for relative, digest in build['artifacts'].items():
+            checked_file(Path(raw['object_directory']) / relative, digest, 'raw object')
+    audit = raw['axiom_audit']
+    if audit['exit_code'] != 0:
+        raise RuntimeError('Raw assumption audit did not succeed')
+    checked_file(path.parent / 'Audit.lean', audit['source_sha256'], 'raw audit source')
+    checked_file(Path(audit['log']), audit['log_sha256'], 'raw audit log')
+    roots, counts = gate.parse_audit(Path(audit['log']).read_text(), expected)
+    if roots != raw['theorem_roots'] or counts != raw['module_theorem_counts']:
+        raise RuntimeError('Raw assumption inventory does not match its log')
+    negative = raw['negative_control']
+    checked_file(path.parent / 'WrongArithmetic.lean', negative['source_sha256'], 'arithmetic control source')
+    checked_file(Path(negative['log']), negative['log_sha256'], 'arithmetic control log')
+    if negative.get('expected_rejection') is not True or negative['exit_code'] != 1:
+        raise RuntimeError('False arithmetic rejection was not established')
+    negative_log = Path(negative['log']).read_text()
+    if 'error:' not in negative_log or '0 = 1' not in negative_log:
+        raise RuntimeError('False arithmetic control log differs')
+    assumptions = raw['assumption_controls']
+    checked_file(path.parent / 'AssumptionControls.lean', assumptions['source_sha256'], 'assumption control source')
+    checked_file(Path(assumptions['log']), assumptions['log_sha256'], 'assumption control log')
+    if assumptions['exit_code'] != 0 or assumptions.get('rejected') != {
+            'rejected_custom_root': True, 'rejected_sorry_root': True}:
+        raise RuntimeError('Raw forbidden-assumption controls are incomplete')
+    if raw['parser_controls'] != gate.parser_controls():
+        raise RuntimeError('Raw parser controls differ from the current gate')
+    return raw
+
+
+def external_paths():
+    """Read pinned package locations without asking Lake to update a dependency."""
+    manifest = json.loads((gate.PINNED / 'lake-manifest.json').read_text())
+    directory = gate.PINNED / manifest['packagesDir']
+    result = []
+    for package in manifest['packages']:
+        path = (directory / package['name'] / '.lake/build/lib/lean').resolve()
+        # Some manifest packages (e.g. Cli, used by tooling) have no local object
+        # directory. Only existing directories can be supplied as prerequisites;
+        # any actually required missing import will fail the fresh Lean build.
+        if path.is_dir():
+            result.append(str(path))
+    if not result or len(result) != len(set(result)):
+        raise RuntimeError('Invalid external package inventory')
+    return result
+
+
+def link_external_objects(workspace, paths):
+    """Expose cached imports while preserving a Lake graph of local sources only.
+
+    Lake's build subprocess replaces LEAN_PATH with its workspace search path.
+    Therefore environment augmentation alone is insufficient for a real build.
+    These recorded links supply read-only import inputs under that search path;
+    no external namespace is registered as a local library or build target.
+    Fresh local artifacts MUST be inventoried separately from these links.
+    """
+    root = workspace / '.lake/build/lib/lean'
+    root.mkdir(parents=True)
+    links = {}
+    for directory in paths:
+        for source in sorted(Path(directory).iterdir()):
+            if source.name.startswith('.'):
+                continue
+            if any(source.name == name or source.name.startswith(name + '.')
+                   for name in ['RequestProject', 'LatticeCalc']):
+                raise RuntimeError('External prerequisite collides with local namespace')
+            target = root / source.name
+            resolved = source.resolve()
+            if not any(resolved.is_relative_to(Path(path)) for path in paths):
+                raise RuntimeError('External object entry escapes pinned package directories')
+            if target.exists() or target.is_symlink():
+                raise RuntimeError('Duplicate external object entry: ' + source.name)
+            if not (resolved.is_file() or resolved.is_dir()):
+                raise RuntimeError('Unsupported external object entry: ' + str(source))
+            target.symlink_to(resolved, target_is_directory=resolved.is_dir())
+            entry = {'target': str(resolved), 'kind': 'directory' if resolved.is_dir() else 'file'}
+            if resolved.is_file():
+                entry['sha256'] = sha(resolved)
+            links[str(target.relative_to(workspace))] = entry
+    return links
+
+
+def verify_external_links(workspace, links):
+    for relative, entry in links.items():
+        path = workspace / relative
+        if not path.is_symlink() or str(path.resolve()) != entry['target']:
+            raise RuntimeError('External prerequisite link changed: ' + relative)
+        if entry['kind'] == 'file':
+            checked_file(path, entry['sha256'], 'external object entry')
+        elif not path.is_dir():
+            raise RuntimeError('External object directory disappeared: ' + relative)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--raw-report', type=Path)
+    parser.add_argument('--timeout', type=int, default=600)
+    args = parser.parse_args()
+    if not 1 <= args.timeout <= 1800:
+        parser.error('timeout must be between 1 and 1800 seconds')
+    manifest = json.loads((HERE / 'source-manifest.json').read_text())
+    for relative, digest in manifest['sources'].items():
+        checked_file(gate.SOURCE / relative, digest, 'bound local source')
+    if args.raw_report is None:
+        candidates = sorted((HERE / 'attempts').glob('*/report.json'), reverse=True)
+        args.raw_report = next((path for path in candidates
+                               if json.loads(path.read_text()).get('ok') is True), None)
+    if args.raw_report is None:
+        parser.error('a successful current raw Lean gate is required first')
+    raw_path = args.raw_report.resolve()
+    raw = validate_raw_receipt(raw_path, manifest)
+    directory = HERE / 'lake-attempts' / datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+    directory.mkdir(parents=True)
+    workspace = directory / 'workspace'
+    workspace.mkdir()
+    bindings = {name: sha(HERE / name) for name in [
+        'run_lake.py', 'run_retry.py', 'lakefile.toml', 'lean-toolchain',
+        'source-manifest.json', 'api-support.json',
+    ]}
+    for name in ['lakefile.toml', 'lean-toolchain', 'source-manifest.json', 'api-support.json', 'MASTER_PLAN.md']:
+        (workspace / name).write_bytes((HERE / name).read_bytes())
+    for relative, digest in manifest['sources'].items():
+        target = workspace / 'sources' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes((gate.SOURCE / relative).read_bytes())
+        checked_file(target, digest, 'copied source')
+    # An explicit empty dependency manifest avoids package discovery/update work.
+    save(workspace / 'lake-manifest.json', {
+        'version': '1.1.0', 'packagesDir': '.lake/packages', 'packages': [],
+        'name': 'MinerProofRepair', 'lakeDir': '.lake',
+    })
+    paths = external_paths()
+    external_links = link_external_objects(workspace, paths)
+    env = dict(os.environ, LC_ALL='C', PYTHONDONTWRITEBYTECODE='1', LEAN_NUM_THREADS='1')
+    env['PATH'] = str(gate.BIN) + os.pathsep + env.get('PATH', '')
+    env['LEAN_PATH'] = os.pathsep.join(paths)
+    report = {
+        'schema': 'miner-repair-lake-replay-v1', 'status': 'running', 'ok': False,
+        'started_at_utc': datetime.now(timezone.utc).isoformat(),
+        'scope': 'Fresh serial Lake builds and fresh full theorem assumption audit of the local repair closure; pinned external objects reused without third-party packages in the Lake build graph.',
+        'workspace': str(workspace), 'targets': TARGETS, 'local_closure': raw['build_order'],
+        'sources': manifest['sources'], 'input_bindings': bindings,
+        'raw_report': str(raw_path), 'raw_report_sha256': sha(raw_path),
+        'dependency_manifest_sha256': sha(gate.PINNED / 'lake-manifest.json'),
+        'external_compiled_package_paths': paths,
+        'external_links': external_links,
+        'compiler_sha256': sha(gate.BIN / 'lean'), 'lake_sha256': sha(gate.BIN / 'lake'),
+        'lean_version': raw['lean_version'], 'lake_version': raw['lake_version'],
+        'negative_controls': {'mode': 'reuse_exact_current_raw_gate_evidence',
+                              'raw_report_sha256': sha(raw_path),
+                              'parser_controls_rechecked': gate.parser_controls()},
+        'per_target_timeout_seconds': args.timeout, 'builds': [],
+    }
+    receipt = directory / 'report.json'
+    save(receipt, report)
+    try:
+        for target in TARGETS:
+            result = run([str(gate.BIN / 'lake'), 'build', '+' + target + ':olean'],
+                         workspace, env, directory / (target + '.log'), args.timeout)
+            result['target'] = target
+            report['builds'].append(result)
+            save(receipt, report)
+            print(json.dumps(result), flush=True)
+            if result['exit_code'] != 0:
+                raise RuntimeError('Lake target failed: ' + target)
+        object_root = workspace / '.lake/build/lib/lean'
+        for name in raw['build_order']:
+            if not (object_root / (name.replace('.', '/') + '.olean')).is_file():
+                raise RuntimeError('Lake omitted local closure module: ' + name)
+        audit_source = workspace / 'Audit.lean'
+        audit_source.write_bytes((raw_path.parent / 'Audit.lean').read_bytes())
+        audited = run([str(gate.BIN / 'lake'), 'env', str(gate.BIN / 'lean'),
+                       '-j1', '-M4096', '-DElab.async=false', 'Audit.lean'],
+                      workspace, env, directory / 'axioms.log', args.timeout)
+        report['axiom_audit'] = dict(audited, source_sha256=sha(audit_source))
+        save(receipt, report)
+        if audited['exit_code'] != 0:
+            raise RuntimeError('Lake object assumption audit failed')
+        roots, counts = gate.parse_audit((directory / 'axioms.log').read_text(), raw['required_named_theorems'])
+        if roots != raw['theorem_roots'] or counts != raw['module_theorem_counts']:
+            raise RuntimeError('Lake and raw theorem inventories/assumptions differ')
+        report['theorem_roots'] = roots
+        report['theorem_count'] = len(roots)
+        report['module_theorem_counts'] = counts
+        report['required_named_theorems'] = raw['required_named_theorems']
+        report['artifacts'] = {str(p.relative_to(workspace)): sha(p)
+                               for p in sorted((workspace / '.lake/build').rglob('*'))
+                               if p.is_file() and not p.is_symlink()}
+        verify_external_links(workspace, external_links)
+        for name, digest in bindings.items():
+            checked_file(HERE / name, digest, 'gate input')
+        for relative, digest in manifest['sources'].items():
+            checked_file(gate.SOURCE / relative, digest, 'current source')
+            checked_file(workspace / 'sources' / relative, digest, 'Lake source copy')
+        for name in ['lakefile.toml', 'lean-toolchain', 'source-manifest.json', 'api-support.json']:
+            checked_file(workspace / name, bindings[name], 'Lake input copy')
+        checked_file(raw_path, report['raw_report_sha256'], 'raw receipt')
+        validate_raw_receipt(raw_path, manifest)
+        report.update(status='passed', ok=True, completed_at_utc=datetime.now(timezone.utc).isoformat())
+    except BaseException as error:
+        report.update(status='failed', ok=False, error=type(error).__name__ + ': ' + str(error),
+                      completed_at_utc=datetime.now(timezone.utc).isoformat())
+        save(receipt, report)
+        raise
+    save(receipt, report)
+    print(json.dumps({'status': report['status'], 'report': str(receipt)}), flush=True)
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

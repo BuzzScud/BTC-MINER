@@ -1,0 +1,96 @@
+THESIS PROVIDER INTEGRATION — 2026-10-12
+
+AUTOMATIC MINING-SESSION INTEGRATION
+
+provider_enabled=on starts a dedicated provider process with the mining engine.
+provider_user selects the saved account (YOUR_ACCOUNT by default). This installation
+has the integration enabled; portable installs default off until configured.
+The process refreshes capabilities and the account's formula catalogue every five
+minutes, receives TCMP WebSocket model events, and checks one sampled flower/rod
+offset for each new mining job, at most once every ten seconds. Results are tied
+to both the engine session and the job fingerprint. Old-session results cannot
+mark a new job checked. Offline, stale, pending and mismatched results stay visible.
+
+The Copper mining-loop panel shows API connection, stream and job-math status.
+Full counters are available in status --json under provider. A stopped console
+shows that the API will connect when you start. The process stops with the miner.
+Bounded files are stored in logs/provider-runtime/. Only scalar traversal inputs
+are sent for calculation; no payout, wallet, credentials or full header is sent.
+
+These API features run automatically during mining. They validate sampled job
+arithmetic and supply provider model information. Native hashing and nonce
+coverage remain local; the provider does not predict winners or exclude nonces.
+No network operation runs in the hash-worker or coordinator thread.
+
+The miner now includes an explicit provider client. From the Copper console:
+
+  /provider capabilities
+  /provider refresh
+  /provider formulas --query rod
+  /provider calculate --expression '11*15*17'
+  /provider watch --seconds 10
+  /provider check --output validation/provider-check.json
+
+In a shell, use ./bin/btc-miner provider ... (without the leading slash).
+The refresh command saves a dated observation to logs/provider/latest.json.
+--output PATH saves full redacted JSON for any command. Refresh prints a compact
+summary. Formulas, calculations and watch return provider data for inspection.
+Watch lasts at most 60 seconds, accepts at most 200 events, and caps the combined
+decoded snapshot at 16 MiB. A missing sessionReady, disconnection, provider error,
+corrupt frame or oversized response fails explicitly. It never replays writes.
+
+AUTHENTICATION
+
+Public capabilities do not require credentials. Other actions reuse the existing
+YOUR_ACCOUNT account's provider session in macOS Keychain. --user selects another
+account. An expired saved session can log in with that account's existing Keychain
+password; the replacement session stays in memory. Credentials are never command
+arguments, JSON snapshots, terminal output or release inputs. On another platform,
+or with --base-url pointing to another origin, supply BTC_PROVIDER_SESSION in the
+process environment. Saved default-provider credentials are never sent to another
+origin. HTTP and WebSocket redirects are refused.
+
+TRANSPORT AND MEASUREMENTS
+
+The Python implementation supports TCMP v1 with the current five CRT variants,
+including packed/adaptive rod sets, and legacy stored/RLE/LZ77/blocked-LZ77/delta
+frames. Decode checks length before allocation, structure and the provider's FNV
+checksum. This checksum detects corruption; it is not a cryptographic authenticator.
+HTTP negotiates x-app-accept-encoding: tcmp. WebSocket negotiates enc=tcmp and
+accepts both text JSON and binary TCMP frames. Outgoing JSON uses TCMP only if its
+complete frame is smaller. No remote compression call enters the mining path.
+
+The check command measures 15 synthetic codec cases: three inputs across five
+modes. It verifies Python/server byte equality and both directions of decoding.
+It also compares ten exact calculator results with independent Python arithmetic,
+including a value above 2^53, negative floor, a perfect square, a fraction, the
+Eisenstein norm and flower-count examples. Failures produce a nonzero exit status.
+Reported network duration, local codec time and byte counts have distinct labels.
+These are finite observations, not an end-to-end mining benchmark.
+
+SOURCE AND PROOF SCOPE
+
+Canonical source: src/tools/provider.py, provider_runtime.py and tcmp.py.
+btcminer/provider.py and btcminer/tcmp.py are compatibility links.
+ProviderClient.updates() is an async iterator for modelSnapshot, forensicEvent,
+calculationTelemetry and other protocol messages. It requires optional aiohttp;
+all REST and codec commands use the Python standard library. The optional
+dependency is imported only when watching; base miner startup does not require it.
+
+Provider labels, formula statuses and event receipt do not change the miner's
+proof registry or candidate rules. The new client performs discovery, calculation,
+synthetic codec checks and observation; it submits no issue requests or files.
+Provider requests do not change worker settings. Stop remains able to
+interrupt a provider diagnostic from the Copper console.
+
+Protocol references captured during implementation:
+  YOUR_PROVIDER_ORIGIN/api/docs/living_openapi.json
+  YOUR_PROVIDER_ORIGIN/api/docs/living_asyncapi.json
+  YOUR_PROVIDER_ORIGIN/api/app-codec
+  YOUR_PROVIDER_ORIGIN/tcmp.js
+
+The full workspace retains the source snapshots and live observations under
+validation/provider-integration-20261012/. Those are timestamped evidence;
+rerun refresh/check for current service state. Account-visible counts can differ
+between users. This integration does not reproduce the competitor's OpenGL,
+GLTF or proof-generator application.

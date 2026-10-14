@@ -1,0 +1,15 @@
+{
+  "project_id": "9b854e2d-2ae1-4d55-9b53-bf308b5e3648",
+  "task_id": "81f0a318-7967-4c28-80cd-dd06e558ae4d",
+  "task_status": "COMPLETE",
+  "source": "https://aristotle.harmonic.fun/api/v3/task/81f0a318-7967-4c28-80cd-dd06e558ae4d/file",
+  "sha256": {
+    "ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "TowerCollapse.lean": "3845a902321dff2ff39861ec59c72b1d3553b7a37a8bba0113b9616474a12c9b",
+    "BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "RodCircles.lean": "55b3bf1b77b74d226c8c1d2a575ffbf310f58fc4e6820a638486efb1bc72acb8",
+    "RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed",
+    "RodScaling.lean": "c09597469a069fb72029a65568f1e818d6a5c9d6f4500cd767407fd5e9cd761c"
+  },
+  "scope": "Five selected new research modules. Local validation and import closure are recorded separately."
+}

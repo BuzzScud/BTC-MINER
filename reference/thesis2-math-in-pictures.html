@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THESIS2 Math in Pictures</title>
+<style>
+/* Layout: a drafting bench. Tabs on top, one big moving picture on the left, plain words and one thing to try on the right. */
+:root{
+  --bg:#eef2f7; --surface:#ffffff; --surface2:#e7edf5; --ink:#152233; --ink2:#485a70; --ink3:#72839a;
+  --line:#c9d3e0; --grid:#e3e9f1; --accent:#1f5fc4; --accent-ink:#ffffff;
+  --c1:#2b6fd6; --c2:#e08a1a; --c3:#12996f; --c4:#b1479f; --dot-off:#c3cedc;
+  --good:#12996f; --warn:#d98a1c; --bad:#d04242;
+  --good-ink:#0b6b4e; --warn-ink:#8a4f06; --bad-ink:#a02828;
+  --good-bg:#dcf2ea; --warn-bg:#faecd6; --bad-bg:#f8dfdf; --info-bg:#e1ebfa;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-display:ui-serif,"New York","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131b; --surface:#141c27; --surface2:#1b2534; --ink:#e7eef8; --ink2:#a5b5ca; --ink3:#7b8ca3;
+    --line:#2a374a; --grid:#1a2432; --accent:#6aa5ff; --accent-ink:#0d131b;
+    --c1:#5f9dff; --c2:#ffb340; --c3:#3fd0a3; --c4:#e88ad6; --dot-off:#2f3c50;
+    --good:#3fd0a3; --warn:#ffb340; --bad:#ff7070;
+    --good-ink:#7ee6c4; --warn-ink:#ffc46b; --bad-ink:#ff9a9a;
+    --good-bg:#0f2b26; --warn-bg:#33270f; --bad-bg:#341a1c; --info-bg:#15263f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131b; --surface:#141c27; --surface2:#1b2534; --ink:#e7eef8; --ink2:#a5b5ca; --ink3:#7b8ca3;
+  --line:#2a374a; --grid:#1a2432; --accent:#6aa5ff; --accent-ink:#0d131b;
+  --c1:#5f9dff; --c2:#ffb340; --c3:#3fd0a3; --c4:#e88ad6; --dot-off:#2f3c50;
+  --good:#3fd0a3; --warn:#ffb340; --bad:#ff7070;
+  --good-ink:#7ee6c4; --warn-ink:#ffc46b; --bad-ink:#ff9a9a;
+  --good-bg:#0f2b26; --warn-bg:#33270f; --bad-bg:#341a1c; --info-bg:#15263f;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--f-body);-webkit-font-smoothing:antialiased;text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.app{display:flex;flex-direction:column;height:100%;padding:0 20px 16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 0 10px}
+h1{font:600 25px/1.15 var(--f-display);margin:0;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:14px;margin-top:3px}
+.actions{display:flex;gap:12px;align-items:center}
+.switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 12px;font-size:15px}
+.switch .track{width:38px;height:22px;border-radius:99px;background:var(--dot-off);position:relative;transition:background .15s}
+.switch .track::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--surface);transition:transform .15s}
+.switch[aria-pressed="true"] .track{background:var(--accent)}
+.switch[aria-pressed="true"] .track::after{transform:translateX(16px)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 14px;font-size:15px;cursor:pointer}
+.btn:hover,.switch:hover{border-color:var(--ink3)}
+
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:thin;flex:0 0 auto}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--ink2);padding:7px 13px;border-radius:9px;cursor:pointer;font-size:15px;white-space:nowrap}
+.tab .n{font-family:var(--f-mono);font-size:12px;color:var(--ink3);margin-right:7px}
+.tab:hover{border-color:var(--ink3);color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.tab[aria-selected="true"] .n{color:inherit;opacity:.75}
+
+main.work{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 31rem;gap:16px}
+.stage-card{min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.drawing{position:relative;min-height:0;overflow:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:36px 36px}
+.drawing>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.drawing.html{background:none;overflow:auto}
+.strip{padding:10px 14px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--surface)}
+.strip:empty{display:none}
+.strip .lbl{font-size:14px;color:var(--ink2);margin-right:4px}
+.playbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line);background:var(--surface)}
+.icon-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:grid;place-items:center;cursor:pointer;padding:0}
+.icon-btn:hover{border-color:var(--ink3)}
+.icon-btn svg{width:20px;height:20px;fill:var(--ink)}
+.playhint{color:var(--ink2);font-size:14px;margin-left:6px}
+
+.side{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:2px 2px 2px 0}
+.side>*{flex-shrink:0}
+.eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+h2{font:600 27px/1.15 var(--f-display);margin:2px 0 0;letter-spacing:-.01em;text-wrap:balance;min-height:2.3em}
+.plain{min-height:8.4rem;font-size:16px}
+.plain p{margin:0 0 .7em}
+.try{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.ctl-label{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.try .say{font-size:15px;color:var(--ink2);margin:0}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 11px;min-width:40px;cursor:pointer;font-family:var(--f-mono);font-size:15px;line-height:1.3;color:var(--ink)}
+.pill:hover{border-color:var(--ink3)}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pill[data-r="all"]{box-shadow:inset 0 -3px 0 var(--good)}
+.pill[data-r="stuck"]{box-shadow:inset 0 -3px 0 var(--warn)}
+.pill.sp{border-color:var(--c2)}
+.pill.text{font-family:var(--f-body)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;align-self:flex-start}
+.segbtn{border:0;background:var(--surface);padding:6px 13px;cursor:pointer;font-size:15px;color:var(--ink2)}
+.segbtn+.segbtn{border-left:1px solid var(--line)}
+.segbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.row2{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center;font-size:15px}
+.row2 output{font-family:var(--f-mono);min-width:3ch;text-align:right}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+input[type=number]{width:8.5rem;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 9px;font-family:var(--f-mono)}
+.readout{border-radius:12px;background:var(--surface2);padding:10px 14px;min-height:5.4rem;font-size:15.5px}
+.readout b{font-weight:650}
+.readout .mono,.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.readout table{border-collapse:collapse;width:100%;font-family:var(--f-mono);font-size:14px;margin:2px 0 4px}
+.readout td,.readout th{padding:0 8px 0 0;text-align:left;font-weight:500;line-height:1.55}
+.readout th{color:var(--ink3);font-weight:600}
+.chip{display:inline-block;padding:1px 9px;border-radius:99px;font-size:13px;font-weight:650;letter-spacing:.02em;margin-right:6px;vertical-align:1px}
+.chip.good{background:var(--good-bg);color:var(--good-ink)}
+.chip.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.chip.bad{background:var(--bad-bg);color:var(--bad-ink)}
+.chip.info{background:var(--info-bg);color:var(--accent)}
+.side>.numbers{border:1px dashed var(--line);border-radius:12px;padding:10px 14px;flex:1 1 0;min-height:6.4rem;overflow:auto;font-size:15px;color:var(--ink2)}
+.numbers .nb{display:none}
+.numbers .nh{display:block;color:var(--ink3)}
+body.show-numbers .numbers .nb{display:block}
+body.show-numbers .numbers .nh{display:none}
+.numbers .ctl-label{display:block;margin-bottom:6px}
+.numbers p{margin:0 0 .5em}
+.numbers .m{font-family:var(--f-mono);color:var(--ink)}
+
+/* the words drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,16,24,.35);z-index:19}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:20;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .18s ease}
+.drawer.open{transform:none}
+.drawer header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.drawer h3{font:600 22px/1.2 var(--f-display);margin:0}
+.drawer .body{overflow:auto;padding:6px 18px 24px}
+.drawer dl{margin:0}
+.drawer dt{font-weight:650;margin-top:14px}
+.drawer dd{margin:2px 0 0;color:var(--ink2);font-size:16px}
+
+/* svg pieces */
+svg text{font-family:var(--f-body);fill:var(--ink)}
+svg .t2{fill:var(--ink2)} svg .t3{fill:var(--ink3)}
+svg .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+svg .mid{text-anchor:middle} svg .end{text-anchor:end}
+svg .sm{font-size:19px} svg .md{font-size:25px} svg .lg{font-size:33px} svg .xl{font-size:46px}
+svg .big{font-size:84px;font-family:var(--f-display);font-weight:600}
+svg .bold{font-weight:650}
+svg .halo{paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
+svg .ok{fill:var(--good-ink)} svg .no{fill:var(--bad-ink)} svg .wn{fill:var(--warn-ink)}
+svg .gline{stroke:var(--line);stroke-width:1;fill:none}
+svg .axis{stroke:var(--ink3);stroke-width:1.5;fill:none}
+svg .panel{fill:none;stroke:var(--line);stroke-width:1.5}
+/* clock */
+.mark{fill:var(--dot-off)} .mark.on{fill:var(--c1)}
+.trail{stroke:var(--c1);stroke-opacity:.4;stroke-width:1.8;fill:none}
+.hopper{fill:var(--c2);stroke:var(--surface);stroke-width:3}
+/* board */
+.bpt{fill:var(--dot-off)} .bpt.centre{fill:none;stroke:var(--ink);stroke-width:2.5}
+.bpt.on.q0{fill:var(--c1)} .bpt.on.q1{fill:var(--c3)} .bpt.on.q2{fill:var(--c2)} .bpt.on.q3{fill:var(--c4)}
+.comet{fill:var(--ink);stroke:var(--surface);stroke-width:3}
+.tail{stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.ring{fill:none;stroke:var(--ink);stroke-width:3}
+.selring{fill:none;stroke:var(--ink);stroke-width:3}
+.seldash{stroke:var(--ink3);stroke-width:1.6;stroke-dasharray:5 5}
+.qdot.q0{fill:var(--c1)} .qdot.q1{fill:var(--c3)} .qdot.q2{fill:var(--c2)} .qdot.q3{fill:var(--c4)}
+/* grids */
+.lp{fill:var(--dot-off)} .lp.in{fill:var(--c1);fill-opacity:.55} .lp.hit{fill:var(--c2);stroke:var(--ink);stroke-width:2}
+.sweep{fill:var(--c1);fill-opacity:.07;stroke:var(--c1);stroke-width:2.5}
+.fp{fill:var(--surface2);stroke:var(--line);stroke-width:1.5} .fp.on{fill:var(--info-bg);stroke:var(--accent);stroke-width:3}
+/* wheels */
+.bead{fill:var(--dot-off)}
+.hand{stroke-width:5;stroke-linecap:round}
+.wc1{fill:var(--c1);stroke:var(--c1)} .wc2{fill:var(--c3);stroke:var(--c3)} .wc3{fill:var(--c4);stroke:var(--c4)}
+.wring{fill:none;stroke:var(--line);stroke-width:2}
+/* base 60 boxes */
+.dbox{fill:var(--surface2);stroke:var(--line);stroke-width:1.5} .dbox.rep{fill:var(--warn-bg);stroke:var(--warn)} .dbox.end{fill:var(--good-bg);stroke:var(--good)}
+/* rows */
+.bead-row{fill:var(--c1);fill-opacity:.85} .bead-gap{fill:none;stroke:var(--bad);stroke-width:2.5;stroke-dasharray:7 6}
+.cell{stroke:var(--surface);stroke-width:1.5}
+/* arrows */
+.a1{stroke:var(--c1);stroke-width:6;fill:none;marker-end:url(#ah1)} .a2{stroke:var(--c2);stroke-width:6;fill:none;marker-end:url(#ah2)} .a3{stroke:var(--ink);stroke-width:6;fill:none;marker-end:url(#ah3)}
+.mk1{fill:var(--c1)} .mk2{fill:var(--c2)} .mk3{fill:var(--ink)}
+.guide{stroke:var(--ink3);stroke-width:1.8;stroke-dasharray:6 6;fill:none}
+.bar1{fill:var(--c1)} .bar2{fill:var(--c2)} .bar3{fill:var(--ink)}
+.bartrack{fill:var(--surface2)}
+/* bits */
+.bp{fill:var(--c1);fill-opacity:.9} .bp.new{fill:var(--c2)}
+.bpath{stroke:var(--c3);stroke-width:4;fill:none;stroke-linejoin:round}
+.bsel{fill:var(--c3);stroke:var(--ink);stroke-width:3}
+.warr{stroke:var(--dot-off);stroke-width:4;stroke-linecap:round} .warr.on{stroke:var(--c2)}
+.wtag{fill:var(--surface);stroke:var(--line);stroke-width:1.5} .wtag.on{fill:var(--c2);stroke:var(--ink)}
+.bit{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:5px 8px;width:5.4rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.15}
+.bit .pl{font-size:12px;color:var(--ink3)} .bit .bv{font:600 24px/1.1 var(--f-mono)} .bit .bw{font:12px/1.2 var(--f-mono);color:var(--ink2);white-space:nowrap}
+.bit[aria-pressed="true"]{background:var(--c2);border-color:var(--ink);color:#1a1200}
+.bit[aria-pressed="true"] .pl,.bit[aria-pressed="true"] .bw{color:#3a2a00}
+/* 4d */
+.nb1{fill:var(--c1)} .nb2{fill:var(--c2)} .spoke{stroke:var(--ink3);stroke-opacity:.55;stroke-width:1.6}
+.midball{fill:var(--surface);stroke:var(--ink);stroke-width:3}
+/* circles */
+.sq1{fill:none;stroke:var(--c1);stroke-width:2.5} .sq2{fill:none;stroke:var(--c2);stroke-width:2.5}
+.ci1{fill:var(--c1);fill-opacity:.18;stroke:var(--c1);stroke-width:3} .ci2{fill:var(--c2);fill-opacity:.22;stroke:var(--c2);stroke-width:3}
+.lens{fill:var(--bad);fill-opacity:.42}
+.ghost{fill:none;stroke:var(--ink3);stroke-width:2.5;stroke-dasharray:9 8}
+.handle{fill:var(--surface);stroke:var(--ink);stroke-width:3;cursor:grab}
+.drag{cursor:grab;touch-action:none}
+/* proof cards */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:0 16px 16px}
+.cardtop{padding:16px 18px 10px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cardtop .big2{font:600 44px/1 var(--f-display)}
+.cardtop .cap{color:var(--ink2);font-size:16px}
+.claim{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 16px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-height:10.6rem;font-size:16.5px;line-height:1.4}
+.claim:hover{border-color:var(--ink3)}
+.claim .why{font-size:15px;color:var(--ink2);display:none}
+.claim.shown .why{display:block}
+.claim .ask{margin-top:auto;font-size:13px;color:var(--ink3)}
+.claim.shown .ask{display:none}
+.claim.shown.v-proved{background:var(--good-bg);border-color:var(--good)}
+.claim.shown.v-wrong{background:var(--bad-bg);border-color:var(--bad)}
+.claim.shown.v-open{background:var(--warn-bg);border-color:var(--warn)}
+.claim.shown.v-history{background:var(--info-bg);border-color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-height:820px){
+  h2{min-height:0}
+  .plain{min-height:0}
+  .side{gap:8px}
+  .side>.numbers{min-height:4.6rem}
+  .try{padding:9px 12px}
+  .claim{min-height:8.4rem;font-size:15.5px;padding:10px 12px}
+  .cardtop{padding:10px 14px 6px} .cardtop .big2{font-size:34px}
+  .cards{gap:8px;padding:0 12px 12px}
+}
+@media (max-width:999px),(max-height:679px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100%}
+  main.work{grid-template-columns:minmax(0,1fr)}
+  .drawing{aspect-ratio:12/7;min-height:0}
+  .drawing.html{aspect-ratio:auto}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .side{overflow:visible}
+  h2{min-height:0}
+}
+@media (max-width:560px){ .cards{grid-template-columns:1fr} .actions{width:100%} }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>The THESIS2 math, in pictures</h1>
+      <div class="sub">Made from your Aristotle download: 38 runs, 29 Sep. Run 38 was still going, so its work is not in here.</div>
+    </div>
+    <div class="actions">
+      <button class="switch" id="numSwitch" type="button" aria-pressed="false"><span class="track"></span><span>Show the numbers</span></button>
+      <button class="btn" id="wordsBtn" type="button" aria-haspopup="dialog" aria-controls="words">Words</button>
+    </div>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Ideas"></nav>
+  <main class="work">
+    <section class="stage-card" aria-label="Picture">
+      <div class="drawing" id="drawing"></div>
+      <div class="strip" id="strip"></div>
+      <div class="playbar">
+        <button class="icon-btn" id="playBtn" type="button"></button>
+        <button class="icon-btn" id="restartBtn" type="button" aria-label="Start over"></button>
+        <span class="playhint" id="hint"></span>
+      </div>
+    </section>
+    <aside class="side" id="side">
+      <div class="eyebrow" id="eyebrow"></div>
+      <h2 id="title"></h2>
+      <div class="plain" id="plain"></div>
+      <div class="try" id="try"></div>
+      <div class="readout" id="readout"></div>
+      <div class="numbers"><span class="ctl-label">The numbers</span><span class="nh">Hidden. Press “Show the numbers” at the top to see the sums behind this picture.</span><div class="nb" id="numbers"></div></div>
+    </aside>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="words" role="dialog" aria-label="Words" hidden>
+  <header><h3>Words</h3><button class="btn" id="wordsClose" type="button">Close</button></header>
+  <div class="body"><dl>
+    <dt>Dial</dt><dd>A clock with N marks. The 360 dial has 360 marks, like the degrees in a circle.</dd>
+    <dt>Mark</dt><dd>One position on a dial.</dd>
+    <dt>Step</dt><dd>How many marks you jump each time.</dd>
+    <dt>Divides</dt><dd>Goes in exactly, with nothing left over. 6 divides 360. 7 does not.</dd>
+    <dt>Leftover (mod)</dt><dd>What is left after dividing. 361 leaves 1 after dividing by 360, so “361 mod 360” is 1.</dd>
+    <dt>Wrap-around</dt><dd>Counting on a dial, where the last mark is the same place as 0.</dd>
+    <dt>Prime</dt><dd>A number that only divides by 1 and itself: 2, 3, 5, 7, 11, 13.</dd>
+    <dt>Factor</dt><dd>A number that divides another one. The prime factors of 60 are 2, 2, 3 and 5.</dd>
+    <dt>Square grid, honeycomb grid</dt><dd>Two ways to lay points on a flat surface. The honeycomb is the “flower of life” pattern.</dd>
+    <dt>Wheel</dt><dd>A small dial that is one part of a bigger one. The thesis calls it a rod. Wheels of 8, 9 and 5 beads make 360.</dd>
+    <dt>Base</dt><dd>How many different digits you use before you carry. Base 10 has ten digits. Base 60 has sixty.</dd>
+    <dt>0;20</dt><dd>How base 60 is written. It means 20 sixtieths, which is one third.</dd>
+    <dt>Special prime</dt><dd>A prime p, 7 or more, where a dial of p − 1 marks fits into 144000 exactly. The project calls these qualifying primes.</dd>
+    <dt>Sign</dt><dd>Plus or minus. Which way a number points from the middle.</dd>
+    <dt>Mirror</dt><dd>Flips a point left to right, or top to bottom, around the middle.</dd>
+    <dt>Bit, byte</dt><dd>A bit is a 0 or a 1. A byte is 8 bits.</dd>
+    <dt>Kissing</dt><dd>Two circles or balls touching at exactly one point.</dd>
+    <dt>Packing</dt><dd>Fitting equal balls into space. The better the packing, the less empty space is left.</dd>
+    <dt>Dimension</dt><dd>2D is flat. 3D is space. 4D has one more direction. 4D can be worked out but not drawn.</dd>
+    <dt>Neighbour</dt><dd>A ball that touches the middle ball.</dd>
+    <dt>Proof</dt><dd>A step-by-step argument with no gaps.</dd>
+    <dt>Machine-checked</dt><dd>A proof that a computer program (Lean) has checked line by line.</dd>
+    <dt>Theorem</dt><dd>A statement that has been proved.</dd>
+  </dl></div>
+</aside>
+<div class="sr" id="sr" aria-live="polite"></div>
+<script>
+(() => {
+'use strict';
+/* ================= maths (tested separately; no page code in here) ================= */
+const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) { [a, b] = [b, a % b]; } return a; };
+const mod = (a, m) => ((a % m) + m) % m;
+
+// ---- 1. dial: hopping by a step around N marks
+function dialLoop(N, k) { const g = gcd(N, k); return { loop: N / g, everyMark: g === 1 }; }
+
+// ---- 2. the 19 board as a number system: points (a, b) mean a + b*i, counted mod 19, i*i = -1
+const P19 = 19;
+const mulBoard = (u, v) => [mod(u[0] * v[0] - u[1] * v[1], P19), mod(u[0] * v[1] + u[1] * v[0], P19)];
+const centre19 = v => (v > 9 ? v - 19 : v);               // -9..9, so (0,0) is the middle of the board
+function boardLoop() {                                     // the 360 powers of 1+3i, as centred points
+  const g = [1, 3], seq = []; let p = [1, 0];
+  for (let k = 0; k < 360; k++) { seq.push([centre19(p[0]), centre19(p[1])]); p = mulBoard(p, g); }
+  return { seq, back: p };                                 // back = the point after 360 hops (should be the start)
+}
+
+// ---- 3. two grids: points on the circle x^2+y^2 = p (square) and x^2-xy+y^2 = p (honeycomb)
+const sqNorm = (x, y) => x * x + y * y;
+const hexNorm = (x, y) => x * x - x * y + y * y;
+function latticePoints(norm, limit) {                      // all integer points with norm <= limit
+  const out = [], r = Math.ceil(Math.sqrt(limit) * 1.2) + 1;
+  for (let x = -r; x <= r; x++) for (let y = -r; y <= r; y++) { const n = norm(x, y); if (n <= limit) out.push({ x, y, n }); }
+  return out;
+}
+
+// ---- 4. wheels: 360 = 8 * 9 * 5
+const WHEELS = [8, 9, 5];
+const reading = n => WHEELS.map(m => mod(n, m));
+function fromReading(r) { for (let n = 0; n < 360; n++) { const q = reading(n); if (q[0] === r[0] && q[1] === r[1] && q[2] === r[2]) return n; } return -1; }
+
+// ---- 5. long division: 1/n written in a base. Returns digits, the remainders, and whether it ends or repeats.
+function expand(n, base, maxDigits) {
+  const digits = [], rems = [], seen = new Map(); let r = 1, ends = false, cycleStart = -1;
+  seen.set(r, 0);
+  while (digits.length < maxDigits) {
+    r *= base; const d = Math.floor(r / n); r = r % n; digits.push(d); rems.push(r);
+    if (r === 0) { ends = true; break; }
+    if (seen.has(r)) { cycleStart = seen.get(r); break; }
+    seen.set(r, digits.length);
+  }
+  return { digits, rems, ends, cycleStart };
+}
+// the full digit run, however long it takes (small n only)
+function expandFull(n, base) { return expand(n, base, 100000); }
+
+// ---- 6. the special primes: p >= 7 prime with (p - 1) dividing 144000
+const isPrime = n => { if (n < 2) return false; for (let d = 2; d * d <= n; d++) if (n % d === 0) return false; return true; };
+function qualifyingPrimes(M = 144000) { const out = []; for (let d = 1; d <= M; d++) if (M % d === 0 && isPrime(d + 1) && d + 1 >= 7) out.push(d + 1); return out; }
+
+// ---- 7. base -1+i : every point of the grid as a string of 0s and 1s
+const B_POW = (() => { const t = [[1, 0]]; for (let k = 1; k < 24; k++) { const [a, b] = t[k - 1]; t.push([-a - b, a - b]); } return t; })(); // multiply by (-1+i)
+const bitsValue = bits => { let x = 0, y = 0; bits.forEach((d, k) => { if (d) { x += B_POW[k][0]; y += B_POW[k][1]; } }); return [x, y]; };  // bits[0] = place 0 (rightmost)
+function encodeGaussian(x, y) {                            // returns bits, place 0 first
+  const bits = []; let guard = 0;
+  while ((x !== 0 || y !== 0) && guard++ < 60) {
+    const d = mod(x + y, 2); bits.push(d); x -= d;
+    const nx = (-x + y) / 2, ny = (-x - y) / 2;             // (x + y i) / (-1 + i)
+    x = nx; y = ny;
+  }
+  return bits;
+}
+
+// ---- 8. neighbours of one ball in 4D (unit distance between touching centres)
+function neighboursHoneycombPair() {                       // two honeycombs in two separate planes: 6 + 6 = 12
+  const out = []; for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3; out.push([Math.cos(a), Math.sin(a), 0, 0]); }
+  for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3; out.push([0, 0, Math.cos(a), Math.sin(a)]); }
+  return out;
+}
+function neighbours24cell() {                              // all (+-1, +-1, 0, 0) arrangements, scaled to length 1: 24 of them
+  const out = [], s = Math.SQRT1_2;
+  for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) for (const a of [-1, 1]) for (const b of [-1, 1]) { const v = [0, 0, 0, 0]; v[i] = a * s; v[j] = b * s; out.push(v); }
+  return out;
+}
+const fillHoneycombPair = Math.PI ** 2 / 24, fill24cell = Math.PI ** 2 / 16;   // share of 4D space filled
+
+// ---- 9. the two circles
+const R_EQUAL_AREA = 1 / Math.sqrt(Math.PI);               // circle with the same area as a square of side 1
+const circleGap = (dx, dy) => Math.hypot(dx, dy) - 2 * R_EQUAL_AREA;
+
+
+/* ================= small helpers ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const NS = 'http://www.w3.org/2000/svg';
+const S = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const H = (tag, attrs = {}, kids = []) => {
+  const e = document.createElement(tag);
+  for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'text') e.textContent = attrs[k]; else if (k === 'html') e.innerHTML = attrs[k]; else e.setAttribute(k, attrs[k]); }
+  (Array.isArray(kids) ? kids : [kids]).forEach(c => c && e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c));
+  return e;
+};
+const T = (parent, x, y, str, cls = '', attrs = {}) => { const e = S('text', { x, y, class: cls, ...attrs }, parent); e.textContent = str; return e; };
+const fmt = n => Math.round(n).toLocaleString('en-US');
+const polar = (cx, cy, r, deg) => [cx + r * Math.cos(deg * Math.PI / 180), cy + r * Math.sin(deg * Math.PI / 180)];
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+const minus = s => String(s).replace(/-/g, '−');
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const chip = (kind, text) => `<span class="chip ${kind}">${text}</span>`;
+
+function makeSVG(drawing, label, vw = 1200, vh = 700) {
+  const svg = S('svg', { viewBox: `0 0 ${vw} ${vh}`, preserveAspectRatio: 'xMidYMid meet', role: 'img', 'aria-label': label });
+  drawing.appendChild(svg); return svg;
+}
+function svgPoint(svg, evt) { const pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse()); }
+function arrowDefs(svg) {
+  const defs = S('defs', {}, svg);
+  [['ah1', 'mk1'], ['ah2', 'mk2'], ['ah3', 'mk3']].forEach(([id, cls]) => {
+    const m = S('marker', { id, viewBox: '0 0 10 10', refX: 8, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto-start-reverse' }, defs);
+    S('path', { d: 'M0,0 L10,5 L0,10 z', class: cls }, m);
+  });
+}
+function segmented(opts, value, onChange) {
+  const el = H('div', { class: 'seg', role: 'group' });
+  const btns = opts.map(([v, label]) => { const b = H('button', { type: 'button', class: 'segbtn', 'aria-pressed': String(v === value), text: label }); b.onclick = () => { set(v); onChange(v); }; el.appendChild(b); return [v, b]; });
+  function set(v) { btns.forEach(([x, b]) => b.setAttribute('aria-pressed', String(x === v))); }
+  return { el, set };
+}
+const lab = t => H('div', { class: 'ctl-label', text: t });
+const say = t => H('p', { class: 'say', text: t });
+const pill = (text, onclick, extra = {}) => { const b = H('button', { type: 'button', class: 'pill', text, ...extra }); b.onclick = onclick; return b; };
+
+/* ================= page scaffolding ================= */
+const ICON = {
+  play: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3l12 7-12 7z"/></svg>',
+  pause: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3h4v14H4zM12 3h4v14h-4z"/></svg>',
+  again: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3a7 7 0 1 0 7 7h-2.2A4.8 4.8 0 1 1 10 5.2V8l4.5-4L10 0z" transform="translate(0 1)"/></svg>',
+};
+const els = { drawing: $('#drawing'), strip: $('#strip'), tryEl: $('#try'), readout: $('#readout'), numbers: $('#numbers'), title: $('#title'), plain: $('#plain'), eyebrow: $('#eyebrow'), hint: $('#hint'), tabs: $('#tabs'), play: $('#playBtn'), restart: $('#restartBtn'), sr: $('#sr') };
+let ctl = null, paused = false, finishedFlag = false, current = -1;
+
+function updatePlay() {
+  const icon = (finishedFlag || paused) ? 'play' : 'pause';
+  els.play.innerHTML = ICON[icon];
+  els.play.setAttribute('aria-label', finishedFlag ? 'Play again' : (paused ? 'Play' : 'Pause'));
+  els.play.title = finishedFlag ? 'Play again' : (paused ? 'Play' : 'Pause');
+}
+els.restart.innerHTML = ICON.again; els.restart.title = 'Start over';
+els.play.onclick = () => { if (!ctl) return; if (finishedFlag) { ctl.restart(); } else { paused = !paused; updatePlay(); } };
+els.restart.onclick = () => { if (ctl) ctl.restart(); };
+
+const ctx = {
+  drawing: els.drawing, strip: els.strip, tryEl: els.tryEl, reduced: REDUCED,
+  setReadout(html) { els.readout.innerHTML = html; },
+  setNumbers(html) { els.numbers.innerHTML = html; },
+  setHint(t) { els.hint.textContent = t || ''; },
+  finished() { finishedFlag = true; updatePlay(); },
+  restarted() { finishedFlag = false; paused = false; updatePlay(); },
+  announce(t) { els.sr.textContent = t; },
+  get paused() { return paused; },
+};
+
+/* ================= the twelve tabs ================= */
+const TABS = [];
+
+/* ---------- 1. the clock ---------- */
+TABS.push({
+  id: 'clock', label: 'Clock', title: 'Some steps land on every mark',
+  plain: ['A dial is a clock with lots of marks. Pick a step size and keep hopping around it. Some steps land on every mark. Others get stuck going round a smaller loop.',
+          'Try 5, then 7. On the 360 dial, 7 is the first step that reaches every mark.'],
+  hint: 'Watch the orange dot hop.',
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A dial with marks around a ring. An orange dot hops from mark to mark by the chosen step and lights the marks it lands on.');
+    const cx = 600, cy = 350;
+    const gTrail = S('g', {}, svg), gMarks = S('g', {}, svg), gLabels = S('g', {}, svg), gHop = S('g', {}, svg), gCenter = S('g', {}, svg);
+    const NOTES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+    const results = { 360: {}, 12: {} };
+    let N = 360, step = 5, pos = 0, hop = 0, acc = 0, done = false, visited = new Set(), markEls = [], queue = [5, 7], touched = false, wait = 0;
+    const R = () => (N === 360 ? 285 : 245);
+    const xy = (m, r = R()) => polar(cx, cy, r, -90 + m * 360 / N);
+    const hopper = S('circle', { class: 'hopper', r: 11 }, gHop);
+    const bigT = T(gCenter, cx, cy + 8, '0', 'big mid halo'), subT = T(gCenter, cx, cy + 52, '', 'md mid t2 halo');
+
+    function buildDial() {
+      gMarks.replaceChildren(); gLabels.replaceChildren(); markEls = [];
+      for (let m = 0; m < N; m++) { const [x, y] = xy(m); markEls.push(S('circle', { cx: x, cy: y, r: N === 12 ? 12 : (m % 30 === 0 ? 5 : 2.7), class: 'mark' }, gMarks)); }
+      if (N === 360) [0, 90, 180, 270].forEach(m => { const [x, y] = xy(m, R() - 36); T(gLabels, x, y + 8, m + '°', 't2 md mid'); });
+      else NOTES.forEach((nm, m) => { const [x, y] = xy(m, R() + 38); T(gLabels, x, y + 8, nm, 't2 md mid'); });
+      const [sx, sy] = xy(0, R() + (N === 12 ? 74 : 36)); T(gLabels, sx, sy, 'start', 't3 sm mid');
+      hopper.setAttribute('r', N === 12 ? 16 : 11);
+    }
+    function place() { const [x, y] = xy(pos); hopper.setAttribute('cx', x); hopper.setAttribute('cy', y); }
+    function paintCenter() {
+      bigT.textContent = visited.size;
+      subT.textContent = done ? (visited.size === N ? 'every mark' : 'stuck in a loop') : `of ${N} marks`;
+      subT.setAttribute('class', 'md mid halo ' + (done ? (visited.size === N ? 'ok' : 'wn') : 't2'));
+    }
+    function paintReadout() {
+      if (!done) { ctx.setReadout(`<b>Step ${step}</b> on the ${N === 360 ? '360 dial' : '12 notes'}<br><span class="mono">hop ${hop} · marks visited ${visited.size} of ${N}</span>`); return; }
+      const every = visited.size === N;
+      ctx.setReadout(chip(every ? 'good' : 'warn', every ? 'every mark' : 'stuck') + `Back at the start after <b>${hop}</b> hops. ` +
+        (every ? `Every one of the ${N} marks was visited.` : `Only <b>${visited.size}</b> of the ${N} marks were ever visited.`) +
+        (N === 12 && step === 7 ? '<br>Step 7 is a fifth up. Twelve fifths reach all twelve notes and land back on C.' : ''));
+    }
+    function numbers() {
+      ctx.setNumbers(N === 360
+        ? `<p><span class="m">360 = 2 × 2 × 2 × 3 × 3 × 5</span></p><p>A step reaches every mark only if it shares no factor with 360. Steps 2 to 6 and 8 to 10 each share one. 7 shares none.</p><p>A stuck step goes round a loop of <span class="m">360 ÷ (what it shares)</span> marks. Step 5: <span class="m">360 ÷ 5 = 72</span>.</p>`
+        : `<p>The 12 notes of the circle of fifths. A step of 7 is one fifth up.</p><p>7 and 12 share no factor, so twelve fifths reach all 12 notes and land back on C. Steps 5 and 11 also work. Steps 2, 3, 4, 6, 8, 9 and 10 do not.</p>`);
+    }
+    const stepRow = H('div', { class: 'btnrow' });
+    const dialSeg = segmented([['360', '360 marks'], ['12', '12 notes']], '360', v => { N = +v; step = N === 360 ? 5 : 7; queue = []; touched = true; buildSteps(); reset(); });
+    ctx.tryEl.append(lab('Step size'), stepRow, lab('Dial'), dialSeg.el);
+    function buildSteps() {
+      stepRow.replaceChildren();
+      (N === 360 ? range(2, 10) : range(2, 11)).forEach(k => {
+        const b = pill(String(k), () => { touched = true; queue = []; step = k; reset(); }, { 'data-step': k, 'aria-label': 'Step ' + k, 'aria-pressed': 'false' });
+        if (results[N][k]) b.dataset.r = results[N][k];
+        stepRow.appendChild(b);
+      });
+    }
+    function refreshButtons() { [...stepRow.children].forEach(b => { b.setAttribute('aria-pressed', String(+b.dataset.step === step)); if (results[N][+b.dataset.step]) b.dataset.r = results[N][+b.dataset.step]; }); }
+    function reset() {
+      pos = 0; hop = 0; acc = 0; done = false; wait = 0; visited = new Set([0]); gTrail.replaceChildren(); buildDial(); markEls[0].classList.add('on'); place();
+      numbers(); refreshButtons(); paintCenter(); paintReadout(); ctx.restarted();
+    }
+    function doHop() {
+      const from = pos; pos = (pos + step) % N; hop++; visited.add(pos); markEls[pos].classList.add('on');
+      const [x1, y1] = xy(from), [x2, y2] = xy(pos); S('line', { x1, y1, x2, y2, class: 'trail' }, gTrail); place();
+      if (pos === 0) { done = true; results[N][step] = visited.size === N ? 'all' : 'stuck'; refreshButtons(); paintCenter(); paintReadout(); ctx.finished(); ctx.announce(visited.size === N ? `Step ${step} visited every mark.` : `Step ${step} got stuck after ${visited.size} marks.`); }
+    }
+    buildSteps(); reset();
+    return {
+      tick(dt) {
+        if (done) { if (queue.length && !touched) { wait += dt; if (wait > 1.4) { step = queue.shift(); reset(); } } return; }
+        const loop = N / gcd(N, step); acc += dt * (N === 12 ? 2.2 : loop / clamp(loop / 120, 2.2, 3.2));
+        while (acc >= 1 && !done) { acc -= 1; doHop(); }
+        paintCenter(); paintReadout();
+      },
+      restart() { touched = true; queue = []; reset(); },
+      finishNow() { touched = true; queue = []; while (!done) doHop(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 2. why 19 ---------- */
+TABS.push({
+  id: 'board', label: 'Why 19', title: 'Why 19? Its board makes the 360 loop',
+  plain: ['A 19 by 19 board has 361 points: one in the middle and 360 around it. Do sums that wrap around at 19, and the 360 points join into one single loop, like a 360 dial.',
+          'Watch a marker visit them all. Each quarter of the trip is the one before it, turned a quarter turn.'],
+  hint: 'Click any point on the board.',
+  numbers: `<p><span class="m">19 × 19 − 1 = 360</span>, and 19 is the only number that does this.</p><p>A point (a, b) means <span class="m">a + b·i</span>, counted mod 19. Each hop multiplies by <span class="m">1 + 3i</span>. After 360 hops it is back at (1, 0).</p><p>Hop 90 equals multiplying by <span class="m">i</span>: a quarter turn.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A 19 by 19 board of points. A marker visits every point except the middle one in a single loop of 360 hops. The four quarters of the trip are coloured differently.');
+    const cx = 600, cy = 350, s = 34, { seq } = boardLoop();
+    const idx = new Map(seq.map((p, k) => [p[0] + ',' + p[1], k]));
+    const X = a => cx + a * s, Y = b => cy - b * s;
+    const gPts = S('g', {}, svg), gSel = S('g', {}, svg), gTail = S('g', {}, svg), gTop = S('g', {}, svg), gTxt = S('g', {}, svg);
+    const ptEl = new Map();
+    for (let a = -9; a <= 9; a++) for (let b = -9; b <= 9; b++) { const mid = a === 0 && b === 0; ptEl.set(a + ',' + b, S('circle', { cx: X(a), cy: Y(b), r: mid ? 9 : 7.5, class: mid ? 'bpt centre' : 'bpt' }, gPts)); }
+    const comet = S('circle', { r: 13, class: 'comet', opacity: 0 }, gTop);
+    S('circle', { cx: X(1), cy: Y(0), r: 13, class: 'ring' }, gTop);
+    T(gTxt, 40, 150, 'Colour = quarter', 't2 md');
+    [['q0', 'hops 1 to 90'], ['q1', 'hops 91 to 180'], ['q2', 'hops 181 to 270'], ['q3', 'hops 271 to 360']].forEach(([q, txt], i) => { S('circle', { cx: 52, cy: 200 + i * 40, r: 10, class: 'qdot ' + q }, gTxt); T(gTxt, 74, 208 + i * 40, txt, 'md'); });
+    ['Each quarter is', 'the one before,', 'turned a quarter', 'turn.'].forEach((l, i) => T(gTxt, 40, 410 + i * 32, l, 't2 md'));
+    const hopTxt = T(gTxt, 1015, 262, '0', 'big mid'), ofTxt = T(gTxt, 1015, 304, 'of 360 hops', 't2 md mid');
+    S('circle', { cx: 950, cy: 386, r: 13, class: 'ring' }, gTxt); T(gTxt, 976, 394, 'start', 'md');
+    S('circle', { cx: 950, cy: 436, r: 9, class: 'bpt centre' }, gTxt); T(gTxt, 976, 444, 'left out', 'md');
+    let hop = 0, acc = 0, done = false, sel = null, autoSel = false;
+    const autoK = seq.findIndex(p => Math.hypot(p[0], p[1]) >= 8);   // a point near the edge, so its four twins spread out
+    function lightTo(n) { while (hop < n) { const p = seq[hop]; ptEl.get(p[0] + ',' + p[1]).setAttribute('class', 'bpt on q' + Math.floor(hop / 90)); hop++; } }
+    function drawTail() {
+      const c = seq[hop - 1]; if (c) { comet.setAttribute('cx', X(c[0])); comet.setAttribute('cy', Y(c[1])); comet.setAttribute('opacity', 1); } else comet.setAttribute('opacity', 0);
+      hopTxt.textContent = hop;
+    }
+    function drawSel() {
+      gSel.replaceChildren(); if (sel == null) return;
+      const ks = [0, 1, 2, 3].map(j => (sel + 90 * j) % 360);
+      ks.forEach(k => { const p = seq[k]; S('line', { x1: cx, y1: cy, x2: X(p[0]), y2: Y(p[1]), class: 'seldash' }, gSel); });
+      ks.forEach(k => { const p = seq[k]; S('circle', { cx: X(p[0]), cy: Y(p[1]), r: 15, class: 'selring' }, gSel); T(gSel, X(p[0]) + 17, Y(p[1]) - 15, String(k + 1), 'md bold mono halo'); });
+    }
+    function paintReadout() {
+      let html;
+      if (sel != null && !autoSel) {
+        const p = seq[sel], tw = [1, 2, 3].map(j => ((sel + 90 * j) % 360) + 1);
+        html = `<b>Point (${minus(p[0])}, ${minus(p[1])})</b> is hop <b>${sel + 1}</b>.<br>Its quarter-turn twins are hops <b>${tw.join(', ')}</b>, each 90 hops apart.` + (sel >= hop ? ' <span class="t3">Not reached yet.</span>' : '');
+      } else if (!done) html = `<b>Hop ${hop} of 360</b><br>Each hop multiplies the point by 1 + 3i, counting with wrap-around at 19.`;
+      else html = chip('good', 'one loop') + `All 360 points were visited once. The middle is left out: <span class="mono">361 − 1 = 360</span>. One more hop returns to the start.` + (autoSel ? `<br>The rings show hop ${sel + 1} and its three twins. Click any point to see another.` : '');
+      ctx.setReadout(html);
+    }
+    function finish() { done = true; drawTail(); if (sel == null) { sel = autoK; autoSel = true; drawSel(); } paintReadout(); ctx.finished(); ctx.announce('All 360 points visited in one loop.'); }
+    svg.addEventListener('click', e => {
+      const q = svgPoint(svg, e), a = Math.round((q.x - cx) / s), b = Math.round((cy - q.y) / s);
+      if (Math.abs(a) > 9 || Math.abs(b) > 9 || Math.hypot(q.x - X(a), q.y - Y(b)) > 17) return;
+      if (a === 0 && b === 0) { sel = null; autoSel = false; drawSel(); ctx.setReadout('<b>The middle point</b> is never visited. It is the zero of this number system, and there is nothing to multiply it into.'); return; }
+      const k = idx.get(a + ',' + b); autoSel = false; sel = sel === k ? null : k; drawSel(); paintReadout();
+    });
+    const jump = pill('Jump to the end', () => api.finishNow(), { class: 'pill text' });
+    ctx.tryEl.append(lab('Try it'), say('Click any point to see its place in the loop and its three quarter-turn twins.'), H('div', { class: 'btnrow' }, jump));
+    drawTail(); paintReadout(); ctx.restarted();
+    const api = {
+      tick(dt) { if (done) return; acc += dt * 90; const n = Math.min(360, hop + Math.floor(acc)); acc -= Math.floor(acc); lightTo(n); drawTail(); if (hop >= 360) finish(); else paintReadout(); },
+      restart() { hop = 0; acc = 0; done = false; sel = null; autoSel = false; ptEl.forEach((el, k) => el.setAttribute('class', k === '0,0' ? 'bpt centre' : 'bpt')); drawSel(); drawTail(); paintReadout(); ctx.restarted(); },
+      finishNow() { lightTo(360); finish(); },
+      destroy() {},
+    };
+    return api;
+  },
+});
+
+/* ---------- 3. two grids ---------- */
+TABS.push({
+  id: 'grids', label: 'Grids', title: 'Two grids, and which primes fit',
+  plain: ['Draw a circle on a grid and see if it passes exactly through grid points. Whether a prime number does that on the square grid, the honeycomb grid, both or neither depends only on its leftover after dividing by 12.',
+          'Pick a prime and watch the circle grow to its size.'],
+  hint: 'Bright dots sit exactly on the circle.',
+  numbers: `<p>The square grid turns in fours and the honeycomb in sixes. <span class="m">12</span> is the smallest number that both 4 and 6 divide.</p><p>Square grid: <span class="m">x² + y² = p</span> has 8 points when p leaves 1 after dividing by 4, and none when it leaves 3.</p><p>Honeycomb: <span class="m">x² − xy + y² = p</span> has 12 points when p leaves 1 after dividing by 3, and none when it leaves 2.</p><p>7 and 19 both leave 7 after dividing by 12.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A square grid and a honeycomb grid side by side. A circle grows to the size of the chosen prime and the grid points it passes exactly through light up.');
+    const u = 32, cy = 295, cxL = 300, cxR = 900, LIMIT = 52, dur = 2.4;
+    const sq = latticePoints(sqNorm, LIMIT), hx = latticePoints(hexNorm, LIMIT);
+    const gL = S('g', {}, svg), gR = S('g', {}, svg), gT = S('g', {}, svg);
+    const sweepL = S('circle', { cx: cxL, cy, r: 0, class: 'sweep' }, gL), sweepR = S('circle', { cx: cxR, cy, r: 0, class: 'sweep' }, gR);
+    const all = [];
+    sq.forEach(q => all.push({ n: q.n, st: '', el: S('circle', { cx: cxL + q.x * u, cy: cy - q.y * u, r: 4.4, class: 'lp' }, gL) }));
+    hx.forEach(q => all.push({ n: q.n, st: '', el: S('circle', { cx: cxR + (q.x - q.y / 2) * u, cy: cy - (q.y * Math.sqrt(3) / 2) * u, r: 4.4, class: 'lp' }, gR) }));
+    T(gT, cxL, 44, 'Square grid', 'lg mid bold'); T(gT, cxR, 44, 'Honeycomb grid', 'lg mid bold');
+    const resL = T(gT, cxL, 578, '', 'xl mid mono'), resR = T(gT, cxR, 578, '', 'xl mid mono');
+    T(gT, 600, 610, 'Leftover after dividing the prime by 12', 't2 sm mid');
+    const cls = [[1, 'both'], [5, 'square only'], [7, 'honeycomb only'], [11, 'neither']];
+    const fps = cls.map(([r, txt], i) => { const x = 107 + i * 250; const rc = S('rect', { x, y: 620, width: 236, height: 46, rx: 10, class: 'fp' }, gT); T(gT, x + 118, 651, `${r}: ${txt}`, 'md mid'); return [r, rc]; });
+    let p = 19, t = 0, done = false, cs = 0, ch = 0;
+    const primes = [5, 7, 11, 13, 17, 19, 31, 37, 43];
+    const row = H('div', { class: 'btnrow' });
+    primes.forEach(v => row.appendChild(pill(String(v), () => setPrime(v), { 'data-p': v, 'aria-pressed': 'false' })));
+    ctx.tryEl.append(lab('Pick a prime'), row, say('The circle grows to radius √p.'));
+    function setState(pt, st) { if (pt.st === st) return; pt.st = st; pt.el.setAttribute('class', st ? 'lp ' + st : 'lp'); pt.el.setAttribute('r', st === 'hit' ? 8.5 : 4.4); }
+    function paint(f) {
+      const rad = Math.sqrt(p) * f; sweepL.setAttribute('r', rad * u); sweepR.setAttribute('r', rad * u);
+      all.forEach(pt => setState(pt, pt.n <= rad * rad + 1e-9 ? (f >= 1 && pt.n === p ? 'hit' : 'in') : ''));
+    }
+    function finish() {
+      done = true;
+      resL.textContent = cs ? cs + ' points' : 'none'; resL.setAttribute('class', 'xl mid mono ' + (cs ? 'ok' : 'wn'));
+      resR.textContent = ch ? ch + ' points' : 'none'; resR.setAttribute('class', 'xl mid mono ' + (ch ? 'ok' : 'wn'));
+      const kind = cs && ch ? 'both grids' : cs ? 'square grid only' : ch ? 'honeycomb only' : 'neither grid';
+      ctx.setReadout(chip(cs || ch ? 'good' : 'warn', kind) + `<b>${p}</b> leaves <b>${p % 12}</b> after dividing by 12.<br>Square grid: <b>${cs ? cs + ' points' : 'no points'}</b> on the circle. Honeycomb: <b>${ch ? ch + ' points' : 'no points'}</b>.`);
+      fps.forEach(([r, rc]) => rc.setAttribute('class', 'fp' + (r === p % 12 ? ' on' : '')));
+      ctx.finished(); ctx.announce(`${p}: ${kind}.`);
+    }
+    function setPrime(v) {
+      p = v; t = 0; done = false; cs = sq.filter(q => q.n === p).length; ch = hx.filter(q => q.n === p).length;
+      resL.textContent = ''; resR.textContent = ''; fps.forEach(([, rc]) => rc.setAttribute('class', 'fp'));
+      [...row.children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.p === p)));
+      paint(0); ctx.setReadout(`<b>${p}</b>: the circle is growing to radius √${p}…`); ctx.restarted();
+    }
+    setPrime(19);
+    return {
+      tick(dt) { if (done) return; t += dt; const f = clamp(t / dur, 0, 1); paint(f); if (f >= 1) finish(); },
+      restart() { setPrime(p); },
+      finishNow() { t = dur; paint(1); finish(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 4. wheels ---------- */
+TABS.push({
+  id: 'wheels', label: 'Wheels', title: '360 is three small wheels',
+  plain: ['The 360 dial works like three small wheels turning together, with 8, 9 and 5 beads. Every number from 0 to 359 is just three small readings.',
+          'Add or multiply on each wheel by itself and the big answer comes out right. Nothing carries from one wheel to the next.'],
+  hint: 'After the count, try your own numbers.',
+  numbers: `<p><span class="m">8 × 9 × 5 = 360</span>, and no two of them share a factor, so three wheels are enough.</p><p>19 reads <span class="m">(3, 1, 4)</span>. 19 × 19 reads <span class="m">(1, 1, 1)</span>, the reading of 1. 144000 splits the same way: 128, 9, 125.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'Three small wheels with 8, 9 and 5 beads. First a count from 0 to 359 turns all three; then two chosen numbers are added or multiplied one wheel at a time.');
+    const cy = 295, Rw = 125, W = [{ m: 8, cx: 200, cls: 'wc1' }, { m: 9, cx: 600, cls: 'wc2' }, { m: 5, cx: 1000, cls: 'wc3' }];
+    const gW = S('g', {}, svg), gTop = S('g', {}, svg);
+    W.forEach(w => {
+      S('circle', { cx: w.cx, cy, r: Rw, class: 'wring' }, gW); w.beads = [];
+      for (let j = 0; j < w.m; j++) { const [x, y] = polar(w.cx, cy, Rw, -90 + j * 360 / w.m); w.beads.push(S('circle', { cx: x, cy: y, r: 14, class: 'bead' }, gW)); }
+      w.hand = S('line', { x1: w.cx, y1: cy, x2: w.cx, y2: cy - Rw, class: 'hand ' + w.cls }, gW);
+      T(gTop, w.cx, 112, `${w.m} beads`, 'lg mid bold');
+      w.cbig = T(gTop, w.cx, cy + 20, '0', 'xl mid mono');
+      w.la = T(gTop, w.cx, cy - 20, '', 'md mid mono'); w.lb = T(gTop, w.cx, cy + 10, '', 'md mid mono'); w.lc = T(gTop, w.cx, cy + 42, '', 'md mid mono bold');
+      w.ta = T(gTop, 0, 0, 'a', 'md bold mid halo', { opacity: 0 }); w.tb = T(gTop, 0, 0, 'b', 'md bold mid halo', { opacity: 0 });
+    });
+    const topT = T(gTop, 600, 58, '', 'lg mid mono bold');
+    const barY = 604; S('line', { x1: 100, y1: barY, x2: 1100, y2: barY, class: 'axis' }, gTop);
+    for (let k = 0; k <= 360; k += 30) { const x = 100 + k / 360 * 1000; S('line', { x1: x, y1: barY - 6, x2: x, y2: barY + 6, class: 'axis' }, gTop); }
+    [0, 90, 180, 270, 360].forEach(k => T(gTop, 100 + k / 360 * 1000, barY + 36, String(k), 't2 md mid mono'));
+    T(gTop, 600, barY + 70, 'the big dial, 0 to 359', 't3 sm mid');
+    const mark = S('path', { d: 'M0,0 L-11,-18 L11,-18 z', class: 'bar3' }, gTop);
+    const setMark = n => mark.setAttribute('transform', `translate(${100 + n / 360 * 1000},${barY - 8})`);
+    let mode = 'count', n = 0, acc = 0, op = '×';
+    const ra = H('input', { type: 'range', min: 0, max: 359, value: 19, id: 'wa' }), rb = H('input', { type: 'range', min: 0, max: 359, value: 19, id: 'wb' });
+    const oa = H('output', { text: '19', for: 'wa' }), ob = H('output', { text: '19', for: 'wb' });
+    const opSeg = segmented([['+', 'add  +'], ['×', 'multiply  ×']], '×', v => { op = v; goTry(); });
+    ctx.tryEl.append(lab('Try it'), H('div', { class: 'row2' }, [H('label', { for: 'wa', text: 'first' }), ra, oa, H('label', { for: 'wb', text: 'second' }), rb, ob]), opSeg.el);
+    ra.oninput = () => { oa.textContent = ra.value; goTry(); }; rb.oninput = () => { ob.textContent = rb.value; goTry(); };
+    function beadAngle(w, j) { return -90 + j * 360 / w.m; }
+    function paintCount() {
+      const r = reading(n); topT.textContent = `count: ${n}`;
+      W.forEach((w, i) => { const [x, y] = polar(w.cx, cy, Rw, beadAngle(w, r[i])); w.hand.setAttribute('x2', x); w.hand.setAttribute('y2', y); w.hand.setAttribute('opacity', 1);
+        w.beads.forEach((b, j) => b.setAttribute('class', 'bead' + (j === r[i] ? ' ' + w.cls : ''))); w.cbig.textContent = r[i]; w.cbig.setAttribute('opacity', 1); w.la.textContent = w.lb.textContent = w.lc.textContent = ''; w.ta.setAttribute('opacity', 0); w.tb.setAttribute('opacity', 0); });
+      setMark(n);
+      ctx.setReadout(`<b>Counting: ${n}</b><br><span class="mono">wheel readings (${r.join(', ')})</span><br>After 360 counts all three wheels are back at 0 together.`);
+    }
+    function paintTry() {
+      const A = +ra.value, B = +rb.value, ea = reading(A), eb = reading(B);
+      const rc = ea.map((v, i) => (op === '×' ? v * eb[i] : v + eb[i]) % W[i].m), raw = op === '×' ? A * B : A + B, res = fromReading(rc), ok = res === raw % 360;
+      topT.textContent = `${A} ${op} ${B} = ${fmt(raw)}` + (raw >= 360 ? `  →  ${res}` : '');
+      W.forEach((w, i) => {
+        w.hand.setAttribute('opacity', 0); w.cbig.setAttribute('opacity', 0);
+        w.beads.forEach((b, j) => b.setAttribute('class', 'bead' + (j === rc[i] ? ' ' + w.cls : '')));
+        w.la.textContent = `a ${ea[i]}`; w.lb.textContent = `b ${eb[i]}`; w.lc.textContent = `= ${rc[i]}`;
+        [[w.ta, ea[i], -13], [w.tb, eb[i], 13]].forEach(([t, j, off]) => { const [x, y] = polar(w.cx, cy, Rw + 40, beadAngle(w, j) + off); t.setAttribute('x', x); t.setAttribute('y', y + 8); t.setAttribute('opacity', 1); });
+      });
+      setMark(res);
+      ctx.setReadout(`<table><tr><th></th><th>8</th><th>9</th><th>5</th><th>360</th></tr><tr><td>a = ${A}</td><td>${ea[0]}</td><td>${ea[1]}</td><td>${ea[2]}</td><td>${A}</td></tr><tr><td>b = ${B}</td><td>${eb[0]}</td><td>${eb[1]}</td><td>${eb[2]}</td><td>${B}</td></tr><tr><td><b>answer</b></td><td><b>${rc[0]}</b></td><td><b>${rc[1]}</b></td><td><b>${rc[2]}</b></td><td><b>${res}</b></td></tr></table>` +
+        (ok ? chip('good', 'match') + 'Same as the big dial.' : chip('bad', 'mismatch')));
+    }
+    function goTry() { mode = 'try'; paintTry(); ctx.finished(); }
+    paintCount(); ctx.restarted();
+    return {
+      tick(dt) { if (mode !== 'count') return; acc += dt * 60; const k = Math.floor(acc); if (k) { acc -= k; n = Math.min(359, n + k); paintCount(); if (n >= 359) { goTry(); ctx.announce('Try your own numbers on the wheels.'); } } },
+      restart() { mode = 'count'; n = 0; acc = 0; paintCount(); ctx.restarted(); },
+      finishNow() { goTry(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 5. base 60 ---------- */
+TABS.push({
+  id: 'base60', label: 'Base 60', title: 'Base 60 splits neatly',
+  plain: ['Sixty splits evenly by 2, 3, 4, 5, 6, 10, 12, 15, 20 and 30. In base 60 a fraction stops when the bottom number uses only 2s, 3s and 5s.',
+          'Pick a number n and watch 1/n worked out one place at a time. A leftover of 0 means it stops. A leftover that comes back means it repeats forever.'],
+  hint: 'Yellow boxes repeat forever.',
+  numbers: `<p><span class="m">60 = 2 × 2 × 3 × 5</span>. 1/n stops in a base exactly when every prime factor of n also divides the base.</p><p>Base 10 has only 2 and 5, so 1/3 never stops. Base 60 has 2, 3 and 5, so <span class="m">1/3 = 0;20</span>, which is 20 sixtieths. 1/7 needs a 7, so it repeats: <span class="m">0;8,34,17,8,34,17…</span></p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'Two rows of boxes show one divided by n worked out place by place, in base 10 and in base 60. Boxes turn yellow when the digits start repeating.');
+    const g = S('g', {}, svg);
+    const rowTop = [135, 390], bh = 84, bw = 62, gap = 6, x0 = 300, maxD = 12, per = 0.32;
+    let n = 3, t = 0, done = false, rows = [];
+    function extend(ex) { const d = ex.digits.slice(), r = ex.rems.slice(); if (!ex.ends) { const cy = ex.digits.slice(ex.cycleStart), cr = ex.rems.slice(ex.cycleStart); let i = 0; while (d.length < maxD) { d.push(cy[i % cy.length]); r.push(cr[i % cr.length]); i++; } } return { d, r }; }
+    function build() {
+      g.replaceChildren();
+      T(g, 40, 70, `1 ÷ ${n}`, 'xl bold');
+      T(g, 40, 632, 'Each box is one place. The small number under a box is what is left over.', 't2 md');
+      rows = [10, 60].map((b, ri) => {
+        const ex = expand(n, b, 60), { d, r } = extend(ex), y = rowTop[ri], boxes = [];
+        T(g, 40, y + 40, 'Base ' + b, 'lg bold'); T(g, 40, y + 72, b === 10 ? 'tenths, hundredths…' : 'sixtieths, 3600ths…', 't3 sm');
+        T(g, x0 - 8, y + 60, '0' + (b === 10 ? '.' : ';'), 'xl mono end');
+        d.forEach((dg, i) => {
+          const x = x0 + i * (bw + gap), cls = 'dbox' + (!ex.ends && i >= ex.cycleStart ? ' rep' : '') + (ex.ends && i === d.length - 1 ? ' end' : '');
+          const bg = S('g', { opacity: 0 }, g);
+          S('rect', { x, y, width: bw, height: bh, rx: 8, class: cls }, bg);
+          T(bg, x + bw / 2, y + 54, String(dg), 'lg mid mono bold'); T(bg, x + bw / 2, y + bh + 24, 'r ' + r[i], 't3 sm mid mono');
+          boxes.push(bg);
+        });
+        if (!ex.ends) { const dots = T(g, x0 + d.length * (bw + gap) + 2, y + 60, '…', 'xl t2', { opacity: 0 }); boxes.dots = dots; }
+        const cyc = ex.digits.slice(ex.cycleStart).join(b === 60 ? ', ' : '');
+        const msg = ex.ends ? `stops after ${ex.digits.length} place${ex.digits.length > 1 ? 's' : ''}` : `repeats forever: ${cyc}`;
+        const v = T(g, x0, y + bh + 62, msg, 'md bold ' + (ex.ends ? 'ok' : 'wn'), { opacity: 0 });
+        return { ex, b, d, boxes, v };
+      });
+    }
+    function paint(k) { rows.forEach(rw => { rw.boxes.forEach((bg, i) => bg.setAttribute('opacity', i < k ? 1 : 0)); if (rw.boxes.dots) rw.boxes.dots.setAttribute('opacity', k >= rw.d.length ? 1 : 0); rw.v.setAttribute('opacity', k >= rw.d.length ? 1 : 0); }); }
+    function fin() {
+      done = true; const [a, b] = rows.map(r => r.ex);
+      const w = s => { const x = s.ex; const dd = x.digits; return x.ends ? `stops: <span class="mono">0${s.b === 10 ? '.' + dd.join('') : ';' + dd.join(',')}</span>` : `repeats: <span class="mono">(${dd.slice(x.cycleStart).join(s.b === 10 ? '' : ', ')})</span>`; };
+      const kind = b.ends && !a.ends ? chip('good', 'base 60 wins') : a.ends && b.ends ? chip('info', 'both stop') : !a.ends && !b.ends ? chip('warn', 'neither stops') : chip('info', 'mixed');
+      ctx.setReadout(kind + `<b>1/${n}</b><br>Base 10: ${w(rows[0])}<br>Base 60: ${w(rows[1])}`); ctx.finished(); ctx.announce(`One over ${n}: base 60 ${b.ends ? 'stops' : 'repeats'}.`);
+    }
+    const row = H('div', { class: 'btnrow' });
+    range(2, 16).forEach(v => row.appendChild(pill(String(v), () => setN(v), { 'data-n': v, 'aria-pressed': 'false' })));
+    ctx.tryEl.append(lab('Pick n'), row, say('Compare the two rows: same fraction, two bases.'));
+    function setN(v) { n = v; t = 0; done = false; build(); paint(0); [...row.children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === n))); ctx.setReadout(`<b>1/${n}</b> is being worked out…`); ctx.restarted(); }
+    setN(3);
+    return {
+      tick(dt) { if (done) return; t += dt; const k = Math.floor(t / per) + 1, mx = Math.max(...rows.map(r => r.d.length)); paint(Math.min(k, mx)); if (k >= mx) fin(); },
+      restart() { setN(n); },
+      finishNow() { paint(maxD); fin(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 6. the big clock ---------- */
+TABS.push({
+  id: 'big', label: 'Big clock', title: 'The big clock and 35 special primes',
+  plain: ['144000 is built only from 2s, 3s and 5s. A prime p is special when a dial with p − 1 marks fits into 144000 exactly. There are exactly 35, from 7 up to 24001.',
+          'Pick a prime. Lay 144,000 beads in rows of p − 1 and see whether the last row comes out full.'],
+  hint: 'Green means the last row is full.',
+  numbers: `<p><span class="m">144000 = 2⁷ × 3² × 5³ = 128 × 9 × 125</span></p><p>p is special when p is prime, p is at least 7, and <span class="m">p − 1</span> divides 144000. (2, 3 and 5 are the building blocks of 144000, so the rule starts at 7.)</p><p>19: <span class="m">144000 ÷ 18 = 8000</span> exactly. 23: <span class="m">144000 ÷ 22 = 6545</span> with 10 left over.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'Beads laid out in rows of p minus 1, until 144,000 are placed. The last row is either full, for a special prime, or only partly filled.');
+    const g = S('g', {}, svg), Q = qualifyingPrimes();
+    let p = 19, t = 0, done = false, slots = [], info = null, counterEl = null, verdictEls = null;
+    const X0 = 175, W = 930, Y0 = 150, DY = 78, BH = 46;
+    function build() {
+      g.replaceChildren(); const m = p - 1, q = Math.floor(144000 / m), r = 144000 % m, R = q + (r ? 1 : 0);
+      info = { m, q, r, R };
+      T(g, 40, 64, `144,000 beads in rows of ${fmt(m)}`, 'lg bold'); T(g, 40, 102, 'Does the last row come out full?', 't2 md');
+      counterEl = T(g, 1160, 64, '0 placed', 'lg mono end');
+      const list = R <= 5 ? range(1, R).map(i => ({ i })) : [{ i: 1 }, { i: 2 }, { gap: R - 4 }, { i: R - 1 }, { i: R }];
+      let acc = 0, tt = 0.25; slots = [];
+      list.forEach((s, k) => {
+        const y = Y0 + k * DY, sl = { y, b0: acc };
+        if (s.gap) { sl.gap = s.gap; acc += s.gap * m; sl.dur = 0.6; }
+        else { const partial = s.i === R && r > 0; sl.i = s.i; sl.frac = partial ? r / m : 1; sl.partial = partial; acc += partial ? r : m; sl.dur = 0.75; }
+        sl.b1 = acc; sl.t0 = tt; tt += sl.dur; sl.t1 = tt; slots.push(sl);
+      });
+      info.end = tt + 0.2;
+      slots.forEach(sl => {
+        if (sl.gap) { sl.el = T(g, X0 + W / 2, sl.y + 32, `· · ·   ${fmt(sl.gap)} more full rows   · · ·`, 'md mid t2', { opacity: 0 }); return; }
+        T(g, X0 - 14, sl.y + 32, 'row ' + fmt(sl.i), 'md end t2 mono');
+        S('rect', { x: X0, y: sl.y, width: W, height: BH, rx: 6, class: 'bartrack' }, g);
+        sl.fill = S('rect', { x: X0, y: sl.y, width: 0, height: BH, rx: 6, class: 'bead-row' }, g);
+        if (m <= 100) for (let c = 1; c < m; c++) S('line', { x1: X0 + c * W / m, y1: sl.y, x2: X0 + c * W / m, y2: sl.y + BH, class: 'cell' }, g);
+        if (sl.partial) sl.miss = S('rect', { x: X0 + sl.frac * W, y: sl.y, width: (1 - sl.frac) * W, height: BH, rx: 6, class: 'bead-gap', opacity: 0 }, g);
+      });
+      verdictEls = S('g', { opacity: 0 }, g);
+      const good = r === 0, vy = Y0 + Math.min(R, 5) * DY + 32;
+      if (good) { S('path', { d: `M${X0 + 2},${vy - 10} l12,12 l22,-26`, class: 'axis', style: 'stroke:var(--good);stroke-width:7;stroke-linecap:round;stroke-linejoin:round' }, verdictEls); T(verdictEls, X0 + 56, vy + 6, `Full last row. ${fmt(m)} goes into 144,000 exactly, ${fmt(q)} times.`, 'md bold ok'); }
+      else { S('path', { d: `M${X0 + 4},${vy - 16} l26,26 M${X0 + 30},${vy - 16} l-26,26`, class: 'axis', style: 'stroke:var(--bad);stroke-width:7;stroke-linecap:round' }, verdictEls); T(verdictEls, X0 + 56, vy + 6, `Last row has only ${fmt(r)} of ${fmt(m)} places filled.`, 'md bold no'); }
+      T(verdictEls, X0 + 56, vy + 44, `144,000 ÷ ${fmt(m)} = ${fmt(q)} remainder ${fmt(r)}`, 't2 md mono');
+    }
+    function paint() {
+      let cnt = 0;
+      slots.forEach(sl => {
+        const f = clamp((t - sl.t0) / (sl.t1 - sl.t0), 0, 1);
+        if (sl.gap) sl.el.setAttribute('opacity', f); else sl.fill.setAttribute('width', f * sl.frac * W);
+        if (f >= 1 && sl.miss) sl.miss.setAttribute('opacity', 1);
+        if (f > 0) cnt = sl.b0 + (sl.b1 - sl.b0) * f;
+      });
+      const fin = t >= info.end - 0.2;
+      counterEl.textContent = fmt(fin ? 144000 : cnt) + ' placed'; verdictEls.setAttribute('opacity', fin ? 1 : 0);
+    }
+    function status() {
+      const { m, q, r } = info, ok = isPrime(p) && p >= 7 && r === 0;
+      const kind = !isPrime(p) ? chip('bad', 'not a prime') : p < 7 ? chip('info', 'too small') : ok ? chip('good', 'special prime') : chip('warn', 'not special');
+      const why = !isPrime(p) ? `<b>${fmt(p)}</b> is not a prime, so it can't be special.` : p < 7 ? `2, 3 and 5 are already the building blocks of 144000, so the rule starts at 7.` : ok ? `<b>${fmt(p)}</b>: a dial of ${fmt(m)} marks fits 144,000 exactly, ${fmt(q)} times.` : `<b>${fmt(p)}</b>: a dial of ${fmt(m)} marks does not fit. ${fmt(r)} marks are left over.`;
+      return kind + why;
+    }
+    function fin() { done = true; ctx.setReadout(status()); ctx.finished(); ctx.announce(status().replace(/<[^>]+>/g, '')); }
+    const inp = H('input', { type: 'number', id: 'pin', min: 3, max: 999999, step: 1, value: 19, 'aria-label': 'Any number' });
+    const go = pill('Check', () => setP(+inp.value), { class: 'pill text' }); inp.onkeydown = e => { if (e.key === 'Enter') setP(+inp.value); };
+    const cmp = H('div', { class: 'btnrow' }); [23, 29, 43, 47].forEach(v => cmp.appendChild(pill(String(v), () => setP(v))));
+    ctx.tryEl.append(lab('Any number'), H('div', { class: 'btnrow' }, [inp, go]), lab('Not special, for comparison'), cmp);
+    const chips = Q.map(v => { const b = pill(String(v), () => setP(v), { class: 'pill sp', 'data-p': v, 'aria-pressed': 'false' }); return b; });
+    ctx.strip.append(H('span', { class: 'lbl', text: 'The 35 special primes:' }), ...chips);
+    function setP(v) {
+      if (!Number.isFinite(v) || v < 3 || v > 999999) { ctx.setReadout('Type a whole number from 3 to 999,999.'); return; }
+      p = Math.round(v); inp.value = p; t = 0; done = false; build(); paint();
+      chips.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.p === p))); ctx.setReadout(`<b>${fmt(p)}</b>: laying out the rows…`); ctx.restarted();
+    }
+    setP(19);
+    return {
+      tick(dt) { if (done) return; t += dt; paint(); if (t >= info.end) fin(); },
+      restart() { setP(p); },
+      finishNow() { t = info.end; paint(); fin(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 7. the sign problem ---------- */
+TABS.push({
+  id: 'signs', label: 'Signs', title: 'The sign has to travel with the number',
+  plain: ['Two arrows, both length 1. Point them the same way and the sum has length 2. Point them opposite ways and it has length 0. The lengths stayed the same. Only the directions changed.',
+          'So when adding, you cannot drop the sign and add it back later. When multiplying you can, because sizes and signs each multiply on their own.'],
+  hint: 'The angle keeps sweeping until you take over.',
+  numbers: `<p>With both lengths 1: <span class="m">|u + v| = 2 × cos(θ ÷ 2)</span>.</p><p>θ = 0°: 2.  θ = 90°: 1.41.  θ = 180°: 0.</p><p>For multiplying: <span class="m">|a × b| = |a| × |b|</span> and the sign of a × b is the sign of a times the sign of b. So 3 × (−4) has size 12 and sign −.</p><p>Flipping every input at once, with a mirror, is fine. Deciding one sign later is not.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'Two arrows of length 1 from a centre point. As the angle between them changes, the length of their sum changes from 2 down to 0, while both lengths stay 1.');
+    arrowDefs(svg);
+    const O = [330, 385], U = 150, g = S('g', {}, svg);
+    S('line', { x1: 50, y1: O[1], x2: 640, y2: O[1], class: 'gline' }, g); S('line', { x1: O[0], y1: 90, x2: O[0], y2: 690, class: 'gline' }, g);
+    S('circle', { cx: O[0], cy: O[1], r: U, class: 'guide' }, g);
+    const g1 = S('line', { class: 'guide' }, g), g2 = S('line', { class: 'guide' }, g);
+    const arc = S('path', { class: 'gline', style: 'stroke:var(--ink2);stroke-width:2.5' }, g), thT = T(g, 60, 128, '', 'lg mono t2');
+    const a1 = S('line', { x1: O[0], y1: O[1], x2: O[0] + U, y2: O[1], class: 'a1' }, g), a2 = S('line', { class: 'a2' }, g), a3 = S('line', { class: 'a3' }, g);
+    S('circle', { cx: O[0], cy: O[1], r: 7, style: 'fill:var(--ink)' }, g); T(g, O[0] - 12, O[1] + 30, 'centre', 't3 sm end');
+    const tu = T(g, O[0] + U + 14, O[1] + 34, 'u', 'md bold halo'), tv = T(g, 0, 0, 'v', 'md bold halo'), ts = T(g, 0, 0, 'u + v', 'md bold halo');
+    T(g, 720, 130, 'Adding', 'lg bold'); T(g, 720, 164, 'Sizes stay 1 and 1. The answer moves.', 't2 sm');
+    const bx = 905, bw = 275, bars = [['size of u', 'bar1'], ['size of v', 'bar2'], ['size of u + v', 'bar3']].map(([txt, cls], i) => { const y = 200 + i * 56; T(g, 720, y + 24, txt, 'md'); S('rect', { x: bx, y, width: bw, height: 30, rx: 5, class: 'bartrack' }, g); return S('rect', { x: bx, y, width: 0, height: 30, rx: 5, class: cls }, g); });
+    [0, 1, 2].forEach(v => T(g, bx + v * bw / 2, 388, String(v), 't2 sm mid mono'));
+    T(g, 720, 470, 'Multiplying', 'lg bold');
+    [['3 × (−4)', 'mono'], ['sizes: 3 × 4 = 12', ''], ['signs: (+) × (−) = −', ''], ['answer: −12', 'bold']].forEach(([s, c], i) => T(g, 720, 512 + i * 36, s, 'md ' + c));
+    T(g, 720, 668, 'Sizes and signs each work on their own.', 't2 sm');
+    const ang = H('input', { type: 'range', min: 0, max: 180, step: 1, value: 0, id: 'ang' }), out = H('output', { for: 'ang', text: '0°' });
+    const presets = H('div', { class: 'btnrow' }, [['same way', 0], ['right angle', 90], ['opposite', 180]].map(([l, v]) => pill(l, () => setTheta(v, true), { class: 'pill text' })));
+    ctx.tryEl.append(lab('Turn the second arrow'), H('div', { class: 'row2', style: 'grid-template-columns:1fr auto' }, [ang, out]), presets);
+    let theta = 0, phase = 0, manual = false;
+    function paint() {
+      const r = theta * Math.PI / 180, vx = O[0] + U * Math.cos(r), vy = O[1] - U * Math.sin(r), sx = O[0] + U * (1 + Math.cos(r)), sy = O[1] - U * Math.sin(r), len = 2 * Math.cos(r / 2);
+      a2.setAttribute('x1', O[0]); a2.setAttribute('y1', O[1]); a2.setAttribute('x2', vx); a2.setAttribute('y2', vy);
+      a3.setAttribute('x1', O[0]); a3.setAttribute('y1', O[1]); a3.setAttribute('x2', sx); a3.setAttribute('y2', sy); a3.setAttribute('opacity', len < 0.04 ? 0 : 1);
+      g1.setAttribute('x1', O[0] + U); g1.setAttribute('y1', O[1]); g1.setAttribute('x2', sx); g1.setAttribute('y2', sy);
+      g2.setAttribute('x1', vx); g2.setAttribute('y1', vy); g2.setAttribute('x2', sx); g2.setAttribute('y2', sy);
+      const ax = O[0] + 44, ay = O[1], bx2 = O[0] + 44 * Math.cos(r), by2 = O[1] - 44 * Math.sin(r);
+      arc.setAttribute('d', theta < 0.5 ? '' : `M${ax},${ay} A44,44 0 0 0 ${bx2},${by2}`);
+      thT.textContent = 'angle ' + Math.round(theta) + '°';
+      tv.setAttribute('x', vx + (Math.cos(r) >= 0 ? 12 : -30)); tv.setAttribute('y', vy - 12); ts.setAttribute('x', sx + 12); ts.setAttribute('y', sy - 14 - (len < 0.04 ? -30 : 0));
+      ts.setAttribute('opacity', len < 0.04 ? 0 : 1);
+      bars[0].setAttribute('width', bw / 2); bars[1].setAttribute('width', bw / 2); bars[2].setAttribute('width', bw / 2 * len);
+      ang.value = Math.round(theta); out.textContent = Math.round(theta) + '°';
+      const kind = theta < 5 ? chip('good', 'adds up') : theta > 175 ? chip('bad', 'cancels') : chip('warn', 'partly cancels');
+      ctx.setReadout(kind + `Angle between the arrows: <b>${Math.round(theta)}°</b>.<br>Sizes: 1 and 1. The sum has size <b class="mono">${len.toFixed(2)}</b>.`);
+    }
+    function setTheta(v, take) { theta = v; if (take) { manual = true; ctx.finished(); } paint(); }
+    ang.oninput = () => setTheta(+ang.value, true);
+    paint(); ctx.restarted();
+    return {
+      tick(dt) { if (manual) return; phase += dt * 0.7; theta = 90 - 90 * Math.cos(phase); paint(); },
+      restart() { manual = false; phase = Math.acos(clamp((90 - theta) / 90, -1, 1)); ctx.restarted(); },
+      finishNow() { setTheta(180, true); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 8. bits ---------- */
+TABS.push({
+  id: 'bits', label: 'Bits', title: 'Every point from 0s and 1s',
+  plain: ['In a special number system called base −1+i, each place is an arrow. Where a 1 sits already says which way it points. Every point on a flat grid, in all four directions, is exactly one string of 0s and 1s.',
+          'There is no minus sign. One byte, 8 places, points in the 8 compass directions.'],
+  hint: 'Switch places on and off, or click a dot.',
+  numbers: `<p>Place weights, right to left: <span class="m">1, −1+i, −2i, 2+2i, −4, 4−4i, 8i, −8−8i</span>.</p><p>Four places flip the sign (<span class="m">b⁴ = −4</span>). Eight places make a full turn (<span class="m">b⁸ = 16</span>).</p><p>Eight places give 256 different points. A cell of the 60 by 60 clock needs 12 bits, because <span class="m">2048 &lt; 3600 ≤ 4096</span>.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A grid of points reached by bit strings in base minus one plus i, and a compass of the eight place arrows. Switching places on adds their arrows tip to tail to reach a point.');
+    const c = 23, gx0 = 40, gy0 = 28, X = x => gx0 + (x + 14 + 0.5) * c, Y = y => gy0 + (12 - y + 0.5) * c;
+    const gGrid = S('g', {}, svg), gPts = S('g', {}, svg), gSel = S('g', {}, svg), gC = S('g', {}, svg);
+    for (let x = -14; x <= 8; x++) S('line', { x1: X(x), y1: gy0, x2: X(x), y2: gy0 + 28 * c, class: x === 0 ? 'axis' : 'gline' }, gGrid);
+    for (let y = -15; y <= 12; y++) S('line', { x1: gx0, y1: Y(y), x2: gx0 + 23 * c, y2: Y(y), class: y === 0 ? 'axis' : 'gline' }, gGrid);
+    const bitsOf = m => range(0, 7).map(k => (m >> k) & 1), pts = [], byKey = new Map();
+    for (let m = 0; m < 256; m++) { const [x, y] = bitsValue(bitsOf(m)), h = m ? Math.floor(Math.log2(m)) : 0; const el = S('circle', { cx: X(x), cy: Y(y), r: c * 0.34, class: 'bp', opacity: 0 }, gPts); pts.push({ m, x, y, stage: h + 1, el }); byKey.set(x + ',' + y, m); }
+    const CX = 905, CY = 240, uw = 15;
+    [60, 120, 170].forEach(r => S('circle', { cx: CX, cy: CY, r, class: 'gline' }, gC));
+    for (let a = 0; a < 360; a += 45) { const [x, y] = polar(CX, CY, 176, a); S('line', { x1: CX, y1: CY, x2: x, y2: y, class: 'gline' }, gC); }
+    const arrows = range(0, 7).map(k => { const [wx, wy] = B_POW[k], tx = CX + wx * uw, ty = CY - wy * uw; const ln = S('line', { x1: CX, y1: CY, x2: tx, y2: ty, class: 'warr' }, gC); const tg = S('circle', { cx: tx, cy: ty, r: 11, class: 'wtag' }, gC); const tt = T(gC, tx, ty + 5.5, String(k), 'mid mono bold', { style: 'font-size:15px' }); return { ln, tg, tt }; });
+    T(gC, CX, 470, 'Eight places, eight directions', 'md mid bold');
+    ['Each place is an arrow.', 'Switch a place on and its arrow', 'joins the sum. The sum is the point.'].forEach((l, i) => T(gC, CX, 510 + i * 34, l, 't2 md mid'));
+    const fmtW = ([x, y]) => { const re = x ? minus(x) : ''; let im = ''; if (y) { const a = Math.abs(y); im = (y < 0 ? '−' : (x ? '+' : '')) + (a === 1 ? '' : a) + 'i'; } return re + im || '0'; };
+    let mask = 45, stage = 0, done = false, t = 0;
+    const tog = range(0, 7).reverse().map(k => { const b = H('button', { type: 'button', class: 'bit', 'aria-pressed': 'false', 'aria-label': `Place ${k}, weight ${fmtW(B_POW[k])}` }, [H('span', { class: 'pl', text: 'place ' + k }), H('span', { class: 'bv', text: '0' }), H('span', { class: 'bw', text: fmtW(B_POW[k]) })]); b.onclick = () => { finishAnim(); setMask(mask ^ (1 << k)); }; return [k, b]; });
+    tog.forEach(([, b]) => ctx.strip.appendChild(b));
+    ctx.tryEl.append(lab('Try it'), say('Switch places on and off, or click a dot on the grid.'), H('div', { class: 'btnrow' }, pill('Show all 8 places', () => api.finishNow(), { class: 'pill text' })));
+    function setMask(m) {
+      mask = m; gSel.replaceChildren(); let x = 0, y = 0; const path = [[X(0), Y(0)]];
+      tog.forEach(([k, b]) => { const on = (m >> k) & 1; b.setAttribute('aria-pressed', String(!!on)); b.querySelector('.bv').textContent = on; arrows[k].ln.setAttribute('class', 'warr' + (on ? ' on' : '')); arrows[k].tg.setAttribute('class', 'wtag' + (on ? ' on' : '')); });
+      for (let k = 0; k < 8; k++) if ((m >> k) & 1) { x += B_POW[k][0]; y += B_POW[k][1]; path.push([X(x), Y(y)]); }
+      S('polyline', { points: path.map(p => p.join(',')).join(' '), class: 'bpath' }, gSel);
+      path.slice(1, -1).forEach(p => S('circle', { cx: p[0], cy: p[1], r: 5, style: 'fill:var(--c3)' }, gSel));
+      S('circle', { cx: X(x), cy: Y(y), r: c * 0.52, class: 'bsel' }, gSel);
+      const bits = range(0, 7).reverse().map(k => (m >> k) & 1).join(' ');
+      ctx.setReadout(`<b>Bits</b> (place 7 first): <span class="mono">${bits}</span><br><b>Point</b> <span class="mono">(${minus(x)}, ${minus(y)})</span><br><span class="t3">No sign bit: the places carry the direction.</span>`);
+    }
+    function paintStage(s) { pts.forEach(p => { p.el.setAttribute('opacity', p.stage <= s ? 1 : 0); p.el.setAttribute('class', 'bp' + (!done && p.stage === s ? ' new' : '')); }); }
+    function finishAnim() { if (done) return; done = true; stage = 8; paintStage(8); gSel.setAttribute('opacity', 1); ctx.finished(); ctx.announce('All 256 points shown. Each has exactly one bit string.'); }
+    svg.addEventListener('click', e => {
+      const q = svgPoint(svg, e), x = Math.round((q.x - gx0) / c - 14 - 0.5), y = 12 - Math.round((q.y - gy0) / c - 0.5);
+      if (q.x < gx0 || q.x > gx0 + 23 * c || q.y < gy0 || q.y > gy0 + 28 * c) return;
+      finishAnim(); const m = byKey.get(x + ',' + y);
+      if (m === undefined) ctx.setReadout(`<b>(${minus(x)}, ${minus(y)})</b> needs more than 8 places. It has its own string, just a longer one: <span class="mono">${encodeGaussian(x, y).reverse().join(' ') || '0'}</span>`); else setMask(m);
+    });
+    gSel.setAttribute('opacity', 0); setMask(mask); ctx.setReadout('<b>Building up:</b> 1 place gives 2 points, 2 places give 4, and so on…'); paintStage(1); ctx.restarted();
+    const api = {
+      tick(dt) { if (done) return; t += dt; const s = clamp(Math.floor((t - 0.4) / 0.65) + 1, 1, 8); if (s !== stage) { stage = s; paintStage(s); ctx.setReadout(`<b>${s} place${s > 1 ? 's' : ''}</b> give <b>${2 ** s}</b> different points.<br><span class="t3">The bright dots are the new ones.</span>`); } if (t > 0.4 + 8 * 0.65) { finishAnim(); setMask(mask); } },
+      restart() { done = false; t = 0; stage = 1; gSel.setAttribute('opacity', 0); paintStage(1); ctx.setReadout('<b>Building up:</b> 1 place gives 2 points, 2 places give 4, and so on…'); ctx.restarted(); },
+      finishNow() { finishAnim(); setMask(mask); },
+      destroy() {},
+    };
+    return api;
+  },
+});
+
+/* ---------- 9. fix 1: 19 x 19 on two clocks ---------- */
+TABS.push({
+  id: 'fix19', label: 'Fix: 19²', title: 'Fix 1: 19 × 19 on two clocks',
+  plain: ['The thesis said 19 × 19 lands back on 1 on the big 144000 clock. It only does that on the 360 clock, and on clocks that fit inside it.',
+          '361 is one lap plus 1 on the 360 clock. On the 144000 clock it has not even finished one lap.'],
+  hint: 'The same 361 hops, on different clocks.',
+  numbers: `<p><span class="m">361 mod 360 = 1</span> but <span class="m">361 mod 144000 = 361</span>.</p><p>“Lands on 1” works on any clock whose size divides 360: 60, 72, 90, 120, 180, 360 and the others.</p><p>On the 144000 clock only 16 numbers square back to 1. The smallest above 1 is 13249. Of the 35 special primes only 16001 does it.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A dial where a marker makes 361 hops. On a 360-mark dial it goes one lap and lands on mark 1. On a 144,000-mark dial it barely moves and lands on mark 361.');
+    const rcx = 330, rcy = 345, R0 = 245, HOPS = 361, sizes = [60, 72, 90, 180, 360, 7200, 144000];
+    const gTicks = S('g', {}, svg), gTrail = S('g', {}, svg), gTxt = S('g', {}, svg), gStrip = S('g', {}, svg), gHop = S('g', {}, svg);
+    const trail = S('polyline', { class: 'trail', style: 'stroke-opacity:.8;stroke-width:3' }, gTrail);
+    const hopper = S('circle', { r: 12, class: 'hopper' }, gHop);
+    let M = 360, t = 0, done = false, touched = false, queue = [144000], wait = 0, pts = [], lapT, verdictG;
+    const posAt = h => { const f = h / M, r = R0 - Math.min(10 * f, 60); return polar(rcx, rcy, r, -90 + 360 * f); };
+    function build() {
+      gTicks.replaceChildren(); gTxt.replaceChildren(); gStrip.replaceChildren(); pts = []; trail.setAttribute('points', '');
+      const Tn = M <= 360 ? M : 360;
+      for (let i = 0; i < Tn; i++) { const [x, y] = polar(rcx, rcy, R0 + 14, -90 + i * 360 / Tn); S('circle', { cx: x, cy: y, r: i === 0 ? 6 : (Tn > 180 && i % 30 ? 1.8 : 3), class: i === 0 ? 'bar3' : 'mark' }, gTicks); }
+      T(gTxt, rcx, rcy - R0 - 34, 'start', 't3 sm mid');
+      T(gTxt, rcx, rcy + 10, fmt(M), 'big mid'); T(gTxt, rcx, rcy + 50, 'marks', 't2 md mid'); if (M > 360) T(gTxt, rcx, rcy + 82, `each dot = ${fmt(M / 360)} marks`, 't3 sm mid');
+      lapT = T(gTxt, rcx, rcy + R0 + 58, 'laps: 0', 'md mid mono t2');
+      T(gStrip, 700, 84, '361 hops', 'lg bold'); T(gStrip, 700, 120, `on a dial of ${fmt(M)} marks`, 'md t2');
+      T(gStrip, 700, 150, 'The first marks after the start', 't2 sm');
+      for (let i = 0; i <= 11; i++) { const x = 700 + i * 38; S('rect', { x, y: 196, width: 32, height: 40, rx: 6, class: i === 1 ? 'dbox end' : 'dbox' }, gStrip); T(gStrip, x + 16, 223, String(i), 'sm mid mono'); }
+      T(gStrip, 700 + 38 + 16, 184, 'the thesis said: 1', 'sm mid t2');
+      verdictG = S('g', { opacity: 0 }, gStrip);
+      const a = HOPS % M, fl = Math.floor(HOPS / M), good = a <= 12;
+      if (good) { const x = 700 + a * 38 + 16; S('path', { d: `M${x},242 l-11,20 h22 z`, class: 'bar2' }, verdictG); T(verdictG, x, 290, 'lands here', 'sm mid bold wn'); }
+      else { S('path', { d: 'M1190,216 l-18,-13 v26 z', class: 'bar2' }, verdictG); T(verdictG, 1190, 268, `mark ${a}, far off to the right`, 'sm end bold wn'); }
+      T(verdictG, 700, 372, `Lands on mark ${a}`, 'xl bold ' + (a === 1 ? 'ok' : 'no'));
+      T(verdictG, 700, 424, `361 = ${fl} × ${fmt(M)} + ${a}`, 'lg mono');
+      T(verdictG, 700, 480, a === 1 ? `${fl} full lap${fl > 1 ? 's' : ''}, then 1 more hop.` : 'Not even one full lap.', 'md t2');
+      T(verdictG, 700, 516, a === 1 ? 'That is mark 1, the same as 1.' : 'Mark 361 is nowhere near mark 1.', 'md ' + (a === 1 ? 'ok bold' : 'no bold'));
+      place(0);
+    }
+    function place(h) { const [x, y] = posAt(h); hopper.setAttribute('cx', x); hopper.setAttribute('cy', y); if (h > 0) { pts.push(x.toFixed(1) + ',' + y.toFixed(1)); if (pts.length > 700) pts.shift(); trail.setAttribute('points', pts.join(' ')); } lapT.textContent = `laps: ${Math.floor(h / M)}    hops: ${Math.floor(h)}`; }
+    function readout(fin) {
+      const a = HOPS % M, fl = Math.floor(HOPS / M);
+      if (!fin) { ctx.setReadout(`<b>361 hops</b> on a dial of <b>${fmt(M)}</b> marks…`); return; }
+      ctx.setReadout((a === 1 ? chip('good', 'lands on 1') : chip('bad', 'not 1')) + `On a dial of <b>${fmt(M)}</b> marks, <span class="mono">361 = ${fl} × ${fmt(M)} + ${a}</span>, so the marker lands on mark <b>${a}</b>.` + (a === 1 ? '' : ' The thesis needed it to be 1.'));
+    }
+    function fin() { done = true; place(HOPS); verdictG.setAttribute('opacity', 1); readout(true); ctx.finished(); ctx.announce(`On ${fmt(M)} marks, 361 lands on mark ${HOPS % M}.`); }
+    const row = H('div', { class: 'btnrow' });
+    sizes.forEach(v => row.appendChild(pill(fmt(v), () => { touched = true; queue = []; setM(v); }, { 'data-m': v, 'aria-pressed': 'false' })));
+    ctx.tryEl.append(lab('Pick a clock size'), row, say('Sizes that divide 360 bring 361 back to 1.'));
+    function setM(v) { M = v; t = 0; done = false; wait = 0; build(); [...row.children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.m === M))); readout(false); ctx.restarted(); }
+    setM(360);
+    return {
+      tick(dt) { if (done) { if (queue.length && !touched) { wait += dt; if (wait > 1.6) setM(queue.shift()); } return; } t += dt; const h = Math.min(HOPS, t * 90); place(h); if (h >= HOPS) fin(); },
+      restart() { touched = true; queue = []; setM(M); },
+      finishNow() { touched = true; queue = []; t = 99; pts = []; fin(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 10. fix 2: the packing race in 4D ---------- */
+TABS.push({
+  id: 'pack4', label: 'Fix: 4D', title: 'Fix 2: the packing race in 4D',
+  plain: ['It is tempting to copy the best flat pattern into every new direction and expect the best packing. In 4D that loses. Two honeycombs stacked fill about 41% of space. The 24-cell arrangement fills about 62%.',
+          'Each dot is a ball touching the middle ball. Drag to spin. The right side has twice the neighbours.'],
+  hint: 'Drag either picture to spin both.',
+  numbers: `<p>Two honeycombs stacked fill <span class="m">π² ÷ 24 = 0.411</span>. The 24-cell arrangement fills <span class="m">π² ÷ 16 = 0.617</span>: 1.5 times as much. (The thesis measure: 1/12 against 1/8.)</p><p>The “each ball touches the last” recipe is a real packing only in 2D and 3D. In 4D and 5D some balls cross. Best possible packings are known only in dimensions 1, 2, 3, 8 and 24.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'Two spinning pictures of the neighbours of one ball in four dimensions: twelve for two stacked honeycombs, twenty-four for the 24-cell arrangement, with bars for how much space each arrangement fills.');
+    svg.classList.add('drag');
+    const cy = 290, sc = 150, TR = 460;
+    const P = [{ cx: 300, pts: neighboursHoneycombPair(), cls: 'nb1', fill: fillHoneycombPair, title: 'Two honeycombs stacked', n: 12 }, { cx: 900, pts: neighbours24cell(), cls: 'nb2', fill: fill24cell, title: 'The 24-cell arrangement', n: 24 }];
+    P.forEach(p => {
+      T(svg, p.cx, 46, p.title, 'lg mid bold');
+      p.spokes = p.pts.map(() => S('line', { class: 'spoke' }, svg)); S('circle', { cx: p.cx, cy, r: 25, class: 'midball' }, svg);
+      p.balls = p.pts.map(() => S('circle', { class: p.cls }, svg));
+      T(svg, p.cx, 528, 'share of space filled', 't2 sm mid'); S('rect', { x: p.cx - TR / 2, y: 542, width: TR, height: 32, rx: 6, class: 'bartrack' }, svg);
+      p.bar = S('rect', { x: p.cx - TR / 2, y: 542, width: 0, height: 32, rx: 6, class: p.cls === 'nb1' ? 'bar1' : 'bar2' }, svg);
+      p.pct = T(svg, p.cx, 620, '', 'xl mid mono bold'); T(svg, p.cx, 662, `each ball touches ${p.n} others`, 't2 md mid');
+    });
+    const rot = (v, a, b) => { const [x, y, z, w] = v, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b); return [x * ca - z * sa, y * cb - w * sb, x * sa + z * ca, y * sb + w * cb]; };
+    let a = 0.6, b = 0.35, showLines = true, barT = 0, dragging = false, last = null;
+    const lineSeg = segmented([['on', 'Lines on'], ['off', 'Lines off']], 'on', v => { showLines = v === 'on'; P.forEach(p => p.spokes.forEach(s => s.setAttribute('opacity', showLines ? 1 : 0))); });
+    ctx.tryEl.append(lab('Try it'), say('Drag either picture to spin both the same way.'), lineSeg.el);
+    function paint() {
+      P.forEach(p => p.pts.forEach((v, i) => {
+        const [x, y, z, w] = rot(v, a, b), k = 3 / (3 - w), X = p.cx + x * k * sc, Y = cy - y * k * sc;
+        p.balls[i].setAttribute('cx', X); p.balls[i].setAttribute('cy', Y); p.balls[i].setAttribute('r', 12 + 4.5 * z); p.balls[i].setAttribute('opacity', 0.62 + 0.38 * (z + 1) / 2);
+        p.spokes[i].setAttribute('x1', p.cx); p.spokes[i].setAttribute('y1', cy); p.spokes[i].setAttribute('x2', X); p.spokes[i].setAttribute('y2', Y);
+      }));
+      const e = 1 - Math.pow(1 - clamp(barT, 0, 1), 3);
+      P.forEach(p => { p.bar.setAttribute('width', TR * p.fill * e); p.pct.textContent = Math.round(p.fill * 100 * e) + '%'; });
+    }
+    ctx.setReadout(chip('info', '24-cell wins') + '<b>Left:</b> 12 neighbours, 41% of space filled.<br><b>Right:</b> 24 neighbours, 62% filled. The right one packs 1.5 times more.');
+    svg.addEventListener('pointerdown', e => { dragging = true; last = [e.clientX, e.clientY]; svg.setPointerCapture(e.pointerId); });
+    svg.addEventListener('pointermove', e => { if (!dragging) return; a += (e.clientX - last[0]) * 0.01; b += (e.clientY - last[1]) * 0.01; last = [e.clientX, e.clientY]; paint(); });
+    const up = () => { dragging = false; }; svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+    paint(); ctx.restarted();
+    return {
+      tick(dt) { if (barT < 1) barT += dt / 1.6; if (!dragging) { a += dt * 0.5; b += dt * 0.31; } paint(); },
+      restart() { barT = 0; ctx.restarted(); },
+      finishNow() { barT = 1; paint(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 11. fix 3: the circles overlap ---------- */
+TABS.push({
+  id: 'circles', label: 'Fix: circles', title: 'Fix 3: the circles overlap',
+  plain: ['A square, and a circle with the same area. Slide a copy over by half a side and up by half a side. The thesis said the two circles just touch. They overlap a lot.',
+          'Drag the copy. Green means a gap between the circles. Red means they overlap.'],
+  hint: 'Drag the second circle anywhere.',
+  numbers: `<p>Square side 1. The equal-area circle has radius <span class="m">1 ÷ √π = 0.564</span>, so the two radii add up to <span class="m">1.128</span>.</p><p>The copy sits ½ across and ½ up: centres <span class="m">√(½² + ½²) = 0.707</span> apart.</p><p>Gap = <span class="m">0.707 − 1.128 = −0.421</span>. To just touch, the centres would need to be 1.128 apart, 1.6 times farther.</p>`,
+  mount(ctx) {
+    const svg = makeSVG(ctx.drawing, 'A square with an equal-area circle, and a copy moved half a side across and half a side up. The two circles overlap. Dragging the copy changes the gap.');
+    svg.classList.add('drag');
+    const U = 260, R = U * R_EQUAL_AREA, C1 = [500, 420], NOTES = [U * 0.5, -U * 0.5], KISS = [2 * R / Math.SQRT2, -2 * R / Math.SQRT2], START = [U * 0.86, -U * 0.86];
+    const defs = S('defs', {}, svg), cp = S('clipPath', { id: 'clip1' }, defs); S('circle', { cx: C1[0], cy: C1[1], r: R }, cp);
+    S('rect', { x: C1[0] - U / 2, y: C1[1] - U / 2, width: U, height: U, class: 'sq1' }, svg); S('circle', { cx: C1[0], cy: C1[1], r: R, class: 'ci1' }, svg);
+    const ghost = S('circle', { cx: C1[0] + KISS[0], cy: C1[1] + KISS[1], r: R, class: 'ghost' }, svg), ghostT = T(svg, C1[0] + KISS[0] + R * 0.72, C1[1] + KISS[1] - R * 0.78, 'would just touch here', 't3 sm');
+    const sq2 = S('rect', { width: U, height: U, class: 'sq2' }, svg), ci2 = S('circle', { r: R, class: 'ci2' }, svg), lens = S('circle', { r: R, class: 'lens', 'clip-path': 'url(#clip1)' }, svg);
+    const line = S('line', { class: 'guide' }, svg), dT = T(svg, 0, 0, '', 'sm mono halo'); const handle = S('circle', { r: 11, class: 'handle' }, svg);
+    S('circle', { cx: C1[0], cy: C1[1], r: 5, style: 'fill:var(--ink)' }, svg);
+    const mx0 = 200, mw = 800, my = 622, gx = g => mx0 + (clamp(g, -0.6, 0.4) + 0.6) * mw;
+    S('rect', { x: mx0, y: my, width: gx(0) - mx0, height: 30, style: 'fill:var(--bad-bg)' }, svg); S('rect', { x: gx(0), y: my, width: mx0 + mw - gx(0), height: 30, style: 'fill:var(--good-bg)' }, svg);
+    S('line', { x1: gx(0), y1: my - 8, x2: gx(0), y2: my + 38, class: 'axis' }, svg);
+    T(svg, gx(-0.3), my + 22, 'overlap', 'md mid no bold'); T(svg, gx(0.2), my + 22, 'gap', 'md mid ok bold'); T(svg, gx(0), my + 62, 'just touching', 't2 sm mid');
+    const mk = S('path', { d: 'M0,0 L-10,-16 L10,-16 z', class: 'bar3' }, svg), gT = T(svg, 1180, 652, '', 'lg mono end bold');
+    let off = START.slice(), tt = 0, mode = 'slide', done = false, dragging = false;
+    const snapN = pill('Where the thesis put it', () => { mode = 'drag'; off = NOTES.slice(); ctx.finished(); paint(); }, { class: 'pill text' });
+    const snapK = pill('Where they would just touch', () => { mode = 'drag'; off = KISS.slice(); ctx.finished(); paint(); }, { class: 'pill text' });
+    ctx.tryEl.append(lab('Try it'), say('Drag the second circle, or snap it to a place.'), H('div', { class: 'btnrow' }, [snapN, snapK]));
+    function paint() {
+      const cx2 = C1[0] + off[0], cy2 = C1[1] + off[1], d = Math.hypot(off[0], off[1]) / U, gap = d - 2 * R / U;
+      sq2.setAttribute('x', cx2 - U / 2); sq2.setAttribute('y', cy2 - U / 2); ci2.setAttribute('cx', cx2); ci2.setAttribute('cy', cy2); lens.setAttribute('cx', cx2); lens.setAttribute('cy', cy2); handle.setAttribute('cx', cx2); handle.setAttribute('cy', cy2);
+      line.setAttribute('x1', C1[0]); line.setAttribute('y1', C1[1]); line.setAttribute('x2', cx2); line.setAttribute('y2', cy2);
+      dT.setAttribute('x', (C1[0] + cx2) / 2 + 12); dT.setAttribute('y', (C1[1] + cy2) / 2 + 22); dT.textContent = d.toFixed(2);
+      mk.setAttribute('transform', `translate(${gx(gap)},${my - 8})`); gT.textContent = (gap >= 0 ? '+' : '−') + Math.abs(gap).toFixed(2);
+      gT.setAttribute('class', 'lg mono end bold ' + (gap > 0.005 ? 'ok' : gap < -0.005 ? 'no' : 't2'));
+      const kind = gap > 0.005 ? chip('good', 'gap') : gap < -0.005 ? chip('bad', 'overlap') : chip('info', 'touching');
+      ctx.setReadout(kind + `Centres are <b class="mono">${d.toFixed(2)}</b> of a side apart. The two radii add up to <b class="mono">${(2 * R / U).toFixed(2)}</b>.<br><span class="mono">gap = ${d.toFixed(2)} − ${(2 * R / U).toFixed(2)} = <b>${gap >= 0 ? '' : '−'}${Math.abs(gap).toFixed(2)}</b></span>` + (gap < -0.005 ? `<br>Overlap: ${Math.round(-gap / (2 * R / U) * 100)}% of a circle's width.` : ''));
+    }
+    svg.addEventListener('pointerdown', e => { const q = svgPoint(svg, e), cx2 = C1[0] + off[0], cy2 = C1[1] + off[1]; if (Math.hypot(q.x - cx2, q.y - cy2) < R) { dragging = true; mode = 'drag'; svg.setPointerCapture(e.pointerId); if (!done) { done = true; ctx.finished(); } } });
+    svg.addEventListener('pointermove', e => { if (!dragging) return; const q = svgPoint(svg, e); off = [clamp(q.x, R + 10, 1190 - R) - C1[0], clamp(q.y, R + 10, 560 - R * 0.2) - C1[1]]; paint(); });
+    const up = () => { dragging = false; }; svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+    paint(); ctx.restarted();
+    return {
+      tick(dt) { if (mode !== 'slide') return; tt += dt / 4; const f = clamp(tt, 0, 1), e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2; off = [START[0] + (NOTES[0] - START[0]) * e, START[1] + (NOTES[1] - START[1]) * e]; paint(); if (f >= 1) { mode = 'drag'; ctx.finished(); ctx.announce('The circles overlap. Drag the copy to explore.'); } },
+      restart() { mode = 'slide'; tt = 0; off = START.slice(); ctx.restarted(); paint(); },
+      finishNow() { mode = 'drag'; off = NOTES.slice(); paint(); ctx.finished(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ---------- 12. what is proved ---------- */
+TABS.push({
+  id: 'proved', label: 'Proved?', title: 'What is proved and what is not',
+  plain: ['A computer proof-checker has confirmed about 2,000 statements in this project, with no gaps. Some claims in the thesis turned out wrong or too strong. Some cannot be settled by math at all.',
+          'Guess first, then click a card to see.'],
+  hint: 'Click a card to reveal it.',
+  numbers: `<p>As of run 37: <span class="m">2,028</span> machine-checked theorems in 145 files. No unfinished proofs.</p><p>2,003 rest only on Lean's standard axioms. 25 finite checks (prime counts, packing checks) use the compiler's evaluation as well.</p><p>Not checked anywhere: the speed claims (one test, one machine) and the scores quoted in the documents (no data was supplied).</p>`,
+  mount(ctx) {
+    ctx.drawing.classList.add('html');
+    const CL = [
+      ['7 is the first step above 1 that lands on every mark of the 360 dial.', 'proved', 'Proved. 7 shares no factor with 360; steps 2 to 6 all do.'],
+      ['19 × 19 lands back on 1 on the big 144000 clock.', 'wrong', 'Only on the 360 clock and clocks that fit inside it. On 144000 it lands on 361.'],
+      ['The 360 points around the middle of the 19 board form one single loop.', 'proved', 'Proved. They are the powers of 1 + 3i.'],
+      ['Copying the best flat packing into more dimensions always gives the densest packing.', 'wrong', 'In 4D, stacked honeycombs fill 41%. The 24-cell fills 62%.'],
+      ['Every point on a flat grid is exactly one string of 0s and 1s in base −1+i.', 'proved', 'Proved. There is no sign bit.'],
+      ['You can add first and decide the signs afterwards.', 'wrong', 'Only for multiplying. When adding, the direction changes the answer.'],
+      ['There are exactly 35 special primes: p from 7 with p − 1 dividing 144000.', 'proved', 'Proved, by a full list from 7 up to 24001.'],
+      ['The two circles in the square-and-circle picture just touch.', 'wrong', 'They overlap by 0.42 of a side.'],
+      ['Ancient builders chose 360, 60 and 19 on purpose.', 'history', 'The proofs show these are excellent choices. Who chose them, and why, is a question for history.'],
+      ['7 and 19 fit the honeycomb grid but not the square grid.', 'proved', 'Proved. Both leave 7 after dividing by 12.'],
+      ['The speed-ups from these tricks are real.', 'open', 'Not proved. There is one test, on one machine.'],
+      ['Base 60 stops a fraction exactly when the bottom uses only 2s, 3s and 5s.', 'proved', 'Proved.'],
+    ];
+    const VERD = { proved: ['good', 'Proved'], wrong: ['bad', 'Wrong as written'], open: ['warn', 'Not proved'], history: ['info', 'Math cannot settle it'] };
+    const cnt = H('span', { class: 'big2 mono', text: '0' }), top = H('div', { class: 'cardtop' }, [cnt, H('span', { class: 'cap', text: 'statements checked by computer, with no unfinished proofs.' })]);
+    const grid = H('div', { class: 'cards' });
+    const cards = CL.map(([q, v, why]) => {
+      const b = H('button', { type: 'button', class: 'claim v-' + v, 'aria-pressed': 'false' }, [H('span', { class: 'q', text: q }), H('span', { class: 'why', html: chip(VERD[v][0], VERD[v][1]) + why }), H('span', { class: 'ask', text: 'Click to reveal' })]);
+      b.onclick = () => { b.classList.toggle('shown'); b.setAttribute('aria-pressed', String(b.classList.contains('shown'))); tally(); }; grid.appendChild(b); return { b, v };
+    });
+    ctx.drawing.append(top, grid);
+    function tally() {
+      const sh = cards.filter(c => c.b.classList.contains('shown')), n = k => sh.filter(c => c.v === k).length;
+      ctx.setReadout(sh.length ? `<b>Revealed ${sh.length} of ${CL.length}</b><br>` + [['proved', 'good', 'proved'], ['wrong', 'bad', 'wrong'], ['open', 'warn', 'not proved'], ['history', 'info', 'history']].filter(([k]) => n(k)).map(([k, c, l]) => chip(c, `${n(k)} ${l}`)).join('') : '<b>Nothing revealed yet.</b><br>Which of these twelve claims do you think are proved? Click a card to check your guess.');
+    }
+    ctx.tryEl.append(lab('Try it'), say('Guess first, then reveal a card. Or reveal them all.'), H('div', { class: 'btnrow' }, [pill('Reveal all', () => { cards.forEach(c => { c.b.classList.add('shown'); c.b.setAttribute('aria-pressed', 'true'); }); tally(); }, { class: 'pill text' }), pill('Hide all', () => { cards.forEach(c => { c.b.classList.remove('shown'); c.b.setAttribute('aria-pressed', 'false'); }); tally(); }, { class: 'pill text' })]));
+    tally();
+    let t = 0, done = false; const ease = f => 1 - Math.pow(1 - f, 3);
+    return {
+      tick(dt) { if (done) return; t += dt / 2; cnt.textContent = fmt(2028 * ease(clamp(t, 0, 1))); if (t >= 1) { done = true; cnt.textContent = '2,028'; ctx.finished(); } },
+      restart() { t = 0; done = false; cards.forEach(c => { c.b.classList.remove('shown'); c.b.setAttribute('aria-pressed', 'false'); }); tally(); ctx.restarted(); },
+      finishNow() { done = true; t = 1; cnt.textContent = '2,028'; ctx.finished(); },
+      destroy() {},
+    };
+  },
+});
+
+/* ================= wiring ================= */
+TABS.forEach((tb, i) => {
+  const b = H('button', { class: 'tab', type: 'button', role: 'tab', id: 'tab-' + tb.id, 'aria-selected': 'false', tabindex: '-1' }, [H('span', { class: 'n', text: String(i + 1) }), tb.label]);
+  b.onclick = () => show(i); els.tabs.appendChild(b);
+});
+function show(i) {
+  if (i === current) return;
+  if (ctl && ctl.destroy) ctl.destroy();
+  current = i; const tb = TABS[i];
+  els.drawing.replaceChildren(); els.drawing.className = 'drawing'; els.strip.replaceChildren(); els.tryEl.replaceChildren(); els.readout.innerHTML = '';
+  [...els.tabs.children].forEach((b, j) => { b.setAttribute('aria-selected', String(j === i)); b.tabIndex = j === i ? 0 : -1; });
+  els.tabs.children[i].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  els.eyebrow.textContent = `${i + 1} of ${TABS.length}`; els.title.textContent = tb.title; els.plain.innerHTML = tb.plain.map(p => `<p>${p}</p>`).join('');
+  ctx.setHint(tb.hint); ctx.setNumbers(tb.numbers || ''); paused = false; finishedFlag = false; updatePlay();
+  ctl = tb.mount(ctx); if (REDUCED && ctl.finishNow) ctl.finishNow();
+  try { history.replaceState(null, '', '#' + tb.id); } catch (e) { /* file pages may refuse; the tab still works */ }
+}
+addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('input,textarea,select')) return;
+  if (e.key === 'ArrowRight') { show((current + 1) % TABS.length); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft') { show((current + TABS.length - 1) % TABS.length); e.preventDefault(); }
+  else if (e.key === 'Escape') closeWords();
+});
+addEventListener('hashchange', () => { const i = TABS.findIndex(t => t.id === location.hash.slice(1)); if (i >= 0) show(i); });
+
+const numSwitch = $('#numSwitch');
+function setNumbers(on) { document.body.classList.toggle('show-numbers', on); numSwitch.setAttribute('aria-pressed', String(on)); try { localStorage.setItem('thesis2.numbers', on ? '1' : '0'); } catch (e) { /* storage may be blocked */ } }
+numSwitch.onclick = () => setNumbers(numSwitch.getAttribute('aria-pressed') !== 'true');
+try { if (localStorage.getItem('thesis2.numbers') === '1') setNumbers(true); } catch (e) { /* storage may be blocked */ }
+
+const drawer = $('#words'), scrim = $('#scrim');
+function openWords() { drawer.hidden = false; scrim.hidden = false; drawer.classList.add('open'); $('#wordsClose').focus(); }
+function closeWords() { if (drawer.hidden) return; drawer.classList.remove('open'); drawer.hidden = true; scrim.hidden = true; $('#wordsBtn').focus(); }
+$('#wordsBtn').onclick = openWords; $('#wordsClose').onclick = closeWords; scrim.onclick = closeWords;
+
+let lastT = 0;
+function frame(now) { const dt = Math.min(0.05, (now - lastT) / 1000 || 0); lastT = now; if (ctl && !paused && !document.hidden) ctl.tick(dt); requestAnimationFrame(frame); }
+const start = TABS.findIndex(t => t.id === location.hash.slice(1));
+show(start >= 0 ? start : 0);
+requestAnimationFrame(frame);
+window.__thesis = { show, TABS, get ctl() { return ctl; } };   // handy for testing from the console
+})();
+</script>
+</body>
+</html>

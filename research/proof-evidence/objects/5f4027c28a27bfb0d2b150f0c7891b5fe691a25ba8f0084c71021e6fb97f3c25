@@ -1,0 +1,32 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"r": "cb92eb055b9fa9c7.ir",
+  "o":
+  ["1b68cb0795929124.olean",
+   "383cff5fc7d28af1.olean.server",
+   "55370f9a8ab14e5c.olean.private"],
+  "i": "87af417d6ead4c63.ilean",
+  "c": "bead0a1fa0b76204.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean /source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean -j1 -M4096 -DElab.async=false /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodCircles.lean -o /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean -i /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ilean -c /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodCircles.c --setup /source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodCircles.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["RequestProject.RodCircles:deps",
+   [["deps",
+     [["MinerProofRepair/RequestProject:extraDep",
+       [["@MinerProofRepair:extraDep", "00000000000006bb"]]],
+      ["imports", "00000000000006bb"]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodCircles.lean",
+   "5d461de2351952a0"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[-j1, -M4096, -DElab.async=false]", "ac35a80e7dbd4509"]],
+ "depHash": "8b9e6657fdec9ba5"}

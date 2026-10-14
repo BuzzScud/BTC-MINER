@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+if [ -n "${BTC_PYTHON:-}" ]; then
+    PY="$BTC_PYTHON"
+elif [ -x "$ROOT/.venv/bin/python" ]; then
+    PY="$ROOT/.venv/bin/python"
+elif [ -x /opt/homebrew/bin/python3 ]; then
+    PY=/opt/homebrew/bin/python3
+elif command -v python3 >/dev/null 2>&1; then
+    PY="$(command -v python3)"
+else
+    echo "Python 3.9 or newer is required. Install Python, then open this folder again."
+    exit 1
+fi
+"$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3,9) else "BTC Miner needs Python 3.9 or newer")'
+export PYTHONDONTWRITEBYTECODE=1
+exec "$PY" -m btcminer "$@"

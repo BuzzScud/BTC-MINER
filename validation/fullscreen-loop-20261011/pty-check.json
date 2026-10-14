@@ -1,0 +1,66 @@
+{
+  "checked_utc": "2026-10-11T00:23:19.471404+00:00",
+  "source_sha256": {
+    "btcminer/tui.py": "b05901c5f63d5a5240aa8e6c031a2083ebc574836431391969f7f83ed58bfcd1",
+    "btcminer/copper.py": "917f0cc56e4dc9bded4bfbd34b6743ce14a3e83aa22b72227ec6277f36793a9e",
+    "btcminer/ui_support.py": "7c03f9a46201a3dcc8080c746679abb4cd801097caf0f6bce2d6115ca66accb9",
+    "btcminer/loop_view.py": "23076dad311e809e1143e11b99f57dbc3673d9a953f6ac2ff8a93de811701e8b",
+    "scripts/check_loop_terminal.py": "5bc7c5494296bb5a859a33f6775a5b3449853a9094674f0761e32b5420ee9a3a"
+  },
+  "fixture_only": true,
+  "cases": [
+    {
+      "exit": "q",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "plain_loop_command": true,
+      "label_edit_save": true,
+      "escape_dashboard": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "Ctrl+C",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "plain_loop_command": true,
+      "label_edit_save": true,
+      "escape_dashboard": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "SIGHUP",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "plain_loop_command": true,
+      "label_edit_save": true,
+      "escape_dashboard": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "SIGTERM",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "plain_loop_command": true,
+      "label_edit_save": true,
+      "escape_dashboard": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    }
+  ],
+  "ok": true
+}

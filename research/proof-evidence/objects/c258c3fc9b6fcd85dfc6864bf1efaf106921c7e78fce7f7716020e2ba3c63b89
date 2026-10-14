@@ -1,0 +1,1059 @@
+{
+  "schema": "miner-three-module-repair-review-v1",
+  "status": "passed",
+  "ok": true,
+  "created_at_utc": "2026-10-07T19:38:14.718529+00:00",
+  "scope": "Three formerly unresolved historical number-theory proof modules, their two local proof dependencies, and five actual provider scalar outputs. Exact theorem statements, not universal miner/runtime verification.",
+  "historical_theorem_headers_preserved": 45,
+  "rodscaling_named_theorems": 25,
+  "helper_theorems_added": 22,
+  "local_compiled_modules": 6,
+  "theorem_count": 299,
+  "module_theorem_counts": {
+    "RequestProject.RodCircles": 67,
+    "RequestProject.RodScaling": 49,
+    "LatticeCalc.Verified.PowSqrtPrime": 68,
+    "LatticeCalc.Verified.OrderSplit": 84,
+    "RequestProject.TowerCollapse": 26,
+    "RequestProject.ApiSupportNumbers": 5
+  },
+  "named_theorem_count": 123,
+  "raw_gate": {
+    "report": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/report.json",
+    "sha256": "bd6a9879f73c23eab482fd22180b78e3fa84e92f2f5806836bfaa6b0e8b2085d",
+    "builds": [
+      {
+        "exit_code": 0,
+        "seconds": 6.936,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.RodCircles.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodCircles.olean",
+          "RequestProject/RodCircles.lean"
+        ],
+        "module": "RequestProject.RodCircles",
+        "artifacts": {
+          "RequestProject/RodCircles.ir": "d5ff482e3258842c92c37f56381f5061a9bb1c4c0d14a03a19bdf7f1b71129f0",
+          "RequestProject/RodCircles.olean": "92bb53898a0242cc087ec9a2e5130b93a9ce26b640416db07e54bd746962db9a",
+          "RequestProject/RodCircles.olean.private": "58ee516dd4e03cde55c71b4af7c8760eccb4fd2ac27af2c0bfc9b2764bb3cb82",
+          "RequestProject/RodCircles.olean.server": "0019db05144ce327197c65072bb0805ca40ecc05f1bd7d0388b08d11b74a965e"
+        }
+      },
+      {
+        "exit_code": 0,
+        "seconds": 42.516,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.RodScaling.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodScaling.olean",
+          "RequestProject/RodScaling.lean"
+        ],
+        "module": "RequestProject.RodScaling",
+        "artifacts": {
+          "RequestProject/RodScaling.ir": "1930131cce75195019dc83a8061df20b0694a4e0e41b015b26ed9897b19ef029",
+          "RequestProject/RodScaling.olean": "83ab09059ae5ba977f11d2d4f779e84cc85f3ff481868a1e7392d859bf01e1b5",
+          "RequestProject/RodScaling.olean.private": "3209a17bcc5859ee341d892e0dbb8e46b3d7b49356a8afb51f4f4fb2fcab0d15",
+          "RequestProject/RodScaling.olean.server": "545644d337edf5123bb611fc90cc90bac2cdc3533b051726b1cdf5880aa69725"
+        }
+      },
+      {
+        "exit_code": 0,
+        "seconds": 2.376,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/LatticeCalc.Verified.PowSqrtPrime.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/PowSqrtPrime.olean",
+          "LatticeCalc/Verified/PowSqrtPrime.lean"
+        ],
+        "module": "LatticeCalc.Verified.PowSqrtPrime",
+        "artifacts": {
+          "LatticeCalc/Verified/PowSqrtPrime.ir": "442e3305d2c9cdca986d1d342ef937b036f90fa6c4e68ca964b5bbe02cf56b4a",
+          "LatticeCalc/Verified/PowSqrtPrime.olean": "0321240edbe8c42c046746df7deef6a7975453bfd971e7d24f08be4fdd793316",
+          "LatticeCalc/Verified/PowSqrtPrime.olean.private": "98f789dc159b8e6ac732f9061e9dc66d714f475de7cd90fd742241fcc06f412a",
+          "LatticeCalc/Verified/PowSqrtPrime.olean.server": "9cfc05d2c9943771b1fdd1efb50b31c8c9f70b8524a9eb4a59464e3846f7c32c"
+        }
+      },
+      {
+        "exit_code": 0,
+        "seconds": 2.984,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/LatticeCalc.Verified.OrderSplit.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/OrderSplit.olean",
+          "LatticeCalc/Verified/OrderSplit.lean"
+        ],
+        "module": "LatticeCalc.Verified.OrderSplit",
+        "artifacts": {
+          "LatticeCalc/Verified/OrderSplit.ir": "283e7498dc7fc40d3f8ab47fbdb37caafaf42c3497fcdcaac8bf215eb5fcbc0a",
+          "LatticeCalc/Verified/OrderSplit.olean": "8867ed0a6d2a543871da64f37c89351ca1b336c40b5789bc498476a0b73b6fde",
+          "LatticeCalc/Verified/OrderSplit.olean.private": "392e9cc8e0615cbfa9933ed7b720edd82ddb19b046fb84de51b78ef557ab9f71",
+          "LatticeCalc/Verified/OrderSplit.olean.server": "1252b835413f92d784b913c69311f12093cf00088a92f08700ca9c92d772c987"
+        }
+      },
+      {
+        "exit_code": 0,
+        "seconds": 2.163,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.TowerCollapse.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/TowerCollapse.olean",
+          "RequestProject/TowerCollapse.lean"
+        ],
+        "module": "RequestProject.TowerCollapse",
+        "artifacts": {
+          "RequestProject/TowerCollapse.ir": "863fad982c74db018f1477e999a88286e492de53a0805bb8be9b05d5a4677a4e",
+          "RequestProject/TowerCollapse.olean": "6ce7477c3657f79970cda18515de04eae46494efdfe3bd6f2bb6c3d5dbe0be18",
+          "RequestProject/TowerCollapse.olean.private": "3e7a7a3dea356d500c81e2199e4bd9507d34618bd34a8dc5f09eeb70eaf6fbdd",
+          "RequestProject/TowerCollapse.olean.server": "004976e83c8dee25936719e13eb1ca679207675ad1ce4cf54640706785aabcd4"
+        }
+      },
+      {
+        "exit_code": 0,
+        "seconds": 0.621,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.ApiSupportNumbers.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean",
+          "-j1",
+          "-DElab.async=false",
+          "-M3072",
+          "-o",
+          "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/ApiSupportNumbers.olean",
+          "RequestProject/ApiSupportNumbers.lean"
+        ],
+        "module": "RequestProject.ApiSupportNumbers",
+        "artifacts": {
+          "RequestProject/ApiSupportNumbers.olean": "386f7a86d7243cc64b62c5904c4c97ca15228361794b21befbc8c07d0ac5019c"
+        }
+      }
+    ],
+    "axiom_audit_seconds": 12.651
+  },
+  "lake_gate": {
+    "report": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/report.json",
+    "sha256": "cad10092ed2d221db09482c7ae5784c32204e86f85704f2cc7f595fb3198967f",
+    "builds": [
+      {
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+          "build",
+          "+RequestProject.RodCircles:olean"
+        ],
+        "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+        "exit_code": 0,
+        "seconds": 5.627,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodCircles.log",
+        "log_sha256": "7cdae56c4adae30b2809e8d01170e2aaed20bebf789809c9da0235c6c929337c",
+        "target": "RequestProject.RodCircles"
+      },
+      {
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+          "build",
+          "+RequestProject.RodScaling:olean"
+        ],
+        "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+        "exit_code": 0,
+        "seconds": 42.731,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodScaling.log",
+        "log_sha256": "f4e3927f932165cb5ef1c2ba2658aa780d8d9f147efe458a0c9cbff72c8428da",
+        "target": "RequestProject.RodScaling"
+      },
+      {
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+          "build",
+          "+RequestProject.TowerCollapse:olean"
+        ],
+        "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+        "exit_code": 0,
+        "seconds": 8.147,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.TowerCollapse.log",
+        "log_sha256": "e15ac1fb1424bbda058027aba5b054e54f90c02baf6137f8865ceebe3cd3de21",
+        "target": "RequestProject.TowerCollapse"
+      },
+      {
+        "command": [
+          "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake",
+          "build",
+          "+RequestProject.ApiSupportNumbers:olean"
+        ],
+        "cwd": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace",
+        "exit_code": 0,
+        "seconds": 0.683,
+        "log": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.ApiSupportNumbers.log",
+        "log_sha256": "9523627788e1a558c9d8b72cb8afc36bcadf80ee3245deb9e53b637e655271c8",
+        "target": "RequestProject.ApiSupportNumbers"
+      }
+    ],
+    "axiom_audit_seconds": 12.114
+  },
+  "allowed_logical_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "actual_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "raw_and_lake_root_inventories_identical": true,
+  "preserved_theorem_headers": {
+    "RequestProject/RodCircles.lean": {
+      "original_theorems": [
+        "conic_card_add",
+        "core_modulus_circle_counts",
+        "core_modulus_circles",
+        "core_rod_circles",
+        "eleven_seventyone_never_flower",
+        "exists_iso_three",
+        "flower_mod_three",
+        "flower_prime_divisor",
+        "flower_prime_hexCircle",
+        "formPts_card_mul",
+        "form_map",
+        "hexCircle_card_of_mod_three_eq_one",
+        "hexCircle_card_of_mod_three_eq_two",
+        "hexCircle_eq_hexConic",
+        "hexConic_card",
+        "isoRoots_eq_pair",
+        "isoRoots_eq_zero",
+        "mod_three_of_cube_root",
+        "nineteen_flower",
+        "rod_circles_on_dial",
+        "sqCircle_card_of_mod_four_eq_one",
+        "sqCircle_card_of_mod_four_eq_three",
+        "sqCircle_eq_conic",
+        "three_ne_zero_of_ne",
+        "twelve_fold",
+        "two_ne_zero_of_odd"
+      ],
+      "header_sha256": {
+        "conic_card_add": "60b41fdc343f0767e32e854db7b2863fdee533d2a6053fa03cf638d682b823a3",
+        "isoRoots_eq_pair": "5dd50cc66b382a9e322faacc0b27ce8d0fe937067992dc7ebd42fa9ee9bdf257",
+        "isoRoots_eq_zero": "f80a5102cbd865fa51e4f4bfd634675de52b37af63b220f928d38187dc6ba3c3",
+        "hexConic_card": "3795fc959092c7aa86bdc441318452bf7c33c342a6a234e26fc936f561c7e5fd",
+        "form_map": "abea3983ae3f54f66f9557d5ebf14243ef1c459fc6b5741cbde888eca32f46b8",
+        "formPts_card_mul": "9120b5345aa851e4d46800aa8bbef87d18e63c199f76bf75fd16d94b47f4a1d2",
+        "two_ne_zero_of_odd": "1e0eedd36885d4d6102cf2385d48bcab1daa8e22c3076e86505930832bfc2f3b",
+        "three_ne_zero_of_ne": "8b5cbbb981b4bf0795153c6e5e2424cfba54d1b83f582ae37fb631228a6e6f28",
+        "sqCircle_eq_conic": "6af6428a667f0b52627dfd534fe52c7819b7a633e6f17abc131fc03292c2f4ee",
+        "hexCircle_eq_hexConic": "8203986802d47947ba63b1115f7f21cc83de3bcfd64775e4b502924d40c31718",
+        "mod_three_of_cube_root": "bf1e502e3b0911dc407442099eb051933e9e72801ed40a5294a1fad9f0fe8c4d",
+        "exists_iso_three": "a441d843b220a4b1e82f980918c80bebfcf09edb96467ed57d4bf12fcf2b70e0",
+        "sqCircle_card_of_mod_four_eq_one": "da080bb5a55bf86aa95301fa5d2c1e7df22a0c322a3f049c1420b2dc5f87d253",
+        "sqCircle_card_of_mod_four_eq_three": "4c7ea1cff2dae021b4f569c1d72452469824a4159bd72f855037c50c2ea3ff40",
+        "hexCircle_card_of_mod_three_eq_one": "e097174a27ff5dcf792d12a6202a47467941b2c76a1f7219315fc994a5c8230e",
+        "hexCircle_card_of_mod_three_eq_two": "0be4ceb18bd079fd792c7fcde766c7cd12a836235243bc8a9acc85495a157f3e",
+        "flower_mod_three": "c9dcc03df4a5bad085b4c512bd0671e1931230c2aa3441af74fc5db5c0195407",
+        "flower_prime_divisor": "e01f13c37123764e2023f1347247059af13942b3afe2440067d5a8911004f75f",
+        "eleven_seventyone_never_flower": "1b4fd2dfadfe0b89f7db5a57ca7b829ec1c358b3b4763735aeb60b7333d97f40",
+        "flower_prime_hexCircle": "1af97da9ee597e197af29d184280803d4642e2d1ba56dbb1eff16cab3a136caf",
+        "nineteen_flower": "d522904c557fb3e2d81d16467077614303dcbbb5190edfc8dffa1bf1b4ff79fe",
+        "core_rod_circles": "ce3a073303c6e11f8e2e1a94841acd363ef0f0fcacf190f2a0cbbbdba69820ed",
+        "twelve_fold": "86fe9c2a281a2a6a85d5c369dd6c0fbfabef81977b6af017106656ed8eb1af5e",
+        "core_modulus_circles": "8cffb87ed9c63421810fe04dd48eb7fdb22d50cd3b2157477ab74e201e71e84b",
+        "core_modulus_circle_counts": "acd417a3a55c176c7d12c327223be874767a28f8e866481f6d11c216ce64f587",
+        "rod_circles_on_dial": "176ffcab592f4e385c04426aef9e74c023c74e1b6cf06b87b430e71fa337a99d"
+      },
+      "added_helpers": []
+    },
+    "RequestProject/RodScaling.lean": {
+      "original_theorems": [
+        "rod_121_hex",
+        "rod_121_square",
+        "rod_361_hex"
+      ],
+      "header_sha256": {
+        "rod_121_square": "14481d46ce680c799c63d97c089dac8169c4b9b0094883305401a73c073c6573",
+        "rod_121_hex": "e35450a3939aa3ea3a6e7a6bfb0e9e69eba8ff7f77b332e0f80c0086218182bc",
+        "rod_361_hex": "11e49267ecde2fbbd57acb89fe2aad73dfe01bb2b23b62dd74966f28e19ff02b"
+      },
+      "added_helpers": [
+        "formPts_card_rows",
+        "rod361_block_00",
+        "rod361_block_01",
+        "rod361_block_02",
+        "rod361_block_03",
+        "rod361_block_04",
+        "rod361_block_05",
+        "rod361_block_06",
+        "rod361_block_07",
+        "rod361_block_08",
+        "rod361_block_09",
+        "rod361_block_10",
+        "rod361_block_11",
+        "rod361_block_12",
+        "rod361_block_13",
+        "rod361_block_14",
+        "rod361_block_15",
+        "rod361_block_16",
+        "rod361_block_17",
+        "rod361_block_18",
+        "sum_range_blocks",
+        "sum_range_nineteen"
+      ]
+    },
+    "RequestProject/TowerCollapse.lean": {
+      "original_theorems": [
+        "core_tower3",
+        "core_tower4",
+        "core_tower_sharp",
+        "core_units",
+        "dial_tower",
+        "dial_tower_two_values",
+        "dial_units",
+        "fermat_dvd",
+        "not_dvd_of_coprime",
+        "of_residues",
+        "pow_mod_period",
+        "tower4_collapse",
+        "tower_collapse",
+        "twelve_units",
+        "units_30240",
+        "units_72"
+      ],
+      "header_sha256": {
+        "pow_mod_period": "301ace7d697e1649b2def6bb48b81c20a5f6391b5ec41bf166ea476c77b76296",
+        "tower_collapse": "e34a0dbd35c9efa60e82a053466da243c4a797245e4879c8c728a77887d3e9bc",
+        "tower4_collapse": "48810d13938351708e99c800bf113f5a42aa01ea22c910abd70b7ac20df73c92",
+        "of_residues": "19805690f778e0b688e68960a1f01a7e2d3dcfe6e08bb65987d37c50ce76eb58",
+        "dial_units": "b35cfa8586027d7425b1f1cd1c931b1c2ef89ba96b7d20096ce8395fe9e90cf7",
+        "twelve_units": "f229006e115c18847f2219a1b42b4f531dd191871bf327d232155a1a5997dbee",
+        "dial_tower": "40cc44bf8bd13e957c860cfae4900f84483e25c1e327245d9619702b659da128",
+        "dial_tower_two_values": "b2fde2e31d82e9d8c65a72e62a42bd1ebe0a8eb9e48afb2205f9b10e9a25de50",
+        "fermat_dvd": "11726b8aeb4aa07264d6ff521f6c27e9d0935390637b32e85adb1db7485c33f3",
+        "not_dvd_of_coprime": "8c952cb6ca9c89dce34eaee38c57a1fa65c43f9716c64144af69d35d6b9e5051",
+        "core_units": "e5b557d47135cb6d8044de6d8a36703075e117e685c97ed8969ed8f37b540653",
+        "units_30240": "906dbae2e8c42383f4cbe82aa2a676905917159695fb50f1ee6437bd3e5dfb0b",
+        "units_72": "a3e23b034098ff4ddba36912cf3236ddf894e3e378d25423346fef31fb6dc02d",
+        "core_tower3": "b18a76244ac5cb1156b29aca1308eb80d6dc2ceac57b46f3d29898155cd91113",
+        "core_tower4": "e90a00dbdc6b4103f569e94b9020252241bdf7d28fe1e3aaaf0cb7d65ca66871",
+        "core_tower_sharp": "a42d1897c3f3836d77d204ab629b77b5123067a12ce4b0c88febf2b0a6520249"
+      },
+      "added_helpers": []
+    }
+  },
+  "mathematical_bodies_unchanged": {
+    "RodCircles_context_except_final_count_proof": "aa03bba5eb16344074336cbb42377f1d329f31157e2aebc3c10f9adb371a9c3e",
+    "LatticeCalc/Verified/PowSqrtPrime.lean": "ca988d212a54e185a7c2547b390d44e7a3e7e06caf6b3f96e8faa58e52ddbac7",
+    "LatticeCalc/Verified/OrderSplit.lean": "b3df6fc8e67af323369c89aa7d04ed7a96d7de9b08e8c3c212fdb50898966d16",
+    "RequestProject/TowerCollapse.lean": "9f9f0aad97ee50a38e1547eab150006953ca2437a7e277cf4cde8fc0c2f07cd3"
+  },
+  "negative_controls": {
+    "false_arithmetic_rejected": true,
+    "custom_axiom_rejected": true,
+    "sorry_rejected": true,
+    "parser_controls": {
+      "missing_total": "rejected",
+      "missing_root": "rejected",
+      "wrong_named_root": "rejected",
+      "wrong_module": "rejected",
+      "duplicate_root": "rejected",
+      "duplicate_total": "rejected",
+      "sorry_assumption": "rejected",
+      "native_assumption": "rejected",
+      "custom_assumption": "rejected",
+      "nested_comment_inventory": "passed"
+    },
+    "lake_mode": "reuse_exact_current_raw_gate_evidence"
+  },
+  "api_scalar_outputs_kernel_certified": 5,
+  "api_support_scope": "Provider supplied five exact supporting products; all higher mathematical proof construction and checking ran locally in Lean. The service supplied no new lifting theorem or proof endpoint.",
+  "repair_summary": {
+    "RodCircles": "Compose existing CRT and prime cardinality equalities symbolically, matching overloaded multiplication to avoid eager finite-set reduction.",
+    "RodScaling": "Prove exact row and block partitions; kernel-check nineteen complete 19-row blocks, each with 18 points, then prove 342 total. Preserve both 121 counts.",
+    "TowerCollapse": "Narrow blanket imports in this module and two dependencies. Definitions and mathematical proof bodies are unchanged."
+  },
+  "raw_object_artifacts_verified": 21,
+  "lake_build_artifacts_verified": 78,
+  "reused_external_prerequisite_links": 75,
+  "external_prerequisite_links": {
+    ".lake/build/lib/lean/Cache": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Cache",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Mathlib": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Mathlib.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean",
+      "kind": "file",
+      "sha256": "04458a6e792e89d9be7ebc64790cb22a7a296ef73a4528f2345b65257ceb657b"
+    },
+    ".lake/build/lib/lean/Mathlib.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean.hash",
+      "kind": "file",
+      "sha256": "50e13c9386b294b5a6a9ebc2722c1d8aff4b2823bc585c24b9d365e23f38b2b1"
+    },
+    ".lake/build/lib/lean/Mathlib.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir",
+      "kind": "file",
+      "sha256": "22710d77337ef38f73dce182e2366373363f50b603e0d125065adb72ea31bf27"
+    },
+    ".lake/build/lib/lean/Mathlib.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir.hash",
+      "kind": "file",
+      "sha256": "a8fbb2788d9883722345fa8a54cf774ed257593b2e38c1a57cd31788d3877e19"
+    },
+    ".lake/build/lib/lean/Mathlib.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean",
+      "kind": "file",
+      "sha256": "14793affd8089e360d1208522003fd446ab069cb3688bf8e9dad7e54cc996f86"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.hash",
+      "kind": "file",
+      "sha256": "e72a5644c2f8f1638d67908e5799155bcfa4fa5baff6ab33afbb8d2828f6d54a"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private",
+      "kind": "file",
+      "sha256": "d5c76a1cef4d8e62f5195659dbe1650f3146ee9a75a206cca2c797818caf21e0"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private.hash",
+      "kind": "file",
+      "sha256": "83bec956179dfa52e941d97dc6e33ced08dccd1d8fd1340c5c1e05084a5fa644"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server",
+      "kind": "file",
+      "sha256": "7387f3afd6f1dda6af3fcaa11fcb7fc921401ffdb16ee0dcae53274e7eff9a32"
+    },
+    ".lake/build/lib/lean/Mathlib.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server.hash",
+      "kind": "file",
+      "sha256": "4a323658662235b70b4af16118e747bcb66a5e907a496ae0d8347a9de9b0706f"
+    },
+    ".lake/build/lib/lean/Mathlib.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.trace",
+      "kind": "file",
+      "sha256": "41b9b655379250e671566d63150238932cd6476285a64ab42788a6701ac0dd72"
+    },
+    ".lake/build/lib/lean/Plausible": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Plausible.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean",
+      "kind": "file",
+      "sha256": "4a33899b90475f53450a7fa65b7ece56936085c870a08c76381c0d0e3bfdc3a8"
+    },
+    ".lake/build/lib/lean/Plausible.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean.hash",
+      "kind": "file",
+      "sha256": "eea4e6f77c4de66f3ea59f6d2c1fa627eb0fa7a23498808c36a610ce8375e60e"
+    },
+    ".lake/build/lib/lean/Plausible.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir",
+      "kind": "file",
+      "sha256": "5ad20d4322c153338e5b529c6b60ea5be873b2aa192df08427fe2656892130d5"
+    },
+    ".lake/build/lib/lean/Plausible.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir.hash",
+      "kind": "file",
+      "sha256": "045e4494efa4b8e14d67e3088d63502d98a3efb7d0f0c59b5f01b1a914379b7b"
+    },
+    ".lake/build/lib/lean/Plausible.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean",
+      "kind": "file",
+      "sha256": "368933d377529448721c5a667a2bc12dff99d50b52c777131e1ccd1835be8c97"
+    },
+    ".lake/build/lib/lean/Plausible.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.hash",
+      "kind": "file",
+      "sha256": "733a6a6970a4c52463ba51b38c5de64442f1f6e098d456e150a9e6613f3962d9"
+    },
+    ".lake/build/lib/lean/Plausible.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private",
+      "kind": "file",
+      "sha256": "3c953e87dc091b87b1c2d0834ef747360c2a061445014578d47d6b61661d2d51"
+    },
+    ".lake/build/lib/lean/Plausible.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private.hash",
+      "kind": "file",
+      "sha256": "f80b9b4c4e67f5fd95f415193eed7e1253daa01bfd468e6a851a15dd4a7575cc"
+    },
+    ".lake/build/lib/lean/Plausible.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server",
+      "kind": "file",
+      "sha256": "81a03be690b800a1dbf813eaea7c5289f7a1480ac3def3c5844c69476102cc72"
+    },
+    ".lake/build/lib/lean/Plausible.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server.hash",
+      "kind": "file",
+      "sha256": "c2c0fdac12fb1384fcc9d5df6979fd49a6b2093b1e68dd8db0424facd9b20033"
+    },
+    ".lake/build/lib/lean/Plausible.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.trace",
+      "kind": "file",
+      "sha256": "9846ff35d502cf32405096e522c475b5f48e5aecb4857ca2992cfada17e2f5ac"
+    },
+    ".lake/build/lib/lean/LeanSearchClient": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean",
+      "kind": "file",
+      "sha256": "a8578fe8c3c7898fe9077bdeb02e27229eb5d0673d5c765c31c0cc568d3f9a58"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean.hash",
+      "kind": "file",
+      "sha256": "7c7609d3758b03de18e7d6942ceabe8ba0583860f3bffaa1ac5cab7704543d7e"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir",
+      "kind": "file",
+      "sha256": "bb05ec380d87172fdff38dbc72bc58fe557f5f6d52f44227a15a828c8fef6479"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir.hash",
+      "kind": "file",
+      "sha256": "73f5919f763bcb058e4e969bec007428760f59c8072ac0ef794650618fefc12c"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean",
+      "kind": "file",
+      "sha256": "10f13253e226259ab95c7df852a08d3e872641f54d069ee9a7d609b352171000"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.hash",
+      "kind": "file",
+      "sha256": "517af280e2019013628414f0c683672845b1b42929cfd519c531da76ca25f7fb"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private",
+      "kind": "file",
+      "sha256": "0ffb6dd4d66b16d859217ab59eddc612637e2fcf4a006fcb23c9dbc9c630dc70"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private.hash",
+      "kind": "file",
+      "sha256": "3713668f28db901e99f3c1066b48edc55451b4ac59c58f66dae1c9a0d52c507f"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server",
+      "kind": "file",
+      "sha256": "c53e43537b6bee1e0fd1904e76b15f8bec1a715f3616c3ecaa13141e1874fce1"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server.hash",
+      "kind": "file",
+      "sha256": "6603dcc572343f9942e4dcfb904da93617153d1a318c12071152d9788d1eb47d"
+    },
+    ".lake/build/lib/lean/LeanSearchClient.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.trace",
+      "kind": "file",
+      "sha256": "2c2185b1e1da4d04326a69311b3484063827155d8ed191799449c27af352218a"
+    },
+    ".lake/build/lib/lean/ImportGraph": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/importGraph/.lake/build/lib/lean/ImportGraph",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/ProofWidgets": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/proofwidgets/.lake/build/lib/lean/ProofWidgets",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Aesop": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Aesop.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean",
+      "kind": "file",
+      "sha256": "0272da450c8b3ccd742032ab3d4042e26cc593b2d6ce0f83875e6fe2b4e92eea"
+    },
+    ".lake/build/lib/lean/Aesop.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean.hash",
+      "kind": "file",
+      "sha256": "9a4c4ba9daaa7eadd79955d4aa921921db05988eb594903d2770a98b7d5d9739"
+    },
+    ".lake/build/lib/lean/Aesop.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir",
+      "kind": "file",
+      "sha256": "68515f4902c09707d37cff1866d665250674cc5e7d1844c540e63befd0a5a07c"
+    },
+    ".lake/build/lib/lean/Aesop.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir.hash",
+      "kind": "file",
+      "sha256": "286b98d933c24ab08fbdd0baaa0366f034ab7ba25949b683fb6d2a0d1cd30ea8"
+    },
+    ".lake/build/lib/lean/Aesop.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean",
+      "kind": "file",
+      "sha256": "2710b73457ec7caa663cc574751c1fa6e6542c64e3921ff02b4704b7829801ee"
+    },
+    ".lake/build/lib/lean/Aesop.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.hash",
+      "kind": "file",
+      "sha256": "c3dba12a2ed8f830c41e5cc7ad8818ce77098475144c53a0b86a44bc37c616ef"
+    },
+    ".lake/build/lib/lean/Aesop.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private",
+      "kind": "file",
+      "sha256": "a5a80e383b8193474b789d66795198c304dd5f4d4451a54f5fb0e647077e472f"
+    },
+    ".lake/build/lib/lean/Aesop.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private.hash",
+      "kind": "file",
+      "sha256": "ba980861eea0d3a8f672692bc64f16f9a9769124d3e9c012034e990c617982e8"
+    },
+    ".lake/build/lib/lean/Aesop.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server",
+      "kind": "file",
+      "sha256": "8d15e93cbb017c53c3e1f92cd0f42d279c2e68ddee81c7b081080f5d88e82384"
+    },
+    ".lake/build/lib/lean/Aesop.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server.hash",
+      "kind": "file",
+      "sha256": "1b9a4ace6e098239abab47ca9e687750a5e4601a2cb16705fdd23725e5de9f3c"
+    },
+    ".lake/build/lib/lean/Aesop.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.trace",
+      "kind": "file",
+      "sha256": "5847f2a3e8d36d0dc1ebf858d2ca92d04bc63d392bb0081c2552fb967e351859"
+    },
+    ".lake/build/lib/lean/Qq": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Qq.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean",
+      "kind": "file",
+      "sha256": "2c44ffcb09a42f95648cb8e23fdfe0d37b74aede277c786d7f1924dcdac695d5"
+    },
+    ".lake/build/lib/lean/Qq.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean.hash",
+      "kind": "file",
+      "sha256": "ef917ce5d415f104b49232c83f4ceb66bd21750dbdf27562157a9a6d1c3e66ef"
+    },
+    ".lake/build/lib/lean/Qq.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir",
+      "kind": "file",
+      "sha256": "3f197fc8294c2fcd3984e43c3e76ae596456b999c5efa5a9fa6634d6386f2fbe"
+    },
+    ".lake/build/lib/lean/Qq.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir.hash",
+      "kind": "file",
+      "sha256": "8399570a7768104d80d9f421011651d92aa922f4e00c631927acf1afb5f55ade"
+    },
+    ".lake/build/lib/lean/Qq.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean",
+      "kind": "file",
+      "sha256": "c99c83745585b57c96559f60124af6e50e544f4d5e5518ad4632c99119022ef4"
+    },
+    ".lake/build/lib/lean/Qq.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.hash",
+      "kind": "file",
+      "sha256": "3eaa1d020161b58b4e669ffadfb2ebf6861768b9d20019679e0535bd7b64a5a2"
+    },
+    ".lake/build/lib/lean/Qq.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private",
+      "kind": "file",
+      "sha256": "4a3045f791702dbddf0753443513ad1ba0ca223c724f0f0103829a79bff45e8d"
+    },
+    ".lake/build/lib/lean/Qq.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private.hash",
+      "kind": "file",
+      "sha256": "284aaf37173e275c7aee1cf147560614c99a348645bf01fe4f005e5d734771f0"
+    },
+    ".lake/build/lib/lean/Qq.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server",
+      "kind": "file",
+      "sha256": "fb7ce4b05d073995538b3b924607838490511bc52c563d629b73be217c5036eb"
+    },
+    ".lake/build/lib/lean/Qq.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server.hash",
+      "kind": "file",
+      "sha256": "192d83b602030ba2836fe2e68c7033dd49f74bb16337398e3e91c0b4ba12ceaf"
+    },
+    ".lake/build/lib/lean/Qq.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.trace",
+      "kind": "file",
+      "sha256": "81bc3af8f3feeee5deff9518d7c2f39042f92a716d6be34d503e5ae5b2689810"
+    },
+    ".lake/build/lib/lean/Batteries": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries",
+      "kind": "directory"
+    },
+    ".lake/build/lib/lean/Batteries.ilean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean",
+      "kind": "file",
+      "sha256": "87d2bfea2057e565d9646149722fdc4f53c349cdae65a776f4091f6b33a596b9"
+    },
+    ".lake/build/lib/lean/Batteries.ilean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean.hash",
+      "kind": "file",
+      "sha256": "a313b5f04334a44d2a51321f10a681b1a54103f7174e373a2d4894d898844bee"
+    },
+    ".lake/build/lib/lean/Batteries.ir": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir",
+      "kind": "file",
+      "sha256": "3215d19ee577a1d8f56222eec6f4291b1c81b23ff80a3b1935fe44c3c714eb27"
+    },
+    ".lake/build/lib/lean/Batteries.ir.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir.hash",
+      "kind": "file",
+      "sha256": "ac9dbcc2e6d26ea1b67635c30c8a3ad7b27c69c27657abac0013c97653c0c5bb"
+    },
+    ".lake/build/lib/lean/Batteries.olean": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean",
+      "kind": "file",
+      "sha256": "4a8c1c3606343febb006731539714ae577affb152b4cfd24195e291e13d3f503"
+    },
+    ".lake/build/lib/lean/Batteries.olean.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.hash",
+      "kind": "file",
+      "sha256": "8ae3029a54702bd19f7caa3cd74c05454fad9c3b83c8c1f4189ca143e929a733"
+    },
+    ".lake/build/lib/lean/Batteries.olean.private": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private",
+      "kind": "file",
+      "sha256": "b810b8f56fcf4b78c0e7a1be1e1ad9a102d4d7c0abc1d6eee8640a2517d22f52"
+    },
+    ".lake/build/lib/lean/Batteries.olean.private.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private.hash",
+      "kind": "file",
+      "sha256": "e415d1afa2712535cb8974ea188ebfaac4ccb03f7f4810740598be236b166cac"
+    },
+    ".lake/build/lib/lean/Batteries.olean.server": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server",
+      "kind": "file",
+      "sha256": "a5672eb9fe4d0f14a3da8781a4937a932c72671a77ddcb3ba24c4df1f6682f0b"
+    },
+    ".lake/build/lib/lean/Batteries.olean.server.hash": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server.hash",
+      "kind": "file",
+      "sha256": "63e8c53953b0f640c91f0a94afaacc5b8fd3923ea6ea6c311b7332b613c41e93"
+    },
+    ".lake/build/lib/lean/Batteries.trace": {
+      "target": "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.trace",
+      "kind": "file",
+      "sha256": "da06a39b70605f4204ebb0ddc217e69d5dca15d2794a1fc0481f50969be6b64b"
+    }
+  },
+  "verified_file_bindings": {
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/report.json": "bd6a9879f73c23eab482fd22180b78e3fa84e92f2f5806836bfaa6b0e8b2085d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/report.json": "cad10092ed2d221db09482c7ae5784c32204e86f85704f2cc7f595fb3198967f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/source-manifest.json": "8cf21f0c606b2795eeefd9d1d8b5167d6ba7be5961ac53a95d5ea580c950dc2d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/run_retry.py": "73a2d9123f5a500d48eb2195d383da4750d235e842058eda24441251c82745e9",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/api-support.json": "e6edff1c11592104927bda8d34ae9557dad027a652ee41906e53344682c7a7ed",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/lake-manifest.json": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb",
+    "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lean": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+    "/source/user/Desktop/BTC MINER/.test-tools/lean-4.28.0-darwin_aarch64/bin/lake": "0e56506385ec20d56bffd7c031c4d48573ab5fdb74e5246ec8c45a220bebc68b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/run_lake.py": "6417cafc2c5499aa487c8d606921be5c3879e863471a3deca64eb25e96860f33",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lakefile.toml": "0f3fa20a93e9056c2c589462bdf25f50385918cf59727ccb1d152a8838089146",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/lakefile.toml": "0f3fa20a93e9056c2c589462bdf25f50385918cf59727ccb1d152a8838089146",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/source-manifest.json": "8cf21f0c606b2795eeefd9d1d8b5167d6ba7be5961ac53a95d5ea580c950dc2d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/api-support.json": "e6edff1c11592104927bda8d34ae9557dad027a652ee41906e53344682c7a7ed",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/LatticeCalc/Verified/OrderSplit.lean": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/LatticeCalc/Verified/PowSqrtPrime.lean": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodCircles.lean": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodScaling.lean": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/TowerCollapse.lean": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/KeyExponent.lean": "6c47c7b6800302ce2491a1ffaa526e109fcc2d77b053a86d045172ef735047cd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/KeyExponent.lean": "6c47c7b6800302ce2491a1ffaa526e109fcc2d77b053a86d045172ef735047cd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/TemporalLattice.lean": "39f9ab1422407d95af4665c4b6d6846249f143ef61007b5c6187573b42c95cb2",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/TemporalLattice.lean": "39f9ab1422407d95af4665c4b6d6846249f143ef61007b5c6187573b42c95cb2",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/DualSmooth.lean": "86fc9d0859bfbafe820d35b7bb93b2c3594f51e6738a3886f71fe0cc537a713f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/DualSmooth.lean": "86fc9d0859bfbafe820d35b7bb93b2c3594f51e6738a3886f71fe0cc537a713f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/RodsPrinciple.lean": "5c82bb16d481e5acc4af543373609c4dc8f4cd298d9b6c87139b1d3b5f6fa9c9",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodsPrinciple.lean": "5c82bb16d481e5acc4af543373609c4dc8f4cd298d9b6c87139b1d3b5f6fa9c9",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/RodOrders.lean": "093abc71e0baf297aff125c5dff0d4da0b4dd06f39f5651cf69eeec73fcc89ba",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/RodOrders.lean": "093abc71e0baf297aff125c5dff0d4da0b4dd06f39f5651cf69eeec73fcc89ba",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/sources/RequestProject/ApiSupportNumbers.lean": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/report.json": "3024174bf40b489e79873d550702bea26971a06e007b52cc6724b61c0db93696",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/LatticeCalc/Verified/OrderSplit.lean": "8a5c7ad1f7b2fb1fdeaa2f89625ac70d6987a6cc168f9d6c3251874954f396ea",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/LatticeCalc/Verified/PowSqrtPrime.lean": "0951562cb2268aace2e89a3d5712ddb0c2f70143189bacae8d6818aee770c2bc",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/RodCircles.lean": "55b3bf1b77b74d226c8c1d2a575ffbf310f58fc4e6820a638486efb1bc72acb8",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/RodScaling.lean": "c09597469a069fb72029a65568f1e818d6a5c9d6f4500cd767407fd5e9cd761c",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/TowerCollapse.lean": "3845a902321dff2ff39861ec59c72b1d3553b7a37a8bba0113b9616474a12c9b",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/KeyExponent.lean": "6c47c7b6800302ce2491a1ffaa526e109fcc2d77b053a86d045172ef735047cd",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/TemporalLattice.lean": "39f9ab1422407d95af4665c4b6d6846249f143ef61007b5c6187573b42c95cb2",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/DualSmooth.lean": "86fc9d0859bfbafe820d35b7bb93b2c3594f51e6738a3886f71fe0cc537a713f",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/RodsPrinciple.lean": "5c82bb16d481e5acc4af543373609c4dc8f4cd298d9b6c87139b1d3b5f6fa9c9",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RequestProject/RodOrders.lean": "093abc71e0baf297aff125c5dff0d4da0b4dd06f39f5651cf69eeec73fcc89ba",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46",
+    "/source/user/Desktop/BTC MINER/validation/miner-full-rebuild/sources/RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.RodCircles.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodCircles.ir": "d5ff482e3258842c92c37f56381f5061a9bb1c4c0d14a03a19bdf7f1b71129f0",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodCircles.olean": "92bb53898a0242cc087ec9a2e5130b93a9ce26b640416db07e54bd746962db9a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodCircles.olean.private": "58ee516dd4e03cde55c71b4af7c8760eccb4fd2ac27af2c0bfc9b2764bb3cb82",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodCircles.olean.server": "0019db05144ce327197c65072bb0805ca40ecc05f1bd7d0388b08d11b74a965e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.RodScaling.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodScaling.ir": "1930131cce75195019dc83a8061df20b0694a4e0e41b015b26ed9897b19ef029",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodScaling.olean": "83ab09059ae5ba977f11d2d4f779e84cc85f3ff481868a1e7392d859bf01e1b5",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodScaling.olean.private": "3209a17bcc5859ee341d892e0dbb8e46b3d7b49356a8afb51f4f4fb2fcab0d15",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/RodScaling.olean.server": "545644d337edf5123bb611fc90cc90bac2cdc3533b051726b1cdf5880aa69725",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/LatticeCalc.Verified.PowSqrtPrime.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/PowSqrtPrime.ir": "442e3305d2c9cdca986d1d342ef937b036f90fa6c4e68ca964b5bbe02cf56b4a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/PowSqrtPrime.olean": "0321240edbe8c42c046746df7deef6a7975453bfd971e7d24f08be4fdd793316",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/PowSqrtPrime.olean.private": "98f789dc159b8e6ac732f9061e9dc66d714f475de7cd90fd742241fcc06f412a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/PowSqrtPrime.olean.server": "9cfc05d2c9943771b1fdd1efb50b31c8c9f70b8524a9eb4a59464e3846f7c32c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/LatticeCalc.Verified.OrderSplit.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/OrderSplit.ir": "283e7498dc7fc40d3f8ab47fbdb37caafaf42c3497fcdcaac8bf215eb5fcbc0a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/OrderSplit.olean": "8867ed0a6d2a543871da64f37c89351ca1b336c40b5789bc498476a0b73b6fde",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/OrderSplit.olean.private": "392e9cc8e0615cbfa9933ed7b720edd82ddb19b046fb84de51b78ef557ab9f71",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/LatticeCalc/Verified/OrderSplit.olean.server": "1252b835413f92d784b913c69311f12093cf00088a92f08700ca9c92d772c987",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.TowerCollapse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/TowerCollapse.ir": "863fad982c74db018f1477e999a88286e492de53a0805bb8be9b05d5a4677a4e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/TowerCollapse.olean": "6ce7477c3657f79970cda18515de04eae46494efdfe3bd6f2bb6c3d5dbe0be18",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/TowerCollapse.olean.private": "3e7a7a3dea356d500c81e2199e4bd9507d34618bd34a8dc5f09eeb70eaf6fbdd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/TowerCollapse.olean.server": "004976e83c8dee25936719e13eb1ca679207675ad1ce4cf54640706785aabcd4",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/RequestProject.ApiSupportNumbers.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/objects/RequestProject/ApiSupportNumbers.olean": "386f7a86d7243cc64b62c5904c4c97ca15228361794b21befbc8c07d0ac5019c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodCircles.log": "7cdae56c4adae30b2809e8d01170e2aaed20bebf789809c9da0235c6c929337c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.RodScaling.log": "f4e3927f932165cb5ef1c2ba2658aa780d8d9f147efe458a0c9cbff72c8428da",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.TowerCollapse.log": "e15ac1fb1424bbda058027aba5b054e54f90c02baf6137f8865ceebe3cd3de21",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/RequestProject.ApiSupportNumbers.log": "9523627788e1a558c9d8b72cb8afc36bcadf80ee3245deb9e53b637e655271c8",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean": "04458a6e792e89d9be7ebc64790cb22a7a296ef73a4528f2345b65257ceb657b",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ilean.hash": "50e13c9386b294b5a6a9ebc2722c1d8aff4b2823bc585c24b9d365e23f38b2b1",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir": "22710d77337ef38f73dce182e2366373363f50b603e0d125065adb72ea31bf27",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.ir.hash": "a8fbb2788d9883722345fa8a54cf774ed257593b2e38c1a57cd31788d3877e19",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean": "14793affd8089e360d1208522003fd446ab069cb3688bf8e9dad7e54cc996f86",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.hash": "e72a5644c2f8f1638d67908e5799155bcfa4fa5baff6ab33afbb8d2828f6d54a",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private": "d5c76a1cef4d8e62f5195659dbe1650f3146ee9a75a206cca2c797818caf21e0",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.private.hash": "83bec956179dfa52e941d97dc6e33ced08dccd1d8fd1340c5c1e05084a5fa644",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server": "7387f3afd6f1dda6af3fcaa11fcb7fc921401ffdb16ee0dcae53274e7eff9a32",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean.server.hash": "4a323658662235b70b4af16118e747bcb66a5e907a496ae0d8347a9de9b0706f",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.trace": "41b9b655379250e671566d63150238932cd6476285a64ab42788a6701ac0dd72",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean": "4a33899b90475f53450a7fa65b7ece56936085c870a08c76381c0d0e3bfdc3a8",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ilean.hash": "eea4e6f77c4de66f3ea59f6d2c1fa627eb0fa7a23498808c36a610ce8375e60e",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir": "5ad20d4322c153338e5b529c6b60ea5be873b2aa192df08427fe2656892130d5",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.ir.hash": "045e4494efa4b8e14d67e3088d63502d98a3efb7d0f0c59b5f01b1a914379b7b",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean": "368933d377529448721c5a667a2bc12dff99d50b52c777131e1ccd1835be8c97",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.hash": "733a6a6970a4c52463ba51b38c5de64442f1f6e098d456e150a9e6613f3962d9",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private": "3c953e87dc091b87b1c2d0834ef747360c2a061445014578d47d6b61661d2d51",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.private.hash": "f80b9b4c4e67f5fd95f415193eed7e1253daa01bfd468e6a851a15dd4a7575cc",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server": "81a03be690b800a1dbf813eaea7c5289f7a1480ac3def3c5844c69476102cc72",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.olean.server.hash": "c2c0fdac12fb1384fcc9d5df6979fd49a6b2093b1e68dd8db0424facd9b20033",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/plausible/.lake/build/lib/lean/Plausible.trace": "9846ff35d502cf32405096e522c475b5f48e5aecb4857ca2992cfada17e2f5ac",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean": "a8578fe8c3c7898fe9077bdeb02e27229eb5d0673d5c765c31c0cc568d3f9a58",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ilean.hash": "7c7609d3758b03de18e7d6942ceabe8ba0583860f3bffaa1ac5cab7704543d7e",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir": "bb05ec380d87172fdff38dbc72bc58fe557f5f6d52f44227a15a828c8fef6479",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.ir.hash": "73f5919f763bcb058e4e969bec007428760f59c8072ac0ef794650618fefc12c",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean": "10f13253e226259ab95c7df852a08d3e872641f54d069ee9a7d609b352171000",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.hash": "517af280e2019013628414f0c683672845b1b42929cfd519c531da76ca25f7fb",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private": "0ffb6dd4d66b16d859217ab59eddc612637e2fcf4a006fcb23c9dbc9c630dc70",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.private.hash": "3713668f28db901e99f3c1066b48edc55451b4ac59c58f66dae1c9a0d52c507f",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server": "c53e43537b6bee1e0fd1904e76b15f8bec1a715f3616c3ecaa13141e1874fce1",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.olean.server.hash": "6603dcc572343f9942e4dcfb904da93617153d1a318c12071152d9788d1eb47d",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/LeanSearchClient/.lake/build/lib/lean/LeanSearchClient.trace": "2c2185b1e1da4d04326a69311b3484063827155d8ed191799449c27af352218a",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean": "0272da450c8b3ccd742032ab3d4042e26cc593b2d6ce0f83875e6fe2b4e92eea",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ilean.hash": "9a4c4ba9daaa7eadd79955d4aa921921db05988eb594903d2770a98b7d5d9739",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir": "68515f4902c09707d37cff1866d665250674cc5e7d1844c540e63befd0a5a07c",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.ir.hash": "286b98d933c24ab08fbdd0baaa0366f034ab7ba25949b683fb6d2a0d1cd30ea8",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean": "2710b73457ec7caa663cc574751c1fa6e6542c64e3921ff02b4704b7829801ee",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.hash": "c3dba12a2ed8f830c41e5cc7ad8818ce77098475144c53a0b86a44bc37c616ef",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private": "a5a80e383b8193474b789d66795198c304dd5f4d4451a54f5fb0e647077e472f",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.private.hash": "ba980861eea0d3a8f672692bc64f16f9a9769124d3e9c012034e990c617982e8",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server": "8d15e93cbb017c53c3e1f92cd0f42d279c2e68ddee81c7b081080f5d88e82384",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.olean.server.hash": "1b9a4ace6e098239abab47ca9e687750a5e4601a2cb16705fdd23725e5de9f3c",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/aesop/.lake/build/lib/lean/Aesop.trace": "5847f2a3e8d36d0dc1ebf858d2ca92d04bc63d392bb0081c2552fb967e351859",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean": "2c44ffcb09a42f95648cb8e23fdfe0d37b74aede277c786d7f1924dcdac695d5",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ilean.hash": "ef917ce5d415f104b49232c83f4ceb66bd21750dbdf27562157a9a6d1c3e66ef",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir": "3f197fc8294c2fcd3984e43c3e76ae596456b999c5efa5a9fa6634d6386f2fbe",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.ir.hash": "8399570a7768104d80d9f421011651d92aa922f4e00c631927acf1afb5f55ade",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean": "c99c83745585b57c96559f60124af6e50e544f4d5e5518ad4632c99119022ef4",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.hash": "3eaa1d020161b58b4e669ffadfb2ebf6861768b9d20019679e0535bd7b64a5a2",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private": "4a3045f791702dbddf0753443513ad1ba0ca223c724f0f0103829a79bff45e8d",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.private.hash": "284aaf37173e275c7aee1cf147560614c99a348645bf01fe4f005e5d734771f0",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server": "fb7ce4b05d073995538b3b924607838490511bc52c563d629b73be217c5036eb",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.olean.server.hash": "192d83b602030ba2836fe2e68c7033dd49f74bb16337398e3e91c0b4ba12ceaf",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/Qq/.lake/build/lib/lean/Qq.trace": "81bc3af8f3feeee5deff9518d7c2f39042f92a716d6be34d503e5ae5b2689810",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean": "87d2bfea2057e565d9646149722fdc4f53c349cdae65a776f4091f6b33a596b9",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ilean.hash": "a313b5f04334a44d2a51321f10a681b1a54103f7174e373a2d4894d898844bee",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir": "3215d19ee577a1d8f56222eec6f4291b1c81b23ff80a3b1935fe44c3c714eb27",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.ir.hash": "ac9dbcc2e6d26ea1b67635c30c8a3ad7b27c69c27657abac0013c97653c0c5bb",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean": "4a8c1c3606343febb006731539714ae577affb152b4cfd24195e291e13d3f503",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.hash": "8ae3029a54702bd19f7caa3cd74c05454fad9c3b83c8c1f4189ca143e929a733",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private": "b810b8f56fcf4b78c0e7a1be1e1ad9a102d4d7c0abc1d6eee8640a2517d22f52",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.private.hash": "e415d1afa2712535cb8974ea188ebfaac4ccb03f7f4810740598be236b166cac",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server": "a5672eb9fe4d0f14a3da8781a4937a932c72671a77ddcb3ba24c4df1f6682f0b",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.olean.server.hash": "63e8c53953b0f640c91f0a94afaacc5b8fd3923ea6ea6c311b7332b613c41e93",
+    "/source/user/Desktop/BTC MINER/validation/math-audit/aristotle-snapshot/.lake/packages/batteries/.lake/build/lib/lean/Batteries.trace": "da06a39b70605f4204ebb0ddc217e69d5dca15d2794a1fc0481f50969be6b64b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/OrderSplit.c": "f303b98e0f1f8c8846870b19501cd17a76baa6939c6d1852ede0e8c220f2277a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/OrderSplit.c.hash": "6bdc79181417ea87d0ef01e56a6e0365b64fa463d7453cb1a56020c717b85c8e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/OrderSplit.setup.json": "68af43eb67a870e77018a301002928714a7fb20a689731c70987ba26279651af",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.c": "2b0bc8d633ea456a18c9701d97c9a9ac1b280260f035a73c4c53fe01b0516c04",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.c.hash": "3ba86a47752779e302dd188e62f5365059387bc8b278a7631ac00dc71c109b5f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/LatticeCalc/Verified/PowSqrtPrime.setup.json": "2214372288b07d57384022342c8469eabefc1ef5eecdb35f492b632b26382853",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/ApiSupportNumbers.c": "89b62bc628eb8dcb9393a3f5ad5db57831f7fe6a24568caa2e312f2bd70a44e8",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/ApiSupportNumbers.c.hash": "6a13e1d2f7429553a90221a45e0416bf69b10890af791fde2892f447ff089891",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/ApiSupportNumbers.setup.json": "727d2df7522a53510839bb0c258187f3ed1f82651a9697eef0c4eafa9784b1cd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodCircles.c": "b8097cfb62df6f72a800ab4b6a5ad28304b4ee6fd0865363fb63de9e4b9e36b6",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodCircles.c.hash": "c59b7c49f27f70595ebbcc113653b24f728b984dcd32db5225195f8f7020e5de",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodCircles.setup.json": "8d74ee4430b4aaf0e564a0a6d78573a31121151c567687bb167f0335455bd51e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodScaling.c": "06cca9771e269ba7b5ff80842be7689bb09d6b6e09d7bb37e72a358d8fe1f292",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodScaling.c.hash": "91436a8b2c795e43859e65aa94b4ce4d98521604caa84a262b6a76e4dcfd2779",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/RodScaling.setup.json": "845291908cc9e54d037aae58b791850459bd7e620f42b4d0dc48908363346e43",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/TowerCollapse.c": "9b48fd994c2f2307ae19b9dd1f98b28351b13ceabd91238f6441d6923e4997ef",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/TowerCollapse.c.hash": "d5700edfd2506d62099f03f9f93ce8303d69ed277e5ba3585841cd60ba148902",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/ir/RequestProject/TowerCollapse.setup.json": "486635fce2fb131e1c9b36ec7f68425a43af2e220528dae864714b99d47469a6",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ilean": "9c196bc76ace0bd16609e5f7846a1dd5ed9478c931ea5d8fcd6df3ec9bb032ab",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ilean.hash": "618c4e38c32730bafa431170ab7d279d1f090413838172fa499abeb735edc025",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ir": "283e7498dc7fc40d3f8ab47fbdb37caafaf42c3497fcdcaac8bf215eb5fcbc0a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.ir.hash": "dbbbcfc410e49ef526cb02a5afc9831198169d3470ba6a41adcc5dc164d407c7",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean": "9836c0eea010b020ac61bbbb798b047d203802dd18eb2c23c6337eaa789aa7c1",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.hash": "e7f575fec55c99bffb6fdb3dec09c1d693ea5f461dbc20051b3f12534cd9851b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.private": "a0df1242928e8b175968b65ca49498c13f9d0e684ea4d6f1eb5370c526f9aa2b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.private.hash": "8bf938dcc83e51b7389e294fb88eb995f4d84870e9eaa364042536b59688e39a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.server": "964a67d79b50a0a23e8c1291109b83b09f21cb2b2b1453f2cd689f6475d23322",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.olean.server.hash": "ec81b038d878843d4e555e9e9f7487d5b8522d0223d5e379f2c9759f844c508c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/OrderSplit.trace": "1c12d7f97f00f11da9746128e213fc5262a0c42f1d3c3ae8cee56afefb3f4f9d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ilean": "e7ad402880299184adb06ee7887515cad64fdcaba359c4620f99805279b5b212",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ilean.hash": "999513c8d37545a1b802fa2a8cb009c743d1880325b86bf4020a5550572ac18b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ir": "442e3305d2c9cdca986d1d342ef937b036f90fa6c4e68ca964b5bbe02cf56b4a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.ir.hash": "a52af02f06bfe07cd925fb08859377e0b8e78132fb1efaeeaec5f7b1e132aa74",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean": "ad32e82fd58d524efcbe3ce10f947ba8e64dc700d3b9dd5a0930303aa563ee51",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.hash": "f27e120847c34c9a0092624d3b706359fe39ffdf4878101387c08980ff792a2c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.private": "ec0ee09df8bb77332e30ca6ee1e9e6791391cd506e60eac4b08cb015b21b031f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.private.hash": "60706af80b1e1f037fbb815c80f91842fecb6347b78f9931f46478bc76172754",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.server": "4f034f546b0879930d7e16c15aba00cf9ac3f0a79cd399a2d30a3f8699ab8238",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.olean.server.hash": "85bc8dedf28f4270c5ce0295a684f24577ccbb617ca2b053c943d63deb8914fc",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/LatticeCalc/Verified/PowSqrtPrime.trace": "637b75f8f470b55914994a61c83e88936ec7ebff2d76b72f02db0305a4d90301",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.ilean": "bc64aab561e8bbbbedd370d6bc78a46754b241442224e14c14c2381a8924d01f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.ilean.hash": "2525fd7fba4cfa713ae69fa25d7261542811f3b7af0300ae39bb75c18e0f80ab",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.olean": "bbe2f13056e8cf1bb8c7e3f1d5ed3dafeaa5f8c33c109a17f7743638267c919c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.olean.hash": "70b1db4e19e7387a2bc96746608b87829e6e0a885c73994473a044d16525a63d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/ApiSupportNumbers.trace": "8b3e1196ed639beaab4035cda53b7be5bd56ffd1d32db64b36d37013d4c47314",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ilean": "cd6664a329980237f1956fba15b2f5239fe258f996cb0d40935a9b9430306b97",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ilean.hash": "0b881839b147d98dd6b42bc62a586fd35ed50d0612595784da7b46b003f47f69",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ir": "d5ff482e3258842c92c37f56381f5061a9bb1c4c0d14a03a19bdf7f1b71129f0",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ir.hash": "57c4471de75bc502e5326533ebec9d896a4f0f68fa510659e8446be55ea29647",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean": "53dcd5c5b95271bd2155fbb1cc472566f8dd6b8cef9bd9d23b87337b26248606",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.hash": "0e0bbc1cb168edc4630f53368239f7e2da004d6863c340b3cc7ff7afb3bbf10d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.private": "aa4b00ed75b1684921ebfa3c2c178e60e81a25c6b723af1cba15719e847fbf88",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.private.hash": "147f860d67fcb7a2f4ebfc3635e5c3ff3d41e2c30430b51a5993e3686dde1a51",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.server": "ffae0aff70c47922ddff5044d6a67108b23c0cd5d7f5e4bba4493ca11998935a",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.server.hash": "5dccc1ca687d55d1241a3cbdebba515c306e34fd2a2ba17076c2803839fd2343",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.trace": "5f4027c28a27bfb0d2b150f0c7891b5fe691a25ba8f0084c71021e6fb97f3c25",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.ilean": "324f12726dbe71d01c371016296733aa051f6c845cdac1204f0d946479aa293c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.ilean.hash": "a2fafe9a49c71863560a962ad2883fed4015565b6d56af5141c6410894809a14",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.ir": "1930131cce75195019dc83a8061df20b0694a4e0e41b015b26ed9897b19ef029",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.ir.hash": "af9176cbd32d6117f6c47b0f8631c40c9e8e56b403cd6bbe1fc85582eaa96622",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean": "5b734b406183b4fb14aa955cb618d1f975b6451a9fac94190709885fa76975af",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean.hash": "7ddf0eaeca1baac23b1a70e41f088ee39bc6a2679dce929113909b377fcda205",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean.private": "d8c6a18060ededbb87a6f3360882bd339503b9b16982932275e612ad23a9bedd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean.private.hash": "1cd6bf3719b83e508990423e94007e6abfaa859ef36772726bd8e5e4d1054cfd",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean.server": "ccc2d5c95e81bbd931eae53d714c37d4bf84ad61f5446a5887b38ad7fd3a3af5",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.olean.server.hash": "28894f8d70fd9ce7f454a5472784d5571e6f2da07d867980a7cded7d11b548a4",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodScaling.trace": "1bbb656e2ff248c60330889133ec4586e88d0bf91269745c8f2ee76dbc0f17ce",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.ilean": "01653d13cef198f082c72bcdba74017258e89d0df920106f59406a477074001b",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.ilean.hash": "85e2a6f0c10b95bb47b5ba8e7ad1cb7a9866215aab760c89f78db6a3d37d931d",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.ir": "863fad982c74db018f1477e999a88286e492de53a0805bb8be9b05d5a4677a4e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.ir.hash": "195014e47a2ec3be68d0c24ca6486473c36daf48e1e0dce571eecb6dce918df8",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean": "70afba642ed0bee8644355b0ab4e3cd80d6684e30187bbe81f1d675b622b703c",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean.hash": "c72c2e9c7b90f32a4b7eb001e8337a0144d2a09c0056f7ce1f73201b0c171981",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean.private": "79ce58a71fe2df281f1d85bbb5a548b26a3872b755aa158baed0e7a24f96686f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean.private.hash": "4a937fc9870229a32433ebf8a4ae063b93a0ecd34c4cffcd15e9417a12c124ac",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean.server": "9378d66ca84cd55a52667985659448d5febabb710a382e67867c38148769e159",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.olean.server.hash": "0c6e42b3b5ec1b5313d249f490c9bc2985c085a460b1e9d295c651248a355fac",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/TowerCollapse.trace": "7891e1e8e4012db8c6b076cff5b14026200781af64f2a45fbb74e8ee2841c53e",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/Audit.lean": "8d35214c8badeba3315d18318ee01d409373af0834659a5d7ff743c04c07dfec",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/axioms.log": "7fb23592a2906890cfe3ef7b46f8a3ad26ae85a1613ebd0ba24b0ffc7955439f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/Audit.lean": "8d35214c8badeba3315d18318ee01d409373af0834659a5d7ff743c04c07dfec",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/axioms.log": "7fb23592a2906890cfe3ef7b46f8a3ad26ae85a1613ebd0ba24b0ffc7955439f",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/WrongArithmetic.lean": "2f82e5393c838f3dc0237e6bc5689e18b06bc34396a4dcc43890653db7ca1786",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/wrong-arithmetic.log": "6e211eca39ea229c97411cfe35a7ac14631f24681ae23ba9c3bdb4c15e9e4af1",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/AssumptionControls.lean": "38d9f80cbeed108c11c93d381a99db07c9cf5addbfab571b238932628834ea83",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/assumption-controls.log": "27598baac26cae2065add490360c1f6f6e5567f695a1246d55d320a11f20c4e4",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/write_review.py": "9565462acf79fb379117f13f71cc6736ade19505660650ebda05b9fbffa9abb9",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/prepare_manifest.py": "0a13682d8a7eaab5bb74be64c10d3051dc93b4c8e8a8f1b80efbfe570404f292",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/MASTER_PLAN.md": "078610ba9f92a3f4ffe68d676256bfda3619152096a29192d156a5e64e6423f0",
+    "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/API_SUPPORT.md": "195de9196bb82d99a9625d870dad53c9885df91c92920e8d5769c82f4460bfcf"
+  },
+  "limitations": [
+    "The other five historical top-level modules were not freshly rebuilt in this targeted repair; their earlier evidence remains separate.",
+    "Pinned third-party package objects were reused; the local six-module dependency closure was freshly compiled by both gates.",
+    "These statements do not prove a SHA-256 shortcut, valid nonce pruning, mining profitability, or refinement of all miner runtime code.",
+    "The provider service has not been patched or deployed by this repair.",
+    "The historical sources and failure reports remain preserved; repaired sources are maintained in this review workspace."
+  ],
+  "html_report": "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/report.html",
+  "html_report_sha256": "643289ff34a0923c1b31f5f8c679059b28febfd826623d71fead77517dac9995"
+}

@@ -1,0 +1,160 @@
+HEXAGONAL DIFFICULTY EXHIBIT AND EXACT CAPACITY
+12 October 2026
+
+Open /target dif, choose How it works, then use the View selector. The existing
+container now includes Prime classes, Miner flower labels and 256-bit
+representation. Each cell is selectable by mouse or keyboard. The HTML remains
+self-contained and works offline. Source switching still selects recorded data.
+
+1. CORRESPONDENCE WITH THE SUPPLIED IMAGE
+
+Use Eisenstein coordinates a+b*omega, omega^2+omega+1=0, and zeta6=1+omega.
+The norm is a^2-a*b+b^2. The 19-cell alphabet consists of zero, six units and
+twelve cells in the second ring. Rendering uses (a-b/2, sqrt(3)*b/2), with the
+vertical sign reversed for screen coordinates.
+
+For p=2 mod3, work in F_p[omega], a field with p^2 elements. For p=1 mod3,
+choose pi=a+b*omega of norm p and substitute omega=-a/b mod p in F_p.
+For nonzero z, the sextic character is z^((q-1)/6), where q is the field size.
+Its exponent relative to zeta6 is the color in 0..5. Zero has no sextic color.
+
+The three parameters s=c(zeta6), c2=c(2), c3=c(1-omega) generate both rings:
+  inner: j*s mod6;
+  outer: c2+j*s, c3+(j+1)*s mod6, for j=0..5.
+Thus the screenshot's compression of ring COLOR DATA is exact for this family.
+The colors alone do not encode the underlying field elements injectively.
+
+Independent arithmetic reproduced all six supplied split-prime examples and
+all 8,867 inert primes from 5 through 196,884, including the six exact counts.
+The 216-type split-prime census was not reproduced. The image cites
+RequestProject/FiniteField/InnerRings.lean; that particular proof file has not
+been located in the searched Desktop/Downloads sources or provider metadata.
+Do not describe these checks as compiling that unseen proof.
+
+2. CORRESPONDENCE WITH THE MINER'S FLOWER
+
+The same 19 coordinates form the digit set D used by flower_nonce_labels.
+For beta=5+2*omega, N(beta)=19, encode z=d0+beta*d1. At depth two,
+q(a+b*omega)=a+292*b mod361. All 361 digit pairs occur exactly once; deleting
+zero and subtracting one matches the miner's 360 labels in their exact order.
+
+This ring is Z/361Z and includes 18 nonzero multiples of 19. It is distinct from
+the miner's GF(19^2) carrier with i^2=-1. The visual mode selector preserves this
+distinction. Flower colors distinguish units/nonunits/zero; their meaning differs
+from the six prime-class colors.
+
+3. EXACT GRAPH SPACE FOR ANY 256-BIT HASH OR TARGET
+
+There are 2^256 unsigned hash values. A complete 19-symbol representation needs
+61 positions, because 19^60 < 2^256 < 19^61. The minimum depth is determined by
+the complete value domain, not by difficulty 10 or a particular target.
+
+At depth k, lift omega=7 mod19 to a root r_k of x^2+x+1 mod19^k. The derivative
+2*r_k+1 is invertible mod19, so each lift is unique. r_2=292, agreeing with the
+miner. The quotient E/(beta^k) has 19^k elements and is identified with Z/19^kZ
+by a+b*omega -> a+r_k*b. This identification uses the same selected prime factor
+beta at every depth. It does not identify this quotient with a finite field.
+
+Encode H by repeatedly choosing the unique d in D with q_1(d)=q_1(z), then
+dividing z-d by beta. For z-d=x+y*omega, exact division gives
+  ((3*x+2*y)/19, (-2*x+5*y)/19).
+Retain the first 61 digits. Decode their polynomial in beta modulo 19^61, using
+the lifted root. The result is H for every 0<=H<2^256. It represents the bounded
+integer through a finite quotient; it need not reproduce H as an unbounded
+Eisenstein expansion before reduction.
+
+These are representation digits; 61 base19 symbols carry slightly more than 256
+bits. They are not a claim of reducing storage for arbitrary 256-bit values.
+Formula descriptors and visual grouping can compress structured families while
+retaining the data needed to reconstruct individual values.
+
+HashCapacity.lean proves the capacity inequalities, exact residue readback,
+injectivity and preservation of H<=T for every target. Its eight declarations
+compile under Lean 4.28 without proof placeholders. The proof models modular
+representation; the actual flower encoder/decoder correspondence is checked by
+independent Python and JavaScript vectors, not formally extracted from Lean.
+
+All 361 values round-trip at depth 2. At depth 61, 264 edge/random 256-bit vectors
+round-trip in Python and produce identical browser digit sequences. The browser
+also checks T-1,T,T+1, invalid input,61st-position selection and keyboard controls.
+Depth2 correctly collides on 0 and 361, illustrating why insufficient capacity
+cannot preserve a complete hash or its numeric order.
+
+4. WHAT THE API ESTABLISHES
+
+The fresh provider discovery at 2026-10-12T21:23:38Z contains 39 available formulas.
+Relevant definitions include rod_add 7171, rod_mul 7172, crt_capacity_law 7170,
+garner_readback 7174, hex_shell_population 7178, eisenstein_norm 7179 and the
+abacus formula/program records 7194/7195. Their presence is source evidence,
+not a proof that the full miner implements every formula.
+
+Five fresh exact API probes matched Python integers: N(5,2)=19, the radius 2
+shell population 19, N(21,16)=361, 292^2+292+1=85557=237*361, and Bitcoin's
+exact difficulty 1 target 65535*2^208. The API marked all five exact and certified.
+The earlier file query failed transiently; a retry returned 19 visible files,
+with no InnerRings/sextic match in their top-level metadata. Archive contents
+were not searched in that query. No provider report or upload was submitted.
+
+5. EXISTING SHA CORRESPONDENCE AND FORMAL VERIFICATION SCOPE
+
+Correction to the initial wording: the mathematical operation bridge and a
+complete SHA abacus replay already existed. Saying the full correspondence
+"still needs proving" without identifying the level of proof understated that
+work. It must not be read as saying the SHA mapping has never been implemented
+or checked, or that a higher difficulty requires new mathematical identities.
+
+scripts/abacus_sha_lab.py:replay_on_rods recomputes every schedule word, every
+round and every feedforward output of all three SHA256d compression blocks.
+It uses CRT rods (65536,65537,7), exact carry-corrected word addition, rotation
+modulo 2^32-1 with the all-ones exception preserved, and exact bit-coordinate
+XOR/AND/NOT. These are the existing operation mappings, including the extra
+information that makes them exact. Each replayed value is checked against the
+independent standard-operation trace; its digest is checked against hashlib.
+The historical replay records 936 rod additions, 1728 Mersenne rotations and
+2016 bitwise operations for one complete header. The present review also
+rechecks that replay on five headers (960 full SHA rounds in total).
+
+Supporting source theorems already include FractalAbacus.runProg_proj and
+prog_arbitrary_precision for the specified ring-formula language, binary-rod
+rotation/reduction identities in BinaryKernels.lean, and the universal
+five_word_carry contract in MinerMath/Strict.lean. Those source statements,
+finite replay evidence and the production implementation have different scopes.
+The general program theorem is not itself a compiled instance of a full SHA
+program: its Formula language contains constants, variables,+,-,*,natural powers.
+
+The stronger formal claim is a proof for every header of
+  DecodeResult(EvalEncoded(EncHeader(h))) = LE256(SHA256(SHA256(h))),
+with EvalEncoded bound to the complete actual implementation and all relevant
+serialization and state transitions. Such a whole-program refinement proof is
+not established by the receipts examined here. It is a software-verification
+boundary, not evidence against the valid identities or the completed replay.
+
+The new 61-digit flower exhibit and the earlier CRT/Mersenne/bit-coordinate SHA
+replay use different representations. This exhibit does not implement a new
+flower-digit SHA backend. Its final Lean declaration states target preservation
+conditional on an evaluator correspondence; it neither proves that backend nor
+replaces or invalidates the earlier correspondence work.
+
+Existing production traversal mapping, coverage and 33 full native/hashlib
+comparisons are recorded in mathematical-mapping-20261012/MAPPING.txt and
+correspondence.json. At every difficulty the hash function and exact operation
+identities remain the same; the target threshold changes.
+
+The current UI is a representation and process exhibit. It does not add a new
+hash backend, alter mining difficulty, start a trial or submit a block. Native
+worker code and production lifecycle were not changed by this work.
+
+REPRODUCE
+  python3 -B validation/hex-difficulty-20261012/check_math.py
+  python3 -B validation/hex-difficulty-20261012/embed.py
+  .test-tools/lean-4.28.0-darwin_aarch64/bin/lean \
+    validation/hex-difficulty-20261012/HashCapacity.lean
+
+Browser evidence is in validation/hex-difficulty-20261012/, including screenshots,
+check_browser.mjs, math-result.json, browser-result.json and source identities.
+Provider evidence is in validation/full-correspondence-20261012/.
+
+Primary Bitcoin predicate reference:
+  https://github.com/bitcoin/bitcoin/blob/master/src/pow.cpp
+Primary SHA256 operation specification:
+  https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf

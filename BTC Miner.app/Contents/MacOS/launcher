@@ -1,0 +1,15 @@
+#!/bin/bash
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+exec /usr/bin/osascript - "$ROOT/Start BTC Miner.command" <<'APPLESCRIPT'
+on run argv
+    set commandPath to item 1 of argv
+    tell application "Terminal"
+        activate
+        set minerTab to do script (quoted form of commandPath)
+        try
+            set number of columns of front window to 130
+            set number of rows of front window to 40
+        end try
+    end tell
+end run
+APPLESCRIPT

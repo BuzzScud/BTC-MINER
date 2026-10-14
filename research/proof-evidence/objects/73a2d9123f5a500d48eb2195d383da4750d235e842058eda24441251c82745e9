@@ -1,0 +1,422 @@
+"""Bounded offline, sequential proof rebuild for the miner repair gate.
+
+MUST compile the requested local import closure in a fresh per-attempt object tree;
+MUST audit every theorem (including generated/internal roots), require every named
+source theorem, and reject assumptions beyond Lean's three standard logical axioms.
+MUST bind sources, dependencies, compiler, logs and artifacts and exercise rejection
+controls before reporting success. MAY reuse only pinned third-party package objects.
+This gate proves scoped Lean statements; it does not certify the hashing runtime or
+show a mining advantage. See source-manifest.json and the parent final-review.json.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import signal
+import subprocess
+import time
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+PINNED = ROOT / 'validation/math-audit/aristotle-snapshot'
+BIN = ROOT / '.test-tools/lean-4.28.0-darwin_aarch64/bin'
+SOURCE = HERE / 'sources'
+ALLOWED_AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
+ACTIVE_RECEIPT = None
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def save(path, value):
+    path.write_text(json.dumps(value, indent=2) + '\n')
+
+
+
+def strip_comments(text):
+    """Preserve line positions while removing nested Lean and line comments."""
+    out, i, depth, quoted = [], 0, 0, False
+    while i < len(text):
+        pair = text[i:i + 2]
+        if depth:
+            if pair == '/-':
+                depth += 1; out.extend('  '); i += 2
+            elif pair == '-/':
+                depth -= 1; out.extend('  '); i += 2
+            else:
+                out.append('\n' if text[i] == '\n' else ' '); i += 1
+        elif quoted:
+            out.append(text[i])
+            if text[i] == '\\' and i + 1 < len(text):
+                i += 1; out.append(text[i])
+            elif text[i] == '"':
+                quoted = False
+            i += 1
+        elif pair == '/-':
+            depth = 1; out.extend('  '); i += 2
+        elif pair == '--':
+            while i < len(text) and text[i] != '\n':
+                out.append(' '); i += 1
+        else:
+            quoted = text[i] == '"'
+            out.append(text[i]); i += 1
+    if depth:
+        raise RuntimeError('Unterminated Lean comment in source inventory')
+    return ''.join(out)
+
+
+def named_theorems(text):
+    """Inventory this repository's explicit top-level theorem syntax, fail closed.
+
+    Lean remains the parser/type checker. This separate source inventory prevents a
+    same-sized but wrong module/root set from satisfying the assumption audit.
+    """
+    scopes, roots = [], []
+    for raw in strip_comments(text).splitlines():
+        line = re.sub(r'^(?:@\[[^\]]*\]\s*)+', '', raw.strip())
+        opened = re.fullmatch(r'(namespace|(?:(?:public|noncomputable) )?section)(?:\s+([\w.]+))?', line)
+        if opened:
+            kind, name = opened.groups()
+            if kind == 'namespace' and not name:
+                raise RuntimeError('Anonymous namespace cannot be inventoried')
+            scopes.append((kind, name or ''))
+            continue
+        closed = re.fullmatch(r'end(?:\s+([\w.]+))?', line)
+        if closed:
+            if not scopes:
+                raise RuntimeError('Unbalanced end in source inventory')
+            _, name = scopes.pop()
+            if closed.group(1) and closed.group(1) != name:
+                raise RuntimeError('Mismatched source namespace/section end')
+            continue
+        declaration = re.match(r'(?:(?:public|protected|noncomputable)\s+)*(?:theorem|lemma)\s+([^\s:({]+)', line)
+        if declaration:
+            local = declaration.group(1)
+            if not re.fullmatch(r'[\w.\']+', local):
+                raise RuntimeError('Unsupported theorem identifier: ' + local)
+            prefix = '.'.join(name for kind, name in scopes if kind == 'namespace')
+            roots.append((prefix + '.' if prefix else '') + local)
+        elif re.match(r'(?:(?:private|public|protected)\s+)*(?:theorem|lemma)\b', line):
+            raise RuntimeError('Unsupported theorem syntax in explicit root inventory: ' + line)
+    if any(kind == 'namespace' for kind, _ in scopes):
+        raise RuntimeError('Unclosed source namespace')
+    if len(roots) != len(set(roots)):
+        raise RuntimeError('Duplicate named theorem in source inventory')
+    return sorted(roots)
+
+
+def parse_audit(text, expected):
+    """Accept a complete raw Lean inventory, never a count-only assertion."""
+    roots, totals = {}, []
+    per_module = {name: 0 for name in expected}
+    for line in text.splitlines():
+        if line.startswith('ROOT\t'):
+            fields = line.split('\t')
+            if len(fields) != 4 or fields[1] not in per_module or fields[2] in roots:
+                raise RuntimeError('Malformed/duplicate theorem audit record')
+            axioms = set(filter(None, fields[3].split(',')))
+            if not axioms <= ALLOWED_AXIOMS:
+                raise RuntimeError('Disallowed theorem axioms: ' + fields[2])
+            roots[fields[2]] = {'module': fields[1], 'axioms': sorted(axioms)}
+            per_module[fields[1]] += 1
+        elif line.startswith('TOTAL\t'):
+            totals.append(int(line.split('\t')[1]))
+    if not roots or totals != [len(roots)]:
+        raise RuntimeError('Missing/truncated theorem audit inventory')
+    for module, names in expected.items():
+        missing = [name for name in names if name not in roots or roots[name]['module'] != module]
+        if missing:
+            raise RuntimeError('Module theorem audit omits required named roots: ' + repr(missing))
+    return roots, per_module
+
+
+def parser_controls():
+    """Mutation controls for the concrete acceptance parser, independent of Lean."""
+    expected = {'M': ['M.root']}
+    good = 'ROOT\tM\tM.root\tpropext\nTOTAL\t1\n'
+    if parse_audit(good, expected)[1] != {'M': 1}:
+        raise RuntimeError('Audit parser positive control failed')
+    cases = {
+        'missing_total': good.split('TOTAL')[0],
+        'missing_root': 'TOTAL\t0\n',
+        'wrong_named_root': good.replace('M.root', 'M.other'),
+        'wrong_module': good.replace('ROOT\tM\t', 'ROOT\tOther\t'),
+        'duplicate_root': good.split('TOTAL')[0] + good,
+        'duplicate_total': good + 'TOTAL\t1\n',
+        'sorry_assumption': good.replace('propext', 'sorryAx'),
+        'native_assumption': good.replace('propext', 'Lean.ofReduceBool'),
+        'custom_assumption': good.replace('propext', 'unprovedOracle'),
+    }
+    results = {}
+    for name, body in cases.items():
+        try:
+            parse_audit(body, expected)
+        except (RuntimeError, ValueError):
+            results[name] = 'rejected'
+        else:
+            raise RuntimeError('Audit parser accepted negative control: ' + name)
+    sample = '/- theorem fake : False := by sorry /- nested -/ -/\nnamespace M\n@[expose] public section\n@[simp] theorem real : True := by trivial\nend\nend M\n'
+    if named_theorems(sample) != ['M.real']:
+        raise RuntimeError('Named source root inventory control failed')
+    results['nested_comment_inventory'] = 'passed'
+    return results
+
+
+def run(command, log, env, timeout):
+    start = time.monotonic()
+    with log.open('x') as stream:
+        process = subprocess.Popen(command, cwd=SOURCE, env=env, stdout=stream,
+                                   stderr=subprocess.STDOUT, start_new_session=True)
+        try:
+            code = process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            os.killpg(process.pid, signal.SIGKILL)
+            process.wait()
+            stream.write('\nBOUNDED TIMEOUT\n')
+            code = 124
+        except BaseException:
+            if process.poll() is None:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.wait()
+            raise
+    return {'exit_code': code, 'seconds': round(time.monotonic() - start, 3),
+            'log': str(log), 'log_sha256': sha(log), 'command': command}
+
+
+def execute():
+    global ACTIVE_RECEIPT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--target', action='append', default=[])
+    parser.add_argument('--all', action='store_true')
+    parser.add_argument('--timeout', type=int, default=180)
+    parser.add_argument('--memory-mb', type=int, choices=(2048, 3072, 4096), default=3072)
+    args = parser.parse_args()
+    if not 1 <= args.timeout <= 600:
+        parser.error('timeout must be between 1 and 600 seconds')
+    manifest = json.loads((HERE / 'source-manifest.json').read_text())
+    targets = manifest['historical_targets'] if args.all else (args.target or ['RequestProject.RodCircles'])
+    for relative, digest in manifest['sources'].items():
+        if sha(SOURCE / relative) != digest:
+            raise RuntimeError('Unrecorded source change: ' + relative)
+    if sha(HERE / 'api-support.json') != manifest['api_support_sha256']:
+        raise RuntimeError('Recorded API support changed')
+    if sha(PINNED / 'lake-manifest.json') != manifest['dependency_manifest_sha256']:
+        raise RuntimeError('Pinned dependency manifest changed')
+    directory = HERE / 'attempts' / datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+    directory.mkdir(parents=True)
+    objects = directory / 'objects'
+    objects.mkdir()
+    report = {'status': 'running', 'targets': targets, 'builds': [], 'ok': False,
+              'source_manifest_sha256': sha(HERE / 'source-manifest.json'),
+              'sources': manifest['sources'], 'runner_sha256': sha(Path(__file__)),
+              'dependency_manifest_sha256': manifest['dependency_manifest_sha256'],
+              'api_support_sha256': manifest['api_support_sha256'],
+              'per_module_timeout_seconds': args.timeout, 'memory_limit_mb': args.memory_mb,
+              'parser_controls': parser_controls(),
+              'scope': 'Requested local sources and their complete local import closure, rebuilt sequentially; no remote revision freshness claim.'}
+    report['active_stage'] = 'environment_setup'
+    ACTIVE_RECEIPT = (directory / 'report.json', report)
+    save(directory / 'report.json', report)
+    env = dict(os.environ, LC_ALL='C', PYTHONDONTWRITEBYTECODE='1', LEAN_NUM_THREADS='1')
+    env['PATH'] = str(BIN) + os.pathsep + env.get('PATH', '')
+    report['lean_version'] = subprocess.check_output([str(BIN / 'lean'), '--version'], env=env, text=True, timeout=30).strip()
+    report['lake_version'] = subprocess.check_output([str(BIN / 'lake'), '--version'], env=env, text=True, timeout=30).strip()
+    raw = subprocess.check_output([str(BIN / 'lake'), 'env', 'printenv', 'LEAN_PATH'],
+                                  cwd=PINNED, env=env, text=True).strip()
+    paths = [(PINNED / p).resolve() if not Path(p).is_absolute() else Path(p) for p in raw.split(os.pathsep)]
+    # Keep package caches; omit old project objects so no local module can silently fall back.
+    package_paths = [str(p) for p in paths if p != (PINNED / '.lake/build/lib/lean').resolve()]
+    # Fresh object tree prevents reuse of stale local .olean files from any prior attempt.
+    env['LEAN_PATH'] = str(objects) + os.pathsep + os.pathsep.join(package_paths)
+    report['compiler_sha256'] = sha(BIN / 'lean')
+    report['lake_sha256'] = sha(BIN / 'lake')
+    report['object_directory'] = str(objects)
+    order, dependencies, visiting = [], {}, set()
+
+    def visit(name):
+        if name in order:
+            return
+        if name in visiting:
+            raise RuntimeError('Import cycle: ' + name)
+        relative = name.replace('.', '/') + '.lean'
+        if relative not in manifest['sources']:
+            raise RuntimeError('Untracked local import: ' + name)
+        visiting.add(name)
+        dependencies[name] = [d for d in re.findall(r'^(?:public )?import ([\w.]+)',
+            (SOURCE / relative).read_text(), re.M) if d.startswith(('RequestProject.', 'LatticeCalc.'))]
+        for dependency in dependencies[name]:
+            visit(dependency)
+        visiting.remove(name)
+        order.append(name)
+
+    for target in targets:
+        visit(target)
+    report['build_order'] = order
+    report['dependencies'] = dependencies
+    expected = {name: named_theorems((SOURCE / (name.replace('.', '/') + '.lean')).read_text())
+                for name in order}
+    report['required_named_theorems'] = expected
+    save(directory / 'report.json', report)
+    for module in order:
+        report['active_stage'] = 'compile:' + module
+        relative = module.replace('.', '/') + '.lean'
+        source = SOURCE / relative
+        if any(row['exit_code'] != 0 for row in report['builds']):
+            break
+        output = objects / relative
+        output.parent.mkdir(parents=True, exist_ok=True)
+        command = [str(BIN / 'lean'), '-j1', '-DElab.async=false', '-M' + str(args.memory_mb), '-o', str(output.with_suffix('.olean')), relative]
+        result = dict(run(command, directory / (module + '.log'), env, args.timeout), module=module)
+        if result['exit_code'] == 0:
+            outputs = list(output.parent.glob(output.stem + '.olean*'))
+            if output.with_suffix('.ir').is_file():
+                outputs.append(output.with_suffix('.ir'))
+            result['artifacts'] = {str(p.relative_to(objects)): sha(p) for p in sorted(outputs)}
+            if not output.with_suffix('.olean').exists():
+                raise RuntimeError('Missing successful build object')
+        report['builds'].append(result)
+        save(directory / 'report.json', report)
+        print(json.dumps(result), flush=True)
+    all_built = len(report['builds']) == len(order) and all(row['exit_code'] == 0 for row in report['builds'])
+    report['status'] = 'compiled_pending_axiom_audit' if all_built else 'build_failed'
+    report['all_requested_modules_compiled'] = all_built
+    report['ok'] = False
+    save(directory / 'report.json', report)
+    if all_built:
+        report['active_stage'] = 'axiom_audit'
+        audit_text = 'import Lean\n' + '\n'.join('import ' + name for name in order) + '''
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  let modules : Array Name := #[MODULE_NAMES]
+  for name in modules do
+    unless (env.getModuleIdx? name).isSome do
+      throwError "Required module is absent: {name}"
+  let indices := modules.filterMap env.getModuleIdx?
+  let mut seen : Nat := 0
+  for (name, info) in env.constants.toList do
+    let some index := env.getModuleIdxFor? name | continue
+    unless indices.contains index do continue
+    if let .axiomInfo _ := info then
+      throwError "Local axiom declaration is forbidden: {name}"
+    let .thmInfo _ := info | continue
+    let (_, axioms) := ((CollectAxioms.collect name).run env).run {}
+    liftIO <| IO.println s!"ROOT\\t{env.header.moduleNames[index.toNat]!}\\t{name}\\t{String.intercalate "," (axioms.axioms.toList.map Name.toString)}"
+    seen := seen + 1
+  liftIO <| IO.println s!"TOTAL\\t{seen}"
+'''.replace('MODULE_NAMES', ', '.join('`' + name for name in order))
+        audit_source = directory / 'Audit.lean'
+        audit_source.write_text(audit_text)
+        audited = run([str(BIN / 'lean'), '-j1', '-DElab.async=false', '-M' + str(args.memory_mb), str(audit_source)],
+                      directory / 'axioms.log', env, args.timeout)
+        report['axiom_audit'] = dict(audited, source_sha256=sha(audit_source))
+        if audited['exit_code'] == 0:
+            roots, per_module = parse_audit((directory / 'axioms.log').read_text(), expected)
+            report['theorem_roots'] = roots
+            report['theorem_count'] = len(roots)
+            report['module_theorem_counts'] = per_module
+            report['active_stage'] = 'false_arithmetic_control'
+            negative = directory / 'WrongArithmetic.lean'
+            negative.write_text('theorem rejected_false_arithmetic : (0 : Nat) = 1 := by rfl\n')
+            control = run([str(BIN / 'lean'), '-j1', '-DElab.async=false', '-M512', str(negative)],
+                          directory / 'wrong-arithmetic.log', env, 30)
+            control_log = (directory / 'wrong-arithmetic.log').read_text()
+            control_ok = control['exit_code'] == 1 and 'error:' in control_log and '0 = 1' in control_log
+            report['negative_control'] = dict(control, expected_rejection=control_ok,
+                                              source_sha256=sha(negative), log_sha256=sha(directory / 'wrong-arithmetic.log'))
+            # A compiler success with sorry/custom assumptions MUST fail the same parser.
+            report['active_stage'] = 'forbidden_assumption_controls'
+            bad_assumptions = directory / 'AssumptionControls.lean'
+            bad_assumptions.write_text('''import Lean
+axiom rejected_custom_axiom : False
+theorem rejected_custom_root : False := rejected_custom_axiom
+theorem rejected_sorry_root : False := by sorry
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  for name in #[`rejected_custom_root, `rejected_sorry_root] do
+    let (_, axioms) := ((CollectAxioms.collect name).run env).run {}
+    liftIO <| IO.println s!"ROOT\\tCONTROL\\t{name}\\t{String.intercalate "," (axioms.axioms.toList.map Name.toString)}"
+  liftIO <| IO.println "TOTAL\\t2"
+''')
+            bad_result = run([str(BIN / 'lean'), '-j1', '-DElab.async=false', '-M2048', str(bad_assumptions)],
+                             directory / 'assumption-controls.log', env, 60)
+            report['assumption_controls'] = dict(bad_result, source_sha256=sha(bad_assumptions))
+            bad_log = (directory / 'assumption-controls.log').read_text()
+            if bad_result['exit_code'] != 0:
+                raise RuntimeError('Assumption-control Lean fixture did not compile')
+            records = [line for line in bad_log.splitlines() if line.startswith('ROOT\t')]
+            if len(records) != 2:
+                raise RuntimeError('Assumption-control inventory is incomplete')
+            rejected = {}
+            for record, name, required_axiom in zip(records,
+                    ['rejected_custom_root', 'rejected_sorry_root'],
+                    ['rejected_custom_axiom', 'sorryAx']):
+                fields = record.split('\t')
+                if len(fields) != 4 or fields[2] != name or required_axiom not in fields[3].split(','):
+                    raise RuntimeError('Assumption control did not expose expected Lean axiom: ' + name)
+                try:
+                    parse_audit(record + '\nTOTAL\t1\n', {'CONTROL': [name]})
+                except RuntimeError:
+                    rejected[name] = True
+                else:
+                    raise RuntimeError('Forbidden assumption passed audit: ' + name)
+            report['assumption_controls'] = dict(bad_result, rejected=rejected,
+                source_sha256=sha(bad_assumptions))
+            report['axiom_audit']['log_sha256'] = sha(directory / 'axioms.log')
+            if not control_ok:
+                raise RuntimeError('False-arithmetic negative control did not reject as expected')
+            report['active_stage'] = 'final_binding_checks'
+            for relative, digest in manifest['sources'].items():
+                if sha(SOURCE / relative) != digest:
+                    raise RuntimeError('Source changed during build/audit: ' + relative)
+            for row in report['builds']:
+                for relative, digest in row['artifacts'].items():
+                    if sha(objects / relative) != digest:
+                        raise RuntimeError('Compiled artifact changed during audit: ' + relative)
+            for path, digest in [(HERE / 'source-manifest.json', report['source_manifest_sha256']),
+                                 (HERE / 'api-support.json', report['api_support_sha256']),
+                                 (Path(__file__), report['runner_sha256']),
+                                 (PINNED / 'lake-manifest.json', report['dependency_manifest_sha256']),
+                                 (BIN / 'lean', report['compiler_sha256']),
+                                 (BIN / 'lake', report['lake_sha256'])]:
+                if sha(path) != digest:
+                    raise RuntimeError('Gate input changed during build/audit: ' + str(path))
+            report.update(ok=True, status='passed', active_stage='complete',
+                          completed_at=datetime.now(timezone.utc).isoformat())
+        else:
+            report['status'] = 'axiom_audit_failed'
+        save(directory / 'report.json', report)
+    print(json.dumps({'status': report['status'], 'report': str(directory / 'report.json')}), flush=True)
+    return 0 if report['ok'] else 1
+
+
+def main():
+    """Persist a terminal failure receipt for every exception after gate startup.
+
+    MUST retain completed build/audit evidence and failed control diagnostics;
+    an exception MUST NOT leave a misleading running/pending status on disk.
+    """
+    global ACTIVE_RECEIPT
+    ACTIVE_RECEIPT = None
+    try:
+        return execute()
+    except BaseException as error:
+        if ACTIVE_RECEIPT is not None:
+            path, report = ACTIVE_RECEIPT
+            report.update(ok=False, status='failed',
+                          failed_stage=report.get('active_stage', 'unknown'),
+                          error=type(error).__name__ + ': ' + str(error),
+                          completed_at=datetime.now(timezone.utc).isoformat())
+            save(path, report)
+            print(json.dumps({'status': 'failed', 'stage': report['failed_stage'],
+                              'report': str(path)}), flush=True)
+        raise
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

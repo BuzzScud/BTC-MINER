@@ -1,0 +1,65 @@
+LOCAL RESOURCE GOVERNOR AND PROVIDER TELEMETRY
+October 13, 2026
+
+Rollout: resource_control defaults false. The production code is integrated,
+but activation awaits private mining qualification. Saved mainnet settings are
+not modified by building or preparing the test. No benchmark or new regtest
+has been run for this change. The 100-billion runner requires explicit --start.
+
+Requested private policy:
+  Total Mac CPU target 85%; backoff above 90%.
+  Owned-process memory ceiling 4096 MiB (half this Mac's physical RAM).
+  Additional peer memory ceiling 256 MiB; swap growth ceiling 128 MiB.
+  Stop on memory-pressure warning or reported thermal throttling.
+  Two-second samples; separate watchdog stops if the sampler stalls.
+  Worker range 2..6 total; emergency backoff can reduce to one worker or pause.
+  Two coordinator workers plus at most four separately gated local peers.
+  65,536-candidate batches; stop after the first accepted block.
+The 4 GiB ceiling is not a memory allocation or a promise that amount is safe to
+consume: pressure and swap safeguards can stop the run earlier. These are
+sampled controls, not hard OS quotas. Other applications remain outside miner
+control; the governor can pause mining but cannot throttle those applications.
+
+ResourceController samples host CPU via cumulative OS counters and discovers
+owned descendants by PID, parent and start identity. CPU is normalized to all
+host cores, not one core. Process CPU from ps is separately labeled a lifetime
+measure and is not the feedback-controller input. RSS can double-count shared
+pages. Thermal information is explicitly unavailable where macOS provides no
+warning/status. Local missing measurements deny new work; remote missing
+telemetry does not. Completed work and the coordinator's validated block
+submission remain authoritative.
+
+Automatic control changes admission/duty at batch boundaries. It does not call
+the restart-based configuration path. In a running governed production session,
+/workers changes the session worker ceiling without restarting. Manual pause
+and stop still override it. Full uncommitted tails remain leased/released or
+recovered by normal expiry; no nonce coverage is discarded. CPU adaptation
+increases one worker after sustained headroom and rolls back a count increase
+that fails its observed throughput comparison. This is a conservative heuristic,
+not proof of optimal worker count.
+
+The console exposes host CPU and limits, worker count, RSS and last decision.
+resources-status.json and resources.jsonl persist bounded observation history:
+128 in-memory samples; current file plus three rotated files of about 5 MiB.
+Provider telemetry has its own bounded history. Write failures and invalid or
+out-of-order observations remain visible. Final block receipts are separate.
+
+Provider calculation telemetry now retains CPU-cost values, progress, model
+statistics and transport timing. CPU cost is labeled provider-reported with
+unverified instrumentation semantics; it never controls local work. REST IDs
+can repeat, and WebSocket IDs can embed tokens. IDs are fingerprinted before
+persistence; no raw token-bearing URL or ID belongs in a report. Persistent
+WebSockets avoid deliberate minute-by-minute shared-session teardown, and the
+runtime owns a dedicated login rather than consuming another runtime's session.
+
+Actual provider server telemetry is optional. Configure provider_metrics_path
+and provider_metrics_ws_path only after a matching endpoint is installed under
+the authenticated provider origin. Defaults are blank; the UI then displays
+server resources unavailable. CPU/RAM safeguards continue independently.
+See PROVIDER-SYSTEM-METRICS.txt for the adapter, units and deployment boundary.
+
+Prepared trial: validation/regtest-x100b-resource-guarded-20261013/run.py
+  Without arguments: prints PREPARED_NOT_STARTED and exits.
+  With --start: explicitly starts a new isolated private trial.
+No automatic next block, retry trial, or mainnet start follows completion.
+Preserve the stop gate and use a fresh evidence directory for each new run.

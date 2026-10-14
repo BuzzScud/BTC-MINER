@@ -1,0 +1,1698 @@
+{
+  "schema": 1,
+  "status": "accepted_scoped_statements",
+  "proof_manifest_sha256": "e750b42b7e36590ff63c9ba3be9abb9c5c933829f26b19f146dff7c2966fc07e",
+  "audited_root_count": 299,
+  "named_theorem_count": 123,
+  "executable_translation_count": 5,
+  "theorems": [
+    {
+      "theorem": "RodCircles.conic_card_add",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.core_modulus_circle_counts",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.core_modulus_circles",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.core_rod_circles",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.eleven_seventyone_never_flower",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.exists_iso_three",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.flower_mod_three",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.flower_prime_divisor",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.flower_prime_hexCircle",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.formPts_card_mul",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.form_map",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.hexCircle_card_of_mod_three_eq_one",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.hexCircle_card_of_mod_three_eq_two",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.hexCircle_eq_hexConic",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.hexConic_card",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.isoRoots_eq_pair",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.isoRoots_eq_zero",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.mod_three_of_cube_root",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.nineteen_flower",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod_circles_on_dial",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.sqCircle_card_of_mod_four_eq_one",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.sqCircle_card_of_mod_four_eq_three",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.sqCircle_eq_conic",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.three_ne_zero_of_ne",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.twelve_fold",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.two_ne_zero_of_odd",
+      "module": "RequestProject.RodCircles",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodCircles.lean",
+      "source_sha256": "2615e37b58b121da8aab905070dcf9c6d5a5e6ccb7d3c0da5482a4303a12f045",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.formPts_card_rows",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_00",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_01",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_02",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_03",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_04",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_05",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_06",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_07",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_08",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_09",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_10",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_11",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_12",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_13",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_14",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_15",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_16",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_17",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod361_block_18",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod_121_hex",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod_121_square",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.rod_361_hex",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.sum_range_blocks",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "RodCircles.sum_range_nineteen",
+      "module": "RequestProject.RodScaling",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/RodScaling.lean",
+      "source_sha256": "ff6e1544528794a33e2fff290ee55da420523a23e5ece30d5348069c36738603",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.bitsVal_bitsMSB",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkCert_append",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkCert_mono",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkCert_sound",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkCert_sound_aux",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkEntry_mono",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.checkEntry_sound",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.exists_cert",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.exists_cert_list",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.isPrime_iff",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.isqrt_eq",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.newtonLoop_eq",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.newton_step_lt",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.powmodLoop_spec",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.powmod_eq",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.powmod_nat_eq_one_iff",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.prime_iff_exists_cert",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.sqrt_le_newton_step",
+      "module": "LatticeCalc.Verified.PowSqrtPrime",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/PowSqrtPrime.lean",
+      "source_sha256": "e3cb14fd25fa5852e262c66b150286ae3a33c8a49b66940b3072440a95deb876",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.base_construction",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.check_isSome",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.check_isSome_symm",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.check_sound",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.dvd_shift_iff",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.exists_good_base",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.exists_separating_step",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.pow_eq_one_of_sub_one_dvd",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.powmodKAux_eq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.powmodK_eq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.powmodK_eq_powmod",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.prime_of_factored_witness",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.proper_dvd_pq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.qToK_of_multiple",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.qToK_pq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.scan_isSome",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.scan_none_of_orderOf_eq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.scan_sound",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitAny_pq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitAny_sound",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitTree_gt_one",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitTree_prod",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_isSome_iff",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_isSome_of_mem",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_none_of_orderOf_eq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_one_sided",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_pq",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.splitWith_sound",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.stripAux_mul",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.stripAux_not_dvd",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.strip_spec",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff",
+      "module": "LatticeCalc.Verified.OrderSplit",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/LatticeCalc/Verified/OrderSplit.lean",
+      "source_sha256": "02449e433940ae799197da18340ab39f4626c19a986acfd2cfb794efb679e871",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.core_tower3",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.core_tower4",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.core_tower_sharp",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.core_units",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.dial_tower",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.dial_tower_two_values",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.dial_units",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.fermat_dvd",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.not_dvd_of_coprime",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.of_residues",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.pow_mod_period",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.tower4_collapse",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.tower_collapse",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.twelve_units",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.units_30240",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "TowerCollapse.units_72",
+      "module": "RequestProject.TowerCollapse",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/TowerCollapse.lean",
+      "source_sha256": "c7367b20ae30417c9782122b01a6e9eec4e9cd03f92fb4deb84364cc1edae1fe",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "execution_status": "proof_only_translation_unimplemented",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "ApiSupportNumbers.returned_1",
+      "module": "RequestProject.ApiSupportNumbers",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean",
+      "source_sha256": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+      "axioms": [],
+      "execution_status": "accepted_closed_Nat_translation",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "ApiSupportNumbers.returned_2",
+      "module": "RequestProject.ApiSupportNumbers",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean",
+      "source_sha256": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+      "axioms": [],
+      "execution_status": "accepted_closed_Nat_translation",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "ApiSupportNumbers.returned_3",
+      "module": "RequestProject.ApiSupportNumbers",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean",
+      "source_sha256": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+      "axioms": [],
+      "execution_status": "accepted_closed_Nat_translation",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "ApiSupportNumbers.returned_4",
+      "module": "RequestProject.ApiSupportNumbers",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean",
+      "source_sha256": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+      "axioms": [],
+      "execution_status": "accepted_closed_Nat_translation",
+      "bitcoin_exclusion_authority": false
+    },
+    {
+      "theorem": "ApiSupportNumbers.returned_5",
+      "module": "RequestProject.ApiSupportNumbers",
+      "proof_status": "accepted_scoped_kernel_statement",
+      "source": "validation/miner-proof-repair-20261007/sources/RequestProject/ApiSupportNumbers.lean",
+      "source_sha256": "0153ef7c05fc29d246125b707770ac9df0c35c4a7521e76984e700d3544e43ef",
+      "axioms": [],
+      "execution_status": "accepted_closed_Nat_translation",
+      "bitcoin_exclusion_authority": false
+    }
+  ],
+  "scope": "Three formerly unresolved historical number-theory proof modules, their two local proof dependencies, and five actual provider scalar outputs. Exact theorem statements, not universal miner/runtime verification.",
+  "unproved_claims": "research/claims.json is unchanged; neither runtime refinement nor SHA search reduction follows.",
+  "external_provider_coverage": "research/provider-coverage-ledger.json (context snapshot, not miner proof admission)",
+  "external_receipt_context": [
+    {
+      "project": "calculator_remaining_finite_outputs",
+      "status": "external_receipt_reference_not_miner_admission",
+      "receipt": "/source/user/Desktop/calculator-fix-kit-2026-10-06/lean-values/remaining-proof-work-20261007/proof-results.json",
+      "receipt_sha256": "16bdc29175b5c09c1264c721be06983fdf91ccb7407250a02672eb8f9de63ca8",
+      "review": "/source/user/Desktop/calculator-fix-kit-2026-10-06/lean-values/remaining-proof-work-20261007/review.json",
+      "review_sha256": "6fbcb938cabd95ddcad18032a99636dbeb332294355be7867ae93ce393082155",
+      "reported_receipt_status": "passed",
+      "reported_review_status": "passed",
+      "reported_checked_roots": 61,
+      "reported_historical_gap_count": 286,
+      "reported_newly_checked_case_count": 54,
+      "reported_remaining_unproved_case_count": 232,
+      "whole_implementation_verified": false,
+      "scope": "Referenced external finite-output supplement. This registry checks the receipt/review identity only; current source/object/axiom reconciliation remains owned by its separate review.py gate."
+    }
+  ]
+}

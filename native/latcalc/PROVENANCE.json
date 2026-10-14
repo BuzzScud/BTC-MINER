@@ -1,0 +1,14 @@
+{
+  "aristotle_task": "3c185172-a6eb-4a02-9a30-ed6184ee42bd",
+  "source": "validation/aristotle-task-3c185172/rodsieve_guarded.c",
+  "dependencies": "validation/math-audit/aristotle-snapshot/clib",
+  "local_additions": "Nonzero/exact b^e checks; period/work limits; pairwise coprime rod validation. Python independently checks the complete certificate.",
+  "scope": "Verifier only is exposed through the Python interface; certificate finder is not called. C code is regression-tested, not formally verified.",
+  "full_library_task": "857374a3-5a8f-4b18-9f97-f889ef5399b8",
+  "import_manifest": "validation/archive-audit/native-import.json",
+  "retained_guards": [
+    "abacus.c atomic lifetime, rod/capacity bounds and Montgomery validation",
+    "rodsieve.c certificate and work bounds"
+  ],
+  "tests": "338881 integrated C checks passed; native ABI and Python adapters regression tested"
+}

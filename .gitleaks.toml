@@ -1,0 +1,11 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Reviewed JSON source/artifact SHA256 records; no broad directory exclusions"
+regexTarget = "line"
+regexes = [
+  '''^\s*"[^"\r\n]+\.(?:py|c|h|lean|olean|ilean|trace|md|txt|json|log)"\s*:\s*"[a-f0-9]{64}",?\s*$''',
+  '''^\s*"api_support_sha256"\s*:\s*"[a-f0-9]{64}",?\s*$''',
+  '''^\s*"notes": "DEMOTED verified->review 2026-10-04 \(no source row, no Lean reference, no recomputed example\); original: C API function: tm_exactint_from_i64",?\s*$'''
+]

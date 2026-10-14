@@ -1,0 +1,11 @@
+{"plugins": [],
+ "package": "MinerProofRepair",
+ "options": {},
+ "name": "RequestProject.RodScaling",
+ "isModule": true,
+ "importArts":
+ {"RequestProject.RodCircles":
+  ["/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.ir",
+   "/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/lake-attempts/20261007T193540707785Z/workspace/.lake/build/lib/lean/RequestProject/RodCircles.olean.server"]},
+ "dynlibs": []}

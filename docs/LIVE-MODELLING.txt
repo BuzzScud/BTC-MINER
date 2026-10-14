@@ -1,0 +1,77 @@
+LIVE SCALE AND DIFFICULTY LAB
+
+Open: python3 -m btcminer lab
+Default URL: http://127.0.0.1:63219/
+Desktop shortcut: BTC Scale Lab.command
+
+The modelling lab is a separate scheduler around the miner's actual Traversal
+and native Hasher. Both field and flower orders are shown. It does not run
+production priority/pruning, read machine.local.json for its work, or call the
+production supervisor. Its Core RPC endpoint and datadir are created locally.
+
+G means the fixed secp256k1 generator used by transaction keys/signatures:
+Gx 79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798
+Gy 483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8
+The UI checks y^2 = x^3 + 7 modulo p = 2^256 - 2^32 - 977. Bitcoin Core
+supplies transaction signing/validation in the private-chain mode. G does not
+enter the SHA256d block-header hashing algorithm.
+Source: https://github.com/bitcoin-core/secp256k1/blob/master/src/group_impl.h
+
+LOCAL MODEL
+The common 80-byte Bitcoin genesis header is fixed. The chosen overlay target
+is floor((2^256-1)/2^bits), bits 0..256. The model records valid hashes without
+submitting blocks. It does not validate the genesis transactions anew.
+
+PRIVATE CHAIN
+Starts the bundled Bitcoin Core 31.1 with -regtest, a dedicated test wallet,
+-networkactive=0, -connect=0 and -listen=0. Bootstrap funding creates 101 private
+blocks, excluded from lab acceptance counters. Each lab job includes a newly
+signed witness transaction; the miner's core_work builds its actual block.
+Solutions are rehashed before submitblock, then block inclusion is read back.
+The lab target is min(model_target, Core_network_target). This is a stricter
+local work threshold, not a live alteration of Bitcoin's consensus nBits.
+The lab intentionally uses standard Core consensus so its accepted blocks
+remain meaningful. Transaction signatures use the same curve/G as mainnet.
+The two orders compete on the same template; an acceptance retires that job.
+These counts are not a controlled timing benchmark between the orders.
+
+LIVE CHANGES
+Target changes happen at a bounded scan boundary without resetting the header
+or candidate cursor. The untested suffix after a native winner remains queued.
+Switching modes starts a new job. Pause preserves candidates. A difficulty
+sweep runs from current bits to end bits, dwells per setting, and stays at the
+last setting after completion. This is an interactive lab, not a timed monitor.
+
+SCALE EXPERIMENT
+For a candidate's unwrapped formula u in [0,287998], lift L=2^lift_bits-1 and
+magnitude factor S=10^scale_power, the represented value is
+  ((u + 144000*L)*S)/S.
+Rod bases remain coprime (2,3,5); selected depths set their moduli. A declared
+bound spans all u and lifts 0..L. Capacity must exceed the interval width.
+Independent rod evaluation/projection and exact bounded readback are checked.
+Division by S follows exact readback: dividing residues by a nonunit is not
+silently treated as an invertible modular operation. The lift preserves the
+offset modulo 144000. A representative formula gates the common complete
+bound before dispatch; every generated native nonce is separately compared
+with an integer reference. Insufficient capacity is an expected model limit,
+not evidence that SHA256d or the CRT theorem failed. Increase depth to recover.
+Example: default depths (8,2,3) work; (7,2,3) have capacity 144000, insufficient
+for the declared 287998-wide range. The lab pauses dispatch at that boundary.
+
+VALIDATION AND LIMITS
+Every generated candidate is compared with a separate direct arithmetic
+sequence, including partial/final tiles. Exact permutation conditions and
+the complete-domain endpoint are checked. Each scan independently hashes
+up to three replay samples plus every reported winner. A sampled best hash is
+not the exact minimum over every attempted hash. Correctness errors halt work.
+Waiting-time and wall-clock performance limits are reported separately.
+The UI shows the first observed limit, not a mathematically proven universal
+failure threshold. Expected work/time uses the uniform-hash model; a long wait
+by itself does not establish arithmetic failure. Full SHA is not translated
+into rod arithmetic, and these new runtime controls are not a new Lean proof.
+
+Data: modelling/events.jsonl (one 5 MB rotation), current UI retains 600 chart
+points/400 events. Download current report exports the visible state/history.
+Closing the browser leaves the local server available; pause stops its work.
+The server binds loopback and requires an instance token for control writes.
+The separate production miner continues under its existing configuration.

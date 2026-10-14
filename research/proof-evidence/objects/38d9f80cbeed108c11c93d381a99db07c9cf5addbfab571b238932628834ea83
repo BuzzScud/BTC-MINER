@@ -1,0 +1,11 @@
+import Lean
+axiom rejected_custom_axiom : False
+theorem rejected_custom_root : False := rejected_custom_axiom
+theorem rejected_sorry_root : False := by sorry
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  for name in #[`rejected_custom_root, `rejected_sorry_root] do
+    let (_, axioms) := ((CollectAxioms.collect name).run env).run {}
+    liftIO <| IO.println s!"ROOT\tCONTROL\t{name}\t{String.intercalate "," (axioms.axioms.toList.map Name.toString)}"
+  liftIO <| IO.println "TOTAL\t2"

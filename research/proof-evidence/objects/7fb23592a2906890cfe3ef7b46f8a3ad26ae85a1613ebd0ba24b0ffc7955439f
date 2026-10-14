@@ -1,0 +1,300 @@
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsMSB._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_6	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodKAux.eq_1	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_9	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.PrattEntry.mk.inj	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith.eq_2	
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_02	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	TowerCollapse.of_residues	propext,Quot.sound
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_04._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith.match_1.eq_1	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles._proof_5	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_10._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith_pq._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.hexConic_card	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.stripAux_not_dvd	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.check_sound	Quot.sound,propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitTree.eq_def	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._simp_2	propext
+ROOT	RequestProject.TowerCollapse	TowerCollapse.dial_units	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_12	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.newton_step_lt._proof_2	propext,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.exists_iso_three	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_01	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_4	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_7	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.isPrime_iff	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_15	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.formPts_card_mul._simp_2	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_14._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_none_of_orderOf_eq	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.two_ne_zero_of_odd	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_18._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_4	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_2	
+ROOT	RequestProject.RodCircles	RodCircles.core_modulus_circles	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_08	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.flower_prime_hexCircle	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_03	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith_pq._proof_2	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_2	propext
+ROOT	RequestProject.TowerCollapse	TowerCollapse.fermat_dvd	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_one._proof_2	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.isoRoots_eq_pair	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.conic_card_add	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.formPts.eq_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_2	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.core_tower3	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_5	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.newtonLoop.eq_1	Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitWith.match_1.eq_2	
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_08._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_03._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.isoRoots_eq_zero	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_4	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.core_tower_sharp	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.prime_of_factored_witness	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.exists_separating_step	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._proof_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.pow_eq_one_of_sub_one_dvd	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsVal.eq_1	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmod_eq	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert_sound_aux	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.hexCircle_eq_hexConic	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitAny_pq	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodKAux.eq_def	Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.isPrime.eq_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert.eq_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith.eq_def	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.isoRoots_eq_pair._simp_2	propext,Quot.sound
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_13	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.eleven_seventyone_never_flower	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodKAux_eq	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitAny_sound	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitTree_gt_one._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_isSome_iff	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_02._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_2.eq_2	
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_3	propext
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_06	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_5	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_pq	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkEntry_sound	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_two._proof_2	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_4	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkEntry_mono	propext,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles._proof_3	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_4	propext,Quot.sound
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.exists_iso_three._simp_1	propext
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_1	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_6	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsVal_bitsMSB	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert.eq_1	propext,Quot.sound
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod_121_square._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.exists_good_base	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux.match_1.eq_1	
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_12._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.stripAux.eq_2	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_5	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.qToK_of_multiple	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.ApiSupportNumbers	ApiSupportNumbers.returned_4	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.newtonLoop._proof_1	
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_10	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.newton_step_lt	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert_sound	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.hexCircle_card_of_mod_three_eq_one	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_3	propext,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles._proof_2	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmodLoop.eq_1	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_sound	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_2	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.units_30240	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_3	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_07	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmodLoop_spec	propext
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_3	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.splitTree_gt_one._proof_2	propext,Quot.sound
+ROOT	RequestProject.RodScaling	RodCircles.sum_range_blocks	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_two._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.zmod_pow_eq_one_iff._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.sqrt_le_newton_step	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_5	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.check_isSome	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.three_ne_zero_of_ne	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.exists_cert_list	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.proper_dvd_pq._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmod_nat_eq_one_iff	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.dvd_shift_iff._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux.match_1.eq_1	
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.of_residues._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.exists_cert	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_11	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod_121_hex._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmodLoop.eq_def	
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_17	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_17._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_01._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux.match_1.eq_2	
+ROOT	RequestProject.RodScaling	RodCircles.rod_361_hex	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_2	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.of_residues._proof_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.proper_dvd_pq._proof_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.qToK_pq	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.nineteen_flower	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.PrattEntry.mk.injEq	propext
+ROOT	RequestProject.RodScaling	RodCircles.rod_121_square	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.exists_good_base._proof_1	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.core_units	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1._arg_pusher	
+ROOT	RequestProject.RodScaling	RodCircles.sum_range_nineteen	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.isqrt_eq	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_2	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.core_tower4	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_1	
+ROOT	RequestProject.TowerCollapse	TowerCollapse.units_72	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	TowerCollapse.tower_collapse	propext
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux.match_1.eq_2	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan_isSome	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan.eq_2	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.stripAux.eq_1	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_3	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.sqrt_le_newton_step._proof_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_4	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.check_isSome_symm	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_1	propext,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.hexCircle_card_of_mod_three_eq_two	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.mod_three_of_cube_root._proof_1	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.dial_units._proof_1	propext
+ROOT	RequestProject.RodCircles	RodCircles.form_map	Quot.sound,propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.dvd_shift_iff	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.units_30240._proof_1	propext
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_6	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.twelve_units._proof_1	propext
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_13._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_4	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.powmodLoop.eq_2	
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_00	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodKAux.eq_2	
+ROOT	RequestProject.RodCircles	RodCircles.sqCircle_card_of_mod_four_eq_one	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsMSB.eq_def	propext,Quot.sound
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_11._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.powmodKAux_eq._proof_7	propext,Quot.sound
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_04	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsMSB.eq_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan.eq_1	
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan_isSome._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.sqrt_le_newton_step._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert_append	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_isSome_of_mem	propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan_none_of_orderOf_eq	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.prime_iff_exists_cert	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitTree_prod	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.pow_mod_period	propext
+ROOT	RequestProject.ApiSupportNumbers	ApiSupportNumbers.returned_2	
+ROOT	RequestProject.TowerCollapse	TowerCollapse.tower4_collapse	propext
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_11	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.strip_spec	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitAny.eq_def	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_one._proof_1	propext,Quot.sound
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_14	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodK_eq_powmod	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.powmodK_eq	propext,Quot.sound
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.hexCircle_card_of_mod_three_eq_one._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1.eq_1	
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_06._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith.eq_1	
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_16._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_15._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.isoRoots.eq_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isqrt_eq._proof_1	propext,Quot.sound
+ROOT	RequestProject.ApiSupportNumbers	ApiSupportNumbers.returned_5	
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.check_none_of_orderOf_eq._proof_3	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan_isSome._proof_2	propext,Quot.sound
+ROOT	RequestProject.TowerCollapse	TowerCollapse.dial_tower_two_values	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_09	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitTree_gt_one	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_1.eq_1	
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_16	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_09._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkCert.match_1.eq_2	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.PrattEntry.mk.sizeOf_spec	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitTree.eq_2	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_10	propext
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.powmodLoop.match_1.eq_2	
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_00._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.stripAux.eq_def	Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan.eq_def	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.form_map._simp_1	propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitAny.eq_1	
+ROOT	RequestProject.RodScaling	RodCircles.hex361Row._proof_1	propext
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_05	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	TowerCollapse.twelve_units	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkCert.match_1.eq_1	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.newtonLoop.eq_def	Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsMSB.match_1.eq_2	
+ROOT	RequestProject.RodCircles	RodCircles.core_rod_circles._proof_4	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.ApiSupportNumbers	ApiSupportNumbers.returned_3	
+ROOT	RequestProject.RodCircles	RodCircles.sqCircle_card_of_mod_four_eq_three	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.instDecidableEqPrattEntry.decEq._proof_3	
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._proof_12	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.formPts_card_rows	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_07._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.base_construction	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.bitsMSB.eq_2	propext,Quot.sound
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_8	propext
+ROOT	RequestProject.TowerCollapse	TowerCollapse.not_dvd_of_coprime	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitTree.eq_1	
+ROOT	RequestProject.RodCircles	RodCircles.hexConic.eq_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodScaling	RodCircles.hex361Row.eq_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.stripAux_mul	propext
+ROOT	RequestProject.RodCircles	RodCircles.flower_prime_divisor	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.core_modulus_circle_counts	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.formPts_card_mul	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_6	propext,Classical.choice,Quot.sound
+ROOT	RequestProject.RodScaling	RodCircles.rod_121_hex	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.units_72._proof_1	propext
+ROOT	RequestProject.RodCircles	RodCircles.flower_mod_three	propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.proper_dvd_pq	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.checkEntry_sound._simp_2	propext
+ROOT	RequestProject.RodCircles	RodCircles.instNeZeroNatCoreModulus	propext
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_12	propext
+ROOT	RequestProject.ApiSupportNumbers	ApiSupportNumbers.returned_1	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_4	propext
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.formPts_card_rows._simp_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert._proof_1	propext,Quot.sound
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.conic_card_add._simp_2	propext,Quot.sound
+ROOT	RequestProject.RodScaling	_private.RequestProject.RodScaling.0.RodCircles.rod361_block_05._proof_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert_mono	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.TowerCollapse	TowerCollapse.dial_tower	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.exists_iso_three._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.newtonLoop_eq	Quot.sound,propext,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.sqCircle_eq_conic	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	RodCircles.rod_circles_on_dial	propext
+ROOT	RequestProject.RodScaling	RodCircles.rod361_block_18	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_2.eq_1	
+ROOT	RequestProject.RodCircles	RodCircles.twelve_fold	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._simp_2	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkCert.eq_def	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.powmodLoop.match_1.eq_1	
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.bitsVal_bitsMSB._proof_6	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.scan.match_1.eq_2	
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitAny.eq_2	
+ROOT	RequestProject.TowerCollapse	_private.RequestProject.TowerCollapse.0.TowerCollapse.core_tower_sharp._proof_1	propext
+ROOT	RequestProject.RodCircles	RodCircles.conic.eq_1	propext,Quot.sound,Classical.choice
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.isPrime_iff._proof_7	propext,Classical.choice,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	_private.LatticeCalc.Verified.OrderSplit.0.LatticeCalc.Verified.OrderSplit.stripAux_not_dvd._proof_3	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.exists_cert_list._simp_1	propext
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.splitWith_one_sided	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.sqCircle_card_of_mod_four_eq_three._proof_1	propext,Quot.sound,Classical.choice
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.isoRoots_eq_pair._simp_3	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	_private.LatticeCalc.Verified.PowSqrtPrime.0.LatticeCalc.Verified.newton_step_lt._proof_1	propext,Quot.sound
+ROOT	LatticeCalc.Verified.OrderSplit	LatticeCalc.Verified.OrderSplit.scan_sound	Quot.sound,propext
+ROOT	RequestProject.RodCircles	_private.RequestProject.RodCircles.0.RodCircles.twelve_fold._proof_5	propext,Quot.sound
+ROOT	LatticeCalc.Verified.PowSqrtPrime	LatticeCalc.Verified.checkEntry.eq_1	propext,Quot.sound
+ROOT	RequestProject.RodCircles	RodCircles.mod_three_of_cube_root	propext,Quot.sound,Classical.choice
+TOTAL	299

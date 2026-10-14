@@ -1,0 +1,14 @@
+{
+  "schema": "miner-math-catalogue-reference-v1",
+  "catalogue": "research/formula-catalogue.json",
+  "catalogue_sha256": "26959567ba09265b9358fb3e0b2414848c08b24516aea03cdee68027e9236788",
+  "formula_count": 1302,
+  "workspace_cards": "validation/aristotle-card-distillation-20261010T184744Z/reconciled/cards.json",
+  "workspace_proof_gate": "validation/aristotle-card-distillation-20261010T184744Z/proofs/proof_admission.py",
+  "selected_sources": "validation/miner-math-library-20261010/snapshot/sources",
+  "scope": "Research navigation only. The workspace proof gate has a separate scope from the portable miner capsule; missing workspace paths after export do not create proof acceptance.",
+  "consumer_map_sha256": "64734b10f066abf2c68e6004ad686b5428bfde128ca5ade13cb8a755ac6d9ed9",
+  "workspace_audit_increment": "validation/api-library-completion-20261010T205820Z/audit",
+  "historical_catalogue_sha256": "abcdbea03e561ac0684c9ba6c60a9aa304aa3e148374bee9947ba1b201b213d8",
+  "public_derivative": "Personal paths/account labels anonymized; formula statements and statuses preserved."
+}

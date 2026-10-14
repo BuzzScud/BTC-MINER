@@ -1,0 +1,53 @@
+{
+  "checked_utc": "2026-10-10T20:32:22.675655+00:00",
+  "source_sha256": {
+    "btcminer/tui.py": "48cba2a813b6b6768fa062829738f0072ef627cfb9ff13c3c659b5d63632c137",
+    "btcminer/copper.py": "917f0cc56e4dc9bded4bfbd34b6743ce14a3e83aa22b72227ec6277f36793a9e",
+    "btcminer/ui_support.py": "7c03f9a46201a3dcc8080c746679abb4cd801097caf0f6bce2d6115ca66accb9",
+    "scripts/check_copper_terminal.py": "0badfe1136f863e2a370cb3201215aec3aa72bd9758e2b086a5e52edf5efce5d"
+  },
+  "fixture_only": true,
+  "cases": [
+    {
+      "exit": "q",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "Ctrl+C",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "SIGHUP",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    },
+    {
+      "exit": "SIGTERM",
+      "palette": true,
+      "help": true,
+      "display_freeze": true,
+      "hub_routing": true,
+      "resize_80x24_and_140x45": true,
+      "terminal_and_signal_restoration": true,
+      "lifecycle_calls": 0
+    }
+  ],
+  "ok": true
+}

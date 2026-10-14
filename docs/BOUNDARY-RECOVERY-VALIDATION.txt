@@ -1,0 +1,91 @@
+BOUNDARY AND FAILURE VALIDATION — 2026-10-13
+
+Evidence: validation/boundary-recovery-validation-20261013/REPORT.txt and
+verification.json.155 affected unit/integration tests pass. The live API checks
+use public headers and synthetic bytes; they do not mine or submit blocks.
+
+FIXES
+1. A complete telemetry line over2MiB no longer blocks every subsequent record.
+   The observer drains it with bounded memory, records its full SHA256/size and
+   a2048-byte prefix as a rejected event, and continues. An unfinished line is
+   retried. This is a telemetry parsing limit, not a nonce/difficulty limit.
+2. Deeply nested JSON is rejected without stopping the ingestion loop.
+3. Historical fixture import uses a savepoint. A late validation failure rolls
+   back every fixture observation/event so unrelated commits cannot admit half
+   an invalid fixture.
+4. Provider numeric parsing treats the daemon's fraction='none' as absent and
+   reads the actual numeric value. Exact fractions take precedence over rounded
+   display text. Failed evaluations, malformed fractions and nonfinite values
+   remain errors. Shared parsing is used in provider arithmetic checks and the
+   job-arithmetic observer. A rendered decimal is not promoted to an exact proof.
+
+REMOTE CANDIDATE QUALIFICATION
+btcminer.provider_jobs.RemoteCandidateWorker is an isolated opt-in adapter.
+It requires an explicit header, target, work revision and nonce. It binds target
+and revision to job identity; checks both remote SHA stages; independently
+recomputes the result locally; and only then compares the digest with the exact
+target. Nothing in this adapter submits a block or controls the active miner.
+
+Changing jobs invalidates in-flight results. Cancellation/deadline checks occur
+before and after each request and before publishing a result. Socket timeouts
+are bounded by remaining time; a late response is discarded. This does not claim
+instant interruption of an operating-system network call. Transient retries
+are bounded, permanent/integrity failures are not retried, and request attempts,
+retries and completed candidates are counted separately. A128-entry cache avoids
+recent duplicate computations within one worker/job; it is not durable exactly-
+once execution or a promise of deduplication after eviction/process restart.
+The five-second default deadline and retry bounds govern this optional remote
+operation only. They do not restrict the production miner's nonce search.
+
+Example, from Python with an explicit public/test header:
+  from btcminer.provider import ProviderClient
+  from btcminer.provider_jobs import RemoteCandidateWorker
+  client = ProviderClient(timeout=3)
+  client.authenticate()
+  worker = RemoteCandidateWorker(client)  # exclusively owned client
+  worker.bind(header_bytes, exact_integer_target, 'work-revision-1')
+  result = worker.check(nonce, seconds=5, retries=1)
+
+result.meets_target is candidate qualification, not network acceptance. The
+production miner still uses its existing ARM SHA256 backend and nonce strategy.
+The adapter does not implement a remote mining-job server or persistent queue.
+
+VALIDATION
+-155 affected tests:61 provider/job/codec/hash tests,62 observer tests,32
+  statistical/codec/live-bridge dependency tests; context audit passed.
+-20 live calculator boundary/domain controls, including near-singular and
+  singular matrices, large cancellation, signed rounding and invalid domains.
+-11 SHA256 input lengths including55/56 and63/64/65 padding boundaries.
+-12 SHA256d public-header/nonce controls;3 independently verified candidate
+  target controls at H-1,H,H+1. No mining search or block acceptance trial.
+-Two128KiB compression round trips and five deliberately corrupt small frames;
+  local bit-mutation, truncation, size-limit and CRT-capacity controls.
+-Restart, duplicate replay, gaps, interrupted transactions, a mid-fetch chain
+  change and a deeper simulated reorganization. No real chain was modified;
+  process-crash controls do not simulate a physical power failure.
+
+ARISTOTLE
+Reviewed the supplied project9b854e2d-2ae1-4d55-9b53-bf308b5e3648 and all78 task
+entries. Latest completed task remainsf63ca67a-6894-4e23-9452-e560c3c161f9,
+updatedOctober4. CorePrimes and DynamicRods match existing reviewed source bytes.
+DynamicRods.extend_pairwise, extend_capacity and extendEquiv supply the exact
+coprimality/capacity/residue-class hypotheses used by the new independent CRT
+tests. Sorting.Classes/Verdicts keep theorem correctness, conditions and software
+correctness distinct. No new whole-program Lean proof is claimed for these fixes.
+
+DEPLOYMENT AND REMAINING PROVIDER LIMITS
+Only the research observer was reloaded. The old and new analysis sources were
+checked byte-for-byte, except for the three changed Store ingestion methods;
+the remaining Store AST is identical. The unchanged analysis checkpoint was
+explicitly reused with archived original bytes and a source-equivalence witness.
+Existing observations retain their original analysis versions; they are not
+relabeled as newly verified. New records use the new source version. The existing
+backlog stays explicit; this does not assert instantaneous full-history analysis.
+
+Provider-side inverse trig support, direct sha256 expressions, percent syntax,
+scientific-literal parsing and the phi identity's finite certification limitation
+are unchanged external issues. This client cannot deploy fixes to that server.
+Existing workarounds remain explicit: numeric-string variables for scientific
+notation, floor-based remainder for its stated domain, the two-call integrity-
+hash route for SHA256d, and separate local exact algebra for the phi identity.
+Unsupported provider computations are never silently filled with local answers.

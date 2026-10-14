@@ -1,0 +1,38 @@
+PRODUCTION HASH AND BLOCK ACCEPTANCE VALIDATION
+October 13, 2026
+
+These checks are automatic in the installed miner, including mainnet Core mode.
+No regtest difficulty multiplier is applied to mainnet.
+
+Before the service constructs its mining engine, it runs the existing deterministic
+hash/scanner checks: Bitcoin genesis, scanner/hashlib agreement, inclusive target
+boundaries, nonce accounting and native/reference traversal. A configured native
+backend must be available and pass. A failed check prevents mining startup.
+The status includes startup_hash_validation and the event log records success.
+
+The engine already independently SHA256d-checks every candidate before submission.
+CoreConnection now also verifies a successful submitblock response by reading
+back the exact block bytes from Core. It independently recomputes the header hash
+and requires both the work target and the target decoded from nBits. It checks
+the block identity/height, active-chain membership at the observation time, the
+transaction Merkle root, and any witness commitment including the reserved value.
+Core remains responsible for consensus transaction/script/signature validation.
+The miner does not sign other users' transactions or change Bitcoin's rules.
+
+Only then can blocks_accepted increase. A block_verified event retains its hash,
+header, targets, transaction count and checks. Readback failure or inconsistent
+evidence returns an unknown outcome, never a fabricated success or rejection.
+The submitted work is retired; unknown submissions are not automatically retried.
+Active-chain membership is an observation, not a promise against future reorgs.
+Pool share responses retain their separate Stratum semantics.
+
+The checks run at startup or after a rare block submission, not for every nonce.
+They validate correctness and acceptance; they do not increase hash throughput.
+
+Evidence and the explicitly gated private-chain trial:
+validation/production-block-validation-20261013/
+Every discovered and verified test block stops mining. A new continue-N file
+must reflect explicit user input before the next block. A five-minute wall-clock
+cutoff also stops the trial, including time waiting for user input. Private test
+transactions spend the previous test transaction's confirmed output. Setup
+blocks, used only to fund the test wallet, are excluded from mining results.

@@ -1,0 +1,149 @@
+{
+  "schema": "btc-geometry-codec-contract/v1",
+  "version": 2,
+  "proof_status": "mathematical_arguments_and_executable_gates; not_new_kernel_admission",
+  "bitcoin_nonce_exclusion_authority": false,
+  "implementation_sources": {
+    "math-library/python/geometry_codec.py": "7e8c2ccd4e31a243beaa99b6babdb7fcff13b86428ba55b94a834f31b73917c7",
+    "src/workers/pruning.py": "0d7a25e4c8a06cc976789a5dab7bda1bc94076a8f9b43aa4700284892d4e91f7",
+    "src/workers/pruning_worker.py": "716d13d4658b3e1331d2f92c0b6c9ad3af0e7a7b5fe6154241080b413256fad1",
+    "tests/test_geometry_codec.py": "7846a6d3666430f1331b8c3c5b04c192ac9abf0d93203552598d1b803f2d3345",
+    "math-library/python/geometry_predictive.py": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+    "tests/test_geometry_predictive.py": "0c151ef67c38dfe58c1863a7825a246ef96086402a772a5f78d5adaa6f4235a8"
+  },
+  "cards": [
+    {
+      "id": "GEO-01",
+      "statement": "Unique bounded CRT point",
+      "assumptions": "Pairwise coprime m_i>=2; M=product(m_i); 0<=x,y<=B<M.",
+      "literal_argument": "If every x mod m_i equals y mod m_i, each m_i divides x-y. Coprimality implies M divides x-y. Since |x-y|<=B<M, the only possible multiple is zero. Thus x=y. CRT existence supplies the canonical representative; rejecting representatives above B is necessary.",
+      "implementation": "ResidueFrame.unpack",
+      "gate": "GeometryCodecTests.test_complete_small_frame_matches_independent_crt_sum",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-02",
+      "statement": "Packed residue injectivity",
+      "assumptions": "Canonical 0<=r_i<m_i; width w_i=(m_i-1).bit_length(); ordered fields; zero trailing padding.",
+      "literal_argument": "By definition m_i<=2^w_i. Each r_i therefore has a unique w_i-bit representation. At cumulative offset s_i=sum of prior widths, masking (packed>>s_i) by 2^w_i-1 recovers r_i. Disjoint bit positions prevent interference. Exact byte length and zero padding exclude alternative byte strings.",
+      "implementation": "pack_fields",
+      "gate": "GeometryCodecTests.test_canonical_residues_bounds_lengths_and_padding",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-03",
+      "statement": "Adaptive subset preserves bounded offsets",
+      "assumptions": "Each point lies in [origin,origin+B]; select a coprime prefix whose product exceeds B.",
+      "literal_argument": "Set delta=x-origin. Then 0<=delta<=B. GEO-01 gives a unique delta from the selected residues, and adding the shared origin yields exactly x. Removing a rod is sound only while the remaining capacity still exceeds B. The decoder checks minimal prefix and reconstructs each offset within the interval.",
+      "implementation": "decode_points",
+      "gate": "GeometryCodecTests.test_adaptive_prefix_is_exact_and_minimal",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-04",
+      "statement": "Orbit replay including wraparound",
+      "assumptions": "N=2^32; 0<=a,d<N; count c; sender verifies x_i=(a+i*d) mod N for every i<c.",
+      "literal_argument": "The decoder defines y_i=(a+i*d) mod N using the same a,d,N and ordered index. Thus y_i=x_i directly for all i<c. Equivalently y_0=a and y_(i+1)=(y_i+d) mod N by modular-addition compatibility. Neither distinctness nor lack of wraparound is required.",
+      "implementation": "encode_points",
+      "gate": "GeometryCodecTests.test_orbits_wrap_duplicate_and_singleton",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-05",
+      "statement": "Q reversal needs a complete route",
+      "assumptions": "Shared finite catalogue of unordered distinct prime pairs p<q; Q=p*q; k=lcm(p-1,q-1); sorted clock classes and Q order.",
+      "literal_argument": "Unique prime factorization identifies one unordered prime pair for each catalogue Q. That pair determines k. The sorted Q list within the k-class gives a unique index j. Looking up (k,j) returns the same Q and hence its stored p,q. k alone is not injective: lcm(1,4)=lcm(2,4)=4 while 2*5=10 differs from 3*5=15. This argument assumes the shared catalogue construction; it does not prove arbitrary factor recovery from an unknown k.",
+      "implementation": "QFrame.coordinates",
+      "gate": "GeometryCodecTests.test_q_same_clock_is_not_same_product",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-06",
+      "statement": "Chosen wire message never expands",
+      "assumptions": "Costs use the same json.dumps encoding and newline as Pruner.query; raw message is the initial best; candidates must pass exact replay.",
+      "literal_argument": "Initially best_cost=raw_cost. Each update is allowed only if candidate_cost<best_cost, so by induction best_cost<=raw_cost after all candidates. This includes frame identity, grammar metadata and base64 on the wire. It excludes shared-model storage and computation costs and does not establish compression below raw binary entropy.",
+      "implementation": "compact_request",
+      "gate": "GeometryCodecTests.test_random_roundtrips_and_never_larger_selection",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-07",
+      "statement": "Candidate transport gives no exclusion authority",
+      "assumptions": "Parent retains the original candidate list, checks the decoded-list job key, and directly hashes each proposed exclusion.",
+      "literal_argument": "A proposed removal is accepted only after checking the actual header-with-nonce SHA256d value. If that value is <=target, the code removes the nonce from the removal set. Hence an observed winning candidate is retained regardless of solver proposal. Identity hashes bind messages computationally, not as collision-free mathematical proofs. This claim is conditional on the hash implementation and parent boundary, not a complete consensus proof.",
+      "implementation": "Pruner.filter_task",
+      "gate": "GeometryCodecTests.test_actual_pruner_routes_geometry_and_retains_winner",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-08",
+      "statement": "Canonical shortest-arc replay",
+      "assumptions": "m>=2; old,new are canonical residues; delta in [-floor(m/2),ceil(m/2)-1].",
+      "literal_argument": "d=(new-old+floor(m/2)) mod m-floor(m/2) lies in an interval of exactly m integers and satisfies d congruent new-old mod m. It is therefore the unique representative in that interval. Every other representative differs by a nonzero multiple of m, so has no smaller absolute value; at an even half-turn the chosen representative is negative. Thus (old+d) mod m=new. Induction from the raw first row reconstructs the full residue sequence, and GEO-01 recovers each bounded point.",
+      "implementation": "shortest_arc",
+      "gate": "PredictiveGeometryTests.test_shortest_arc_exhaustive_odd_even_and_antipodal_ties",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-09",
+      "statement": "Canonical hex-shell rank and E chart",
+      "assumptions": "n>=0; E graph distance max(|a|,|b|,|a-b|); fixed clockwise half-open edge order.",
+      "literal_argument": "n=0 maps to the center. For n>=1 let s=isqrt(12n-3) and k=floor((3+s)/6). Then 6k-3<=s<6k+3. Squaring the nonnegative bounds using s^2<=12n-3<(s+1)^2 gives 3k(k-1)+1<=n<3k(k+1)+1. Therefore j=n-[1+3k(k-1)] is uniquely in [0,6k). Division j=side*k+t with 0<=side<6 and 0<=t<k identifies one of six half-open sides. The specified affine side maps lie at E distance k; their corners are assigned exactly once, and the six max-distance boundary cases give the inverse. Hence there are 6k shell points and 1+sum_(r=1..k)6r=1+3k(k+1) points in the ball. This is a chosen rank chart, not entropy reduction by itself.",
+      "implementation": "shell_address",
+      "gate": "PredictiveGeometryTests.test_shells_bijection_counts_neighbors_and_exact_boundaries",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-10",
+      "statement": "Nearest modular anchor with deterministic ties",
+      "assumptions": "Anchors in fixed order (0,1,m-1); exact circular distance; lower anchor index breaks ties.",
+      "literal_argument": "Compute the GEO-08 canonical delta from each anchor to residue r. The finite lexicographic minimum (absolute delta, anchor index) exists and is unique by the index tie-break. Decoding (anchor+delta) mod m yields r by GEO-08. Recomputing the same argmin rejects alternate anchor encodings. For m=2 the repeated anchors still have a unique lowest-index representation. No sphere-packing or prime-resonance proposition is implied.",
+      "implementation": "root_reference",
+      "gate": "PredictiveGeometryTests.test_root_anchor_ties_are_deterministic",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-11",
+      "statement": "Predictive/raw choice with explicit tag overhead",
+      "assumptions": "Raw first row; later rows choose gamma-coded signed arcs only when their total bit length is strictly below raw row width.",
+      "literal_argument": "The raw branch is inverted by GEO-02. The predictive branch is inverted by GEO-08. A one-bit tag distinguishes them; the strict size comparison chooses raw on ties, so representation is deterministic. Per later row the size is 1+min(raw_bits,delta_bits), which may exceed raw_bits by one. Whole-message minimization under GEO-06, including that tag and all headers, is required for the request non-expansion claim.",
+      "implementation": "encode_body",
+      "gate": "PredictiveGeometryTests.test_selection_is_negotiated_and_minimizes_complete_wire_size",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-12",
+      "statement": "Canonical adaptive rod-count side stream",
+      "assumptions": "Each offset is nonnegative; a selected coprime prefix has capacity greater than that offset; count stream has exact envelope count.",
+      "literal_argument": "For each offset choose the first sufficient prefix. CRT uniqueness applies on [0,M-1] for that prefix. Count-stream form0 stores count-1 in three bits. RLE partitions the sequence into maximal constant runs; lengths are positive and sum to the envelope count. Delta-RLE replaces each run value by its exact signed difference from the previous value, with initial previous=1. Summing differences and expanding runs recovers the counts. Elias-gamma is prefix-decodable: the initial zero count determines the exact remaining field width. Canonical re-encoding fixes shortest-byte form, lower-form tie order, maximal runs and padding. The recovered counts determine each residue-row width without per-point length bytes.",
+      "implementation": "encode_counts",
+      "gate": "PredictiveGeometryTests.test_count_side_stream_uses_all_three_forms",
+      "formal_refinement": "unproved"
+    },
+    {
+      "id": "GEO-13",
+      "statement": "Process-scoped capability admission and reset",
+      "assumptions": "Honest matching decoder advertisement; version/registry fingerprints bind the complete grammar; parent preserves job-key and concrete-hash checks.",
+      "literal_argument": "Initially NG2 admission is false. Only an otherwise valid job response with the exact requested NG2 registry identity admits it. An absent capability retains the current process state; an explicit mismatch revokes it. Closing or replacing the peer clears admission. A request prepared before a peer death is exactly decoded and re-encoded under baseline NG1 before transmission to the new peer. Therefore no new peer is sent NG2 based solely on a predecessor advertisement. Fingerprint identity is computational, not authentication; retained-candidate and direct-hash boundaries still apply. Request-size savings exclude the separately counted offer/response startup cost, so net savings can be negative.",
+      "implementation": "Pruner.query",
+      "gate": "PredictiveGeometryTests.test_real_worker_negotiation_and_restart_downgrade",
+      "formal_refinement": "unproved"
+    }
+  ],
+  "remaining": [
+    "No new Lean replay or full Python refinement",
+    "General fractal-route grammar not implemented",
+    "Private calculator C/TypeScript interop not available in this checkout",
+    "No loaded live miner activation or real-pool qualification in this change",
+    "Remote file-service negotiation and arbitrary file transfer not implemented"
+  ],
+  "historical_implementation_sources": {
+    "math-library/python/geometry_codec.py": "7e8c2ccd4e31a243beaa99b6babdb7fcff13b86428ba55b94a834f31b73917c7",
+    "src/workers/pruning.py": "92ff7ce402bf321ec2f26bed10e8d0df2b5ff5b77b8919261d5ee4eaa6eaf7db",
+    "src/workers/pruning_worker.py": "716d13d4658b3e1331d2f92c0b6c9ad3af0e7a7b5fe6154241080b413256fad1",
+    "tests/test_geometry_codec.py": "7846a6d3666430f1331b8c3c5b04c192ac9abf0d93203552598d1b803f2d3345",
+    "math-library/python/geometry_predictive.py": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+    "tests/test_geometry_predictive.py": "0c151ef67c38dfe58c1863a7825a246ef96086402a772a5f78d5adaa6f4235a8"
+  },
+  "portability_note": "Pruning pipe I/O adapted for Windows; no arithmetic rule changed. Source hashes are identities; executable gates are rerun for this release."
+}

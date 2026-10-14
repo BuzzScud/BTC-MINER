@@ -1,0 +1,88 @@
+EXACT SCALE GRAPH AND TWO CANDIDATE ORDERS
+
+The core is a residue language, not a byte codec. Frame bases b_i are pairwise
+coprime. At depth d the rods are b_i^d_i, with capacity equal to their product.
+scale_graph.py evaluates integer polynomial formulas independently on those rods.
+Projecting deeper residues equals evaluating at the shallower level. Deepening
+one rod multiplies capacity by its base and gives that many children per residue.
+
+Read-back uses a stated interval [low,high] and requires high-low < capacity.
+A residue column alone cannot choose its deeper child. The retained formula and
+exact input bindings supply refinement. FormulaValue keeps magnitude scale
+separate: value = numerator/scale; rescaling multiplies both numerator and scale,
+while multiplication multiplies scales. The implementation supports exact
+integer polynomial formulas and explicit bounds, not arbitrary real formulas.
+
+The runtime translation is tested Python/C, not Lean-extracted code. The pinned
+definitions and provenance are in reference/fractal-abacus/ and
+research/scale-graph-runtime.json. These source copies do not constitute a new
+Lean compilation or an admission of every upstream theorem to the miner gate.
+
+ACTUAL CANDIDATE GENERATION
+
+The two options use the same header-derived phase, coprime step and tile walk:
+
+  field: the existing nonzero GF(19^2) cycle, unchanged.
+  flower: two digits in the 19-flower, beta=5+2*omega, each ordered by hex shell.
+
+For flower order, z=d0+beta*d1 ranges over complete representatives modulo
+beta^2. Since beta^2=21+16*omega, the quotient map is a+292*b mod 361:
+292^2+292+1=0 mod 361, and 21+16*292=0 mod 361. It is surjective and its
+kernel has index 361, equal to the norm of beta^2, so the kernel is (beta^2).
+Remove the zero class and subtract one to obtain every label 0..359 once.
+All 18 nonzero multiples of 19 remain: this quotient is Z/361, not GF(19^2).
+This candidate ordering is an application construction, not an upstream theorem
+that predicts winning Bitcoin nonces. Its native flower address round trips
+and quotient coverage are tested for all 361 digit pairs.
+
+For each index i=0..399 and label, the native generator runs:
+
+  cell = (cell_phase + prime*i) modulo 400;
+  unwrapped = 360*cell + phase + label;
+  offset = unwrapped modulo 144000.
+
+The cell is evaluated on rods (16,1,25), depth (4,0,2), using CRT weights 225
+and 176 on the nontrivial rods. The next formula is evaluated independently
+on (256,9,125), depth (8,2,3), capacity 288000. Its exact range is 0..287998.
+Projection to depth (7,2,3), rods (128,9,125), produces the clock residue.
+Canonical CRT read-back uses weights (122625,64000,101376). The 360-dial is
+depth (3,2,1) in the same graph. Magnitude scale for these nonce integers is 1.
+The runtime status includes an exact trace of these transitions for each job.
+
+Because the labels are a permutation and prime is coprime to 400, a full tile
+contains each offset once. Header phase is a modular translation and preserves
+coverage. All 29827 tiles are visited cyclically; values at or above 2^32 in
+the partial tile are skipped without wrapping. Therefore each full traversal
+covers all 2^32 nonces once before any independent priority reordering. New jobs
+can interrupt that traversal; this is a coverage theorem, not a claim that a
+particular live job completed the whole domain.
+
+Both exact offset programs have a 24-byte descriptor. This excludes shared code,
+the 720-byte label buffer, header, first tile, work queues and other resident
+tables. The native path no longer materializes the 576000-byte offset table.
+The table remains a lazy compatibility path for older libraries and inspection.
+Descriptor size is secondary to the exact formula, frame and projection rules.
+
+The all-k flower boundary matrix, normalized area, dimension expression, finite
+19x/squaring graphs and smooth prime-power circle counts are included in /math.
+They describe geometry and finite arithmetic; the implemented candidate order
+uses the flower addresses. Hensel fibre counts require their smoothness domain.
+The frame's b children and a conic's p smooth lifts are distinct assertions.
+
+USE
+
+  ./bin/btc-miner config set thesis2_order=field
+  ./bin/btc-miner config set thesis2_order=flower
+  ./bin/btc-miner math
+
+Changing the configuration while mining performs the existing controlled
+restart. The terminal and math_details.order identify the loaded candidate order.
+Both preserve SHA256d, the real network target, independent candidate checks and
+Core block submission. No new geometric condition excludes Bitcoin nonces.
+
+CHECKS
+
+  python3 -B -m unittest discover -s tests -p test_scale_graph.py -v
+
+The new native export is required by its test. Fresh integration and mainnet
+trial receipts live under validation/compression-flower-integration-20261011/.

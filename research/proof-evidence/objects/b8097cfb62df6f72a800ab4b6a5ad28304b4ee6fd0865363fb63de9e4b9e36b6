@@ -1,0 +1,562 @@
+// Lean compiler output
+// Module: RequestProject.RodCircles
+// Imports: public import Init public import Mathlib.Data.Finset.Card public import Mathlib.Data.ZMod.Basic public import Mathlib.FieldTheory.Finite.Basic public import Mathlib.NumberTheory.LegendreSymbol.Basic public import Mathlib.Tactic.FieldSimp public import Mathlib.Tactic.LinearCombination public import Mathlib.Tactic.Ring public import Mathlib.Tactic.NormNum public import Mathlib.Tactic.NormNum.Prime public import Mathlib.Tactic.Push
+#include <lean/lean.h>
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wunused-label"
+#elif defined(__GNUC__) && !defined(__CLANG__)
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-label"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
+lean_object* lp_mathlib_Semifield_toDivisionSemiring___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_flower(lean_object*);
+lean_object* lp_mathlib_NonUnitalNonAssocSemiring_toDistrib___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_SubNegZeroMonoid_toNegZeroClass___redArg(lean_object*);
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_Multiset_filter___redArg(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic___redArg(lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_sqCircle(lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_Field_toDivisionRing___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_CommRing_toNonUnitalCommRing___redArg(lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+lean_object* lp_mathlib_Ring_toAddGroupWithOne___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_NonUnitalNonAssocRing_toNonUnitalNonAssocSemiring___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_flower___boxed(lean_object*);
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0;
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexCircle(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_pow(lean_object*, lean_object*);
+lean_object* lp_mathlib_Multiset_product___redArg(lean_object*, lean_object*);
+lean_object* lp_mathlib_Field_toSemifield___redArg(lean_object*);
+static lean_object* lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1;
+lean_object* lean_nat_mul(lean_object*, lean_object*);
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_conic___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_Ring_toAddCommGroup___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexCircle___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lp_mathlib_Field_toEuclideanDomain___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_sqCircle___redArg(lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_coreModulus;
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_conic___redArg___lam__0(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7) {
+_start:
+{
+lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; uint8_t x_17; 
+x_8 = lean_ctor_get(x_7, 0);
+lean_inc(x_8);
+x_9 = lean_ctor_get(x_7, 1);
+lean_inc(x_9);
+lean_dec_ref(x_7);
+x_10 = lean_ctor_get(x_1, 3);
+lean_inc(x_10);
+lean_dec_ref(x_1);
+x_11 = lean_unsigned_to_nat(2u);
+lean_inc(x_10);
+x_12 = lean_apply_2(x_10, x_11, x_8);
+x_13 = lean_apply_2(x_10, x_11, x_9);
+x_14 = lean_apply_2(x_2, x_3, x_13);
+x_15 = lean_apply_2(x_4, x_12, x_14);
+x_16 = lean_apply_2(x_5, x_15, x_6);
+x_17 = lean_unbox(x_16);
+return x_17;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic___redArg___lam__0___boxed(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7) {
+_start:
+{
+uint8_t x_8; lean_object* x_9; 
+x_8 = lp_MinerProofRepair_RodCircles_conic___redArg___lam__0(x_1, x_2, x_3, x_4, x_5, x_6, x_7);
+x_9 = lean_box(x_8);
+return x_9;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4) {
+_start:
+{
+lean_object* x_5; lean_object* x_6; lean_object* x_7; lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; lean_object* x_17; lean_object* x_18; lean_object* x_19; lean_object* x_20; lean_object* x_21; lean_object* x_22; 
+lean_inc_ref(x_1);
+x_5 = lp_mathlib_Field_toEuclideanDomain___redArg(x_1);
+x_6 = lean_ctor_get(x_5, 0);
+lean_inc_ref(x_6);
+lean_dec_ref(x_5);
+x_7 = lp_mathlib_CommRing_toNonUnitalCommRing___redArg(x_6);
+x_8 = lp_mathlib_NonUnitalNonAssocRing_toNonUnitalNonAssocSemiring___redArg(x_7);
+x_9 = lp_mathlib_NonUnitalNonAssocSemiring_toDistrib___redArg(x_8);
+x_10 = lean_ctor_get(x_9, 0);
+lean_inc(x_10);
+x_11 = lean_ctor_get(x_9, 1);
+lean_inc(x_11);
+lean_dec_ref(x_9);
+x_12 = lp_mathlib_Field_toSemifield___redArg(x_1);
+x_13 = lp_mathlib_Semifield_toDivisionSemiring___redArg(x_12);
+x_14 = lean_ctor_get(x_13, 0);
+lean_inc_ref(x_14);
+lean_dec_ref(x_13);
+x_15 = lp_mathlib_Field_toDivisionRing___redArg(x_1);
+x_16 = lean_ctor_get(x_15, 0);
+lean_inc_ref(x_16);
+lean_dec_ref(x_15);
+x_17 = lp_mathlib_Ring_toAddGroupWithOne___redArg(x_16);
+x_18 = lean_ctor_get(x_17, 1);
+lean_inc_ref(x_18);
+lean_dec_ref(x_17);
+x_19 = lean_ctor_get(x_18, 2);
+lean_inc(x_19);
+lean_dec_ref(x_18);
+x_20 = lean_alloc_closure((void*)(lp_MinerProofRepair_RodCircles_conic___redArg___lam__0___boxed), 7, 6);
+lean_closure_set(x_20, 0, x_14);
+lean_closure_set(x_20, 1, x_10);
+lean_closure_set(x_20, 2, x_4);
+lean_closure_set(x_20, 3, x_11);
+lean_closure_set(x_20, 4, x_3);
+lean_closure_set(x_20, 5, x_19);
+lean_inc(x_2);
+x_21 = lp_mathlib_Multiset_product___redArg(x_2, x_2);
+x_22 = lp_mathlib_Multiset_filter___redArg(x_20, x_21);
+return x_22;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_conic(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5) {
+_start:
+{
+lean_object* x_6; 
+x_6 = lp_MinerProofRepair_RodCircles_conic___redArg(x_2, x_3, x_4, x_5);
+return x_6;
+}
+}
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7) {
+_start:
+{
+lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; uint8_t x_14; 
+x_8 = lean_ctor_get(x_1, 3);
+lean_inc(x_8);
+lean_dec_ref(x_1);
+x_9 = lean_unsigned_to_nat(2u);
+x_10 = lean_apply_2(x_8, x_9, x_7);
+x_11 = lean_apply_2(x_2, x_3, x_10);
+x_12 = lean_apply_1(x_4, x_5);
+x_13 = lean_apply_2(x_6, x_11, x_12);
+x_14 = lean_unbox(x_13);
+return x_14;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0___boxed(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7) {
+_start:
+{
+uint8_t x_8; lean_object* x_9; 
+x_8 = lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0(x_1, x_2, x_3, x_4, x_5, x_6, x_7);
+x_9 = lean_box(x_8);
+return x_9;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4) {
+_start:
+{
+lean_object* x_5; lean_object* x_6; lean_object* x_7; lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; lean_object* x_17; lean_object* x_18; lean_object* x_19; lean_object* x_20; lean_object* x_21; lean_object* x_22; lean_object* x_23; 
+lean_inc_ref(x_1);
+x_5 = lp_mathlib_Field_toEuclideanDomain___redArg(x_1);
+x_6 = lean_ctor_get(x_5, 0);
+lean_inc_ref(x_6);
+lean_dec_ref(x_5);
+x_7 = lp_mathlib_CommRing_toNonUnitalCommRing___redArg(x_6);
+x_8 = lp_mathlib_NonUnitalNonAssocRing_toNonUnitalNonAssocSemiring___redArg(x_7);
+x_9 = lp_mathlib_NonUnitalNonAssocSemiring_toDistrib___redArg(x_8);
+x_10 = lean_ctor_get(x_9, 0);
+lean_inc(x_10);
+lean_dec_ref(x_9);
+x_11 = lp_mathlib_Field_toSemifield___redArg(x_1);
+x_12 = lp_mathlib_Semifield_toDivisionSemiring___redArg(x_11);
+x_13 = lean_ctor_get(x_12, 0);
+lean_inc_ref(x_13);
+lean_dec_ref(x_12);
+x_14 = lp_mathlib_Field_toDivisionRing___redArg(x_1);
+x_15 = lean_ctor_get(x_14, 0);
+lean_inc_ref(x_15);
+lean_dec_ref(x_14);
+lean_inc_ref(x_15);
+x_16 = lp_mathlib_Ring_toAddCommGroup___redArg(x_15);
+x_17 = lp_mathlib_SubNegZeroMonoid_toNegZeroClass___redArg(x_16);
+lean_dec_ref(x_16);
+x_18 = lean_ctor_get(x_17, 1);
+lean_inc(x_18);
+lean_dec_ref(x_17);
+x_19 = lp_mathlib_Ring_toAddGroupWithOne___redArg(x_15);
+x_20 = lean_ctor_get(x_19, 1);
+lean_inc_ref(x_20);
+lean_dec_ref(x_19);
+x_21 = lean_ctor_get(x_20, 2);
+lean_inc(x_21);
+lean_dec_ref(x_20);
+x_22 = lean_alloc_closure((void*)(lp_MinerProofRepair_RodCircles_isoRoots___redArg___lam__0___boxed), 7, 6);
+lean_closure_set(x_22, 0, x_13);
+lean_closure_set(x_22, 1, x_10);
+lean_closure_set(x_22, 2, x_4);
+lean_closure_set(x_22, 3, x_18);
+lean_closure_set(x_22, 4, x_21);
+lean_closure_set(x_22, 5, x_3);
+x_23 = lp_mathlib_Multiset_filter___redArg(x_22, x_2);
+return x_23;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_isoRoots(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5) {
+_start:
+{
+lean_object* x_6; 
+x_6 = lp_MinerProofRepair_RodCircles_isoRoots___redArg(x_2, x_3, x_4, x_5);
+return x_6;
+}
+}
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6) {
+_start:
+{
+lean_object* x_7; lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; uint8_t x_17; 
+x_7 = lean_ctor_get(x_6, 0);
+lean_inc(x_7);
+x_8 = lean_ctor_get(x_6, 1);
+lean_inc(x_8);
+lean_dec_ref(x_6);
+x_9 = lean_ctor_get(x_1, 3);
+lean_inc(x_9);
+lean_dec_ref(x_1);
+x_10 = lean_unsigned_to_nat(2u);
+lean_inc(x_9);
+lean_inc(x_7);
+x_11 = lean_apply_2(x_9, x_10, x_7);
+lean_inc(x_8);
+x_12 = lean_apply_2(x_2, x_7, x_8);
+lean_inc(x_3);
+x_13 = lean_apply_2(x_3, x_11, x_12);
+x_14 = lean_apply_2(x_9, x_10, x_8);
+x_15 = lean_apply_2(x_3, x_13, x_14);
+x_16 = lean_apply_2(x_4, x_15, x_5);
+x_17 = lean_unbox(x_16);
+return x_17;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0___boxed(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6) {
+_start:
+{
+uint8_t x_7; lean_object* x_8; 
+x_7 = lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0(x_1, x_2, x_3, x_4, x_5, x_6);
+x_8 = lean_box(x_7);
+return x_8;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3) {
+_start:
+{
+lean_object* x_4; lean_object* x_5; lean_object* x_6; lean_object* x_7; lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; lean_object* x_17; lean_object* x_18; lean_object* x_19; lean_object* x_20; lean_object* x_21; 
+lean_inc_ref(x_1);
+x_4 = lp_mathlib_Field_toEuclideanDomain___redArg(x_1);
+x_5 = lean_ctor_get(x_4, 0);
+lean_inc_ref(x_5);
+lean_dec_ref(x_4);
+x_6 = lp_mathlib_CommRing_toNonUnitalCommRing___redArg(x_5);
+x_7 = lp_mathlib_NonUnitalNonAssocRing_toNonUnitalNonAssocSemiring___redArg(x_6);
+x_8 = lp_mathlib_NonUnitalNonAssocSemiring_toDistrib___redArg(x_7);
+x_9 = lean_ctor_get(x_8, 0);
+lean_inc(x_9);
+x_10 = lean_ctor_get(x_8, 1);
+lean_inc(x_10);
+lean_dec_ref(x_8);
+x_11 = lp_mathlib_Field_toSemifield___redArg(x_1);
+x_12 = lp_mathlib_Semifield_toDivisionSemiring___redArg(x_11);
+x_13 = lean_ctor_get(x_12, 0);
+lean_inc_ref(x_13);
+lean_dec_ref(x_12);
+x_14 = lp_mathlib_Field_toDivisionRing___redArg(x_1);
+x_15 = lean_ctor_get(x_14, 0);
+lean_inc_ref(x_15);
+lean_dec_ref(x_14);
+x_16 = lp_mathlib_Ring_toAddGroupWithOne___redArg(x_15);
+x_17 = lean_ctor_get(x_16, 1);
+lean_inc_ref(x_17);
+lean_dec_ref(x_16);
+x_18 = lean_ctor_get(x_17, 2);
+lean_inc(x_18);
+lean_dec_ref(x_17);
+x_19 = lean_alloc_closure((void*)(lp_MinerProofRepair_RodCircles_hexConic___redArg___lam__0___boxed), 6, 5);
+lean_closure_set(x_19, 0, x_13);
+lean_closure_set(x_19, 1, x_9);
+lean_closure_set(x_19, 2, x_10);
+lean_closure_set(x_19, 3, x_3);
+lean_closure_set(x_19, 4, x_18);
+lean_inc(x_2);
+x_20 = lp_mathlib_Multiset_product___redArg(x_2, x_2);
+x_21 = lp_mathlib_Multiset_filter___redArg(x_19, x_20);
+return x_21;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexConic(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4) {
+_start:
+{
+lean_object* x_5; 
+x_5 = lp_MinerProofRepair_RodCircles_hexConic___redArg(x_2, x_3, x_4);
+return x_5;
+}
+}
+LEAN_EXPORT uint8_t lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7, lean_object* x_8, lean_object* x_9, lean_object* x_10) {
+_start:
+{
+lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; lean_object* x_17; lean_object* x_18; lean_object* x_19; lean_object* x_20; lean_object* x_21; lean_object* x_22; lean_object* x_23; lean_object* x_24; lean_object* x_25; lean_object* x_26; uint8_t x_27; 
+x_11 = lean_ctor_get(x_10, 0);
+lean_inc(x_11);
+x_12 = lean_ctor_get(x_10, 1);
+lean_inc(x_12);
+lean_dec_ref(x_10);
+x_13 = lean_ctor_get(x_1, 3);
+lean_inc(x_13);
+lean_dec_ref(x_1);
+lean_inc(x_2);
+x_14 = lean_apply_1(x_2, x_3);
+x_15 = lean_unsigned_to_nat(2u);
+lean_inc(x_13);
+lean_inc(x_11);
+x_16 = lean_apply_2(x_13, x_15, x_11);
+lean_inc(x_4);
+x_17 = lean_apply_2(x_4, x_14, x_16);
+lean_inc(x_2);
+x_18 = lean_apply_1(x_2, x_5);
+lean_inc(x_4);
+x_19 = lean_apply_2(x_4, x_18, x_11);
+lean_inc(x_4);
+lean_inc(x_12);
+x_20 = lean_apply_2(x_4, x_19, x_12);
+lean_inc(x_6);
+x_21 = lean_apply_2(x_6, x_17, x_20);
+x_22 = lean_apply_1(x_2, x_7);
+x_23 = lean_apply_2(x_13, x_15, x_12);
+x_24 = lean_apply_2(x_4, x_22, x_23);
+x_25 = lean_apply_2(x_6, x_21, x_24);
+x_26 = lean_apply_2(x_8, x_25, x_9);
+x_27 = lean_unbox(x_26);
+return x_27;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0___boxed(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7, lean_object* x_8, lean_object* x_9, lean_object* x_10) {
+_start:
+{
+uint8_t x_11; lean_object* x_12; 
+x_11 = lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0(x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8, x_9, x_10);
+x_12 = lean_box(x_11);
+return x_12;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6) {
+_start:
+{
+lean_object* x_7; lean_object* x_8; lean_object* x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12; lean_object* x_13; lean_object* x_14; lean_object* x_15; lean_object* x_16; lean_object* x_17; lean_object* x_18; lean_object* x_19; 
+lean_inc_ref(x_1);
+x_7 = lp_mathlib_CommRing_toNonUnitalCommRing___redArg(x_1);
+x_8 = lp_mathlib_NonUnitalNonAssocRing_toNonUnitalNonAssocSemiring___redArg(x_7);
+x_9 = lp_mathlib_NonUnitalNonAssocSemiring_toDistrib___redArg(x_8);
+x_10 = lean_ctor_get(x_9, 0);
+lean_inc(x_10);
+x_11 = lean_ctor_get(x_9, 1);
+lean_inc(x_11);
+lean_dec_ref(x_9);
+lean_inc_ref(x_1);
+x_12 = lp_mathlib_Ring_toAddGroupWithOne___redArg(x_1);
+x_13 = lean_ctor_get(x_12, 1);
+lean_inc_ref(x_13);
+x_14 = lean_ctor_get(x_12, 0);
+lean_inc(x_14);
+lean_dec_ref(x_12);
+x_15 = lean_ctor_get(x_1, 0);
+lean_inc_ref(x_15);
+lean_dec_ref(x_1);
+x_16 = lean_ctor_get(x_13, 2);
+lean_inc(x_16);
+lean_dec_ref(x_13);
+x_17 = lean_alloc_closure((void*)(lp_MinerProofRepair_RodCircles_formPts___redArg___lam__0___boxed), 10, 9);
+lean_closure_set(x_17, 0, x_15);
+lean_closure_set(x_17, 1, x_14);
+lean_closure_set(x_17, 2, x_4);
+lean_closure_set(x_17, 3, x_10);
+lean_closure_set(x_17, 4, x_5);
+lean_closure_set(x_17, 5, x_11);
+lean_closure_set(x_17, 6, x_6);
+lean_closure_set(x_17, 7, x_3);
+lean_closure_set(x_17, 8, x_16);
+lean_inc(x_2);
+x_18 = lp_mathlib_Multiset_product___redArg(x_2, x_2);
+x_19 = lp_mathlib_Multiset_filter___redArg(x_17, x_18);
+return x_19;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_formPts(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4, lean_object* x_5, lean_object* x_6, lean_object* x_7) {
+_start:
+{
+lean_object* x_8; 
+x_8 = lp_MinerProofRepair_RodCircles_formPts___redArg(x_2, x_3, x_4, x_5, x_6, x_7);
+return x_8;
+}
+}
+static lean_object* _init_lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0() {
+_start:
+{
+lean_object* x_1; lean_object* x_2; 
+x_1 = lean_unsigned_to_nat(1u);
+x_2 = lean_nat_to_int(x_1);
+return x_2;
+}
+}
+static lean_object* _init_lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1() {
+_start:
+{
+lean_object* x_1; lean_object* x_2; 
+x_1 = lean_unsigned_to_nat(0u);
+x_2 = lean_nat_to_int(x_1);
+return x_2;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_sqCircle___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3) {
+_start:
+{
+lean_object* x_4; lean_object* x_5; lean_object* x_6; 
+x_4 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0;
+x_5 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1;
+x_6 = lp_MinerProofRepair_RodCircles_formPts___redArg(x_1, x_2, x_3, x_4, x_5, x_4);
+return x_6;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_sqCircle(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4) {
+_start:
+{
+lean_object* x_5; lean_object* x_6; lean_object* x_7; 
+x_5 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0;
+x_6 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1;
+x_7 = lp_MinerProofRepair_RodCircles_formPts___redArg(x_2, x_3, x_4, x_5, x_6, x_5);
+return x_7;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexCircle___redArg(lean_object* x_1, lean_object* x_2, lean_object* x_3) {
+_start:
+{
+lean_object* x_4; lean_object* x_5; 
+x_4 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0;
+x_5 = lp_MinerProofRepair_RodCircles_formPts___redArg(x_1, x_2, x_3, x_4, x_4, x_4);
+return x_5;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_hexCircle(lean_object* x_1, lean_object* x_2, lean_object* x_3, lean_object* x_4) {
+_start:
+{
+lean_object* x_5; lean_object* x_6; 
+x_5 = lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0;
+x_6 = lp_MinerProofRepair_RodCircles_formPts___redArg(x_2, x_3, x_4, x_5, x_5, x_5);
+return x_6;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_flower(lean_object* x_1) {
+_start:
+{
+lean_object* x_2; lean_object* x_3; lean_object* x_4; lean_object* x_5; lean_object* x_6; lean_object* x_7; lean_object* x_8; lean_object* x_9; 
+x_2 = lean_unsigned_to_nat(3u);
+x_3 = lean_unsigned_to_nat(2u);
+x_4 = lean_nat_pow(x_1, x_3);
+x_5 = lean_nat_mul(x_2, x_4);
+lean_dec(x_4);
+x_6 = lean_nat_mul(x_2, x_1);
+x_7 = lean_nat_add(x_5, x_6);
+lean_dec(x_6);
+lean_dec(x_5);
+x_8 = lean_unsigned_to_nat(1u);
+x_9 = lean_nat_add(x_7, x_8);
+lean_dec(x_7);
+return x_9;
+}
+}
+LEAN_EXPORT lean_object* lp_MinerProofRepair_RodCircles_flower___boxed(lean_object* x_1) {
+_start:
+{
+lean_object* x_2; 
+x_2 = lp_MinerProofRepair_RodCircles_flower(x_1);
+lean_dec(x_1);
+return x_2;
+}
+}
+static lean_object* _init_lp_MinerProofRepair_RodCircles_coreModulus() {
+_start:
+{
+lean_object* x_1; 
+x_1 = lean_unsigned_to_nat(156892747u);
+return x_1;
+}
+}
+lean_object* initialize_Init(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Data_Finset_Card(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Data_ZMod_Basic(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_FieldTheory_Finite_Basic(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_NumberTheory_LegendreSymbol_Basic(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_FieldSimp(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_LinearCombination(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_Ring(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_NormNum(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_NormNum_Prime(uint8_t builtin);
+lean_object* initialize_mathlib_Mathlib_Tactic_Push(uint8_t builtin);
+static bool _G_initialized = false;
+LEAN_EXPORT lean_object* initialize_MinerProofRepair_RequestProject_RodCircles(uint8_t builtin) {
+lean_object * res;
+if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
+_G_initialized = true;
+res = initialize_Init(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Data_Finset_Card(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Data_ZMod_Basic(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_FieldTheory_Finite_Basic(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_NumberTheory_LegendreSymbol_Basic(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_FieldSimp(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_LinearCombination(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_Ring(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_NormNum(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_NormNum_Prime(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_mathlib_Mathlib_Tactic_Push(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0 = _init_lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0();
+lean_mark_persistent(lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__0);
+lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1 = _init_lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1();
+lean_mark_persistent(lp_MinerProofRepair_RodCircles_sqCircle___redArg___closed__1);
+lp_MinerProofRepair_RodCircles_coreModulus = _init_lp_MinerProofRepair_RodCircles_coreModulus();
+lean_mark_persistent(lp_MinerProofRepair_RodCircles_coreModulus);
+return lean_io_result_mk_ok(lean_box(0));
+}
+#ifdef __cplusplus
+}
+#endif

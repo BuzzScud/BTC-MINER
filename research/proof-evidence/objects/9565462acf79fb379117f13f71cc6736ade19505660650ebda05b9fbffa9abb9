@@ -1,0 +1,358 @@
+"""Independent evidence review for the three historical Lean module repairs.
+
+MUST preserve all 45 original theorem headers; MUST recheck complete source, log,
+compiled object, raw assumption inventory and rejection-control bindings from both
+fresh gates. MAY reuse their recorded compiler execution only while every binding
+matches. SHALL fail closed before producing a passing report. This is evidence for
+these number-theory statements, not universal miner/SHA-256 refinement or advantage.
+See MASTER_PLAN.md, run_retry.py, run_lake.py and the preserved historical report.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import html
+import json
+import os
+from pathlib import Path
+import re
+
+import prepare_manifest
+import run_retry
+
+HERE = Path(__file__).resolve().parent
+OLD = HERE.parent / 'miner-full-rebuild'
+SOURCE = HERE / 'sources'
+TARGETS = ['RequestProject.RodCircles', 'RequestProject.RodScaling',
+           'RequestProject.TowerCollapse', 'RequestProject.ApiSupportNumbers']
+ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def require(condition, reason):
+    if not condition:
+        raise RuntimeError(reason)
+
+
+def read_json(path):
+    return json.loads(path.read_text())
+
+
+def parse_roots(text, expected):
+    """Reconstruct exact records independently of the build runner's parser."""
+    records, totals = {}, []
+    for line in text.splitlines():
+        if line.startswith('ROOT\t'):
+            parts = line.split('\t')
+            require(len(parts) == 4, 'Malformed raw axiom record')
+            _, module, name, assumptions = parts
+            require(module in expected and name not in records, 'Unexpected module or duplicate root')
+            axioms = sorted(set(filter(None, assumptions.split(','))))
+            require(set(axioms) <= ALLOWED, 'Forbidden assumption in ' + name)
+            records[name] = {'module': module, 'axioms': axioms}
+        elif line.startswith('TOTAL\t'):
+            totals.append(int(line.split('\t')[1]))
+    require(records and totals == [len(records)], 'Incomplete raw assumption inventory')
+    for module, names in expected.items():
+        require(all(name in records and records[name]['module'] == module for name in names),
+                'Missing expected named theorem: ' + module)
+    counts = {module: sum(row['module'] == module for row in records.values()) for module in expected}
+    return records, counts
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--lake-report', type=Path)
+    args = parser.parse_args()
+    if args.lake_report is None:
+        candidates = sorted((HERE / 'lake-attempts').glob('*/report.json'), reverse=True)
+        args.lake_report = next((p for p in candidates if read_json(p).get('ok') is True), None)
+    require(args.lake_report is not None, 'A successful Lake replay is required')
+    lake_path = args.lake_report.resolve()
+    lake = read_json(lake_path)
+    raw_path = Path(lake['raw_report'])
+    raw = read_json(raw_path)
+    manifest = read_json(HERE / 'source-manifest.json')
+    checked = {}
+
+    def bind(path, digest=None):
+        path = Path(path).resolve()
+        require(path.is_file(), 'Missing bound input: ' + str(path))
+        actual = sha(path)
+        require(digest is None or actual == digest, 'Changed bound input: ' + str(path))
+        checked[str(path)] = actual
+        return actual
+
+    for result, label in [(raw, 'raw Lean'), (lake, 'Lake')]:
+        require(result.get('ok') is True and result.get('status') == 'passed', label + ' gate did not pass')
+        require(result.get('targets') == TARGETS, label + ' target inventory changed')
+        require(result.get('sources') == manifest['sources'], label + ' source inventory changed')
+    require(raw.get('all_requested_modules_compiled') is True, 'Raw closure did not compile')
+    require(lake['schema'] == 'miner-repair-lake-replay-v1', 'Unexpected Lake receipt schema')
+    bind(raw_path, lake['raw_report_sha256'])
+    bind(lake_path)
+    bind(HERE / 'source-manifest.json', raw['source_manifest_sha256'])
+    bind(HERE / 'run_retry.py', raw['runner_sha256'])
+    bind(HERE / 'api-support.json', raw['api_support_sha256'])
+    bind(run_retry.PINNED / 'lake-manifest.json', raw['dependency_manifest_sha256'])
+    bind(run_retry.BIN / 'lean', raw['compiler_sha256'])
+    bind(run_retry.BIN / 'lake', raw['lake_sha256'])
+    require(lake['compiler_sha256'] == raw['compiler_sha256'] and
+            lake['lake_sha256'] == raw['lake_sha256'] and
+            lake['dependency_manifest_sha256'] == raw['dependency_manifest_sha256'],
+            'Toolchain/dependency bindings differ between gates')
+    for name, digest in lake['input_bindings'].items():
+        bind(HERE / name, digest)
+    require(set(lake['input_bindings']) == {'run_lake.py', 'run_retry.py', 'lakefile.toml',
+            'lean-toolchain', 'source-manifest.json', 'api-support.json'}, 'Lake input inventory differs')
+    workspace = Path(lake['workspace'])
+    for name in ['lakefile.toml', 'lean-toolchain', 'source-manifest.json', 'api-support.json']:
+        bind(workspace / name, lake['input_bindings'][name])
+    for relative, digest in manifest['sources'].items():
+        bind(SOURCE / relative, digest)
+        bind(workspace / 'sources' / relative, digest)
+    bind(OLD / 'report.json', manifest['historical_report_sha256'])
+    for relative, digest in manifest['historical_sources'].items():
+        bind(OLD / 'sources' / relative, digest)
+
+    preserved = {}
+    for relative in ['RequestProject/RodCircles.lean', 'RequestProject/RodScaling.lean',
+                     'RequestProject/TowerCollapse.lean']:
+        original = prepare_manifest.headers((OLD / 'sources' / relative).read_text())
+        repaired = prepare_manifest.headers((SOURCE / relative).read_text())
+        require(all(repaired.get(name) == header for name, header in original.items()),
+                'Historical theorem header changed: ' + relative)
+        entry = {'original_theorems': sorted(original),
+                 'header_sha256': {name: hashlib.sha256(header.encode()).hexdigest()
+                                   for name, header in original.items()},
+                 'added_helpers': sorted(set(repaired) - set(original))}
+        require(entry == manifest['preserved_theorem_headers'][relative], 'Header manifest mismatch')
+        preserved[relative] = entry
+    require(sum(len(r['original_theorems']) for r in preserved.values()) == 45,
+            'Expected 45 historical theorem headers')
+
+    def mathematical_body(path):
+        return ' '.join(re.sub(r'(?m)^public import [\w.]+\s*$', '',
+                               run_retry.strip_comments(path.read_text())).split())
+    def circle_context(path):
+        code = run_retry.strip_comments(path.read_text())
+        code = re.sub(r'(?m)^public import [\w.]+\s*$', '', code)
+        code = re.sub(r'(?m)^attribute \[local irreducible\] formPts\s*$', '', code)
+        code, replacements = re.subn(
+            r'(theorem core_modulus_circle_counts.*? := by).*?(?=\ntheorem rod_circles_on_dial)',
+            r'\1 REPAIRED_PROOF_BODY\n', code, flags=re.S)
+        require(replacements == 1, 'Unable to isolate the one changed RodCircles proof body')
+        return ' '.join(code.split())
+    circle_relative = 'RequestProject/RodCircles.lean'
+    old_context = circle_context(OLD / 'sources' / circle_relative)
+    require(old_context == circle_context(SOURCE / circle_relative),
+            'RodCircles definitions, variable context, or other theorem bodies changed')
+    body_checks = {'RodCircles_context_except_final_count_proof':
+                   hashlib.sha256(old_context.encode()).hexdigest()}
+    for relative in ['LatticeCalc/Verified/PowSqrtPrime.lean', 'LatticeCalc/Verified/OrderSplit.lean',
+                     'RequestProject/TowerCollapse.lean']:
+        previous = mathematical_body(OLD / 'sources' / relative)
+        require(previous == mathematical_body(SOURCE / relative),
+                'Import-only module mathematical body changed: ' + relative)
+        body_checks[relative] = hashlib.sha256(previous.encode()).hexdigest()
+    for relative, digest in manifest['dependency_mathematical_bodies_unchanged'].items():
+        require(body_checks[relative] == digest, 'Dependency body manifest mismatch')
+
+    order, dependencies = [], {}
+    def visit(module):
+        if module in order:
+            return
+        path = SOURCE / (module.replace('.', '/') + '.lean')
+        require(str(path.relative_to(SOURCE)) in manifest['sources'], 'Unbound local module')
+        names = re.findall(r'^(?:public )?import ([\w.]+)', path.read_text(), re.M)
+        dependencies[module] = [name for name in names if name.startswith(('RequestProject.', 'LatticeCalc.'))]
+        for name in dependencies[module]:
+            visit(name)
+        order.append(module)
+    for target in TARGETS:
+        visit(target)
+    require(raw['build_order'] == order == lake['local_closure'], 'Local closure order mismatch')
+    require(raw['dependencies'] == dependencies, 'Import dependency graph mismatch')
+    expected = {module: run_retry.named_theorems((SOURCE / (module.replace('.', '/') + '.lean')).read_text())
+                for module in order}
+    require(expected == raw['required_named_theorems'] == lake['required_named_theorems'],
+            'Named theorem inventories differ')
+    require(len(expected['RequestProject.RodScaling']) == 25, 'RodScaling root inventory incomplete')
+    for module in order:
+        code = run_retry.strip_comments((SOURCE / (module.replace('.', '/') + '.lean')).read_text())
+        require(not re.search(r'\b(sorry|admit|native_decide|axiom|ofReduceBool|implemented_by)\b', code),
+                'Forbidden proof escape syntax: ' + module)
+
+    require(len(raw['builds']) == len(order), 'Missing raw build result')
+    raw_objects = Path(raw['object_directory'])
+    raw_artifact_count = 0
+    for module, build in zip(order, raw['builds']):
+        require(build['module'] == module and build['exit_code'] == 0, 'Raw module build failed')
+        bind(build['log'], build['log_sha256'])
+        stem = module.replace('.', '/')
+        modern = run_retry.strip_comments((SOURCE / (stem + '.lean')).read_text()).lstrip().startswith('module\n')
+        suffixes = ['.olean', '.olean.private', '.olean.server', '.ir'] if modern else ['.olean']
+        required_artifacts = {stem + suffix for suffix in suffixes}
+        actual_artifacts = {str(p.relative_to(raw_objects)) for p in (raw_objects / stem).parent.glob(Path(stem).name + '.olean*')}
+        if (raw_objects / (stem + '.ir')).is_file():
+            actual_artifacts.add(stem + '.ir')
+        require(required_artifacts <= set(build['artifacts']) == actual_artifacts, 'Raw artifact inventory incomplete: ' + module)
+        for relative, digest in build['artifacts'].items():
+            bind(raw_objects / relative, digest)
+            raw_artifact_count += 1
+    require([b['target'] for b in lake['builds']] == TARGETS, 'Lake build target inventory incomplete')
+    for build in lake['builds']:
+        require(build['exit_code'] == 0, 'Lake target failed')
+        bind(build['log'], build['log_sha256'])
+    actual_links = {str(p.relative_to(workspace)) for p in (workspace / '.lake/build').rglob('*') if p.is_symlink()}
+    require(set(lake['external_links']) == actual_links, 'External prerequisite link inventory differs')
+    package_roots = [Path(p).resolve() for p in lake['external_compiled_package_paths']]
+    for relative, info in lake['external_links'].items():
+        alias = workspace / relative
+        target = Path(info['target']).resolve()
+        require(alias.is_symlink() and alias.resolve() == target, 'External link target changed: ' + relative)
+        require(any(target == root or root in target.parents for root in package_roots), 'External link escapes pinned package directories')
+        require(not any(alias.name == name or alias.name.startswith(name + '.')
+                        for name in ['RequestProject', 'LatticeCalc']), 'External link shadows local proof namespace')
+        if info['kind'] == 'file':
+            require(target.is_file(), 'External file prerequisite missing')
+            bind(target, info['sha256'])
+        else:
+            require(info['kind'] == 'directory' and target.is_dir() and 'sha256' not in info,
+                    'External directory prerequisite changed')
+    actual_lake_files = {str(p.relative_to(workspace)) for p in (workspace / '.lake/build').rglob('*')
+                         if p.is_file() and not p.is_symlink()}
+    require(set(lake['artifacts']) == actual_lake_files, 'Lake artifact inventory incomplete')
+    for relative, digest in lake['artifacts'].items():
+        bind(workspace / relative, digest)
+    for module in order:
+        modern = run_retry.strip_comments((SOURCE / (module.replace('.', '/') + '.lean')).read_text()).lstrip().startswith('module\n')
+        suffixes = ['.olean', '.olean.private', '.olean.server', '.ir'] if modern else ['.olean']
+        for suffix in suffixes:
+            require('.lake/build/lib/lean/' + module.replace('.', '/') + suffix in lake['artifacts'],
+                    'Lake object companion missing: ' + module + suffix)
+
+    parsed = []
+    for receipt, audit_source in [(raw, raw_path.parent / 'Audit.lean'), (lake, workspace / 'Audit.lean')]:
+        audit = receipt['axiom_audit']
+        require(audit['exit_code'] == 0, 'Axiom collection failed')
+        bind(audit_source, audit['source_sha256'])
+        bind(audit['log'], audit['log_sha256'])
+        roots, counts = parse_roots(Path(audit['log']).read_text(), expected)
+        require(roots == receipt['theorem_roots'] and counts == receipt['module_theorem_counts'] and
+                len(roots) == receipt['theorem_count'], 'Axiom receipt differs from raw records')
+        parsed.append((roots, counts))
+    require(parsed[0] == parsed[1], 'Raw/Lake theorem assumptions differ')
+
+    negative = raw['negative_control']
+    bind(raw_path.parent / 'WrongArithmetic.lean', negative['source_sha256'])
+    bind(negative['log'], negative['log_sha256'])
+    negative_text = Path(negative['log']).read_text()
+    require(negative['exit_code'] == 1 and negative['expected_rejection'] is True and
+            'error:' in negative_text and '0 = 1' in negative_text, 'False arithmetic was not rejected')
+    controls = raw['assumption_controls']
+    bind(raw_path.parent / 'AssumptionControls.lean', controls['source_sha256'])
+    bind(controls['log'], controls['log_sha256'])
+    require(controls['exit_code'] == 0 and controls['rejected'] == {
+        'rejected_custom_root': True, 'rejected_sorry_root': True}, 'Assumption controls did not run')
+    records = [line for line in Path(controls['log']).read_text().splitlines() if line.startswith('ROOT\t')]
+    require(len(records) == 2, 'Assumption control raw inventory incomplete')
+    for line, name, axiom in zip(records, ['rejected_custom_root', 'rejected_sorry_root'],
+                                  ['rejected_custom_axiom', 'sorryAx']):
+        require(line.split('\t')[2] == name and axiom in line.split('\t')[3].split(','),
+                'Assumption control does not expose its forbidden axiom')
+        try:
+            parse_roots(line + '\nTOTAL\t1\n', {'CONTROL': [name]})
+        except RuntimeError:
+            pass
+        else:
+            raise RuntimeError('Independent reviewer accepted forbidden assumption')
+    require(raw['parser_controls'] == run_retry.parser_controls(), 'Parser mutation controls changed')
+    require(lake['negative_controls'] == {
+        'mode': 'reuse_exact_current_raw_gate_evidence',
+        'raw_report_sha256': sha(raw_path), 'parser_controls_rechecked': raw['parser_controls']},
+        'Lake rejection-control reuse not explicitly bound')
+    api = read_json(HERE / 'api-support.json')
+    expected_products = [('11*12', 132), ('19*18', 342), ('11*19*71*97*109', 156892747),
+                         ('12*20*72*96*108', 179159040), ('12*18*72*96*108', 161243136)]
+    require([(r['expression'], r['actual']) for r in api['scalar_checks']] == expected_products,
+            'Unexpected provider supporting arithmetic')
+    for row in api['scalar_checks']:
+        response = row['response']
+        require(row['http_status'] == 200 and response['ok'] is True and response['evaluation']['ok'] is True and
+                response['expression'] == row['expression'] and response['evaluation']['value'] == row['actual'],
+                'Provider output provenance mismatch')
+    bind(Path(__file__))
+    for name in ['prepare_manifest.py', 'MASTER_PLAN.md', 'API_SUPPORT.md']:
+        bind(HERE / name)
+    roots, counts = parsed[0]
+    report = {
+        'schema': 'miner-three-module-repair-review-v1', 'status': 'passed', 'ok': True,
+        'created_at_utc': datetime.now(timezone.utc).isoformat(),
+        'scope': 'Three formerly unresolved historical number-theory proof modules, their two local proof dependencies, and five actual provider scalar outputs. Exact theorem statements, not universal miner/runtime verification.',
+        'historical_theorem_headers_preserved': 45, 'rodscaling_named_theorems': 25,
+        'helper_theorems_added': 22, 'local_compiled_modules': len(order),
+        'theorem_count': len(roots), 'module_theorem_counts': counts,
+        'named_theorem_count': sum(len(names) for names in expected.values()),
+        'raw_gate': {'report': str(raw_path), 'sha256': sha(raw_path), 'builds': raw['builds'],
+                     'axiom_audit_seconds': raw['axiom_audit']['seconds']},
+        'lake_gate': {'report': str(lake_path), 'sha256': sha(lake_path), 'builds': lake['builds'],
+                      'axiom_audit_seconds': lake['axiom_audit']['seconds']},
+        'allowed_logical_axioms': sorted(ALLOWED),
+        'actual_axioms': sorted({a for row in roots.values() for a in row['axioms']}),
+        'raw_and_lake_root_inventories_identical': True,
+        'preserved_theorem_headers': preserved,
+        'mathematical_bodies_unchanged': body_checks,
+        'negative_controls': {'false_arithmetic_rejected': True, 'custom_axiom_rejected': True,
+                              'sorry_rejected': True, 'parser_controls': raw['parser_controls'],
+                              'lake_mode': lake['negative_controls']['mode']},
+        'api_scalar_outputs_kernel_certified': len(expected_products),
+        'api_support_scope': 'Provider supplied five exact supporting products; all higher mathematical proof construction and checking ran locally in Lean. The service supplied no new lifting theorem or proof endpoint.',
+        'repair_summary': {
+            'RodCircles': 'Compose existing CRT and prime cardinality equalities symbolically, matching overloaded multiplication to avoid eager finite-set reduction.',
+            'RodScaling': 'Prove exact row and block partitions; kernel-check nineteen complete 19-row blocks, each with 18 points, then prove 342 total. Preserve both 121 counts.',
+            'TowerCollapse': 'Narrow blanket imports in this module and two dependencies. Definitions and mathematical proof bodies are unchanged.'},
+        'raw_object_artifacts_verified': raw_artifact_count,
+        'lake_build_artifacts_verified': len(lake['artifacts']),
+        'reused_external_prerequisite_links': len(lake['external_links']),
+        'external_prerequisite_links': lake['external_links'],
+        'verified_file_bindings': checked,
+        'limitations': [
+            'The other five historical top-level modules were not freshly rebuilt in this targeted repair; their earlier evidence remains separate.',
+            'Pinned third-party package objects were reused; the local six-module dependency closure was freshly compiled by both gates.',
+            'These statements do not prove a SHA-256 shortcut, valid nonce pruning, mining profitability, or refinement of all miner runtime code.',
+            'The provider service has not been patched or deployed by this repair.',
+            'The historical sources and failure reports remain preserved; repaired sources are maintained in this review workspace.'
+        ],
+    }
+    esc = html.escape
+    def link(path, label):
+        return '<a href="' + esc(os.path.relpath(path, HERE), quote=True) + '">' + esc(label) + '</a>'
+    rows = ''.join('<tr><td>' + esc(module) + '</td><td>' + str(count) + '</td></tr>'
+                   for module, count in counts.items())
+    repairs = ''.join('<li><strong>' + esc(name) + ':</strong> ' + esc(text) + '</li>'
+                      for name, text in report['repair_summary'].items())
+    limitations = ''.join('<li>' + esc(text) + '</li>' for text in report['limitations'])
+    document = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Historical miner Lean proof repair</title><style>body{font:17px/1.6 system-ui;max-width:960px;margin:40px auto;padding:0 20px;color:#17232b;background:#f6f8fa}h1,h2{line-height:1.2}article{background:white;padding:28px;border-radius:14px;margin:20px 0;border:1px solid #dce3e8}.pass{color:#176339;font-weight:700}table{border-collapse:collapse;width:100%;font-size:15px}th,td{text-align:left;border-bottom:1px solid #ddd;padding:9px}code{overflow-wrap:anywhere}a{color:#155cab}</style>
+<h1>Three historical Lean modules repaired</h1><p class="pass">PASS: fresh Lean gate, fresh Lake replay, matching full theorem assumption inventories.</p>
+<article><h2>What passed</h2><p>All 45 historical theorem statements and hypotheses were preserved. The repair adds 22 helper lemmas; RodScaling now exposes 25 named theorem roots. Both gates freshly compile the 6 local modules and audit ''' + str(len(roots)) + ''' theorem roots, including generated/internal roots. Five actual provider scalar outputs are also kernel-certified.</p>
+<table><thead><tr><th>Module</th><th>Audited theorem roots</th></tr></thead><tbody>''' + rows + '''</tbody></table></article>
+<article><h2>Repairs</h2><ul>''' + repairs + '''</ul><h2>Acceptance checks</h2><p>Every current source, historical reference, build log, compiled object companion and assumption log is hash-bound. Independent review re-parses both axiom logs and checks identical root inventories. False arithmetic, custom axioms and admitted proofs were rejected; mutation controls detect missing or replaced theorem records. The Lake replay explicitly reuses the bound rejection-control evidence from the fresh raw gate.</p><p>Allowed logical axioms: <code>propext, Classical.choice, Quot.sound</code>. No custom axioms, admitted proofs or native-evaluation proof escapes are accepted.</p></article>
+<article><h2>Evidence</h2><ul><li>''' + link(raw_path, 'Raw Lean build and assumption receipt') + '</li><li>' + link(lake_path, 'Fresh Lake replay receipt') + '</li><li>' + link(HERE / 'final-review.json', 'Complete final review and file bindings') + '</li><li>' + link(HERE / 'source-manifest.json', 'Preserved headers and source manifest') + '</li><li>' + link(HERE / 'API_SUPPORT.md', 'Supporting provider calculations and capability review') + '''</li></ul></article>
+<article><h2>Scope and remaining limits</h2><ul>''' + limitations + '''</ul></article><p>Reviewed ''' + esc(report['created_at_utc']) + '''. This is a completed repair of the three specified mathematical proof modules.</p></html>'''
+    for path, digest in checked.items():
+        require(sha(Path(path)) == digest, 'Bound evidence changed during final review: ' + path)
+    output = HERE / 'report.html'
+    output.write_text(document)
+    report['html_report'] = str(output)
+    report['html_report_sha256'] = sha(output)
+    (HERE / 'final-review.json').write_text(json.dumps(report, indent=2) + '\n')
+    print(json.dumps({'status': report['status'], 'theorem_roots': report['theorem_count'],
+                      'preserved_headers': 45, 'verified_bindings': len(checked), 'report': str(output)}))
+
+
+if __name__ == '__main__':
+    main()

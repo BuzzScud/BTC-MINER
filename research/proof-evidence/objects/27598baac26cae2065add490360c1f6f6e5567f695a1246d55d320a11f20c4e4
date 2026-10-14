@@ -1,0 +1,4 @@
+/source/user/Desktop/BTC MINER/validation/miner-proof-repair-20261007/attempts/20261007T193049888758Z/AssumptionControls.lean:4:8: warning: declaration uses `sorry`
+ROOT	CONTROL	rejected_custom_root	rejected_custom_axiom
+ROOT	CONTROL	rejected_sorry_root	sorryAx
+TOTAL	2

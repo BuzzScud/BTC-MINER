@@ -1,0 +1,2409 @@
+{
+  "schema": "btc-math-consumers/v1",
+  "generated_at": "2026-10-11T16:54:52.987111+00:00",
+  "catalogue_path": "research/formula-catalogue.json",
+  "catalogue_account_record_count": 1302,
+  "purpose": "Typed navigation from reviewed mathematics to actual code consumers and explicit remaining gates.",
+  "scope": "Selected33relationships; not a complete semantic audit of1302formula records. Source consumers, not loaded-process state or formal implementation refinement.",
+  "proof_policy": "This catalogue does not confer accepted proof status, source-to-runtime refinement, live deployment status, or nonce exclusion authority.",
+  "reference_availability": "Runtime callers are release-relative. Source/card references under validation require the full research workspace and are navigation provenance, not portable proof dependencies.",
+  "full_map": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-consumer-map.json",
+  "full_map_sha256": "4565d2a0196ad8c250b98a94b25fe1fafeb20092e13262601d4b80a238ff66af",
+  "edges": [
+    {
+      "id": "INT-01",
+      "topic": "Exact integer storage",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Signed integers",
+      "codomain": "Finite sequence of uint32 limbs",
+      "formula": "x=sign*sum limb[i]*2^(32*i)",
+      "assumptions": [
+        "Canonical limbs; available memory; ABI matches loaded binary"
+      ],
+      "execution_role": "resident_arithmetic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Big",
+          "line_start": 18,
+          "line_end": 20,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "bigint",
+          "line_start": 60,
+          "line_end": 66,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "integer_operation",
+          "line_start": 149,
+          "line_end": 162,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "native/latcalc/include/latcalc/bigint.h",
+          "recorded_sha256": "3f1741446291177e754cc2a0d17b2b2e16665b0ec302b50a1a94cc87fbd66017",
+          "current_sha256": "3f1741446291177e754cc2a0d17b2b2e16665b0ec302b50a1a94cc87fbd66017",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-NATIVE-lc_int",
+          "lean_name": null,
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Preserve arbitrary-size integer storage; distinguish small rod width from reconstructed width.",
+      "unresolved_gates": [
+        "Universal C refinement and source-to-loaded-binary identity remain separate gates."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-02",
+      "topic": "Bounded polynomial rods",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Integer expression and coherent inputs",
+      "codomain": "Exact integer result after CRT readback",
+      "formula": "encode(eval e)=rodRun(e,encode(inputs)); unique recovery when true bound fits capacity",
+      "assumptions": [
+        "True bound for intended integer, not a caller assertion alone",
+        "Same input/expression lineage on every rod",
+        "Pairwise coprime moduli"
+      ],
+      "execution_role": "resident_arithmetic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Frame.program",
+          "line_start": 202,
+          "line_end": 259,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Column.merge",
+          "line_start": 386,
+          "line_end": 397,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/claim_calculus.py",
+          "symbol": "ClaimCalculator.formula",
+          "line_start": 17,
+          "line_end": 47,
+          "sha256": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4",
+          "compatibility_path": "btcminer/claim_calculus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/AbacusPrecision.lean",
+          "recorded_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "current_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-AbacusPrecision-rodRun_eq_encode",
+          "lean_name": "AbacusPrecision.rodRun_eq_encode",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/AbacusPrecision.lean",
+          "recorded_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "current_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-AbacusPrecision-abacus_exact",
+          "lean_name": "AbacusPrecision.abacus_exact",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Use propagated intervals and sealed lineage in the existing resident evaluator.",
+      "unresolved_gates": [
+        "Systems patch must reject mixed8/10 columns yielding3 and forged35\u21920 interval."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-03",
+      "topic": "Exact vector transport",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Integer coordinate vectors/matrices",
+      "codomain": "Per-rod coordinate vectors/matrices",
+      "formula": "dot and determinant commute with reduction",
+      "assumptions": [
+        "Separate genuine bound for each recovered result",
+        "Use the correct bilinear form"
+      ],
+      "execution_role": "resident_arithmetic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "CircleModel.triple",
+          "line_start": 315,
+          "line_end": 335,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Frame.jump",
+          "line_start": 261,
+          "line_end": 279,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ExactVectorGates.lean",
+          "recorded_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "current_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-PROOF-dot_reduces",
+          "lean_name": "ExactVectorGates.dot_reduces",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ExactVectorGates.lean",
+          "recorded_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "current_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-PROOF-determinant_reduces",
+          "lean_name": "ExactVectorGates.determinant_reduces",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep vector dimension and form in runtime metadata; use rods for polynomial components.",
+      "unresolved_gates": [
+        "Dot transport does not itself prove an integer sign or unlimited machine coefficient range."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-04",
+      "topic": "Eisenstein coordinate conversion",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "E coordinates (a,b), norm a\u00b2\u2212ab+b\u00b2",
+      "codomain": "Z6 coordinates (a,\u2212b), norm a\u00b2+ab+b\u00b2",
+      "formula": "E(a,b)\u21a6Z6(a,\u2212b)",
+      "assumptions": [
+        "Convert the second coordinate and the multiplication convention together"
+      ],
+      "execution_role": "diagnostic",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "hex_norm",
+          "line_start": 53,
+          "line_end": 54,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "hex_distance",
+          "line_start": 215,
+          "line_end": 230,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "CircleModel.__init__",
+          "line_start": 280,
+          "line_end": 287,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ExactVectorGates.lean",
+          "recorded_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "current_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-PROOF-coordinate_convention",
+          "lean_name": "ExactVectorGates.coordinate_convention",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Expose coordinate convention; preserve default CircleModel plus form and E lattice adapter as distinct charts.",
+      "unresolved_gates": [
+        "Equal numeric pairs without the sign conversion denote different points."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-05",
+      "topic": "Flower positional address",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Eisenstein integer pair and depth n",
+      "codomain": "n radius2 digits plus Eisenstein remainder",
+      "formula": "z=sum d_i*beta19^i+beta19^n*r; norm(beta19)=19",
+      "assumptions": [
+        "Retain remainder unless termination is independently established",
+        "Address radius and depth are explicit"
+      ],
+      "execution_role": "resident_geometry",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "Flower.address",
+          "line_start": 256,
+          "line_end": 271,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "math-library/python/abacus.py",
+          "symbol": "ResidentModel.__init__",
+          "line_start": 17,
+          "line_end": 63,
+          "sha256": "d889143fc0299001551b015273b5008c01cb3b4b0296fcaeec347ee0273de842",
+          "compatibility_path": "btcminer/abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "native/latcalc/src/eisenstein.c",
+          "recorded_sha256": "268d67b4f1af0883ae7e04dbe43d2086e4ae141125c0d73b87857003000bb6e2",
+          "current_sha256": "c8a5d3ac94b3907cc3379112a20e2d40f7918551d8aa751a044c6bead86b5d76",
+          "recorded_source_matches_current": false,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-NATIVE-lc_hexbase_address",
+          "lean_name": null,
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Reuse current resident Flower19 table and exact reconstruction check.",
+      "unresolved_gates": [
+        "No arbitrary-file compression claim; digits alone are insufficient when remainder is nonzero."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-06",
+      "topic": "19\u00b2 rational rotation",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Rational Eisenstein plane",
+      "codomain": "Same plane; integer sublattice only conditionally",
+      "formula": "beta19\u00b2/19=[[21,\u221216],[16,5]]/19",
+      "assumptions": [
+        "Integer output iff19 divides a+11b",
+        "Use conjugate ideal root11, not root7"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/coreprimes.py",
+          "symbol": "normalize_scaled",
+          "line_start": 60,
+          "line_end": 67,
+          "sha256": "a5c9d977626e75d83176476c71a692bcf24428ac3b3c6f1f5c81e5a5a65d6bc2",
+          "compatibility_path": "btcminer/coreprimes.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "Flower.address",
+          "line_start": 256,
+          "line_end": 271,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ScalingGeometryGates.lean",
+          "recorded_sha256": "17546e4cd2d0d638361d98a9196f914654132954c4adf39e723dfd9a2d4eb4dd",
+          "current_sha256": "17546e4cd2d0d638361d98a9196f914654132954c4adf39e723dfd9a2d4eb4dd",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FRESH-rotation_integral_iff",
+          "lean_name": "ScalingGeometryGates.rotation_integral_iff",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ScalingGeometryGates.lean",
+          "recorded_sha256": "17546e4cd2d0d638361d98a9196f914654132954c4adf39e723dfd9a2d4eb4dd",
+          "current_sha256": "17546e4cd2d0d638361d98a9196f914654132954c4adf39e723dfd9a2d4eb4dd",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FRESH-rotation_preserves_norm",
+          "lean_name": "ScalingGeometryGates.rotation_preserves_norm",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/ExactVectorGates.lean",
+          "recorded_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "current_sha256": "b75c2413f842f7542b05a746007c992502a9656b110d1fd503e4971ac7c8878c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-PROOF-beta19_twice_is_not_scalar19",
+          "lean_name": "ExactVectorGates.beta19_twice_is_not_scalar19",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Retain rational denominators or prove conjugate-ideal membership before an integer rotation adapter.",
+      "unresolved_gates": [
+        "No current runtime needs this rotation; adding it to nonce traversal has no proved purpose."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-07",
+      "topic": "Carrier-dependent scalar361",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Integer/real affine plane, ZMod360, or F19\u00b2",
+      "codomain": "Three different scalar actions",
+      "formula": "361 is invertible real dilation, identity on ZMod360, zero on F19\u00b2",
+      "assumptions": [
+        "Carrier must be explicit before applying scaling",
+        "Affine center is not field multiplicative identity"
+      ],
+      "execution_role": "diagnostic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/coreprimes.py",
+          "symbol": "normalize_scaled",
+          "line_start": 60,
+          "line_end": 67,
+          "sha256": "a5c9d977626e75d83176476c71a692bcf24428ac3b3c6f1f5c81e5a5a65d6bc2",
+          "compatibility_path": "btcminer/coreprimes.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "multiply_board",
+          "line_start": 34,
+          "line_end": 36,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "centered19",
+          "line_start": 38,
+          "line_end": 40,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/CenterBoardBridgeGates.lean",
+          "recorded_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "current_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-center-board-cards.json#SCALE-CENTER-center19_reduces_to_zero",
+          "lean_name": "CenterBoardBridgeGates.center19_reduces_to_zero",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/CenterBoardBridgeGates.lean",
+          "recorded_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "current_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-center-board-cards.json#SCALE-CENTER-scalar361_collapses_board",
+          "lean_name": "CenterBoardBridgeGates.scalar361_collapses_board",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/CenterBoardBridgeGates.lean",
+          "recorded_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "current_sha256": "bc163ce8c1e5e636dfb864c84d2e36977214df575dafb6834cd978d1cebef2d7",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-center-board-cards.json#SCALE-CENTER-scalar361_identity_dial",
+          "lean_name": "CenterBoardBridgeGates.scalar361_identity_dial",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep board arithmetic and physical drawing scale separately named and reject nonunit modular normalization.",
+      "unresolved_gates": [
+        "A scale361 board automorphism would collapse all points to the center."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-08",
+      "topic": "Finite-field model bridge",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "F19[sqrt2] pair",
+      "codomain": "F19[i] Gaussian pair",
+      "formula": "(a,b)\u21a6(a,13b); inverse coefficient3; (1,9)\u21a6(1,3)",
+      "assumptions": [
+        "Characteristic19 and defining quadratic relations",
+        "Nonzero field elements for multiplicative orbit"
+      ],
+      "execution_role": "traversal",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "multiply_board",
+          "line_start": 34,
+          "line_end": 36,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "board_loop",
+          "line_start": 43,
+          "line_end": 48,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/abacus.py",
+          "symbol": "Workspace.__init__",
+          "line_start": 122,
+          "line_end": 139,
+          "sha256": "d889143fc0299001551b015273b5008c01cb3b4b0296fcaeec347ee0273de842",
+          "compatibility_path": "btcminer/abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/AlgebraBridgeSupplement.lean",
+          "recorded_sha256": "ab0c60559b1eda35331b02bd7d962fac9bd6ca2fd7e854e4e4c03c7f1ee9a1be",
+          "current_sha256": "ab0c60559b1eda35331b02bd7d962fac9bd6ca2fd7e854e4e4c03c7f1ee9a1be",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round5/algebra-bridge-cards.json#ALG-R5-SUPPLEMENT-sqrtTwoGaussianEquiv",
+          "lean_name": "AlgebraBridgeSupplement.sqrtTwoGaussianEquiv",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/AlgebraBridgeSupplement.lean",
+          "recorded_sha256": "ab0c60559b1eda35331b02bd7d962fac9bd6ca2fd7e854e4e4c03c7f1ee9a1be",
+          "current_sha256": "ab0c60559b1eda35331b02bd7d962fac9bd6ca2fd7e854e4e4c03c7f1ee9a1be",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round5/algebra-bridge-cards.json#ALG-R5-SUPPLEMENT-generator_transport",
+          "lean_name": "AlgebraBridgeSupplement.generator_transport",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Use current exact Gaussian generator rather than mistaking the different source coordinates for a disagreement.",
+      "unresolved_gates": [
+        "Concrete runtime multiplication correspondence is finite-tested, not Lean-extracted."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-09",
+      "topic": "Prime basis in actual traversal",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Canonical exponents Fin6\u00d7Fin2\u00d7Fin4\u00d7Fin2",
+      "codomain": "U(360)",
+      "formula": "u=11^a19^b73^c109^d mod360",
+      "assumptions": [
+        "Canonical integer coordinates",
+        "Periods6,2,4,2 are group coordinates, not CRT moduli"
+      ],
+      "execution_role": "traversal",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/prime_structure.py",
+          "symbol": "unit_from_coordinates",
+          "line_start": 16,
+          "line_end": 24,
+          "sha256": "e06b6b265f1c85d14061f3a499da647e2bcf47d40104053921ef78752e213d0a",
+          "compatibility_path": "btcminer/prime_structure.py"
+        },
+        {
+          "path": "math-library/python/prime_structure.py",
+          "symbol": "unit_coordinates",
+          "line_start": 35,
+          "line_end": 38,
+          "sha256": "e06b6b265f1c85d14061f3a499da647e2bcf47d40104053921ef78752e213d0a",
+          "compatibility_path": "btcminer/prime_structure.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "Traversal.__init__",
+          "line_start": 204,
+          "line_end": 240,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/abacus.py",
+          "symbol": "Workspace.__init__",
+          "line_start": 122,
+          "line_end": 139,
+          "sha256": "d889143fc0299001551b015273b5008c01cb3b4b0296fcaeec347ee0273de842",
+          "compatibility_path": "btcminer/abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/PrimeSelectionGates.lean",
+          "recorded_sha256": "c28d6caf9a4fe35424cb810fb298197b3fbcc168180b1d628e7d126290bd3eb5",
+          "current_sha256": "c28d6caf9a4fe35424cb810fb298197b3fbcc168180b1d628e7d126290bd3eb5",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round6/prime-number-theory-cards.json#PRIME-R6-FRESH-user_basis_bijective",
+          "lean_name": "PrimeSelectionGates.user_basis_bijective",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Current integration validates and describes the exact96 allowed steps without changing the nonce sequence.",
+      "unresolved_gates": [
+        "Do not extend this finite lookup into O(1) unbounded prime generation."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-10",
+      "topic": "Prime-window generator",
+      "formula_ids": [
+        393,
+        7328,
+        7354
+      ],
+      "formula_links": [
+        {
+          "formula_id": 393,
+          "relationship_type": "mechanisms_relevant_to_open_claim",
+          "domain": "Adaptive prime rods and smooth-predecessor certificates, with explicit candidate/rod/bit/block parameters",
+          "card_id": "PRIME-R8-GENERATION-DynamicRods-window"
+        },
+        {
+          "formula_id": 7354,
+          "relationship_type": "distinguished_from",
+          "domain": "Fixed31-bit large-prime frame constructor versus every small prime below r",
+          "card_id": "PRIME-R8-GENERATION-DynamicRods-window"
+        },
+        {
+          "formula_id": 7328,
+          "relationship_type": "literal_source_support_for_sieve_clause",
+          "domain": "n=pq,p\u2264q,p prime,n<r\u00b2; frame contains all primes below r",
+          "card_id": "PRIME-R8-GENERATION-DynamicRods-window"
+        },
+        {
+          "formula_id": 393,
+          "relationship_type": "mechanisms_relevant_to_open_claim",
+          "domain": "Adaptive prime rods and smooth-predecessor certificates, with explicit candidate/rod/bit/block parameters",
+          "card_id": "PRIME-R8-GENERATION-DynamicRods-least_coprime_prime"
+        }
+      ],
+      "mathematical_domain": "All primes below frontier r; integer1<x<r\u00b2",
+      "codomain": "Primality decision in the certified window",
+      "formula": "passes every smaller-prime rod iff prime in the stated window",
+      "assumptions": [
+        "All prime rods below r are present",
+        "Strict upper endpoint x<r\u00b2",
+        "Loaded primes require direct membership handling"
+      ],
+      "execution_role": "traversal",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/pqmath.py",
+          "symbol": "DynamicRods.is_prime_in_window",
+          "line_start": 141,
+          "line_end": 146,
+          "sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+          "compatibility_path": "btcminer/pqmath.py"
+        },
+        {
+          "path": "math-library/python/pqmath.py",
+          "symbol": "DynamicRods.extend",
+          "line_start": 155,
+          "line_end": 165,
+          "sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+          "compatibility_path": "btcminer/pqmath.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "qualifying_primes",
+          "line_start": 124,
+          "line_end": 131,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/DynamicRods.lean",
+          "recorded_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "current_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/prime-generation-cards.json#PRIME-R8-GENERATION-DynamicRods-window",
+          "lean_name": "DynamicRods.window",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/DynamicRods.lean",
+          "recorded_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "current_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/prime-generation-cards.json#PRIME-R8-GENERATION-DynamicRods-window_sharp",
+          "lean_name": "DynamicRods.window_sharp",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/DynamicRods.lean",
+          "recorded_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "current_sha256": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/prime-generation-cards.json#PRIME-R8-GENERATION-DynamicRods-least_coprime_prime",
+          "lean_name": "DynamicRods.least_coprime_prime",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep current dynamic-window primality path and explicit growth.",
+      "unresolved_gates": [
+        "Variable rod count, search and arithmetic cost remain;361 passes rods below19 but is composite."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-11",
+      "topic": "Different prime clocks",
+      "formula_ids": [
+        7408,
+        7409,
+        7410
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7408,
+          "relationship_type": "premise_repair",
+          "domain": "Prime p\u22657 with p\u22121dividing a chosen layer",
+          "card_id": "PRIME-R8-GENERATION-TemporalLattice-qualifies_iff"
+        },
+        {
+          "formula_id": 7409,
+          "relationship_type": "premise_repair",
+          "domain": "Prime p\u22657 with p\u22121dividing a chosen layer",
+          "card_id": "PRIME-R8-GENERATION-TemporalLattice-qualifies_iff"
+        },
+        {
+          "formula_id": 7410,
+          "relationship_type": "exact_finite_selector_support",
+          "domain": "Candidate exponent box0\u2264i\u22647,0\u2264j\u22642,0\u2264k\u22643 and p=2^i3^j5^k+1",
+          "card_id": "PRIME-R8-GENERATION-TemporalLattice-qualifies_iff"
+        }
+      ],
+      "mathematical_domain": "Prime p\u22655 and clockE",
+      "codomain": "Three distinct divisibility predicates",
+      "formula": "p\u22121|E; (p\u2212chi3(p))|E; spoke(p)|E",
+      "assumptions": [
+        "Integer-unit, hex norm-one and petal subgroups are distinct",
+        "spoke=(p+3)//6 for primep\u22655"
+      ],
+      "execution_role": "diagnostic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/coreprimes.py",
+          "symbol": "report",
+          "line_start": 70,
+          "line_end": 100,
+          "sha256": "a5c9d977626e75d83176476c71a692bcf24428ac3b3c6f1f5c81e5a5a65d6bc2",
+          "compatibility_path": "btcminer/coreprimes.py"
+        },
+        {
+          "path": "math-library/python/rodmath.py",
+          "symbol": "rod_circle_count",
+          "line_start": 12,
+          "line_end": 20,
+          "sha256": "3664aedfa87719bd79934e57f899e21d13ad34b860c684f284d237d28a2285d6",
+          "compatibility_path": "btcminer/rodmath.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "qualifying_primes",
+          "line_start": 124,
+          "line_end": 131,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/TemporalLattice.lean",
+          "recorded_sha256": "4b554de6c1526583d9ae452785d7eec9e2a408c8fa3cb71c56927122d9361c0b",
+          "current_sha256": "4b554de6c1526583d9ae452785d7eec9e2a408c8fa3cb71c56927122d9361c0b",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/prime-generation-cards.json#PRIME-R8-GENERATION-TemporalLattice-qualifies_iff",
+          "lean_name": "TemporalLattice.qualifies_iff",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/FractalAbacusModels.lean",
+          "recorded_sha256": "d208c95c19fa886de66a4e8bc0fb4e3955d1d2972faee0c8731c05f47b4fb528",
+          "current_sha256": "d208c95c19fa886de66a4e8bc0fb4e3955d1d2972faee0c8731c05f47b4fb528",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FractalAbacusModels-flower_on_rod",
+          "lean_name": "RequestProject.FractalAbacusModels::flower_on_rod (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "New report distinguishes all three; retain p\u22121 criterion in the original miner candidate policy.",
+      "unresolved_gates": [
+        "Replacing the miner criterion with p+1 changes the selected family and needs an intentional mapping change."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-12",
+      "topic": "Fractal depth projection",
+      "formula_ids": [
+        7240,
+        7246
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7240,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-EXACT-LatticeCalc-Verified-Fractal-FractalAbacus-enc_proj"
+        },
+        {
+          "formula_id": 7246,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-EXACT-LatticeCalc-Verified-Fractal-FractalAbacus-arbitrary_precision"
+        }
+      ],
+      "mathematical_domain": "Residues modulo pairwise-coprime b_i^d_i",
+      "codomain": "Residues at shallower depth e_i\u2264d_i",
+      "formula": "enc_d(x) projects to enc_e(x); capacity deepening multiplies by selected base",
+      "assumptions": [
+        "b_i\u22652 and pairwise coprime",
+        "Primality of bases is additionally needed to represent EVERY capacity divisor",
+        "A shallow column does not uniquely determine its lift"
+      ],
+      "execution_role": "resident_arithmetic",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Column.restrict",
+          "line_start": 376,
+          "line_end": 384,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Calculation.reserve",
+          "line_start": 438,
+          "line_end": 449,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+          "recorded_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "current_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-LatticeCalc-Verified-Fractal-FractalAbacus-enc_proj",
+          "lean_name": "LatticeCalc.Verified.Fractal.FractalAbacus.enc_proj",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalLevels.lean",
+          "recorded_sha256": "b56968819c7a775e4afac194074b03af9c4e5e0b7df4580ce6bc8f90b38ad765",
+          "current_sha256": "b56968819c7a775e4afac194074b03af9c4e5e0b7df4580ce6bc8f90b38ad765",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FractalLevels-exists_level_iff",
+          "lean_name": "LatticeCalc.Verified.FractalLevels::exists_level_iff (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+          "recorded_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "current_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-LatticeCalc-Verified-Fractal-FractalAbacus-arbitrary_precision",
+          "lean_name": "LatticeCalc.Verified.Fractal.FractalAbacus.arbitrary_precision",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Existing reserve decodes and reencodes with a valid bound; it is a distinct lawful growth mechanism.",
+      "unresolved_gates": [
+        "Native fixed31bit moduli cannot represent unlimited prime-power depth; modulus1 inactive rods need an adapter."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-13",
+      "topic": "Bearing zoom versus value projection",
+      "formula_ids": [
+        7055,
+        7056,
+        7241
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7055,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-RecursiveDepth-dial_refine_toCircle"
+        },
+        {
+          "formula_id": 7055,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-RecursiveDepth-dial_refine_toCircle"
+        },
+        {
+          "formula_id": 7056,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-RecursiveDepth-dial_refine_injective"
+        },
+        {
+          "formula_id": 7056,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-RecursiveDepth-dial_refine_injective"
+        },
+        {
+          "formula_id": 7241,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-run_proj"
+        },
+        {
+          "formula_id": 7241,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-run_proj"
+        }
+      ],
+      "mathematical_domain": "Dial label k modulo N",
+      "codomain": "Angle-preserving label Mk modulo MN",
+      "formula": "k/N=(Mk)/(MN)",
+      "assumptions": [
+        "This preserves normalized bearing, not the integer label modulo N",
+        "Keep bearing and integer-column types separate"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "reading",
+          "line_start": 77,
+          "line_end": 78,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Calculation.reserve",
+          "line_start": 438,
+          "line_end": 449,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/RecursiveDepth.lean",
+          "recorded_sha256": "94f05ed595c71c52d2d569920b5c558d55c6e64734f5ac08175428791006c565",
+          "current_sha256": "94f05ed595c71c52d2d569920b5c558d55c6e64734f5ac08175428791006c565",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-RecursiveDepth-dial_refine_toCircle",
+          "lean_name": "RecursiveDepth.dial_refine_toCircle",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/RecursiveDepth.lean",
+          "recorded_sha256": "94f05ed595c71c52d2d569920b5c558d55c6e64734f5ac08175428791006c565",
+          "current_sha256": "94f05ed595c71c52d2d569920b5c558d55c6e64734f5ac08175428791006c565",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-RecursiveDepth-dial_refine_injective",
+          "lean_name": "RecursiveDepth.dial_refine_injective",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+          "recorded_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "current_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-run_proj",
+          "lean_name": "LatticeCalc.Verified.Fractal.FractalAbacus.run_proj",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Do not use bearing refinement as integer base extension.",
+      "unresolved_gates": [
+        "1/360\u219260/21600 preserves angle;60 mod360 is not1."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-14",
+      "topic": "Depth conversions",
+      "formula_ids": [
+        15
+      ],
+      "formula_links": [
+        {
+          "formula_id": 15,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "SCALE-DepthUnification-tdepth_eq_cardFactors_add"
+        }
+      ],
+      "mathematical_domain": "5smooth n=2^i3^j5^k\u22652",
+      "codomain": "Prime-cut and totient depths",
+      "formula": "cut=i+j+k; tdepth=cut+k+[i=0]",
+      "assumptions": [
+        "5smooth premise",
+        "Recurrence generation and precision bit count are separate variables"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "Traversal.description",
+          "line_start": 277,
+          "line_end": 286,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "FramePool.frame",
+          "line_start": 405,
+          "line_end": 422,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/DepthUnification.lean",
+          "recorded_sha256": "012a345449833b548800d569c2dfd6c370512d0952898ca71cc89ec5f887fc09",
+          "current_sha256": "012a345449833b548800d569c2dfd6c370512d0952898ca71cc89ec5f887fc09",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-DepthUnification-tdepth_eq_cardFactors_add",
+          "lean_name": "RequestProject.DepthUnification::tdepth_eq_cardFactors_add (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/FractalAbacusModels.lean",
+          "recorded_sha256": "d208c95c19fa886de66a4e8bc0fb4e3955d1d2972faee0c8731c05f47b4fb528",
+          "current_sha256": "d208c95c19fa886de66a4e8bc0fb4e3955d1d2972faee0c8731c05f47b4fb528",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FractalAbacusModels-dial_zoom",
+          "lean_name": "RequestProject.FractalAbacusModels::dial_zoom (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Use named fields for each depth in the catalogue/consumer graph.",
+      "unresolved_gates": [
+        "144000 has cutdepth12 and totientdepth15, neither a bit capacity or sphere generation."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-15",
+      "topic": "Exact4D periodic clock",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Z^4 vector and natural exponent n",
+      "codomain": "Z^4 vector",
+      "formula": "R^12=I; R^n=R^(n mod12)",
+      "assumptions": [
+        "This exact matrix has period12",
+        "Coordinate magnitude remains arbitrary precision"
+      ],
+      "execution_role": "resident_geometry",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "Clock24.rotate",
+          "line_start": 96,
+          "line_end": 109,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "clock_tables",
+          "line_start": 13,
+          "line_end": 23,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/DialShadow.lean",
+          "recorded_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "current_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-DialShadow.orderOf_clockRot",
+          "lean_name": "DialShadow.orderOf_clockRot",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/HigherGeometryGates.lean",
+          "recorded_sha256": "f2af4348d6bcb744093b7014a3ef9ea2b221032a1a71ef9c044f6255b9a6ae99",
+          "current_sha256": "f2af4348d6bcb744093b7014a3ef9ea2b221032a1a71ef9c044f6255b9a6ae99",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-PROOF-clock_traversal_rod_commutes",
+          "lean_name": "HigherGeometryGates.clock_traversal_rod_commutes",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Preserve current exact rod implementation and period shortcut.",
+      "unresolved_gates": [
+        "No analogous period was proved for SHA rounds or arbitrary recurrences."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-16",
+      "topic": "24-cell graph traversal",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Two clock12 orbits of roots",
+      "codomain": "Valid Petrie edge sequence",
+      "formula": "OrbitA uses R; orbitB uses R^5",
+      "assumptions": [
+        "Orbit-dependent adjacency step",
+        "Gram inner product1 defines the selected edges"
+      ],
+      "execution_role": "resident_geometry",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "clock_geometry",
+          "line_start": 27,
+          "line_end": 42,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "clock_flags",
+          "line_start": 46,
+          "line_end": 83,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "tests/test_archive_calculations.py",
+          "symbol": "ArchiveCalculations.test_complete_clock_geometry_paths",
+          "line_start": 56,
+          "line_end": 71,
+          "sha256": "c719841fde60ff307f0f98bf2745ef85b1dfc4ec79b9ab74d40712547961b0ef",
+          "compatibility_path": "tests/test_archive_calculations.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/TwentyFourCellPetrie.lean",
+          "recorded_sha256": "564858f3a87b6cd45f47c20e66c1f16eb5af61a2a91d3bb7673d8a9d873bdfa5",
+          "current_sha256": "564858f3a87b6cd45f47c20e66c1f16eb5af61a2a91d3bb7673d8a9d873bdfa5",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-TwentyFourCell.petrieStep",
+          "lean_name": "TwentyFourCell.petrieStep",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/TwentyFourCellPetrie.lean",
+          "recorded_sha256": "564858f3a87b6cd45f47c20e66c1f16eb5af61a2a91d3bb7673d8a9d873bdfa5",
+          "current_sha256": "564858f3a87b6cd45f47c20e66c1f16eb5af61a2a91d3bb7673d8a9d873bdfa5",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-TwentyFourCell.orbitB_step_not_edge",
+          "lean_name": "TwentyFourCell.orbitB_step_not_edge",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/TwentyFourCellFlags.lean",
+          "recorded_sha256": "f404140f5c894cef5b75b1fb5c9275e2437dbf880a8cb1d50bb058b5145aa16c",
+          "current_sha256": "f404140f5c894cef5b75b1fb5c9275e2437dbf880a8cb1d50bb058b5145aa16c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-TwentyFourCell.flag_transitive",
+          "lean_name": "TwentyFourCell.flag_transitive",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Retain staged1152flag traversal and exact orbit-specific tests.",
+      "unresolved_gates": [
+        "A generic one-step traversal of both rings is not edge preserving."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-17",
+      "topic": "Cyclotomic shadows",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Exact integerZ^4 or realR^4 vector",
+      "codomain": "One complex shadow forZ^4; two shadows forR^4",
+      "formula": "Single shadow injective on Z^4; paired conjugate shadows recover R^4",
+      "assumptions": [
+        "Integer-domain restriction for single-shadow injectivity",
+        "Keep exact coefficients; rounded shadow decoding requires a separation bound"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "Clock24.rotate",
+          "line_start": 96,
+          "line_end": 109,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "unit_vector_sum",
+          "line_start": 173,
+          "line_end": 176,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/DialShadow.lean",
+          "recorded_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "current_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-DialShadow.shadow_injective",
+          "lean_name": "DialShadow.shadow_injective",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/DialShadow.lean",
+          "recorded_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "current_sha256": "46671ab5e19c04f84c1dd56c2460d78edab68eace16f975deea304acc1285931",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-DialShadow.shadows_injective_real",
+          "lean_name": "DialShadow.shadows_injective_real",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/TwentyFourCell.lean",
+          "recorded_sha256": "d8d1b0d420c750b60bbc816a2864e3c989c04fb0c03eceaf7d95c0cdad17bfcc",
+          "current_sha256": "d8d1b0d420c750b60bbc816a2864e3c989c04fb0c03eceaf7d95c0cdad17bfcc",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-TwentyFourCell.shadow_dense",
+          "lean_name": "TwentyFourCell.shadow_dense",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep exact coefficient storage; label trigonometric display helpers approximate.",
+      "unresolved_gates": [
+        "Dense shadow image defeats an unrestricted fixed-resolution inverse."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-18",
+      "topic": "Platonic algebraic vectors",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Z[phi] coordinates represented by integer pairs",
+      "codomain": "Exact3D/4D points and polynomial distances",
+      "formula": "phi\u00b2=phi+1; (a+bphi)(c+dphi)=(ac+bd)+(ad+bc+bd)phi",
+      "assumptions": [
+        "Scalar integer n embeds as(n,0)",
+        "Six integers per3D point; eight per4D point"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "clock_geometry",
+          "line_start": 27,
+          "line_end": 42,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Platonic.lean",
+          "recorded_sha256": "7cb6769d3a1d2960b248b99b2197e92b79e0ee1093e6dc050f73ada7047ee1e9",
+          "current_sha256": "7cb6769d3a1d2960b248b99b2197e92b79e0ee1093e6dc050f73ada7047ee1e9",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-LatticeCalc.Platonic.pmul",
+          "lean_name": "LatticeCalc.Platonic.pmul",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Platonic.lean",
+          "recorded_sha256": "7cb6769d3a1d2960b248b99b2197e92b79e0ee1093e6dc050f73ada7047ee1e9",
+          "current_sha256": "7cb6769d3a1d2960b248b99b2197e92b79e0ee1093e6dc050f73ada7047ee1e9",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-LatticeCalc.Platonic.nonnegPhi_sound",
+          "lean_name": "LatticeCalc.Platonic.nonnegPhi_sound",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/HigherGeometryGates.lean",
+          "recorded_sha256": "f2af4348d6bcb744093b7014a3ef9ea2b221032a1a71ef9c044f6255b9a6ae99",
+          "current_sha256": "f2af4348d6bcb744093b7014a3ef9ea2b221032a1a71ef9c044f6255b9a6ae99",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-PROOF-phi_multiplication_reduces",
+          "lean_name": "HigherGeometryGates.phi_multiplication_reduces",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Expose as a separate symbolic geometry service if a consumer needs it; do not substitute Float vertices.",
+      "unresolved_gates": [
+        "Existing Clock24 coordinates are another exact lattice model; an explicit carrier map is required between them."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-19",
+      "topic": "Circle-square geometry",
+      "formula_ids": [
+        302,
+        6860,
+        6869,
+        6872
+      ],
+      "formula_links": [
+        {
+          "formula_id": 6860,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "SCALE-Explorer-equal_area"
+        },
+        {
+          "formula_id": 6869,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "SCALE-Explorer-boundaryCirclePoints_ncard"
+        },
+        {
+          "formula_id": 6872,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "SCALE-Explorer-s_from_inner_offset"
+        },
+        {
+          "formula_id": 302,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "SCALE-Explorer-s_from_inner_offset"
+        }
+      ],
+      "mathematical_domain": "Positive real area/drawing scale",
+      "codomain": "Equal-area shapes and eight crossing points",
+      "formula": "A=pi*r\u00b2=s\u00b2; D=lambda*s; t\u00b2=(D/sqrt(pi))\u00b2\u2212D\u00b2/4",
+      "assumptions": [
+        "A>0 and lambda>0 for eight distinct crossings",
+        "Inputs measuring shift/offset must actually be supplied",
+        "Finite stroke widths require their own ratio"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "CircleModel",
+          "line_start": 274,
+          "line_end": 335,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/Explorer.lean",
+          "recorded_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "current_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-Explorer-equal_area",
+          "lean_name": "RequestProject.Explorer::equal_area (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/Explorer.lean",
+          "recorded_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "current_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-Explorer-boundaryCirclePoints_ncard",
+          "lean_name": "RequestProject.Explorer::boundaryCirclePoints_ncard (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/Explorer.lean",
+          "recorded_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "current_sha256": "3bb48ba34abd0ea40f83ac728385eb1fbfd0df12ae42a465f68423c02e4b524c",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-Explorer-s_from_inner_offset",
+          "lean_name": "RequestProject.Explorer::s_from_inner_offset (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/EdgeWidth.lean",
+          "recorded_sha256": "33a09778a0471d5bce16ed84f57f28f9b19f8947f2f2ffbca2307e51bf93ac74",
+          "current_sha256": "33a09778a0471d5bce16ed84f57f28f9b19f8947f2f2ffbca2307e51bf93ac74",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-EdgeWidth-outer_equal_iff",
+          "lean_name": "RequestProject.EdgeWidth::outer_equal_iff (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep exact drawing and measurement formulas in the research service; CircleModel is an integer quadratic-circle service, not this irrational area instrument.",
+      "unresolved_gates": [
+        "No justified consumer currently needs these formulas in Bitcoin hashing."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-20",
+      "topic": "Higher-dimensional equal-area shadow",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Independent2planes inR4",
+      "codomain": "Disc and square shadows of one body",
+      "formula": "disc\u00d7square; rotation swaps observed projection",
+      "assumptions": [
+        "Independent planes; shared-axis3D construction has different constraints"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/HigherDimShadows.lean",
+          "recorded_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "current_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-HigherDimShadows.disc_square_shadows",
+          "lean_name": "HigherDimShadows.disc_square_shadows",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/HigherDimShadows.lean",
+          "recorded_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "current_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-HigherDimShadows.rotated_shadow_square",
+          "lean_name": "HigherDimShadows.rotated_shadow_square",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/HigherDimShadows.lean",
+          "recorded_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "current_sha256": "6136118b04daf865e8e31d88e800c6c93977752d5bcc1f563167ce3759ad9b12",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-HigherDimShadows.shared_axis_forces_side_two",
+          "lean_name": "HigherDimShadows.shared_axis_forces_side_two",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep positive4D construction in the mathematical graph with its plane maps.",
+      "unresolved_gates": [
+        "No structure-preserving Bitcoin consumer bridge established."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-21",
+      "topic": "Soddy recurrence versus global packing",
+      "formula_ids": [
+        7257,
+        7317,
+        7319
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7317,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-HIGHER-SoddyAllDepths.soddy_packing_all_depths"
+        },
+        {
+          "formula_id": 7257,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-HIGHER-LatticeCalc.Verified.RodJump.soddy_state"
+        },
+        {
+          "formula_id": 7319,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-HIGHER-LatticeCalc.Verified.RodJump.soddy_state"
+        }
+      ],
+      "mathematical_domain": "n+2 sphere vectors and mirror coefficient c",
+      "codomain": "Tangency recurrence;3D packing separately",
+      "formula": "(n\u22121)c=2; count recurrence T^N(12,4,1)",
+      "assumptions": [
+        "Nonzero relevant curvatures",
+        "Global nonoverlap needs dimension-specific theorem, not only pair tangency"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Frame.jump",
+          "line_start": 261,
+          "line_end": 279,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/SphereVectors.lean",
+          "recorded_sha256": "f974a612a30adda8f3c6fe5a56c51c100d4069f13e49241377f756b69ddddf91",
+          "current_sha256": "f974a612a30adda8f3c6fe5a56c51c100d4069f13e49241377f756b69ddddf91",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/exact-vector-cards.json#R8-EXACT-SphereVectors-kissing_recursion",
+          "lean_name": "SphereVectors.kissing_recursion",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/SoddyAllDepths.lean",
+          "recorded_sha256": "9e78cabbe338bf0c6ba9e2ccb0f1257a3349f930bd1bc671fd8a9fc49a2860ec",
+          "current_sha256": "9e78cabbe338bf0c6ba9e2ccb0f1257a3349f930bd1bc671fd8a9fc49a2860ec",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-SoddyAllDepths.soddy_packing_all_depths",
+          "lean_name": "SoddyAllDepths.soddy_packing_all_depths",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/HigherKissing.lean",
+          "recorded_sha256": "e44dcd54e84d914090809f1520d83ec55f2758e134a708bc9853cbd11693fd65",
+          "current_sha256": "e44dcd54e84d914090809f1520d83ec55f2758e134a708bc9853cbd11693fd65",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-HigherKissing.four_dim_crossing",
+          "lean_name": "HigherKissing.four_dim_crossing",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/RodJump.lean",
+          "recorded_sha256": "ac19ad046ca01ffb3c1e2a7d9ede2bd2a115b5e45630b4bd32346bb03b130c34",
+          "current_sha256": "ac19ad046ca01ffb3c1e2a7d9ede2bd2a115b5e45630b4bd32346bb03b130c34",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-LatticeCalc.Verified.RodJump.soddy_state",
+          "lean_name": "LatticeCalc.Verified.RodJump.soddy_state",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Reuse verified recurrence arithmetic with independently established integer bounds; preserve packing theorem scope.",
+      "unresolved_gates": [
+        "A4D/5D generic no-overlap claim has explicit counterexamples."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-22",
+      "topic": "Polynomial finite-grid certification",
+      "formula_ids": [
+        7253
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7253,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-Formula-exists_of_mvPolynomial"
+        },
+        {
+          "formula_id": 7253,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-Formula-exists_of_mvPolynomial"
+        }
+      ],
+      "mathematical_domain": "Integer multivariate polynomial identity",
+      "codomain": "Universal identity under degree/range conditions",
+      "formula": "Full per-variable-degree grid plus fitsB at every grid point implies identity",
+      "assumptions": [
+        "Every required grid point",
+        "Per-variable degree bound",
+        "True integer difference bound fits CRT capacity at every point"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/claim_calculus.py",
+          "symbol": "ClaimCalculator.decide",
+          "line_start": 49,
+          "line_end": 59,
+          "sha256": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4",
+          "compatibility_path": "btcminer/claim_calculus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/SharedIdentities.lean",
+          "recorded_sha256": "cae81d8db7ed5d5ce5ec7c85e2b7f93594c6e4f967ea2ed213c99c39edf982f8",
+          "current_sha256": "cae81d8db7ed5d5ce5ec7c85e2b7f93594c6e4f967ea2ed213c99c39edf982f8",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-SharedClaims-identity_of_rods_degV",
+          "lean_name": "LatticeCalc.Verified.SharedClaims.identity_of_rods_degV",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/SharedClaims.lean",
+          "recorded_sha256": "32c6eba6b7a381b36983810ee625838166f9e1edcd1ffd8a9b9886ea8ffa1014",
+          "current_sha256": "32c6eba6b7a381b36983810ee625838166f9e1edcd1ffd8a9b9886ea8ffa1014",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-SharedClaims-Claim-fitsB",
+          "lean_name": "LatticeCalc.Verified.SharedClaims.Claim.fitsB",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+          "recorded_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "current_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-Fractal-Formula-exists_of_mvPolynomial",
+          "lean_name": "LatticeCalc.Verified.Fractal.Formula.exists_of_mvPolynomial",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Point evaluation remains a point claim; a future identity API must carry all grid/degree/bound obligations.",
+      "unresolved_gates": [
+        "Formula existence and checked examples do not imply efficient circuit size or universal equality."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-23",
+      "topic": "Product-tree reconstruction",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Coprime rods and residues",
+      "codomain": "Canonical CRT integer",
+      "formula": "Remainder tree computes cofactors; weighted product tree reconstructs modulo capacity",
+      "assumptions": [
+        "Coprime positive rods",
+        "Actual tree implementation and resource costs must be accounted for"
+      ],
+      "execution_role": "resident_arithmetic",
+      "runtime_callers": [
+        {
+          "path": "math-library/native/latcalc/src/abacus.c",
+          "symbol": "179:202",
+          "line_start": 179,
+          "line_end": 202,
+          "sha256": "d9aab60b8180f4027d3035ee2663094054479ab3e7a29d3d6f29f635f355852c",
+          "compatibility_path": "native/latcalc/src/abacus.c"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Column.value",
+          "line_start": 351,
+          "line_end": 374,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/product_tree_crt.py",
+          "symbol": "ProductTreeCRT.decode",
+          "line_start": 69,
+          "line_end": 85,
+          "sha256": "69e907ec302d503d59fb950a8bf7e3d8e9316316a4b0b1e1e8fc082ab94e022e",
+          "compatibility_path": "btcminer/product_tree_crt.py"
+        },
+        {
+          "path": "math-library/python/pqmath.py",
+          "symbol": "RodAbacus.reconstruct",
+          "line_start": 87,
+          "line_end": 88,
+          "sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+          "compatibility_path": "btcminer/pqmath.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/AbacusPrecision.lean",
+          "recorded_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "current_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-AbacusPrecision-crtTree_decode",
+          "lean_name": "AbacusPrecision.crtTree_decode",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/AbacusPrecision.lean",
+          "recorded_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "current_sha256": "0f3a7f5a421422c4457c31c0d91d69ceb6f6a5bb26deef9a1a4565e0fd2b8360",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-AbacusPrecision-fastRead_decode",
+          "lean_name": "AbacusPrecision.fastRead_decode",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Reusable balanced product-tree decode in RodAbacus and shared Column.value for at least64rods. Smaller shared frames retain native Garner. Current source only; no active-process reload.",
+      "unresolved_gates": [
+        "No full Python/C implementation refinement or mining-speed theorem. Mathematical merge/tree/signed-lift proofs are separately gated under validation/api-library-completion-20261010T205820Z/library/crt-proof/latest-review.json"
+      ],
+      "bitcoin_nonce_exclusion_authority": false,
+      "current_increment_evidence": "validation/api-library-completion-20261010T205820Z/library/crt-cards.json"
+    },
+    {
+      "id": "INT-24",
+      "topic": "Exact legacy tower repair",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Unsigned64 base and positive modulus; height0..3",
+      "codomain": "Exact right-associated tower residue under a declared factorization budget",
+      "formula": "T0=1; T(h+1)=a^T(h). At height3, use each prime-power rod: Euler period for units, valuation threshold for nonunits, then CRT. Mapping version exact-tower-v2.",
+      "assumptions": [
+        "Exact factorization with explicit failure on resource exhaustion",
+        "For nonunits use valuation saturation, not an unchecked Euler reduction",
+        "No inner-period shortcut without its own premise",
+        "Historical native seed cannot override the repaired Python mapping"
+      ],
+      "execution_role": "legacy_seed_audit",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/exact_tower.py",
+          "symbol": "tetration_mod",
+          "line_start": 79,
+          "line_end": 127,
+          "sha256": "3b73f6bf39c0eac4bf2e2fbbbc664ef1debb4a18308bd0910a57e13707913d0a",
+          "compatibility_path": "btcminer/exact_tower.py"
+        },
+        {
+          "path": "src/legacy/thesis_mining.py",
+          "symbol": "_tetration_mod",
+          "line_start": 469,
+          "line_end": 471,
+          "sha256": "d27d038e9b9ed80b33b44ea738461e2233c84db2ae0f21656231a85b8aa8049e",
+          "compatibility_path": "btcminer/legacy/thesis_mining.py"
+        },
+        {
+          "path": "src/legacy/thesis_mining.py",
+          "symbol": "nonce_generate_unified_py",
+          "line_start": 527,
+          "line_end": 537,
+          "sha256": "d27d038e9b9ed80b33b44ea738461e2233c84db2ae0f21656231a85b8aa8049e",
+          "compatibility_path": "btcminer/legacy/thesis_mining.py"
+        },
+        {
+          "path": "src/legacy/thesis_mining.py",
+          "symbol": "get_base_nonce_version",
+          "line_start": 901,
+          "line_end": 903,
+          "sha256": "d27d038e9b9ed80b33b44ea738461e2233c84db2ae0f21656231a85b8aa8049e",
+          "compatibility_path": "btcminer/legacy/thesis_mining.py"
+        },
+        {
+          "path": "src/workers/engine.py",
+          "symbol": "Engine.candidates",
+          "line_start": 129,
+          "line_end": 166,
+          "sha256": "5af2bb8ac0f7fd4b6e95566f212a1702fbadc7525640afdeaf26d9c971bd019d",
+          "compatibility_path": "btcminer/engine.py"
+        },
+        {
+          "path": "tests/test_exact_tower.py",
+          "symbol": "ExactTowerTests.test_regression_and_non_coprime_thresholds",
+          "line_start": 22,
+          "line_end": 36,
+          "sha256": "7897c2cfb3b3441c70011e5c3dd4cd4b8712f2adfd8519087bba6642f2a05306",
+          "compatibility_path": "tests/test_exact_tower.py"
+        },
+        {
+          "path": "tests/test_exact_tower.py",
+          "symbol": "ExactTowerTests.test_native_setting_cannot_bypass_exact_mapping",
+          "line_start": 73,
+          "line_end": 81,
+          "sha256": "7897c2cfb3b3441c70011e5c3dd4cd4b8712f2adfd8519087bba6642f2a05306",
+          "compatibility_path": "tests/test_exact_tower.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-reduce_by_checked_period",
+          "lean_name": "LegacyTowerRepairGates.reduce_by_checked_period",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-tower_outer_period",
+          "lean_name": "LegacyTowerRepairGates.tower_outer_period",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-valuation_saturation",
+          "lean_name": "LegacyTowerRepairGates.valuation_saturation",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-same_modulus_recursion_wrong",
+          "lean_name": "LegacyTowerRepairGates.same_modulus_recursion_wrong",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-unchecked_nonunit_period_wrong",
+          "lean_name": "LegacyTowerRepairGates.unchecked_nonunit_period_wrong",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-threshold_below_and_at_boundary",
+          "lean_name": "LegacyTowerRepairGates.threshold_below_and_at_boundary",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-uint64_factor_product",
+          "lean_name": "LegacyTowerRepairGates.uint64_factor_product",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/LegacyTowerRepairGates.lean",
+          "recorded_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "current_sha256": "737485c2d306abdb0cd9c2aa18384ebe3c4f3069cfd18181da63c6518ecaf348",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-tower-repair-cards.json#ARCH-R8-TOWER-uint64_factor_primes",
+          "lean_name": "LegacyTowerRepairGates.uint64_factor_primes",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "The real legacy consumer now uses exact-tower-v2 and publishes its version. The3,3,7 regression now returns6, not the historical incorrect1. Preserve this deliberate mapping change in diagnostics and logs.",
+      "unresolved_gates": [
+        "Finite Python correspondence tests and standalone arithmetic laws are not a universal implementation-refinement proof; arbitrary heights and unbounded factoring are outside the supported API."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-25",
+      "topic": "Legacy O(1) label audit",
+      "formula_ids": [
+        393
+      ],
+      "formula_links": [
+        {
+          "formula_id": 393,
+          "relationship_type": "mechanisms_relevant_to_open_claim",
+          "domain": "Adaptive prime rods and smooth-predecessor certificates, with explicit candidate/rod/bit/block parameters",
+          "card_id": "PRIME-R8-COST-squaring_rounds_power_two"
+        }
+      ],
+      "mathematical_domain": "Legacy block height",
+      "codomain": "Seed candidate subjected to variable work",
+      "formula": "candidate=base+12*magnitude; enumerate primes up to sqrt(candidate)",
+      "assumptions": [
+        "Actual arithmetic work grows with input",
+        "Finite-window/cache/query cost models must be named"
+      ],
+      "execution_role": "legacy_seed_audit",
+      "runtime_callers": [
+        {
+          "path": "src/legacy/thesis_mining.py",
+          "symbol": "_has_interference_o1",
+          "line_start": 265,
+          "line_end": 290,
+          "sha256": "d27d038e9b9ed80b33b44ea738461e2233c84db2ae0f21656231a85b8aa8049e",
+          "compatibility_path": "btcminer/legacy/thesis_mining.py"
+        },
+        {
+          "path": "src/legacy/thesis_mining.py",
+          "symbol": "_clock_o1_seed_prime",
+          "line_start": 293,
+          "line_end": 307,
+          "sha256": "d27d038e9b9ed80b33b44ea738461e2233c84db2ae0f21656231a85b8aa8049e",
+          "compatibility_path": "btcminer/legacy/thesis_mining.py"
+        },
+        {
+          "path": "src/workers/engine.py",
+          "symbol": "Engine.candidates",
+          "line_start": 129,
+          "line_end": 166,
+          "sha256": "5af2bb8ac0f7fd4b6e95566f212a1702fbadc7525640afdeaf26d9c971bd019d",
+          "compatibility_path": "btcminer/engine.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/PrimeGenerationCostGates.lean",
+          "recorded_sha256": "5de0e54e57050298f2c7e27239eb9a11cd51a98f1fb328538d81af68586ed74d",
+          "current_sha256": "5de0e54e57050298f2c7e27239eb9a11cd51a98f1fb328538d81af68586ed74d",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/prime-generation-cards.json#PRIME-R8-COST-squaring_rounds_power_two",
+          "lean_name": "PrimeGenerationCostGates.squaring_rounds_power_two",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep runtime-derived cost labels; existing name is historical and not an O(1) proof.",
+      "unresolved_gates": [
+        "Legacy candidate policy is separate from the newer DynamicRods proof-backed window selector."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-26",
+      "topic": "No cardinality-only geometry identification",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "96 primitiveF361 generators;96 edges of24-cell",
+      "codomain": "Two finite sets with different structures",
+      "formula": "Equal cardinality gives some set bijection, not chosen action/adjacency correspondence",
+      "assumptions": [
+        "An explicit map and compatibility theorem are needed"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "board_loop",
+          "line_start": 43,
+          "line_end": 48,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/archive_math.py",
+          "symbol": "clock_geometry",
+          "line_start": 27,
+          "line_end": 42,
+          "sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20",
+          "compatibility_path": "btcminer/archive_math.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/FiniteField.lean",
+          "recorded_sha256": "e4796dfdac8549b93f05c4345d7dd6dd68e64a08a624ac36f61c26a0de7737a3",
+          "current_sha256": "e4796dfdac8549b93f05c4345d7dd6dd68e64a08a624ac36f61c26a0de7737a3",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round6/prime-number-theory-cards.json#PRIME-R6-SOURCE-FiniteField-card_generators",
+          "lean_name": "FiniteField.card_generators",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/TwentyFourCell.lean",
+          "recorded_sha256": "d8d1b0d420c750b60bbc816a2864e3c989c04fb0c03eceaf7d95c0cdad17bfcc",
+          "current_sha256": "d8d1b0d420c750b60bbc816a2864e3c989c04fb0c03eceaf7d95c0cdad17bfcc",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/higher-geometry-cards.json#R8-HIGHER-TwentyFourCell.card_edges",
+          "lean_name": "TwentyFourCell.card_edges",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Retain separate carrier IDs in research graph.",
+      "unresolved_gates": [
+        "No prime-selection or traversal homomorphism follows from the common number96."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-27",
+      "topic": "Inverse-limit carrier",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Compatible residues at every increasing prime-power level",
+      "codomain": "A completion element; not necessarily an ordinary integer",
+      "formula": "r_k=(4^k\u22121)/3 represents \u22121/3 in the4-adic completion",
+      "assumptions": [
+        "Compatibility alone does not establish an ordinary-integer denotation",
+        "An intended integer needs its separate existence/range premise"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Column.restrict",
+          "line_start": 376,
+          "line_end": 384,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "Calculation.reserve",
+          "line_start": 438,
+          "line_end": 449,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/FractalTraversalGates.lean",
+          "recorded_sha256": "5a1fb594df11831fae7db01529fe6144a959ac06db01d4361bdf2a21738aa746",
+          "current_sha256": "5a1fb594df11831fae7db01529fe6144a959ac06db01d4361bdf2a21738aa746",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-PROOF-FractalTraversalGates-alternating_step_compatible",
+          "lean_name": "FractalTraversalGates.alternating_step_compatible",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/FractalTraversalGates.lean",
+          "recorded_sha256": "5a1fb594df11831fae7db01529fe6144a959ac06db01d4361bdf2a21738aa746",
+          "current_sha256": "5a1fb594df11831fae7db01529fe6144a959ac06db01d4361bdf2a21738aa746",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-PROOF-FractalTraversalGates-compatible_family_not_integer",
+          "lean_name": "FractalTraversalGates.compatible_family_not_integer",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Keep decoded-integer growth separate from inverse-system compatibility in graph metadata.",
+      "unresolved_gates": [
+        "Even all compatible residue levels do not manufacture an integer that was never specified."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-28",
+      "topic": "Universal atomic versus Boolean rod claims",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Polynomial divisibility predicate over full CRT domain",
+      "codomain": "Universal theorem for the stated logical structure",
+      "formula": "Universal atomic divisibility factors rodwise; Boolean quantifiers must retain their order",
+      "assumptions": [
+        "Atomic divisibility theorem only",
+        "Full product domain for general Boolean combinations unless another theorem applies"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/claim_calculus.py",
+          "symbol": "ClaimCalculator._claim",
+          "line_start": 61,
+          "line_end": 93,
+          "sha256": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4",
+          "compatibility_path": "btcminer/claim_calculus.py"
+        },
+        {
+          "path": "math-library/python/claim_calculus.py",
+          "symbol": "count_polynomial_roots",
+          "line_start": 96,
+          "line_end": 117,
+          "sha256": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4",
+          "compatibility_path": "btcminer/claim_calculus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/SharedClaims.lean",
+          "recorded_sha256": "32c6eba6b7a381b36983810ee625838166f9e1edcd1ffd8a9b9886ea8ffa1014",
+          "current_sha256": "32c6eba6b7a381b36983810ee625838166f9e1edcd1ffd8a9b9886ea8ffa1014",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-SharedClaims-forall_dvd_iff_rods",
+          "lean_name": "LatticeCalc.Verified.SharedClaims.forall_dvd_iff_rods",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Current calculator decides supplied point claims; keep full-domain root counts and future quantified APIs distinct.",
+      "unresolved_gates": [
+        "For all x,(P(x) or Q(x)) need not mean(for all x,P(x)) or(for all x,Q(x))."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-29",
+      "topic": "Fractal level graph traversal",
+      "formula_ids": [
+        7410
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7410,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-TemporalOnAbacus-dvd_144000_iff_level"
+        },
+        {
+          "formula_id": 7410,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-TemporalOnAbacus-dvd_144000_iff_level"
+        }
+      ],
+      "mathematical_domain": "Depth vectors0\u2264E\u2264(7,2,3)",
+      "codomain": "96 divisor nodes and7920 maximal prime-cut paths",
+      "formula": "capacity(E)=2^E0*3^E1*5^E2; covers increment one coordinate",
+      "assumptions": [
+        "Prime bases and componentwise bounds",
+        "Meet=min and join=max; two levels can be incomparable"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "reading",
+          "line_start": 77,
+          "line_end": 78,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/TemporalOnAbacus.lean",
+          "recorded_sha256": "8a193f50973d2f8bebfc6b92ecd851e5c85144213975b36dde2f99c986cfb72e",
+          "current_sha256": "8a193f50973d2f8bebfc6b92ecd851e5c85144213975b36dde2f99c986cfb72e",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-TemporalOnAbacus-dvd_144000_iff_level",
+          "lean_name": "TemporalOnAbacus.dvd_144000_iff_level",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/RequestProject/FractalPartition.lean",
+          "recorded_sha256": "eda3f0dc4a8b171a67e374b62fe4767be675116475a9e2043772fee48f20f3ad",
+          "current_sha256": "eda3f0dc4a8b171a67e374b62fe4767be675116475a9e2043772fee48f20f3ad",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/scaling-cards.json#SCALE-FractalPartition-level_profile_not_chain",
+          "lean_name": "RequestProject.FractalPartition::level_profile_not_chain (namespace-qualified identity retained in full module; lexical module locator)",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Use the explicit exponent-vector traversal when exposing the research graph; retain96divisors separately from96field generators and96cell edges.",
+      "unresolved_gates": [
+        "No action/adjacency map between these equal-cardinality objects has been established."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-30",
+      "topic": "Coprime insertion versus clock-depth join",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "RimM=144000 times each new prime7through107 once",
+      "codomain": "Rim supporting the next prime109and its108step clock",
+      "formula": "next coprime=109; gcd(M,108)=36; lcm(M,108)=3M",
+      "assumptions": [
+        "Coprime insertion and local-order containment are separate invariants",
+        "To include the109clock deepen the3rod from exponent2to3",
+        "If subsequently adjoining109, new capacity is109*lcm(M,108)"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/pqmath.py",
+          "symbol": "DynamicRods.extend",
+          "line_start": 155,
+          "line_end": 165,
+          "sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+          "compatibility_path": "btcminer/pqmath.py"
+        },
+        {
+          "path": "math-library/python/scaled_abacus.py",
+          "symbol": "QCodec.__init__",
+          "line_start": 17,
+          "line_end": 34,
+          "sha256": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5",
+          "compatibility_path": "btcminer/scaled_abacus.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "qualifying_primes",
+          "line_start": 124,
+          "line_end": 131,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        },
+        {
+          "path": "math-library/python/shared_abacus.py",
+          "symbol": "FramePool.frame",
+          "line_start": 405,
+          "line_end": 422,
+          "sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+          "compatibility_path": "btcminer/shared_abacus.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/FractalClockExtensionGates.lean",
+          "recorded_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "current_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-clock-extension-cards.json#ARCH-R8-CLOCK-next_coprime_is_109",
+          "lean_name": "FractalClockExtensionGates.next_coprime_is_109",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/FractalClockExtensionGates.lean",
+          "recorded_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "current_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-clock-extension-cards.json#ARCH-R8-CLOCK-next_clock_needs_deepening",
+          "lean_name": "FractalClockExtensionGates.next_clock_needs_deepening",
+          "status": "Source navigation; no proof admission conferred by this map."
+        },
+        {
+          "path": "validation/aristotle-card-distillation-20261010T184744Z/proofs/FractalClockExtensionGates.lean",
+          "recorded_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "current_sha256": "37f8fbcd0669de0981db7770f6df8d027032ce1029f22d432228b39c1aba26af",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/architecture/round8-clock-extension-cards.json#ARCH-R8-CLOCK-minimal_clock_refinement",
+          "lean_name": "FractalClockExtensionGates.minimal_clock_refinement",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "CurrentDynamicRods is a primality-window service and promises no clock closure; currentQCodec andqualifying_primes explicitly test fixedclockdivisibility. A futureunboundedrimservice must implement thelcm/depthjoin separately.",
+      "unresolved_gates": [
+        "No unsafeclock inference found in these currentconsumers; do not bolt the newdepthrule onto unrelatedintegercapacitygrowth or silentlyattribute ittohistoricalprimeselection."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-31",
+      "topic": "Rational crossproducts versus modular division",
+      "formula_ids": [
+        7251
+      ],
+      "formula_links": [
+        {
+          "formula_id": 7251,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-fraction_eq_eventually"
+        },
+        {
+          "formula_id": 7251,
+          "relationship_type": "manually_reviewed_source_link; preserve the precise card clause",
+          "card_id": "R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-fraction_eq_eventually"
+        }
+      ],
+      "mathematical_domain": "Integer numerator/denominator or scaled integer on rods",
+      "codomain": "Rational equality, unit division, or quotient after base extension",
+      "formula": "a/b=c/d iff ad=bc for nonzero denominators; X/P requires remainder and enough modulus information",
+      "assumptions": [
+        "Crossproduct equality needs nonzero integer denominators, not modular units",
+        "Modular inverse ofP requires gcd(P,q)=1",
+        "IfP is nonunit moduloq, Xmod(P*q) determines floor(X/P)modq whereas Xmodq alone doesnot"
+      ],
+      "execution_role": "research_only",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/coreprimes.py",
+          "symbol": "normalize_scaled",
+          "line_start": 60,
+          "line_end": 67,
+          "sha256": "a5c9d977626e75d83176476c71a692bcf24428ac3b3c6f1f5c81e5a5a65d6bc2",
+          "compatibility_path": "btcminer/coreprimes.py"
+        },
+        {
+          "path": "math-library/python/pqmath.py",
+          "symbol": "PQEllipse",
+          "line_start": 220,
+          "line_end": 307,
+          "sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+          "compatibility_path": "btcminer/pqmath.py"
+        },
+        {
+          "path": "src/workers/thesis2.py",
+          "symbol": "reading",
+          "line_start": 77,
+          "line_end": 78,
+          "sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813",
+          "compatibility_path": "btcminer/thesis2.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "validation/miner-math-library-20261010/snapshot/sources/LatticeCalc/Verified/FractalAbacus.lean",
+          "recorded_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "current_sha256": "50167ea51f3078e49b36a0d9948e1f3588f3ca18930d749448ab20605099f7fe",
+          "recorded_source_matches_current": true,
+          "card": "validation/aristotle-card-distillation-20261010T184744Z/round8/fractal-traversal-cards.json#R8-FRACTAL-LatticeCalc-Verified-Fractal-FractalAbacus-fraction_eq_eventually",
+          "lean_name": "LatticeCalc.Verified.Fractal.FractalAbacus.fraction_eq_eventually",
+          "status": "Source navigation; no proof admission conferred by this map."
+        }
+      ],
+      "integration_action": "Existingnormalize_scaled correctly rejects nonunit scales. The8,9,5 dial frame contains factors of60, so a futurebase60rod rescale needs an explicit remainder/base-extension adapter. Keep rationalFraction arithmetic separately typed.",
+      "unresolved_gates": [
+        "The fixedbase60dial cannot divide by60using a modular inverse; crossproduct comparison is not thatdivision operation."
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-32",
+      "topic": "Capacity-derived algebraic intervals",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Rational/ring/rational-scaling/nonnegative-square-root expression DAG over pairwise coprime integer rods",
+      "codomain": "Outward residue-column enclosure and optionally a certified floor-scaled integer",
+      "formula": "P=base^G; B=max(L*P,Q*P^2); 2*B<M; lo%F+(hi-lo)<F iff floor(lo/F)=floor(hi/F)",
+      "assumptions": [
+        "Bounds cover all raw intermediates before decoding/rescaling",
+        "Positive base and division scale",
+        "Actual square-root enclosure is nonnegative",
+        "Enough memory; resource limits reported separately"
+      ],
+      "execution_role": "offline_math_library",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/capacity_reals.py",
+          "symbol": "CapacityReals.plan",
+          "line_start": 208,
+          "line_end": 221,
+          "sha256": "587a99b5ff5e366d3e82e0ddf13ab6e0f38f81916df423d6c035ef22794e0b74",
+          "compatibility_path": "btcminer/capacity_reals.py"
+        },
+        {
+          "path": "math-library/python/capacity_reals.py",
+          "symbol": "CapacityReals.enclose",
+          "line_start": 254,
+          "line_end": 314,
+          "sha256": "587a99b5ff5e366d3e82e0ddf13ab6e0f38f81916df423d6c035ef22794e0b74",
+          "compatibility_path": "btcminer/capacity_reals.py"
+        },
+        {
+          "path": "math-library/python/capacity_reals.py",
+          "symbol": "CapacityReals.read",
+          "line_start": 316,
+          "line_end": 341,
+          "sha256": "587a99b5ff5e366d3e82e0ddf13ab6e0f38f81916df423d6c035ef22794e0b74",
+          "compatibility_path": "btcminer/capacity_reals.py"
+        },
+        {
+          "path": "scripts/capacity_real_report.py",
+          "symbol": "main",
+          "line_start": 13,
+          "line_end": 37,
+          "sha256": "c68d04c684f711f7616cf6497807aabb6f8599c2757edc9f2141e5754ee7ac10",
+          "compatibility_path": "scripts/capacity_real_report.py"
+        }
+      ],
+      "source_and_card_references": [],
+      "integration_action": "Library and offline diagnostic; no transcendental evaluator, remote C repair or nonce-hashing substitution.",
+      "unresolved_gates": [
+        "Whole expression-evaluator refinement is unproved. Failure to certify at capacity does not imply boundary equality."
+      ],
+      "current_increment_evidence": "validation/api-library-completion-20261010T205820Z/library/precision/latest-review.json",
+      "bitcoin_nonce_exclusion_authority": false
+    },
+    {
+      "id": "INT-33",
+      "topic": "Negotiated symbolic and predictive candidate transport",
+      "formula_ids": [],
+      "formula_links": [],
+      "mathematical_domain": "Ordered vectors of at most64 unsigned32-bit mining nonces; generic residue frames are arbitrary precision",
+      "codomain": "Versioned exact replay envelope or raw candidate list",
+      "formula": "orbit_i=(a+i*d) mod2^32; offset=x-origin; CRT capacity>bound; Q=(sorted k-class,within-k index); d=(new-old+floor(m/2)) mod m-floor(m/2); N_k=1+3k(k+1); shell/anchor/prefix charts have canonical ties",
+      "assumptions": [
+        "Pinned ordered shared frames",
+        "Canonical residues and padding",
+        "Bounded offset uniqueness",
+        "Within-k index retained",
+        "Strict whole-message cost improvement"
+      ],
+      "execution_role": "pruning_worker_transport",
+      "runtime_callers": [
+        {
+          "path": "math-library/python/geometry_codec.py",
+          "symbol": "compact_request",
+          "line_start": 269,
+          "line_end": 287,
+          "sha256": "7e8c2ccd4e31a243beaa99b6babdb7fcff13b86428ba55b94a834f31b73917c7",
+          "compatibility_path": "btcminer/geometry_codec.py"
+        },
+        {
+          "path": "math-library/python/geometry_codec.py",
+          "symbol": "decode_points",
+          "line_start": 206,
+          "line_end": 262,
+          "sha256": "7e8c2ccd4e31a243beaa99b6babdb7fcff13b86428ba55b94a834f31b73917c7",
+          "compatibility_path": "btcminer/geometry_codec.py"
+        },
+        {
+          "path": "src/workers/pruning.py",
+          "symbol": "Pruner.filter_task",
+          "line_start": 86,
+          "line_end": 144,
+          "sha256": "92ff7ce402bf321ec2f26bed10e8d0df2b5ff5b77b8919261d5ee4eaa6eaf7db",
+          "compatibility_path": "btcminer/pruning.py"
+        },
+        {
+          "path": "src/workers/pruning_worker.py",
+          "symbol": "evaluate",
+          "line_start": 16,
+          "line_end": 52,
+          "sha256": "716d13d4658b3e1331d2f92c0b6c9ad3af0e7a7b5fe6154241080b413256fad1",
+          "compatibility_path": "btcminer/pruning_worker.py"
+        },
+        {
+          "path": "tests/test_geometry_codec.py",
+          "symbol": "GeometryCodecTests.test_actual_pruner_routes_geometry_and_retains_winner",
+          "line_start": 136,
+          "line_end": 151,
+          "sha256": "7846a6d3666430f1331b8c3c5b04c192ac9abf0d93203552598d1b803f2d3345"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "shortest_arc",
+          "line_start": 57,
+          "line_end": 61,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "shell_address",
+          "line_start": 70,
+          "line_end": 74,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "root_reference",
+          "line_start": 64,
+          "line_end": 67,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "encode_counts",
+          "line_start": 105,
+          "line_end": 119,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "decode_body",
+          "line_start": 199,
+          "line_end": 247,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        },
+        {
+          "path": "math-library/python/geometry_predictive.py",
+          "symbol": "capability",
+          "line_start": 26,
+          "line_end": 29,
+          "sha256": "687b2818e2b8409cd408ed35da51a271505e0556268dbc2baf4dceaa3cb3d785",
+          "compatibility_path": "btcminer/geometry_predictive.py"
+        }
+      ],
+      "source_and_card_references": [
+        {
+          "path": "research/geometry-codec-contract.json",
+          "card": "GEO-01..GEO-13",
+          "status": "Explicit mathematical arguments and executable tests; no new formal proof admission"
+        }
+      ],
+      "integration_action": "Encode exact candidate messages only when smaller; receiver reconstructs before existing job and SHA256d checks",
+      "unresolved_gates": [
+        "No new Lean replay or full Python refinement",
+        "General fractal-route grammar not implemented",
+        "Private calculator C/TypeScript interop not available in this checkout",
+        "No loaded live miner activation or real-pool qualification in this change",
+        "Remote file-service negotiation and arbitrary file transfer not implemented"
+      ],
+      "bitcoin_nonce_exclusion_authority": false
+    }
+  ],
+  "previous_full_map_is_historical": true,
+  "layout_map": "docs/project-layout.json",
+  "layout_scope": "Caller paths relocated to canonical editable sources; historical compatibility paths retained. No new proof status conferred."
+}

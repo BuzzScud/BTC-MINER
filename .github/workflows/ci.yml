@@ -1,0 +1,57 @@
+name: Portable release checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  platform:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, macos-15-intel, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Install using the public terminal installer
+        run: python scripts/setup_terminal.py --yes --no-wizard
+      - name: Validate the exact source tree and mathematical preservation
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then PY=.venv/Scripts/python.exe; else PY=.venv/bin/python; fi
+          "$PY" scripts/audit_public.py --worktree
+          "$PY" scripts/check_math_integrity.py
+          "$PY" scripts/sync_layout.py --check
+          "$PY" -B -m unittest discover -s tests
+      - name: Private one-block Core test
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then PY=.venv/Scripts/python.exe; else PY=.venv/bin/python; fi
+          "$PY" scripts/fetch_test_core.py
+          "$PY" scripts/core_smoke.py --bitcoind "$(cat .build/core-path.txt)"
+  secrets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - name: Scan full Git history and public files
+        run: |
+          curl --fail --location --retry 3 https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz -o /tmp/gitleaks.tar.gz
+          curl --fail --location --retry 3 https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_checksums.txt -o /tmp/gitleaks-checksums.txt
+          cd /tmp
+          grep ' gitleaks_8.30.1_linux_x64.tar.gz$' gitleaks-checksums.txt | sed 's|gitleaks_8.30.1_linux_x64.tar.gz|gitleaks.tar.gz|' | sha256sum -c -
+          tar -xzf gitleaks.tar.gz gitleaks
+          cd "$GITHUB_WORKSPACE"
+          /tmp/gitleaks git --redact --log-opts=--all
+          /tmp/gitleaks dir --redact .

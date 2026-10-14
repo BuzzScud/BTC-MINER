@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-29",
+  "platform": "arm64 macOS 15.1.1",
+  "single_worker_generation_and_hashing": {
+    "seconds_per_mode": 2,
+    "before": {"linear_hps": 16060008.50059629, "thesis2_hps": 3941279.811414462},
+    "after": {"linear_hps": 18184363.98281317, "thesis2_hps": 17648423.557926673},
+    "includes": ["candidate generation", "SHA256d"],
+    "excludes": ["engine scheduler", "diagnostics", "network", "submissions"]
+  },
+  "real_engine": {
+    "strategy": "thesis2",
+    "supt_log": true,
+    "supt_sample_every": 64,
+    "results": [
+      {"workers": 1, "hashes": 27295744, "elapsed": 3.0, "hashrate": 9099717.2, "diagnostic_samples": 426493},
+      {"workers": 2, "hashes": 52609024, "elapsed": 3.001, "hashrate": 17528664.7, "diagnostic_samples": 822017},
+      {"workers": 4, "hashes": 56868864, "elapsed": 3.002, "hashrate": 18940772.6, "diagnostic_samples": 888576},
+      {"workers": 8, "hashes": 53510144, "elapsed": 3.004, "hashrate": 17810044.4, "diagnostic_samples": 836096}
+    ],
+    "reproduce": "./bin/btc-miner benchmark --strategy thesis2 --seconds 3 --sweep",
+    "excludes": ["network", "submissions", "idle and keep-awake policies"]
+  },
+  "limitations": "Short observations, not sustained or thermal measurements. Does not establish a statistical mining advantage."
+}

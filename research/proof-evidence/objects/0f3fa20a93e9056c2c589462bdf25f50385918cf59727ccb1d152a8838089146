@@ -1,0 +1,19 @@
+# CONTRACT: run_lake.py SHALL copy this configuration into a fresh attempt workspace
+# and build the four explicit repair targets serially. See MASTER_PLAN.md and
+# run_retry.py for mathematical scope, named-root coverage, and assumption policy.
+# The wrapper MUST supply pinned third-party compiled prerequisites through
+# recorded import links in the fresh workspace; Lake build resets LEAN_PATH.
+# There are deliberately no dependency packages here: this Lake graph
+# owns only our local sources and MUST NOT rebuild or modify third-party caches.
+# An ordinary `lake build` without the wrapper is not final proof acceptance.
+name = "MinerProofRepair"
+srcDir = "sources"
+moreLeanArgs = ["-j1", "-M4096", "-DElab.async=false"]
+
+[[lean_lib]]
+name = "LatticeCalc"
+globs = ["LatticeCalc.+"]
+
+[[lean_lib]]
+name = "RequestProject"
+globs = ["RequestProject.+"]

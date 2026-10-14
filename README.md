@@ -1,2 +1,133 @@
-# BTC-MINER
-BTC MINER
+# BTC MINER
+
+A terminal Bitcoin miner with THESIS2 field/flower traversal, exact coprime-rod
+arithmetic, native SHA256d, verified pruning, and durable work distribution.
+The public default matches the original flower traversal: step 7, prime 19.
+The original mathematical sources and scoped Lean evidence are preserved.
+
+## Terminal setup
+
+Clone or download this repository. Setup checks dependencies, asks before
+installing them, builds the native libraries, and runs hash and proof checks.
+It never starts mining or installs a startup service.
+
+**macOS (Apple Silicon or Intel) and Linux (64-bit):**
+
+```sh
+git clone https://github.com/BuzzScud/BTC-MINER.git
+cd BTC-MINER
+sh setup.sh
+./bin/btc-miner ui
+```
+
+**Windows x64 (PowerShell / Windows Terminal):**
+
+```powershell
+git clone https://github.com/BuzzScud/BTC-MINER.git
+cd BTC-MINER
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+.\btc-miner.cmd ui
+```
+
+The one-process PowerShell execution-policy option does not change your machine's
+saved policy. Alternatively, run `py -3 scripts/setup_terminal.py`, then
+`.venv\Scripts\python.exe -m btcminer ui`.
+
+Python 3.9+ is required. Setup offers platform compiler installation when needed:
+Apple Command Line Tools, Linux build tools, or Visual Studio 2022 Build Tools
+with Clang on Windows. Dependencies install only in `.venv`; compiler packages
+may require OS permission. If installation is interrupted, rerun setup.
+Windows ARM and 32-bit platforms are not release targets.
+
+## First run
+
+The wizard asks for solo Bitcoin Core or a Stratum pool, network, payout/worker
+information, and resource limits. It validates inputs before saving. Mining starts
+only when you press **s** in the dashboard or explicitly run `start`.
+
+- **Solo:** run your own fully synchronized Bitcoin Core with RPC enabled. The
+  wizard detects the usual OS data directory; select another path if necessary.
+  Prefer Core's local cookie authentication. The miner does not create a wallet,
+  download the blockchain, change Core settings, or request a wallet seed.
+- **Pool:** enter the pool's Bitcoin Stratum V1 endpoint and its required worker
+  name/password. `stratum+ssl://` enables TLS; `stratum+tcp://` is plaintext.
+  An optional backup endpoint supports failover. Stratum V2-only pools need a
+  compatible gateway. Check your pool's minimum share difficulty for CPU mining.
+- **Resources:** choose worker, CPU and RAM limits. The controller uses sampled
+  guards, not hard quotas. Linux/Windows low-memory pressure is based on available
+  memory; thermal instrumentation is not available on every OS. Linux automatic
+  desktop-idle pause is unavailable and the wizard disables that setting there.
+
+No personal wallet, account, token, provider endpoint or machine settings ship
+with the repository. Pool passwords entered in the wizard stay in ignored,
+private local settings. RPC/provider secrets can be supplied through environment
+variables; avoid placing secrets directly in shell command history.
+
+## Everyday commands
+
+Use `./bin/btc-miner` on macOS/Linux, `.\btc-miner.cmd` on Windows, or the virtual
+environment's Python with `-m btcminer`. Commands are the same:
+
+```text
+setup                       configure this installation while stopped
+ui                          open the Copper dashboard
+self-test --require-native  check native hashing against reference calculations
+doctor --connect            inspect setup; check Core without starting mining
+start                       explicitly start mining
+status                      inspect the current session
+pause                       pause hashing
+resume                      resume hashing
+stop                        stop and retain a session summary
+math                        inspect the mathematical implementation
+```
+
+Dashboard keys: **s** start, **t** stop, **p** pause/resume, **q** close the view.
+Closing the view leaves a running miner running. Configuration changes to a running
+miner can restart it; stop first when preparing a different connection.
+
+Optional calculator integration uses your own `BTC_PROVIDER_URL` and
+`BTC_PROVIDER_SESSION`; enable with `config set provider_enabled=on provider_user=YOUR_ACCOUNT`.
+Use a dedicated provider token; closing a shared session can affect its other consumers.
+Alternatively set BTC_PROVIDER_PASSWORD to let the runtime create its own session.
+Use HTTPS or a trusted local tunnel for credentials. It verifies sampled job math
+and observes models; the native backend performs mining hashes. Unavailable
+provider telemetry is not evidence of a failed arithmetic identity.
+See [provider details](docs/PROVIDER-API.txt) and
+[work distribution](docs/FRACTAL-DISTRIBUTION.txt).
+The external Algorithm Observatory opened by `/hub` is a separate optional project;
+it is not required for mining or bundled in this release.
+
+## Mathematics and evidence
+
+`src/` and `math-library/` are canonical sources; compatibility copies are included
+so cloning on Windows needs no symlink privileges. Native C arithmetic and Lean
+statements are preserved. Platform changes cover OS services, build/loading,
+configuration and terminal setup. See [preservation checks](docs/PUBLIC-RELEASE.md).
+
+```sh
+.venv/bin/python scripts/check_math_integrity.py
+.venv/bin/python scripts/verify_proof_evidence.py
+.venv/bin/python -B -m unittest discover -s tests
+```
+
+On Windows use `.venv\Scripts\python.exe` in those commands.
+The capsule verifier checks retained evidence for 299 audited roots / 123 named
+statements. It does not recompile Lean or prove the complete miner correct.
+Additional scoped contract sources are included. Metadata with personal paths
+was anonymized with a recorded dependency-hash mapping; Lean sources and compiled
+proof objects were preserved. Historical validation is not silently extended to
+this portability release.
+
+CPU mining can validate the implementation, but at mainnet difficulty a CPU has
+an extremely small chance of finding a solo block. Geometric traversal and the
+proofs do not establish a SHA256d search advantage. Hashing a candidate is distinct
+from having a block accepted by Bitcoin Core.
+
+## Development
+
+See [public release design and checks](docs/PUBLIC-RELEASE.md),
+[security and publication](SECURITY.md), and [source provenance](SOURCE-NOTES.md).
+CI builds native libraries and runs tests on macOS, Linux, and Windows.
+`docs/HISTORICAL-README.md` preserves the earlier research narrative; paths to
+unbundled private experiments are historical references, not setup prerequisites.
+License: GPL-3.0; see [LICENSE](LICENSE).

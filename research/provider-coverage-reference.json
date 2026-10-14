@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "status": "external_scope_snapshot_not_proof_admission",
+  "source": "/source/user/Desktop/bitcoin-algorithm-observatory-2026-10-07/catalogue-study/proofs/coverage-ledger.json",
+  "source_sha256": "e63cf1838402ff48991b542ae8b354f85a1513bc9ca9843ca6a0458dbc8686fa",
+  "snapshot_sha256": "e63cf1838402ff48991b542ae8b354f85a1513bc9ca9843ca6a0458dbc8686fa",
+  "scope": "Formula-specific domains, finite results and remaining gaps retained verbatim. Fresh proof acceptance remains in the observatory gate."
+}

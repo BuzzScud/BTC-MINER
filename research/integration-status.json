@@ -1,0 +1,329 @@
+{
+  "as_of": "2026-10-13T21:59:33.512950+00:00",
+  "meaning": "Added means present in current source, not loaded by the running process. Current source hashes are identity metadata; historical evidence is not silently revalidated. Mathematical acceptance is separately source/object/axiom bound.",
+  "items": [
+    {
+      "finding": "THESIS2 traversal and arithmetic helpers",
+      "status": "added_to_miner",
+      "use": "Chooses nonce order while preserving the full nonce space in normal THESIS2 mode.",
+      "source": [
+        "btcminer/thesis2.py",
+        "btcminer/pqmath.py",
+        "btcminer/rodmath.py"
+      ],
+      "evidence": "validation/resident-abacus/regtest.json",
+      "current_source_sha256": {
+        "btcminer/thesis2.py": "05e316c1119993aec2a21903cf765e67937e60be6cebc10a1ec86411b7e330e3",
+        "btcminer/pqmath.py": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85",
+        "btcminer/rodmath.py": "fc775a8194834badf44e1082370794a66b1250c02f417607187a303e26e8190d"
+      },
+      "historical_source_sha256": {
+        "btcminer/thesis2.py": "32f7cbbd76e230eb5ee63a259fcdf62596a66c1f03017365bbca3c016c8d05e8",
+        "btcminer/pqmath.py": "6e94225b4d4516dc4f86e069023fe309ca8e07649b608fa680d833c39d1542a0",
+        "btcminer/rodmath.py": "3664aedfa87719bd79934e57f899e21d13ad34b860c684f284d237d28a2285d6"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Resident abacus, cached CRT, core primes, packed Golay/E8 tables",
+      "status": "added_to_miner",
+      "use": "Resident engine workspace and arithmetic/geometry representation; measured improvement is job setup, not proven candidate elimination.",
+      "source": [
+        "btcminer/abacus.py",
+        "btcminer/engine.py"
+      ],
+      "evidence": "validation/testnet4/precision.json",
+      "current_source_sha256": {
+        "btcminer/abacus.py": "104c9d323f73076715cb27c21d545b22d24f2ab2cadabe2f6ed627db413817f6",
+        "btcminer/engine.py": "60c32ba5c1611ca964e2fcbc86f7b2dffa381fd598079a51a6df755efaa871fa"
+      },
+      "historical_source_sha256": {
+        "btcminer/abacus.py": "fa8da65e5a8f85f0a8c28c274b60b73d9536ef468a9d1476b188d1cef61f5add",
+        "btcminer/engine.py": "1228ab8423a07b80dc51acb68ef1deb6876676da0a3c3e3595a77a9db7d03c60"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Chain-parent refresh, stale work rejection and stop after accepted block",
+      "status": "added_to_miner",
+      "use": "Production connection and lifecycle logic; isolated real-Core regtest passed.",
+      "source": [
+        "btcminer/connections.py",
+        "btcminer/engine.py"
+      ],
+      "evidence": "validation/testnet4/regression-regtest.json",
+      "current_source_sha256": {
+        "btcminer/connections.py": "70d4721dffc6072ef392dbfd8d2afffc11092ea8badbeb01303abebf2906691d",
+        "btcminer/engine.py": "60c32ba5c1611ca964e2fcbc86f7b2dffa381fd598079a51a6df755efaa871fa"
+      },
+      "historical_source_sha256": {
+        "btcminer/connections.py": "7ae0445acd33ba4e0edcaada0a547913757b173977b2247bba7e1baea547c71f",
+        "btcminer/engine.py": "1228ab8423a07b80dc51acb68ef1deb6876676da0a3c3e3595a77a9db7d03c60"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "703 / 4371 / 15051 product dictionary compression",
+      "status": "added_to_miner",
+      "use": "Resident Q dictionaries, reversible k/index and bit packing. Supported worker requests use packed indices only when the complete JSON request is smaller; all other values remain raw. Native candidate arrays remain packed uint32.",
+      "source": [
+        "btcminer/scaled_abacus.py",
+        "btcminer/pruning.py",
+        "btcminer/pruning_worker.py"
+      ],
+      "evidence": "validation/testnet4/compression.json",
+      "current_source_sha256": {
+        "btcminer/scaled_abacus.py": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5",
+        "btcminer/pruning.py": "92ff7ce402bf321ec2f26bed10e8d0df2b5ff5b77b8919261d5ee4eaa6eaf7db",
+        "btcminer/pruning_worker.py": "716d13d4658b3e1331d2f92c0b6c9ad3af0e7a7b5fe6154241080b413256fad1"
+      },
+      "historical_source_sha256": {
+        "btcminer/scaled_abacus.py": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5",
+        "btcminer/pruning.py": "e8cb1b3db382aad09617158cf1ba82c4c106fc913843e9dab62d685993b63afb",
+        "btcminer/pruning_worker.py": "73d30878d7872a50ad8c20c98c053a47c205f86609de19a3489fc1765ae9f7ec"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Lossless toy bit-and-carry pruning",
+      "status": "added_with_model_scope",
+      "use": "Adaptive bucket splitting is shared by the live full-SHA256d path and /abacus toy. Toy exclusions never cross into a Bitcoin job.",
+      "source": [
+        "btcminer/adaptive.py",
+        "btcminer/abacus_lab.py",
+        "btcminer/pruning_worker.py",
+        "btcminer/engine.py"
+      ],
+      "evidence": "validation/testnet4/integrated-toy-ladder.json",
+      "current_source_sha256": {
+        "btcminer/adaptive.py": "da85f6ba571c5bd3f5ac50013741a7c811bcfb698704670a77e8e1d88d91900c",
+        "btcminer/abacus_lab.py": "63be2876635f0f1d370345f13b9dbc33788655da03475cfd4ec004c03342f63f",
+        "btcminer/pruning_worker.py": "716d13d4658b3e1331d2f92c0b6c9ad3af0e7a7b5fe6154241080b413256fad1",
+        "btcminer/engine.py": "60c32ba5c1611ca964e2fcbc86f7b2dffa381fd598079a51a6df755efaa871fa"
+      },
+      "historical_source_sha256": {
+        "btcminer/adaptive.py": "da85f6ba571c5bd3f5ac50013741a7c811bcfb698704670a77e8e1d88d91900c",
+        "btcminer/abacus_lab.py": "f9a9c87ae12d2609c8e8ce299f616a1eca0344da658abc973509392177ad0fbe",
+        "btcminer/pruning_worker.py": "73d30878d7872a50ad8c20c98c053a47c205f86609de19a3489fc1765ae9f7ec",
+        "btcminer/engine.py": "1228ab8423a07b80dc51acb68ef1deb6876676da0a3c3e3595a77a9db7d03c60"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Aristotle recurrence rod sieve",
+      "status": "added_with_model_scope",
+      "use": "Both published certificates checked once per resident model; applies only to the listed recurrence orbits. Zero Bitcoin exclusions from recurrence rules.",
+      "source": [
+        "btcminer/recurrence.py",
+        "btcminer/abacus.py"
+      ],
+      "evidence": "validation/testnet4/recurrence.json",
+      "current_source_sha256": {
+        "btcminer/recurrence.py": "0f841378bf7293f0fd274d50dd3f7b3614ecfc7767e082fe0299cc9cb7b2dcee",
+        "btcminer/abacus.py": "104c9d323f73076715cb27c21d545b22d24f2ab2cadabe2f6ed627db413817f6"
+      },
+      "historical_source_sha256": {
+        "btcminer/recurrence.py": "0f841378bf7293f0fd274d50dd3f7b3614ecfc7767e082fe0299cc9cb7b2dcee",
+        "btcminer/abacus.py": "fa8da65e5a8f85f0a8c28c274b60b73d9536ef468a9d1476b188d1cef61f5add"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Guarded exported C certificate verifier",
+      "status": "added_with_model_scope",
+      "use": "Guarded C verifier compiled and loaded through ctypes; independent Python agreement required when C is available. Bounded certificate input; not a full formal verification of C.",
+      "source": [
+        "btcminer/recurrence.py",
+        "native/latcalc/src/rodsieve.c"
+      ],
+      "evidence": "validation/testnet4/recurrence.json",
+      "current_source_sha256": {
+        "btcminer/recurrence.py": "0f841378bf7293f0fd274d50dd3f7b3614ecfc7767e082fe0299cc9cb7b2dcee",
+        "native/latcalc/src/rodsieve.c": "6a99211b219dc30937673ace786b2d7dc3f518bbc7a43fe39c9aba5e7735a4d0"
+      },
+      "historical_source_sha256": {
+        "btcminer/recurrence.py": "0f841378bf7293f0fd274d50dd3f7b3614ecfc7767e082fe0299cc9cb7b2dcee",
+        "native/latcalc/src/rodsieve.c": "6a99211b219dc30937673ace786b2d7dc3f518bbc7a43fe39c9aba5e7735a4d0"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "k-based likelihood ranking",
+      "status": "added_as_unvalidated_priority",
+      "use": "Experimental smoothed probability scores conditioned on arithmetic/Q labels use observed hashes. All candidates retained. Earlier held-out k-ranking did not show consistent advantage.",
+      "source": [
+        "btcminer/priority.py",
+        "btcminer/engine.py"
+      ],
+      "evidence": "validation/testnet4/integration-tests.log",
+      "current_source_sha256": {
+        "btcminer/priority.py": "6243917c12d23e23732c5d989f4efb2010b7334b16adb46a3c373031eeb8c3ce",
+        "btcminer/engine.py": "60c32ba5c1611ca964e2fcbc86f7b2dffa381fd598079a51a6df755efaa871fa"
+      },
+      "historical_source_sha256": {
+        "btcminer/priority.py": "a085c511fc0b26447df4b20c3c26e376300f0d653b2086b90a9cb834f58aa57b",
+        "btcminer/engine.py": "1228ab8423a07b80dc51acb68ef1deb6876676da0a3c3e3595a77a9db7d03c60"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Arithmetic nonce filters based on open residues",
+      "status": "added_as_ordering_with_fallback",
+      "use": "All three former filters (mod30, mod210, clock-pair membership) label priorities; their rejected candidates remain in every task. They are not lossless exclusions.",
+      "source": [
+        "btcminer/priority.py"
+      ],
+      "evidence": "validation/testnet4/integration-tests.log",
+      "current_source_sha256": {
+        "btcminer/priority.py": "6243917c12d23e23732c5d989f4efb2010b7334b16adb46a3c373031eeb8c3ce"
+      },
+      "historical_source_sha256": {
+        "btcminer/priority.py": "a085c511fc0b26447df4b20c3c26e376300f0d653b2086b90a9cb834f58aa57b"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Expanded whole selected-module Lean rebuild",
+      "status": "historical_incomplete; three_blockers_repaired_separately",
+      "use": "The old eight-target audit remains historical. Its three failed targets now pass the separate raw/Lake repair capsule; other five top-level targets were outside that replay.",
+      "source": [
+        "scripts/bounded_miner_proof_audit.py"
+      ],
+      "evidence": "validation/miner-full-rebuild/report.json",
+      "current_source_sha256": {
+        "scripts/bounded_miner_proof_audit.py": "1a7d0a3903c903bbb312954ac523df28bc601bda3e7d6cae3bb2b68e702548a2"
+      },
+      "historical_source_sha256": {
+        "scripts/bounded_miner_proof_audit.py": "2ac4a32d4676276ad05924febfccf17b8606bd81b62b7260e5d0fd748823cce7"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Dynamic precision above 4096 bits",
+      "status": "added_to_miner",
+      "use": "Reusable signed CRT workspace with dynamically scaled binary rods. Validated 8192/16384/65536-bit inputs and products through 98304 bits; finite Lean certificates cover CRT reconstruction. Not a giant-prime factoring claim.",
+      "source": [
+        "btcminer/scaled_abacus.py",
+        "btcminer/abacus.py"
+      ],
+      "evidence": "validation/testnet4/precision.json",
+      "current_source_sha256": {
+        "btcminer/scaled_abacus.py": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5",
+        "btcminer/abacus.py": "104c9d323f73076715cb27c21d545b22d24f2ab2cadabe2f6ed627db413817f6"
+      },
+      "historical_source_sha256": {
+        "btcminer/scaled_abacus.py": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5",
+        "btcminer/abacus.py": "fa8da65e5a8f85f0a8c28c274b60b73d9536ef468a9d1476b188d1cef61f5add"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Shared coprime-rod abacus",
+      "status": "added_to_miner",
+      "use": "Immutable native frames and shared views; live header/word columns and board formulas; dynamic independent calculation slots. Atomic reference counts and checked CRT ranges.",
+      "source": [
+        "btcminer/shared_abacus.py",
+        "btcminer/abacus.py",
+        "native/latcalc/src/abacus.c"
+      ],
+      "evidence": "validation/shared-abacus/progress.json",
+      "current_source_sha256": {
+        "btcminer/shared_abacus.py": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5",
+        "btcminer/abacus.py": "104c9d323f73076715cb27c21d545b22d24f2ab2cadabe2f6ed627db413817f6",
+        "native/latcalc/src/abacus.c": "d9aab60b8180f4027d3035ee2663094054479ab3e7a29d3d6f29f635f355852c"
+      },
+      "historical_source_sha256": {
+        "btcminer/shared_abacus.py": "a6ba021ae46bfea2d481ea715ab026f5c7265e14fc222a728a7ceefa472576c0",
+        "btcminer/abacus.py": "fa8da65e5a8f85f0a8c28c274b60b73d9536ef468a9d1476b188d1cef61f5add",
+        "native/latcalc/src/abacus.c": "d9aab60b8180f4027d3035ee2663094054479ab3e7a29d3d6f29f635f355852c"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Progressive shared structure study",
+      "status": "added_to_miner",
+      "use": "Saved progression through 65536-bit inputs; 98304-bit results; Q pair relations; recursive Descartes bend system; same backend used in mining.",
+      "source": [
+        "btcminer/research_system.py",
+        "btcminer/shared_abacus.py"
+      ],
+      "evidence": "validation/shared-abacus/progress.json",
+      "current_source_sha256": {
+        "btcminer/research_system.py": "a8993855ff366c9dee60d02b74d77a22c19bc552413e62a403a5eb4017ba96bd",
+        "btcminer/shared_abacus.py": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5"
+      },
+      "historical_source_sha256": {
+        "btcminer/research_system.py": "6c4a84f39a7e0bec28243f5bb71bc63e3b6e11d00b0e448b97ad658ea21fe23c",
+        "btcminer/shared_abacus.py": "a6ba021ae46bfea2d481ea715ab026f5c7265e14fc222a728a7ceefa472576c0"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Claims and proof inventory",
+      "status": "added_with_explicit_gaps",
+      "use": "31 claims classified; available local declarations inventoried with unmapped status. Five new Lean modules build; no blanket claim that the entire archive is modeled or verified.",
+      "source": [
+        "btcminer/research_system.py",
+        "research/claims.json"
+      ],
+      "evidence": "validation/shared-abacus/proof-inventory.json",
+      "current_source_sha256": {
+        "btcminer/research_system.py": "a8993855ff366c9dee60d02b74d77a22c19bc552413e62a403a5eb4017ba96bd",
+        "research/claims.json": "e240cc9405f349c047b31b9bf560f9fe1de2ad2829ea2298abff3cdfcff75a15"
+      },
+      "historical_source_sha256": {
+        "btcminer/research_system.py": "6c4a84f39a7e0bec28243f5bb71bc63e3b6e11d00b0e448b97ad658ea21fe23c",
+        "research/claims.json": "ba4cebe60a795136b143cdcb585716ae86c9885119cbddcb043e35b0aa74fc9e"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Archived claim calculus and native arithmetic library",
+      "status": "added_to_miner",
+      "use": "Reusable exact arithmetic/claim calculations, persistent 19-flower table, supplied-k recovery and conditional order split; no new live Bitcoin exclusion rule",
+      "source": [
+        "btcminer/archive_math.py",
+        "btcminer/claim_calculus.py",
+        "btcminer/research_system.py",
+        "native/build_abacus.sh"
+      ],
+      "evidence": "validation/archive-audit/calculation-tests.log",
+      "current_source_sha256": {
+        "btcminer/archive_math.py": "f5662ce4b982549f374e60aca42b11c03b0f5e8db692db8f7531f3e7a3431dc7",
+        "btcminer/claim_calculus.py": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4",
+        "btcminer/research_system.py": "a8993855ff366c9dee60d02b74d77a22c19bc552413e62a403a5eb4017ba96bd",
+        "native/build_abacus.sh": "73e69489fe9a11535967fdbd533ddbb6e215223141e27802ed4e7cd7d9bc2882"
+      },
+      "historical_source_sha256": {
+        "btcminer/archive_math.py": "f76335e58b7abf652e092b0572b6d9baf97e76e9fa90dde7eba401de461ef0a8",
+        "btcminer/claim_calculus.py": "7a2910ca3b9667bafed3afb51f7896224d281f3ca6463e8af2fc7fe2184e2fff",
+        "btcminer/research_system.py": "6c4a84f39a7e0bec28243f5bb71bc63e3b6e11d00b0e448b97ad658ea21fe23c",
+        "native/build_abacus.sh": "73e69489fe9a11535967fdbd533ddbb6e215223141e27802ed4e7cd7d9bc2882"
+      },
+      "evidence_status": "historical_scoped_evidence; current file identity does not extend its validity"
+    },
+    {
+      "finding": "Current source/object/axiom bound repair and publication gate",
+      "status": "accepted_scoped_kernel_evidence",
+      "use": "299 audited roots; 123 named statements; 5 supported exact scalar translations. Unimplemented translations and other research gaps retained.",
+      "source": [
+        "btcminer/proof_evidence.py",
+        "btcminer/theorem_calculations.py",
+        "scripts/build.py",
+        "scripts/publish_archive_calculations.py",
+        "research/proof-registry.json"
+      ],
+      "current_source_sha256": {
+        "btcminer/proof_evidence.py": "8dbcbc43eb6e220286e215e763570befb8042e00963c5feaba6a99a7134d533f",
+        "btcminer/theorem_calculations.py": "8e1ef1349e1ed534bf00b206499ff69d32eaae4ca81145338193fb57182bcb80",
+        "scripts/build.py": "d423d44b7f3a888ffb619fd824e96bfcde0613363535e2b5078512d1b1a8ecc7",
+        "scripts/publish_archive_calculations.py": "9d5cc48bcc041075d31de4117bc964053ede03eb1d2bff8e6774e61bafac3017",
+        "research/proof-registry.json": "efda13a433e9d8b28ff4477a3d3b9e16b98abc6cd4eba86ec01ffe3bc6f88ccd"
+      },
+      "evidence": "research/proof-evidence/manifest.json",
+      "evidence_status": "verified_current_mathematical_sources_and_retained_objects",
+      "proof_manifest_sha256": "a08f91b1fffe25ec8a4d52e7a624c58e8e155de8d2c2f127aa8aab4ab30e941a"
+    }
+  ],
+  "miner_version": "1.5.0"
+}

@@ -1,0 +1,1836 @@
+{
+  "schema_version": 1,
+  "status": "source_bound_scope_ledger",
+  "catalog_formula_count": 39,
+  "actual_integer_instances": 120,
+  "observation_count": 12,
+  "execution_method": "POST /api/calculate with normalized scalar expressions derived from catalog claims. Formula IDs bind provenance; they do not assert native execution of a formula-ID backend or NO_CODE entry.",
+  "provider_implementation_formally_verified": false,
+  "rows": [
+    {
+      "formula_id": 9331,
+      "name": "cos(0.785)",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 9331,
+        "name": "cos(0.785)",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "cos(0.785)",
+        "specification": "cos(0.785)",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal cosine observation.",
+      "necessary_domains": [
+        "Argument is in radians."
+      ],
+      "normalized_actual_instance_count": 0,
+      "normalized_actual_instance_roots": [],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_9331",
+          "status": "within_numerical_tolerance",
+          "actual_value": 0.7073882691671998,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Real cosine and decimal/binary64 input semantics need a formal error bound.",
+      "remaining_obligations": [
+        "Real cosine and decimal/binary64 input semantics need a formal error bound.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Real cosine and decimal/binary64 input semantics need a formal error bound.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7196,
+      "name": "abacus_relation_by_rod",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7196,
+        "name": "abacus_relation_by_rod",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Aristotle",
+        "expression": "decide f = g by comparing the two columns on every rod, with no long number",
+        "specification": "decide f = g by comparing the two columns on every rod, with no long number",
+        "notes": "ABACUS_SYSTEM.md:19; NO_CODE (Thesis/math symbol pending; C name lc_abacus_col_equal covered by 15_clib_cost.jsonl); aggregation of the per-rod tests is a conjunction with early exit",
+        "verifiedAt": null
+      },
+      "normalized_model": "Compare residue differences and expose capacity alias.",
+      "necessary_domains": [
+        "Positive pairwise coprime rods.",
+        "Integer equality requires |f-g|<M, or both values in a common injective range."
+      ],
+      "normalized_actual_instance_count": 5,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_crt_boundary_alias",
+        "CatalogValues.returned_relation_delta_359_rod_8",
+        "CatalogValues.returned_relation_delta_359_rod_9",
+        "CatalogValues.returned_relation_delta_360_rod_8",
+        "CatalogValues.returned_relation_delta_360_rod_9"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "abacus",
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Repair omitted capacity hypothesis; import relation_iff and connect it to a native equality endpoint before claiming implementation refinement.",
+      "remaining_obligations": [
+        "Restrict equality from matching residues to an injective range or retain equality only modulo the modulus product; 0 and 360 collide on rods 8, 9, and 5."
+      ],
+      "remaining_gap": "Restrict equality from matching residues to an injective range or retain equality only modulo the modulus product; 0 and 360 collide on rods 8, 9, and 5.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7195,
+      "name": "abacus_program_run",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7195,
+        "name": "abacus_program_run",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Aristotle",
+        "expression": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+        "specification": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+        "notes": "ABACUS_SYSTEM.md:18; NO_CODE (Thesis/math symbol pending); program of steps over slots, later steps reuse earlier results",
+        "verifiedAt": null
+      },
+      "normalized_model": "Shared scalar DAG with actual API dependencies and modular output columns.",
+      "necessary_domains": [
+        "Slots are well defined before use.",
+        "Formulas use integer +,-,*,natural powers."
+      ],
+      "normalized_actual_instance_count": 6,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_program_shared",
+        "CatalogValues.returned_program_square",
+        "CatalogValues.returned_program_output",
+        "CatalogValues.returned_program_rod_8",
+        "CatalogValues.returned_program_rod_9",
+        "CatalogValues.returned_program_rod_5"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "abacus"
+      ],
+      "observations": [],
+      "original_review_gap": "Native resident frame/slot execution and compute-once performance are not exposed or established by scalar REST calls.",
+      "remaining_obligations": [
+        "Prove native resident-frame/program semantics and source correspondence; scalar projections do not establish the native execution or performance claim."
+      ],
+      "remaining_gap": "Prove native resident-frame/program semantics and source correspondence; scalar projections do not establish the native execution or performance claim.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7194,
+      "name": "abacus_formula_system_run",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7194,
+        "name": "abacus_formula_system_run",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Aristotle",
+        "expression": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+        "specification": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+        "notes": "ABACUS_SYSTEM.md:16-17; NO_CODE (Thesis/math symbol pending; C name lc_abacus_run is covered by 15_clib_cost.jsonl); Lean names opened in AbacusSystem.lean",
+        "verifiedAt": null
+      },
+      "normalized_model": "One scalar program projected to three rods.",
+      "necessary_domains": [
+        "Positive rods; signed integer semantics."
+      ],
+      "normalized_actual_instance_count": 6,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_program_shared",
+        "CatalogValues.returned_program_square",
+        "CatalogValues.returned_program_output",
+        "CatalogValues.returned_program_rod_8",
+        "CatalogValues.returned_program_rod_9",
+        "CatalogValues.returned_program_rod_5"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "abacus"
+      ],
+      "observations": [],
+      "original_review_gap": "Scalar projection is not a native abacus-system endpoint or complete interpreter refinement.",
+      "remaining_obligations": [
+        "Prove native resident-frame/program semantics and source correspondence; a normalized scalar graph does not establish slot reuse or compute-once behavior."
+      ],
+      "remaining_gap": "Prove native resident-frame/program semantics and source correspondence; a normalized scalar graph does not establish slot reuse or compute-once behavior.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7181,
+      "name": "soddy_count_recurrence",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7181,
+        "name": "soddy_count_recurrence",
+        "category": "geometry",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+        "specification": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); depth-3 linear recurrence. CORRECTION by 14_geometry_lean: Lean soddyB_recurrence is proved by `simp only [soddyB, soddyU]` (SoddyCounts.lean line 49), i.e. by unfolding the defining clause of RodJump.soddyU (RodJump.lean line 80), so its status is RESTATES_DEFINITION; the geometric content is soddy_new_spheres_count",
+        "verifiedAt": null
+      },
+      "normalized_model": "Source-defined Soddy recurrence b(n+1)=5*u(n); u seeds1,4,12.",
+      "necessary_domains": [
+        "Natural sequence indices.",
+        "Source interpretation must be retained."
+      ],
+      "normalized_actual_instance_count": 4,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_soddy_b4",
+        "CatalogValues.returned_soddy_b5",
+        "CatalogValues.returned_soddy_b6",
+        "CatalogValues.returned_soddy_b7"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "jump"
+      ],
+      "observations": [],
+      "original_review_gap": "soddy_new_spheres_count geometric bridge and referenced SoddyCounts.lean are absent here; recurrence arithmetic alone restates a sequence definition.",
+      "remaining_obligations": [
+        "Provide a mathematical definition of the counted Soddy geometry and prove that its cardinality satisfies the claimed recurrence."
+      ],
+      "remaining_gap": "Provide a mathematical definition of the counted Soddy geometry and prove that its cardinality satisfies the claimed recurrence.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7180,
+      "name": "order_law_lcm_rods",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7180,
+        "name": "order_law_lcm_rods",
+        "category": "number_theory",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+        "specification": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Orders of5 modulo8,9,72 and LCM2,6=6.",
+      "necessary_domains": [
+        "Positive coprime moduli.",
+        "x must be a unit modulo both rods."
+      ],
+      "normalized_actual_instance_count": 7,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_order_5_mod8_power1",
+        "CatalogValues.returned_order_5_mod8_power2",
+        "CatalogValues.returned_order_5_mod9_power2",
+        "CatalogValues.returned_order_5_mod9_power3",
+        "CatalogValues.returned_order_5_mod9_power6",
+        "CatalogValues.returned_order_5_mod72_power6",
+        "CatalogValues.returned_order_lcm"
+      ],
+      "general_or_supporting_contract_classification": "general_crt_order_law_with_total_monoid_convention",
+      "fresh_theorem_roots": [
+        "CatalogCRT.crt_orderOf",
+        "CatalogCRT.crt_integer_orderOf",
+        "CatalogLinks.order_5_mod8_least",
+        "CatalogLinks.order_5_mod9_least",
+        "CatalogLinks.order_5_mod72_least",
+        "CatalogLinks.actual_order_lcm"
+      ],
+      "source_keys": [
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Import/prove the universal order-under-CRT theorem; catalog omits the unit hypothesis; scalar witnesses do not prove universality.",
+      "remaining_obligations": [
+        "The general CRT law is proved for total monoid orderOf, including order zero when no positive power equals one. The provider must specify whether it adopts that convention or restricts its interface to units; native implementation correspondence remains unproved."
+      ],
+      "remaining_gap": "The general CRT law is proved for total monoid orderOf, including order zero when no positive power equals one. The provider must specify whether it adopts that convention or restricts its interface to units; native implementation correspondence remains unproved.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7179,
+      "name": "eisenstein_norm",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7179,
+        "name": "eisenstein_norm",
+        "category": "geometry",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "N(a + b omega) = a^2 - ab + b^2; N(zw) = N(z) N(w)",
+        "specification": "N(a + b omega) = a^2 - ab + b^2; N(zw) = N(z) N(w)",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); norm is multiplicative",
+        "verifiedAt": null
+      },
+      "normalized_model": "Exact signed Eisenstein multiplication coordinates and norm multiplicativity.",
+      "necessary_domains": [
+        "omega^2+omega+1=0.",
+        "Integer coordinate pairs."
+      ],
+      "normalized_actual_instance_count": 6,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_eisenstein_left_norm",
+        "CatalogValues.returned_eisenstein_right_norm",
+        "CatalogValues.returned_eisenstein_product_a",
+        "CatalogValues.returned_eisenstein_product_b",
+        "CatalogValues.returned_eisenstein_product_norm",
+        "CatalogValues.returned_eisenstein_multiplicative_residual"
+      ],
+      "general_or_supporting_contract_classification": "general_integer_pair_norm_algebra",
+      "fresh_theorem_roots": [
+        "CatalogContracts.eisenstein_norm_multiplicative",
+        "CatalogContracts.eisenstein_norm_nonnegative"
+      ],
+      "source_keys": [
+        "eisenstein"
+      ],
+      "observations": [],
+      "original_review_gap": "Universal polynomial norm theorem can be separately proved; representation/runtime refinement remains open.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7178,
+      "name": "hex_shell_population",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7178,
+        "name": "hex_shell_population",
+        "category": "geometry",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+        "specification": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); ring population 6k (CONFLICT-001: code uses 10n^2+2, no source)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Enumerated axial shell/ball counts compared with6k and1+3n(n+1).",
+      "necessary_domains": [
+        "Shell k>=1; shell0 has one center.",
+        "n>=0."
+      ],
+      "normalized_actual_instance_count": 4,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_hex_shell_1",
+        "CatalogValues.returned_hex_shell_5",
+        "CatalogValues.returned_hex_ball_0",
+        "CatalogValues.returned_hex_ball_5"
+      ],
+      "general_or_supporting_contract_classification": "sequence_sum_not_geometric_enumeration",
+      "fresh_theorem_roots": [
+        "CatalogContracts.hex_sequence_sum"
+      ],
+      "source_keys": [
+        "hex"
+      ],
+      "observations": [],
+      "original_review_gap": "Finite lattice enumeration does not identify an undocumented production10n^2+2 expression; prove cardinality of the stated geometric model.",
+      "remaining_obligations": [
+        "Define the geometric objects and prove their cardinality, including a separate center/shell-zero convention; resolve the catalogue note mentioning 10*n^2+2 against the hexagonal 6*k and 1+3*k*(k+1) formulas."
+      ],
+      "remaining_gap": "Define the geometric objects and prove their cardinality, including a separate center/shell-zero convention; resolve the catalogue note mentioning 10*n^2+2 against the hexagonal 6*k and 1+3*k*(k+1) formulas.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7177,
+      "name": "linrec_jump",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7177,
+        "name": "linrec_jump",
+        "category": "algebra",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+        "specification": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor LINREC; matrix power per rod",
+        "verifiedAt": null
+      },
+      "normalized_model": "Fibonacci companion matrix squared to T^8, then rod projection.",
+      "necessary_domains": [
+        "Fixed-dimensional linear recurrence with specified initial vector.",
+        "Natural exponent."
+      ],
+      "normalized_actual_instance_count": 14,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_fib_T2_aa",
+        "CatalogValues.returned_fib_T2_bb",
+        "CatalogValues.returned_fib_T2_dd",
+        "CatalogValues.returned_fib_T4_aa",
+        "CatalogValues.returned_fib_T4_bb",
+        "CatalogValues.returned_fib_T4_dd",
+        "CatalogValues.returned_fib_T8_aa",
+        "CatalogValues.returned_fib_T8_bb",
+        "CatalogValues.returned_fib_T8_dd",
+        "CatalogValues.returned_fib_eighth_rod9",
+        "CatalogValues.returned_soddy_b4",
+        "CatalogValues.returned_soddy_b5",
+        "CatalogValues.returned_soddy_b6",
+        "CatalogValues.returned_soddy_b7"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "jump"
+      ],
+      "observations": [],
+      "original_review_gap": "Scalar matrix entries exercise a normalized algorithm; no native matrix-power endpoint or complexity advantage is certified.",
+      "remaining_obligations": [
+        "Prove the general matrix-power recurrence jump, exponentiation algorithm, and any operation-count claim; the Fibonacci scalar instances do not establish those universal properties."
+      ],
+      "remaining_gap": "Prove the general matrix-power recurrence jump, exponentiation algorithm, and any operation-count claim; the Fibonacci scalar instances do not establish those universal properties.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7176,
+      "name": "series_geom",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7176,
+        "name": "series_geom",
+        "category": "algebra",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+        "specification": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor GEOM; UNPROVEN",
+        "verifiedAt": null
+      },
+      "normalized_model": "Unit closed form, direct sum, r=1 and nonunit fallback branches.",
+      "necessary_domains": [
+        "Inverse branch requires gcd(r-1,m)=1.",
+        "n>=0,m>0."
+      ],
+      "normalized_actual_instance_count": 5,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_geom_inverse_branch",
+        "CatalogValues.returned_geom_direct_branch",
+        "CatalogValues.returned_geom_ratio_one",
+        "CatalogValues.returned_geom_nonunit_direct",
+        "CatalogValues.returned_geom_telescoping"
+      ],
+      "general_or_supporting_contract_classification": "supporting_telescoping_contract",
+      "fresh_theorem_roots": [
+        "CatalogContracts.geometric_step",
+        "CatalogContracts.geometric_series_telescoping"
+      ],
+      "source_keys": [],
+      "observations": [],
+      "original_review_gap": "Prove telescoping universally; modular division only when the denominator is a unit.",
+      "remaining_obligations": [
+        "Prove the modular inverse branch under a unit hypothesis and the direct-sum fallback, then relate the selected branch to the implementation."
+      ],
+      "remaining_gap": "Prove the modular inverse branch under a unit hypothesis and the direct-sum fallback, then relate the selected branch to the implementation.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7175,
+      "name": "series_arith",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7175,
+        "name": "series_arith",
+        "category": "algebra",
+        "status": "review",
+        "phase": 9,
+        "project": "Thesis",
+        "expression": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+        "specification": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor ARITH; UNPROVEN",
+        "verifiedAt": null
+      },
+      "normalized_model": "Integer triangular sum before reduction, checked odd-rod inverses, even-rod counterexample.",
+      "necessary_domains": [
+        "n>=0,m>0.",
+        "Inverse2 form additionally requires gcd(2,m)=1."
+      ],
+      "normalized_actual_instance_count": 8,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_arith_n1_m2",
+        "CatalogValues.returned_arith_n8_m8",
+        "CatalogValues.returned_arith_n9_m9",
+        "CatalogValues.returned_arith_n100_m125",
+        "CatalogValues.returned_arith_inverse_check_9",
+        "CatalogValues.returned_arith_inverse_check_125",
+        "CatalogValues.returned_arith_inverse_formula",
+        "CatalogValues.returned_arith_bad_reduce_then_half"
+      ],
+      "general_or_supporting_contract_classification": "supporting_series_contract_and_domain_counterexample",
+      "fresh_theorem_roots": [
+        "CatalogContracts.arithmetic_step",
+        "CatalogContracts.arithmetic_series_twice",
+        "CatalogContracts.concrete_nonunit_two",
+        "CatalogLinks.actual_series_nonunit_counterexample"
+      ],
+      "source_keys": [],
+      "observations": [],
+      "original_review_gap": "Correct catalog missing odd-rod/unit hypothesis; a total even-rod implementation needs exact division before reduction or a separate branch.",
+      "remaining_obligations": [
+        "Correct or explicitly restrict the modular inverse-of-two branch to odd moduli; the division-free identity holds without that restriction, and even-modulus counterexamples remain valid."
+      ],
+      "remaining_gap": "Correct or explicitly restrict the modular inverse-of-two branch to odd moduli; the division-free identity holds without that restriction, and even-modulus counterexamples remain valid.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7174,
+      "name": "garner_readback",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7174,
+        "name": "garner_readback",
+        "category": "number_theory",
+        "status": "review",
+        "phase": 3,
+        "project": "Thesis",
+        "expression": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+        "specification": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+        "notes": "Prime Directives 0.2; NO_CODE (pending Wave 1); BOUNDARY only, output cost R(R-1)/2; Lean theorem not found (UNPROVEN)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Three-digit Garner reconstruction over8,9,5 including canonical wrap.",
+      "necessary_domains": [
+        "Pairwise coprime positive rods.",
+        "Specified modular inverse constants.",
+        "Readback in[0,M); signed convention needs separate conversion."
+      ],
+      "normalized_actual_instance_count": 12,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_garner_0_d0",
+        "CatalogValues.returned_garner_0_d1",
+        "CatalogValues.returned_garner_0_d2",
+        "CatalogValues.returned_garner_0_readback",
+        "CatalogValues.returned_garner_359_d0",
+        "CatalogValues.returned_garner_359_d1",
+        "CatalogValues.returned_garner_359_d2",
+        "CatalogValues.returned_garner_359_readback",
+        "CatalogValues.returned_garner_361_d0",
+        "CatalogValues.returned_garner_361_d1",
+        "CatalogValues.returned_garner_361_d2",
+        "CatalogValues.returned_garner_361_readback"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Fresh universal Garner loop invariant and mixed-radix uniqueness proof are missing; RNS CRT decode theorem is not automatically Garner implementation refinement.",
+      "remaining_obligations": [
+        "Prove the general Garner mixed-radix reconstruction loop and its correspondence to native execution; the recorded scalar digit/readback instances are finite evidence."
+      ],
+      "remaining_gap": "Prove the general Garner mixed-radix reconstruction loop and its correspondence to native execution; the recorded scalar digit/readback instances are finite evidence.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7173,
+      "name": "rod_pow",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7173,
+        "name": "rod_pow",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Thesis",
+        "expression": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+        "specification": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+        "notes": "Prime Directives 0.2; layer L1; NO_CODE (pending Wave 1); public exponent only (class PC)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Public exponent residue instances including exponent0 and signed base.",
+      "necessary_domains": [
+        "Nonnegative public integer exponent; modulus>0."
+      ],
+      "normalized_actual_instance_count": 3,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_rod_pow_8",
+        "CatalogValues.returned_rod_pow_9",
+        "CatalogValues.returned_rod_pow_125"
+      ],
+      "general_or_supporting_contract_classification": "general_modular_arithmetic",
+      "fresh_theorem_roots": [
+        "CatalogContracts.rod_pow_congruence"
+      ],
+      "source_keys": [
+        "rns",
+        "jump"
+      ],
+      "observations": [],
+      "original_review_gap": "Finite powers do not prove provider square-and-multiply implementation or operation counts.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7172,
+      "name": "rod_mul",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7172,
+        "name": "rod_mul",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Thesis",
+        "expression": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+        "specification": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+        "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Boundary/signed multiplication residues on8,9,125.",
+      "necessary_domains": [
+        "Integer operands; modulus>0."
+      ],
+      "normalized_actual_instance_count": 3,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_rod_mul_8",
+        "CatalogValues.returned_rod_mul_9",
+        "CatalogValues.returned_rod_mul_125"
+      ],
+      "general_or_supporting_contract_classification": "general_modular_arithmetic",
+      "fresh_theorem_roots": [
+        "CatalogContracts.rod_mul_congruence"
+      ],
+      "source_keys": [
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Universal rod multiplication congruence and runtime bounds are separate from these instances.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7171,
+      "name": "rod_add",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7171,
+        "name": "rod_add",
+        "category": "core",
+        "status": "review",
+        "phase": 3,
+        "project": "Thesis",
+        "expression": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+        "specification": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+        "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Boundary/signed addition residues on8,9,125.",
+      "necessary_domains": [
+        "Integer operands; modulus>0."
+      ],
+      "normalized_actual_instance_count": 3,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_rod_add_8",
+        "CatalogValues.returned_rod_add_9",
+        "CatalogValues.returned_rod_add_125"
+      ],
+      "general_or_supporting_contract_classification": "general_modular_arithmetic",
+      "fresh_theorem_roots": [
+        "CatalogContracts.rod_add_congruence"
+      ],
+      "source_keys": [
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Universal rod addition congruence and runtime bounds are separate from these instances.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7170,
+      "name": "crt_capacity_law",
+      "catalog_status_is_only_a_label": "review",
+      "original_catalog_record": {
+        "id": 7170,
+        "name": "crt_capacity_law",
+        "category": "number_theory",
+        "status": "review",
+        "phase": 1,
+        "project": "Thesis",
+        "expression": "x in (-M/2, M/2] is recovered from its column iff M >= 2B+1 where |x| <= B",
+        "specification": "x in (-M/2, M/2] is recovered from its column iff M >= 2B+1 where |x| <= B",
+        "notes": "Prime Directives 0.2; NO_CODE (a law, enforced by every operation's capacity check)",
+        "verifiedAt": null
+      },
+      "normalized_model": "Capacity360, valid centered bound179 and collision at centered bound180.",
+      "necessary_domains": [
+        "Positive pairwise coprime rods.",
+        "For integer B>=0, uniform injectivity on[-B,B] iff M>=2B+1.",
+        "Balanced decoder interval(-M/2,M/2]."
+      ],
+      "normalized_actual_instance_count": 6,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_crt_capacity",
+        "CatalogValues.returned_crt_good_margin",
+        "CatalogValues.returned_crt_boundary_alias",
+        "CatalogValues.returned_garner_0_readback",
+        "CatalogValues.returned_garner_359_readback",
+        "CatalogValues.returned_garner_361_readback"
+      ],
+      "general_or_supporting_contract_classification": "supporting_modulus_capacity_contract",
+      "fresh_theorem_roots": [
+        "CatalogContracts.centered_residue_unique",
+        "CatalogContracts.centered_capacity_collision",
+        "CatalogContracts.centered_capacity_iff",
+        "CatalogLinks.actual_centered_boundary_alias"
+      ],
+      "source_keys": [
+        "rns"
+      ],
+      "observations": [],
+      "original_review_gap": "Clarify uniform quantifiers: capacity condition is not a pointwise necessary condition for an individual x.",
+      "remaining_obligations": [
+        "Clarify uniform interval injectivity versus pointwise decoding: 2B < M is the uniform criterion; an individual value can decode when that bound fails."
+      ],
+      "remaining_gap": "Clarify uniform interval injectivity versus pointwise decoding: 2B < M is the uniform criterion; an individual value can decode when that bound fails.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7169,
+      "name": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7169,
+        "name": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+        "specification": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal draft plus exact normalized absolute/root cancellation.",
+      "necessary_domains": [
+        "Principal nonnegative square root."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_abs_root_algebraic"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7169",
+          "status": "within_numerical_tolerance",
+          "actual_value": 24,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Formal real identity and returned-value tolerance are distinct from normalized integer arithmetic.",
+      "remaining_obligations": [
+        "Formal real identity and returned-value tolerance are distinct from normalized integer arithmetic.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Formal real identity and returned-value tolerance are distinct from normalized integer arithmetic.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7168,
+      "name": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7168,
+        "name": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+        "specification": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal draft and exact radicand410.",
+      "necessary_domains": [
+        "Principal square root of nonnegative410."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_root_radicand"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7168",
+          "status": "within_numerical_tolerance",
+          "actual_value": 20.248456731316587,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Fresh enclosure for sqrt410 and actual returned bits is required for a real-valued proof.",
+      "remaining_obligations": [
+        "Fresh enclosure for sqrt410 and actual returned bits is required for a real-valued proof.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Fresh enclosure for sqrt410 and actual returned bits is required for a real-valued proof.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7167,
+      "name": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7167,
+        "name": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+        "specification": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal symbolic syntax probe plus four-times-scaled exact scalar normalization1137.",
+      "necessary_domains": [
+        "Finite sum k1..9; real integral t^3 over[0,1];2x2 determinant."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_sum_integral_scaled"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7167",
+          "status": "rejected_or_failed",
+          "actual_value": "Provide values for: integral_0, t, dt.",
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Scalar normalization does not prove integral parser support or symbolic calculus implementation; formal integral evaluation needed.",
+      "remaining_obligations": [
+        "Scalar normalization does not prove integral parser support or symbolic calculus implementation; formal integral evaluation needed.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Scalar normalization does not prove integral parser support or symbolic calculus implementation; formal integral evaluation needed.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7166,
+      "name": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7166,
+        "name": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+        "specification": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal pi*phi draft and separate exact pair-product polynomial.",
+      "necessary_domains": [
+        "x1..x4 supplied explicitly; pi and phi are engine constants."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_pair_sum"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7166",
+          "status": "rejected_or_failed",
+          "actual_value": "Cannot read properties of undefined (reading 'sqrt')",
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "A failing built-in phi must remain a live issue; normalized polynomial success does not clear it. Bind actual bits to a real pi/phi enclosure.",
+      "remaining_obligations": [
+        "A failing built-in phi must remain a live issue; normalized polynomial success does not clear it. Bind actual bits to a real pi/phi enclosure.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "A failing built-in phi must remain a live issue; normalized polynomial success does not clear it. Bind actual bits to a real pi/phi enclosure.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7165,
+      "name": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7165,
+        "name": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+        "specification": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal cubic/root/log draft with a1,b2,c3 and exact algebraic part18.",
+      "necessary_domains": [
+        "a+b+c!=0; log argument7>0."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_cubic_algebraic_part"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7165",
+          "status": "within_numerical_tolerance",
+          "actual_value": 16.05408985094469,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Formal logarithm error bound/actual bits and general denominator guards remain separate.",
+      "remaining_obligations": [
+        "Formal logarithm error bound/actual bits and general denominator guards remain separate.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Formal logarithm error bound/actual bits and general denominator guards remain separate.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7164,
+      "name": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7164,
+        "name": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+        "specification": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Literal trigonometric/hyperbolic/exponential draft at x=y=z=0.",
+      "necessary_domains": [
+        "Real arguments; radians for trigonometric functions."
+      ],
+      "normalized_actual_instance_count": 0,
+      "normalized_actual_instance_roots": [],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [
+        {
+          "id": "literal_catalog_7164",
+          "status": "within_numerical_tolerance",
+          "actual_value": 0,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Exact ideal0 follows special values; this single observation does not prove trigonometric identity or approximation errors generally.",
+      "remaining_obligations": [
+        "Exact ideal0 follows special values; this single observation does not prove trigonometric identity or approximation errors generally.",
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Exact ideal0 follows special values; this single observation does not prove trigonometric identity or approximation errors generally.; Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7163,
+      "name": "2*x+3",
+      "catalog_status_is_only_a_label": "draft",
+      "original_catalog_record": {
+        "id": 7163,
+        "name": "2*x+3",
+        "category": "analysis",
+        "status": "draft",
+        "phase": 5,
+        "project": "thesis-web-unknown-formula",
+        "expression": "2*x+3",
+        "specification": "2*x+3",
+        "notes": "auto-registered from submitExpression pending formal proof",
+        "verifiedAt": null
+      },
+      "normalized_model": "Original2*x+3 evaluated on signed and large exact integer inputs.",
+      "necessary_domains": [
+        "Integer inputs and intermediates within2^53 for these cases."
+      ],
+      "normalized_actual_instance_count": 2,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_draft_linear_negative",
+        "CatalogValues.returned_draft_linear_large"
+      ],
+      "general_or_supporting_contract_classification": "no_fresh_general_theorem",
+      "fresh_theorem_roots": [],
+      "source_keys": [],
+      "observations": [],
+      "original_review_gap": "Finite arithmetic certificate is not a universal parser/runtime refinement.",
+      "remaining_obligations": [
+        "Finite arithmetic certificate is not a universal parser/runtime refinement."
+      ],
+      "remaining_gap": "Finite arithmetic certificate is not a universal parser/runtime refinement.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7162,
+      "name": "no_single_encoding",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7162,
+        "name": "no_single_encoding",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Universal impossibility of one injective encoding turning both addition and nonzero multiplication into group addition.",
+      "necessary_domains": [
+        "Codomain is AddCommGroup.",
+        "hadd holds forall real a,b.",
+        "hmul holds for nonzero a,b."
+      ],
+      "normalized_actual_instance_count": 0,
+      "normalized_actual_instance_roots": [],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.no_single_encoding"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "No scalar REST call can represent the quantified encoding. Requires source-bound fresh theorem checking, not a sample output.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7161,
+      "name": "no_mul_to_add_with_zero",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7161,
+        "name": "no_mul_to_add_with_zero",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Universal impossibility of injective multiplicative-to-additive map when zero is included.",
+      "necessary_domains": [
+        "Codomain is AddCommGroup; hmul holds for every pair of real inputs including0."
+      ],
+      "normalized_actual_instance_count": 0,
+      "normalized_actual_instance_roots": [],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.no_mul_to_add_with_zero"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "No scalar instance substitutes for quantification over functions. Fresh theorem checking required.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7160,
+      "name": "logAngle_injective",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7160,
+        "name": "logAngle_injective",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Complex squared norm instance retained as a prerequisite only; injectivity is a theorem.",
+      "necessary_domains": [
+        "Complex input nonzero.",
+        "Angle is Real.Angle modulo2pi."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_complex_product_norm_squared"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logAngle_injective"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "Norm alone is not injective. Fresh complete logAngle_injective theorem required; no scalar coverage claim for injectivity.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7159,
+      "name": "logAngle_div",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7159,
+        "name": "logAngle_div",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Denominator-cleared Cartesian quotient identity and actual approximate logarithmic magnitude observation.",
+      "necessary_domains": [
+        "Both complex inputs nonzero.",
+        "Angle equality interpreted modulo2pi."
+      ],
+      "normalized_actual_instance_count": 3,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_complex_quotient_real_scaled",
+        "CatalogValues.returned_complex_quotient_imag_scaled",
+        "CatalogValues.returned_complex_quotient_norm_scaled_residual"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logAngle_div"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [
+        {
+          "id": "log_angle_quotient_magnitude",
+          "status": "within_numerical_tolerance",
+          "actual_value": 2.220446049250313e-16,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Coordinate arithmetic does not prove logarithm/angle theorem or branch handling; fresh full theorem required.",
+      "remaining_obligations": [
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7158,
+      "name": "logAngle_mul",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7158,
+        "name": "logAngle_mul",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Complex coordinate/norm product and actual approximate logarithmic magnitude observation.",
+      "necessary_domains": [
+        "Both complex inputs nonzero.",
+        "Angle equality interpreted modulo2pi."
+      ],
+      "normalized_actual_instance_count": 4,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_complex_product_real",
+        "CatalogValues.returned_complex_product_imag",
+        "CatalogValues.returned_complex_product_norm_squared",
+        "CatalogValues.returned_complex_norm_product_residual"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logAngle_mul"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [
+        {
+          "id": "log_angle_product_magnitude",
+          "status": "within_numerical_tolerance",
+          "actual_value": 2.220446049250313e-16,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Coordinate arithmetic is only algebraic portion; full real logarithm/angle theorem needs fresh check.",
+      "remaining_obligations": [
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7157,
+      "name": "logPolar_injective",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7157,
+        "name": "logPolar_injective",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Polarity component and one exp/log magnitude reconstruction observation.",
+      "necessary_domains": [
+        "Real input nonzero; polarity lives inZMod2."
+      ],
+      "normalized_actual_instance_count": 2,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_polarity_add_1_1",
+        "CatalogValues.returned_polarity_add_1_0"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logPolar_injective"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [
+        {
+          "id": "log_polar_reconstruction",
+          "status": "within_numerical_tolerance",
+          "actual_value": 0,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "A reconstruction sample is not injectivity; fresh quantified theorem required.",
+      "remaining_obligations": [
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7156,
+      "name": "logPolar_div",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7156,
+        "name": "logPolar_div",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "ZMod2 polarity and actual log magnitude quotient observation.",
+      "necessary_domains": [
+        "Both real inputs nonzero."
+      ],
+      "normalized_actual_instance_count": 2,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_polarity_add_1_1",
+        "CatalogValues.returned_polarity_add_1_0"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logPolar_div"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [
+        {
+          "id": "log_polar_division",
+          "status": "within_numerical_tolerance",
+          "actual_value": -2.220446049250313e-16,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Fresh real log-polar theorem and separate numerical implementation bounds required.",
+      "remaining_obligations": [
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7155,
+      "name": "logPolar_mul",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7155,
+        "name": "logPolar_mul",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "ZMod2 polarity and actual log magnitude product observation.",
+      "necessary_domains": [
+        "Both real inputs nonzero."
+      ],
+      "normalized_actual_instance_count": 2,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_polarity_add_1_1",
+        "CatalogValues.returned_polarity_add_1_0"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.logPolar_mul"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [
+        {
+          "id": "log_polar_multiplication",
+          "status": "within_numerical_tolerance",
+          "actual_value": 2.220446049250313e-16,
+          "formally_certified": false
+        }
+      ],
+      "original_review_gap": "Fresh real log-polar theorem and separate numerical implementation bounds required.",
+      "remaining_obligations": [
+        "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values."
+      ],
+      "remaining_gap": "Certify each actual returned approximation with a justified error interval, or preserve the recorded unsupported/error result; algebraic identities alone do not certify returned floating-point values.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7154,
+      "name": "sub_eq_add_halfTurn",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7154,
+        "name": "sub_eq_add_halfTurn",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Cartesian subtraction as addition of negated coordinate.",
+      "necessary_domains": [
+        "Complex vector arithmetic; exp(i*pi)=-1 bridge."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_subtract_as_half_turn"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.sub_eq_add_halfTurn"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "Integer coordinate instance omits complex exponential identity; full theorem source is available for fresh checking.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7153,
+      "name": "quarter_quarter",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7153,
+        "name": "quarter_quarter",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Both Cartesian coordinates of i*i=-1.",
+      "necessary_domains": [
+        "Imaginary unit i^2=-1."
+      ],
+      "normalized_actual_instance_count": 2,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_quarter_turn_twice_real",
+        "CatalogValues.returned_quarter_turn_twice_imag"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.quarter_quarter"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "Full complex theorem can be freshly imported; provider complex parser support not claimed.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7152,
+      "name": "neg_eq_halfTurn",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7152,
+        "name": "neg_eq_halfTurn",
+        "category": "algebra",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Cartesian coordinate sign flip.",
+      "necessary_domains": [
+        "Complex exp(i*pi)=-1."
+      ],
+      "normalized_actual_instance_count": 1,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_half_turn_real"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "VectorArithmetic.neg_eq_halfTurn"
+      ],
+      "source_keys": [
+        "vector"
+      ],
+      "observations": [],
+      "original_review_gap": "Sign flip does not certify numerical complex exponential evaluation; full theorem source is available.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7151,
+      "name": "depth_seven_class",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7151,
+        "name": "depth_seven_class",
+        "category": "core",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Actual selected depth7 totient chain plus independent local enumeration215/min83/max1458.",
+      "necessary_domains": [
+        "tdepth(0)=tdepth(1)=0; otherwise Euler-totient descent."
+      ],
+      "normalized_actual_instance_count": 7,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_totient_2",
+        "CatalogValues.returned_totient_1458",
+        "CatalogValues.returned_totient_486",
+        "CatalogValues.returned_totient_162",
+        "CatalogValues.returned_totient_54",
+        "CatalogValues.returned_totient_18",
+        "CatalogValues.returned_totient_6"
+      ],
+      "general_or_supporting_contract_classification": "complete_original_finite_classification",
+      "fresh_theorem_roots": [
+        "TotientDepth.depth_seven_values",
+        "TotientDepth.depth_seven_class"
+      ],
+      "source_keys": [
+        "totient"
+      ],
+      "observations": [],
+      "original_review_gap": "Archived depth_seven_class uses native_decide. It must not pass a no-native_decide gate without a replacement kernel proof; local enumeration is separate from API outputs.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7150,
+      "name": "depth_seven_band",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7150,
+        "name": "depth_seven_band",
+        "category": "core",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Upper endpoint1458 traversed by explicit prime-factor totient formula.",
+      "necessary_domains": [
+        "Natural n; theorem quantifies all n with depth7 and all n>1458."
+      ],
+      "normalized_actual_instance_count": 7,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_totient_2",
+        "CatalogValues.returned_totient_1458",
+        "CatalogValues.returned_totient_486",
+        "CatalogValues.returned_totient_162",
+        "CatalogValues.returned_totient_54",
+        "CatalogValues.returned_totient_18",
+        "CatalogValues.returned_totient_6"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "TotientDepth.depth_seven_band"
+      ],
+      "source_keys": [
+        "totient"
+      ],
+      "observations": [],
+      "original_review_gap": "Endpoint instance does not prove band/universal lower bound; import exact source theorem freshly.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7149,
+      "name": "weights_360_361",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7149,
+        "name": "weights_360_361",
+        "category": "core",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Actual totient chains for360,361 and source-defined Shapiro weight arithmetic.",
+      "necessary_domains": [
+        "Weights wt recursively defined from prime-factorization of p-1."
+      ],
+      "normalized_actual_instance_count": 14,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_totient_360",
+        "CatalogValues.returned_totient_96",
+        "CatalogValues.returned_totient_32",
+        "CatalogValues.returned_totient_16",
+        "CatalogValues.returned_totient_8",
+        "CatalogValues.returned_totient_4",
+        "CatalogValues.returned_totient_2",
+        "CatalogValues.returned_totient_361",
+        "CatalogValues.returned_totient_342",
+        "CatalogValues.returned_totient_108",
+        "CatalogValues.returned_totient_36",
+        "CatalogValues.returned_totient_12",
+        "CatalogValues.returned_shapiro_weight_360",
+        "CatalogValues.returned_shapiro_weight_361"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_concrete_weight_depth_theorem",
+      "fresh_theorem_roots": [
+        "TotientDepth.weights_360_361"
+      ],
+      "source_keys": [
+        "totient"
+      ],
+      "observations": [],
+      "original_review_gap": "Prime-factor/domain proofs and source-defined recursive weight semantics need fresh theorem binding; base constants are stated hypotheses.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7148,
+      "name": "tdepth_two_pow",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7148,
+        "name": "tdepth_two_pow",
+        "category": "core",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Actual totient chain128=2^7 down to1.",
+      "necessary_domains": [
+        "k>=1; tdepth(2^k)=k."
+      ],
+      "normalized_actual_instance_count": 7,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_totient_32",
+        "CatalogValues.returned_totient_16",
+        "CatalogValues.returned_totient_8",
+        "CatalogValues.returned_totient_4",
+        "CatalogValues.returned_totient_2",
+        "CatalogValues.returned_totient_128",
+        "CatalogValues.returned_totient_64"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "TotientDepth.tdepth_two_pow"
+      ],
+      "source_keys": [
+        "totient"
+      ],
+      "observations": [],
+      "original_review_gap": "One chain exercises the theorem instance; universal induction theorem needs fresh checking.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    },
+    {
+      "formula_id": 7147,
+      "name": "tdepth_two_mul_three_pow",
+      "catalog_status_is_only_a_label": "verified",
+      "original_catalog_record": {
+        "id": 7147,
+        "name": "tdepth_two_mul_three_pow",
+        "category": "core",
+        "status": "verified",
+        "phase": 0,
+        "project": "Aristotle",
+        "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+        "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+        "verifiedAt": "2026-10-02T02:48:38.464576"
+      },
+      "normalized_model": "Actual totient chain1458=2*3^6 down to1.",
+      "necessary_domains": [
+        "k is a natural number."
+      ],
+      "normalized_actual_instance_count": 7,
+      "normalized_actual_instance_roots": [
+        "CatalogValues.returned_totient_2",
+        "CatalogValues.returned_totient_1458",
+        "CatalogValues.returned_totient_486",
+        "CatalogValues.returned_totient_162",
+        "CatalogValues.returned_totient_54",
+        "CatalogValues.returned_totient_18",
+        "CatalogValues.returned_totient_6"
+      ],
+      "general_or_supporting_contract_classification": "fresh_primary_general_theorem",
+      "fresh_theorem_roots": [
+        "TotientDepth.tdepth_two_mul_three_pow"
+      ],
+      "source_keys": [
+        "totient"
+      ],
+      "observations": [],
+      "original_review_gap": "One chain exercises the theorem instance; universal theorem requires fresh checking.",
+      "remaining_obligations": [],
+      "remaining_gap": "No remaining gap in the linked mathematical statement; no deployed implementation refinement is claimed.",
+      "implementation_refinement_obligation": "Any deployment-correctness claim requires a separate source-to-specification refinement theorem; pure catalogue theorems do not assert a native executable endpoint.",
+      "deployment_or_full_catalog_implementation_proved": false
+    }
+  ],
+  "source_bindings": {
+    "rns": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/LatticeCalc.Verified.RNS.lean",
+      "sha256": "10d4811738b169fe4e0f0b95a82097a53decd46f8c15a1f970b28357d6bc6f20",
+      "declarations": [
+        "capacity",
+        "decodeSigned_encode",
+        "encode_add",
+        "encode_mul"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "abacus": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/LatticeCalc.Verified.AbacusSystem.lean",
+      "sha256": "b3375c05129f58186f66d197228de428edc126dc46019d99a031991c2d4c6a73",
+      "declarations": [
+        "Formula.onRod_spec",
+        "Abacus.runSys_enc",
+        "Abacus.relation_iff",
+        "Abacus.runProg_spec"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "jump": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/LatticeCalc.Verified.RodJump.lean",
+      "sha256": "5a7e43cf71cc6a132918aa1d100fd0bb73e8a25f501670f1cd7b21eb6ee20e87",
+      "declarations": [
+        "powSq_eq",
+        "iterate_eq_pow",
+        "pow_mulVec_cast",
+        "soddyU",
+        "soddy_state"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "eisenstein": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/RequestProject.EisensteinInt.lean",
+      "sha256": "3c2cb4befbd68c821e93b88e933859b97b1dfcdc5b3ea47c71af70cae948acbe",
+      "declarations": [
+        "Eis",
+        "norm"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "hex": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/LatticeCalc.Verified.HexBase.lean",
+      "sha256": "72e3b1a34befeb6cfc2e3315b89846e8833066d4964d605457ccd80cc00f7f44",
+      "declarations": [
+        "ball_residue_injective",
+        "ball_residue_surjective",
+        "hexdist_C"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "vector": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/RequestProject.VectorArithmetic.lean",
+      "sha256": "741bbc9ce2fbcba725adab68f14d8b74a0d7f81ee169e6d038199d5348e9a6cc",
+      "declarations": [
+        "neg_eq_halfTurn",
+        "quarter_quarter",
+        "sub_eq_add_halfTurn",
+        "logPolar_mul",
+        "logPolar_div",
+        "logPolar_injective",
+        "logAngle_mul",
+        "logAngle_div",
+        "logAngle_injective",
+        "no_mul_to_add_with_zero",
+        "no_single_encoding"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    },
+    "totient": {
+      "path": "/source/user/Desktop/BTC MINER/validation/archive-audit/resident-full/RequestProject.TotientDepth.lean",
+      "sha256": "008889be1062ed395f67d2fd58beebd1dc133c885a6a4de43cafee12744687b6",
+      "declarations": [
+        "tdepth",
+        "wt",
+        "A",
+        "tdepth_two_mul_three_pow",
+        "tdepth_two_pow",
+        "weights_360_361",
+        "depth_seven_band",
+        "depth_seven_class"
+      ],
+      "role": "Primary authored mathematical source, read only; not a proof that this snapshot is deployed.",
+      "execution_warning": "Trailing run_cmd archive-writing commands are not executed by this builder."
+    }
+  },
+  "floor_semantics": "Int Euclidean division for positive divisors; signed intermediates are preserved.",
+  "catalog_source": {
+    "path": "../evidence/catalog.json",
+    "sha256": "da20b70d4b66eae04d5a7c0ec0ba642f693a6cf589ed08674a87b807a23b86c7",
+    "fetched_at": "2026-10-07T17:29:32.175490+00:00",
+    "count": 39
+  }
+}

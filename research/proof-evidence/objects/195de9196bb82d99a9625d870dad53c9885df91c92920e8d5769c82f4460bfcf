@@ -1,0 +1,53 @@
+# Calculator API support for the miner proof repair
+
+## Context and contract
+
+This records live provider discovery and finite arithmetic evidence supporting the RodCircles, RodScaling, and TowerCollapse repair. The repair MUST rely on fresh Lean kernel checks for theorem acceptance. Provider status labels, runtime boundary flags, and scalar calculations MAY guide proof decomposition; they MUST NOT replace a universal proof or weaken its hypotheses. Read the parent repair plan and source contracts before changing the theorem statements.
+
+## Live status
+
+- Checked: 2026-10-07T19:12:50.920394+00:00 through 2026-10-07T19:13:11.286806+00:00.
+- Authorized login and formula discovery succeeded. No provider issue, formula, or status mutations were performed.
+- The catalog still exposes 39 formulas: 16 verified labels, 15 review, 8 draft.
+- Public OpenAPI, AsyncAPI, and capability documentation are unchanged from the existing October 7 snapshots.
+- No new Lean proof or proof-certificate endpoint is documented.
+- Searches for conic, tower, scaling, and lift returned no formulas. Circle returned the unrelated hex-shell population formula.
+
+## Relevant formulas
+
+| ID | Formula | Relevance and limitation |
+|---|---|---|
+| 7173 | rod_pow | Per-rod square-and-multiply suggests bounded modular exponent witnesses; review, NO_CODE. |
+| 7180 | order_law_lcm_rods | The CRT order identity motivates tower period decomposition; review, NO_CODE. Unit hypotheses must be retained. |
+| 7177 | linrec_jump | Repeated squaring for recurrence matrices; does not supply conic counts or lifting. |
+| 7174 | garner_readback | CRT reconstruction context; catalog itself says theorem not found / UNPROVEN. |
+| 7170 | crt_capacity_law | Capacity context, unrelated to a proof of prime-square conic cardinality. |
+| 7171 / 7172 | rod_add / rod_mul | Scalar modular building blocks; no fresh implementation proof exposed. |
+
+Full returned definitions and notes are preserved in [api-support.json](api-support.json).
+
+## Finite calculator crosschecks
+
+Each expected value below was independently computed using Python arbitrary-precision multiplication. All five service calls returned HTTP 200 and the matching exact integer. These products do not prove that the relevant circle point counts equal the products.
+
+| Expression | Returned value |
+|---|---|
+| `11*12` | 132 |
+| `19*18` | 342 |
+| `11*19*71*97*109` | 156892747 |
+| `12*20*72*96*108` | 179159040 |
+| `12*18*72*96*108` | 161243136 |
+
+The distinction between the last two products is material: replacing a factor 20 with 18 changes the result from 179159040 to 161243136. The intended formula and circle definitions must decide which product applies.
+
+## Contract hashes
+
+| Current document | SHA-256 |
+|---|---|
+| [living_openapi.json](https://provider.invalid/api/docs/living_openapi.json) | `5170c00cee2a4fbe18f01acb28a0ba0be06a75b1b519638d3a3ad2b1a677ba29` |
+| [living_asyncapi.json](https://provider.invalid/api/docs/living_asyncapi.json) | `4a5f071428dd200cc5e2c49a889bf02d5a1eefa08e8d02fa0bb2e2abb2869f0f` |
+| [living_api_capability_report.md](https://provider.invalid/api/docs/living_api_capability_report.md) | `f504c51654479c5ed45c256f7149126e092c0e2a45e7d2aa83e7f5899bf0becd` |
+
+Evidence JSON SHA-256: `e6edff1c11592104927bda8d34ae9557dad027a652ee41906e53344682c7a7ed`.
+
+The service provides useful arithmetic checks and catalog relationships, but no newly exposed result resolves these missing proofs. Use the local source-bound proof modules for final acceptance.

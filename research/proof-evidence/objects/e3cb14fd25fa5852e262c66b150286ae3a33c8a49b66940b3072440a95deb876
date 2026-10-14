@@ -1,0 +1,326 @@
+module
+
+public import Mathlib.NumberTheory.LucasPrimality
+public import Mathlib.Data.Nat.Sqrt
+public import Mathlib.Data.Nat.Size
+public import Mathlib.Data.Nat.Factors
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Push
+public import Mathlib.Tactic.Zify
+public import Mathlib.Tactic.Tauto
+public import Mathlib.Tactic.SplitIfs
+
+-- REPAIR CONTRACT: imports are restricted to the prerequisites used below.
+-- MUST preserve every definition and theorem body from the pinned historical source.
+-- SHALL rebuild this complete dependency before TowerCollapse; see ../../../MASTER_PLAN.md.
+
+/-!
+# Modular powers, integer square roots and deterministic primality, proved
+
+Everything in this file is deterministic and exact; nothing is probabilistic.
+
+* `powmod_eq`: left-to-right binary exponentiation (square, then multiply when the bit is set,
+  reducing mod `m` after every product) computes `aᵉ mod m`.
+* `isqrt_eq`: Newton's iteration `x ↦ ⌊(⌊a/x⌋ + x)/2⌋`, started at `2^⌈bits(a)/2⌉` and stopped
+  as soon as it fails to decrease, computes `⌊√a⌋` exactly.
+* **Deterministic primality by trial division**: `isPrime_iff`: `isPrime n = true ↔ n` is prime.
+  The test divides by every `d` with `2 ≤ d ≤ ⌊√n⌋`, where `⌊√n⌋` is computed by `isqrt`.
+* **Deterministic primality certificates (Pratt / Lucas)**: a certificate is a list of entries
+  `(p, a, q₁ … qₖ)` stating that `q₁ ⋯ qₖ = p − 1`, `aᵖ⁻¹ ≡ 1` and `a^((p−1)/qᵢ) ≢ 1 (mod p)`,
+  each `qᵢ` certified by an earlier entry.  Checking one takes only modular exponentiations.
+  - `checkCert_sound`: every number a valid certificate lists is prime.
+  - `exists_cert`: every prime has a valid certificate.
+  - `prime_iff_exists_cert`: `n` is prime exactly when some certificate for `n` checks.
+-/
+
+@[expose] public section
+
+namespace LatticeCalc.Verified
+
+/-! ## Binary exponentiation -/
+
+/-- The binary digits of `n`, most significant first (empty for `0`), i.e. the order in which
+the library walks through the exponent's bits. -/
+def bitsMSB : ℕ → List Bool
+  | 0 => []
+  | n + 1 => bitsMSB ((n + 1) / 2) ++ [(n + 1) % 2 == 1]
+decreasing_by omega
+
+/-- Reading bits most significant first. -/
+def bitsVal (bs : List Bool) : ℕ := bs.foldl (fun v b => 2 * v + if b then 1 else 0) 0
+
+theorem bitsVal_bitsMSB (n : ℕ) : bitsVal (bitsMSB n) = n := by
+  induction n using Nat.strong_induction_on with
+  | _ n ih =>
+    rcases n with _ | n
+    · simp [bitsMSB, bitsVal]
+    · rw [bitsMSB, bitsVal, List.foldl_append, ← bitsVal, ih _ (by omega)]
+      simp only [List.foldl_cons, List.foldl_nil]
+      split_ifs with h <;> simp at h <;> omega
+
+/-- The square-and-multiply loop over the bits. -/
+def powmodLoop (m base : ℤ) : List Bool → ℤ → ℤ
+  | [], acc => acc
+  | b :: bs, acc =>
+    let acc := acc * acc % m
+    powmodLoop m base bs (if b then acc * base % m else acc)
+
+/-- `aᵉ mod m` as the library computes it. -/
+def powmod (a : ℤ) (e : ℕ) (m : ℤ) : ℤ := powmodLoop m (a % m) (bitsMSB e) (1 % m)
+
+lemma powmodLoop_spec (a m : ℤ) (bs : List Bool) (v : ℕ) :
+    powmodLoop m (a % m) bs (a ^ v % m) =
+      a ^ (bs.foldl (fun v b => 2 * v + if b then 1 else 0) v) % m := by
+  induction bs generalizing v with
+  | nil => rfl
+  | cons b bs ih =>
+    simp only [powmodLoop, List.foldl_cons]
+    have h2 : a ^ v % m * (a ^ v % m) % m = a ^ (2 * v) % m := by
+      rw [← Int.mul_emod, ← pow_add, two_mul]
+    rw [h2]
+    split_ifs
+    · have : a ^ (2 * v) % m * (a % m) % m = a ^ (2 * v + 1) % m := by
+        rw [← Int.mul_emod, pow_succ]
+      rw [this, ih]
+    · rw [ih]; simp
+
+/-- **Modular exponentiation is exact**: `powmod a e m = aᵉ mod m`. -/
+theorem powmod_eq (a : ℤ) (e : ℕ) (m : ℤ) : powmod a e m = a ^ e % m := by
+  unfold powmod
+  have := powmodLoop_spec a m (bitsMSB e) 0
+  rw [pow_zero] at this
+  rw [this]
+  have h := bitsVal_bitsMSB e
+  unfold bitsVal at h
+  rw [h]
+
+/-! ## Integer square root by Newton's method -/
+
+/-- Newton's loop: step to `y = ⌊(⌊a/x⌋ + x)/2⌋` while that decreases. -/
+def newtonLoop (a x : ℕ) : ℕ :=
+  if (a / x + x) / 2 < x then newtonLoop a ((a / x + x) / 2) else x
+termination_by x
+decreasing_by exact ‹_›
+
+/-- The integer square root as the library computes it: Newton's loop from `2^⌈bits(a)/2⌉`. -/
+def isqrt (a : ℕ) : ℕ := if a = 0 then 0 else newtonLoop a (2 ^ ((Nat.size a + 1) / 2))
+
+/-- A Newton step never goes below `⌊√a⌋` (integer AM–GM). -/
+lemma sqrt_le_newton_step (a x : ℕ) (hx : 0 < x) : Nat.sqrt a ≤ (a / x + x) / 2 := by
+  set s := Nat.sqrt a
+  have hs : s * s ≤ a := Nat.sqrt_le a
+  rw [Nat.le_div_iff_mul_le (by norm_num)]
+  by_cases h : 2 * s ≤ x
+  · calc s * 2 ≤ x := by omega
+      _ ≤ a / x + x := Nat.le_add_left _ _
+  · push_neg at h
+    have key : (2 * s - x) * x ≤ s * s := by
+      zify [h.le]
+      nlinarith [sq_nonneg ((s : ℤ) - x)]
+    have h1 : 2 * s - x ≤ s * s / x := (Nat.le_div_iff_mul_le hx).2 key
+    have h2 : s * s / x ≤ a / x := Nat.div_le_div_right hs
+    omega
+
+/-- Above `⌊√a⌋` a Newton step strictly decreases. -/
+lemma newton_step_lt (a x : ℕ) (hx : Nat.sqrt a < x) : (a / x + x) / 2 < x := by
+  have hxx : a < x * x :=
+    calc a < (Nat.sqrt a + 1) * (Nat.sqrt a + 1) := Nat.lt_succ_sqrt a
+      _ ≤ x * x := Nat.mul_le_mul hx hx
+  have : a / x < x := (Nat.div_lt_iff_lt_mul (by omega)).2 hxx
+  omega
+
+lemma newtonLoop_eq (a x : ℕ) (hx : Nat.sqrt a ≤ x) : newtonLoop a x = Nat.sqrt a := by
+  induction x using Nat.strong_induction_on with
+  | _ x ih =>
+    rw [newtonLoop]
+    split_ifs with h
+    · exact ih _ h (sqrt_le_newton_step a x (Nat.pos_of_ne_zero (by rintro rfl; simp at h)))
+    · by_contra hne
+      exact h (newton_step_lt a x (lt_of_le_of_ne hx (Ne.symm hne)))
+
+/-- **Integer square root is exact**: `isqrt a = ⌊√a⌋`. -/
+theorem isqrt_eq (a : ℕ) : isqrt a = Nat.sqrt a := by
+  unfold isqrt
+  split_ifs with h
+  · subst h; rfl
+  · apply newtonLoop_eq
+    apply le_of_lt
+    rw [Nat.sqrt_lt']
+    calc a < 2 ^ Nat.size a := Nat.lt_size_self a
+      _ ≤ 2 ^ (2 * ((Nat.size a + 1) / 2)) := Nat.pow_le_pow_right (by norm_num) (by omega)
+      _ = (2 ^ ((Nat.size a + 1) / 2)) ^ 2 := by rw [← pow_mul, mul_comm]
+
+/-! ## Deterministic primality by trial division -/
+
+/-- **Deterministic primality test**: `n ≥ 2` and no `d` with `2 ≤ d ≤ ⌊√n⌋` divides `n`. -/
+def isPrime (n : ℕ) : Bool :=
+  decide (2 ≤ n) && (List.range' 2 (isqrt n - 1)).all (fun d => n % d != 0)
+
+/-- **The trial-division test is exact**: it answers `true` exactly for the primes. -/
+theorem isPrime_iff (n : ℕ) : isPrime n = true ↔ n.Prime := by
+  rw [Nat.prime_def_le_sqrt, isPrime, isqrt_eq]
+  simp only [Bool.and_eq_true, decide_eq_true_eq, List.all_eq_true, List.mem_range',
+    bne_iff_ne, ne_eq]
+  constructor
+  · rintro ⟨h2, h⟩
+    refine ⟨h2, fun m hm hms hdvd => ?_⟩
+    exact h m ⟨m - 2, by omega, by omega⟩ (Nat.mod_eq_zero_of_dvd hdvd)
+  · rintro ⟨h2, h⟩
+    refine ⟨h2, fun d ⟨i, hi, hd⟩ hmod => ?_⟩
+    exact h d (by omega) (by omega) (Nat.dvd_of_mod_eq_zero hmod)
+
+/-! ## Deterministic primality certificates (Pratt / Lucas) -/
+
+/-- One line of a primality certificate: the claim that `p` is prime, with witness `a` and the
+prime factors `qs` of `p − 1` listed with multiplicity. -/
+structure PrattEntry where
+  p : ℕ
+  a : ℕ
+  qs : List ℕ
+  deriving DecidableEq, Repr
+
+/-- Check one line, given the list `known` of numbers already certified prime. -/
+def checkEntry (known : List ℕ) (e : PrattEntry) : Bool :=
+  decide (2 ≤ e.p) && e.qs.prod == e.p - 1 && e.qs.all (fun q => decide (q ∈ known)) &&
+    powmod e.a (e.p - 1) e.p == 1 &&
+    e.qs.all (fun q => powmod e.a ((e.p - 1) / q) e.p != 1)
+
+/-- Check a whole certificate, line by line; each line may use the primes certified above it. -/
+def checkCert : List ℕ → List PrattEntry → Bool
+  | _, [] => true
+  | known, e :: es => checkEntry known e && checkCert (e.p :: known) es
+
+/-- `cert` certifies that `n` is prime. -/
+def Certifies (cert : List PrattEntry) (n : ℕ) : Prop :=
+  checkCert [] cert = true ∧ n ∈ cert.map PrattEntry.p
+
+lemma powmod_nat_eq_one_iff (a k p : ℕ) (hp : 2 ≤ p) :
+    powmod a k p = 1 ↔ ((a : ZMod p) ^ k = 1) := by
+  have : Fact (1 < p) := ⟨hp⟩
+  rw [powmod_eq]
+  have e1 : ((a : ℤ) ^ k % (p : ℤ)) = ((a ^ k % p : ℕ) : ℤ) := by push_cast; rfl
+  rw [e1]
+  constructor
+  · intro h
+    have h' : a ^ k % p = 1 := by exact_mod_cast h
+    rw [← Nat.cast_pow, ← ZMod.natCast_mod, h', Nat.cast_one]
+  · intro h
+    have := congrArg ZMod.val h
+    rw [← Nat.cast_pow, ZMod.val_natCast, ZMod.val_one] at this
+    rw [this]; rfl
+
+/-- **A checked line is correct**: if every number in `known` is prime, a line that checks
+states a prime. -/
+theorem checkEntry_sound (known : List ℕ) (e : PrattEntry) (hk : ∀ q ∈ known, q.Prime)
+    (h : checkEntry known e = true) : e.p.Prime := by
+  simp only [checkEntry, Bool.and_eq_true, decide_eq_true_eq, beq_iff_eq, List.all_eq_true,
+    bne_iff_ne, ne_eq] at h
+  obtain ⟨⟨⟨⟨hp2, hprod⟩, hqs⟩, hpow⟩, hord⟩ := h
+  have hqprime : ∀ q ∈ e.qs, q.Prime := fun q hq => hk q (hqs q hq)
+  apply lucas_primality e.p (e.a : ZMod e.p) ((powmod_nat_eq_one_iff _ _ _ hp2).1 hpow)
+  intro q hq hdvd
+  rw [← hprod] at hdvd
+  obtain ⟨r, hr, hqr⟩ := (Prime.dvd_prod_iff hq.prime).1 hdvd
+  have : q = r := (Nat.prime_dvd_prime_iff_eq hq (hqprime r hr)).1 hqr
+  subst this
+  intro h1
+  exact hord q hr ((powmod_nat_eq_one_iff _ _ _ hp2).2 h1)
+
+theorem checkCert_sound_aux (cert : List PrattEntry) :
+    ∀ known : List ℕ, (∀ q ∈ known, q.Prime) → checkCert known cert = true →
+      ∀ e ∈ cert, e.p.Prime := by
+  induction cert with
+  | nil => simp
+  | cons e es ih =>
+    intro known hk h
+    simp only [checkCert, Bool.and_eq_true] at h
+    have he := checkEntry_sound known e hk h.1
+    intro f hf
+    rcases List.mem_cons.1 hf with rfl | hf
+    · exact he
+    · exact ih (e.p :: known) (by simpa [he] using hk) h.2 f hf
+
+/-- **Soundness of certificates**: every number listed by a valid certificate is prime. -/
+theorem checkCert_sound {cert : List PrattEntry} {n : ℕ} (h : Certifies cert n) : n.Prime := by
+  obtain ⟨hc, hn⟩ := h
+  obtain ⟨e, he, rfl⟩ := List.mem_map.1 hn
+  exact checkCert_sound_aux cert [] (by simp) hc e he
+
+lemma checkEntry_mono {K K' : List ℕ} (hK : ∀ x ∈ K, x ∈ K') (e : PrattEntry)
+    (h : checkEntry K e = true) : checkEntry K' e = true := by
+  simp only [checkEntry, Bool.and_eq_true, decide_eq_true_eq, List.all_eq_true] at h ⊢
+  exact ⟨⟨⟨⟨h.1.1.1.1, h.1.1.1.2⟩, fun q hq => hK q (h.1.1.2 q hq)⟩, h.1.2⟩, h.2⟩
+
+lemma checkCert_mono (cert : List PrattEntry) :
+    ∀ {K K' : List ℕ}, (∀ x ∈ K, x ∈ K') → checkCert K cert = true → checkCert K' cert = true := by
+  induction cert with
+  | nil => simp [checkCert]
+  | cons e es ih =>
+    intro K K' hK h
+    simp only [checkCert, Bool.and_eq_true] at h ⊢
+    exact ⟨checkEntry_mono hK e h.1, ih (by intro x hx; simp at hx ⊢; tauto) h.2⟩
+
+lemma checkCert_append (c1 c2 : List PrattEntry) :
+    ∀ K, checkCert K (c1 ++ c2) = (checkCert K c1 && checkCert ((c1.map PrattEntry.p).reverse ++ K) c2) := by
+  induction c1 with
+  | nil => simp [checkCert]
+  | cons e es ih =>
+    intro K
+    simp only [List.cons_append, checkCert, ih, List.map_cons, List.reverse_cons,
+      List.append_assoc, Bool.and_assoc, List.cons_append, List.nil_append]
+
+/-- Certificates for several primes combine into one certificate for all of them. -/
+lemma exists_cert_list (qs : List ℕ) (h : ∀ q ∈ qs, ∃ c, Certifies c q) :
+    ∃ c, checkCert [] c = true ∧ ∀ q ∈ qs, q ∈ c.map PrattEntry.p := by
+  induction qs with
+  | nil => exact ⟨[], rfl, by simp⟩
+  | cons q qs ih =>
+    obtain ⟨c1, hc1, hq1⟩ := ih (fun r hr => h r (List.mem_cons_of_mem _ hr))
+    obtain ⟨c2, hc2, hq2⟩ := h q List.mem_cons_self
+    refine ⟨c1 ++ c2, ?_, ?_⟩
+    · rw [checkCert_append, hc1, Bool.true_and]
+      exact checkCert_mono c2 (fun x hx => by simp at hx) hc2
+    · intro r hr
+      rcases List.mem_cons.1 hr with rfl | hr
+      · simp [hq2]
+      · simp only [List.map_append, List.mem_append]; exact Or.inl (hq1 r hr)
+
+/-- **Completeness of certificates**: every prime has a valid certificate. -/
+theorem exists_cert (p : ℕ) (hp : p.Prime) : ∃ c, Certifies c p := by
+  induction p using Nat.strong_induction_on with
+  | _ p ih =>
+    have hp2 := hp.two_le
+    obtain ⟨a, ha, hord⟩ := reverse_lucas_primality p hp
+    set qs := (p - 1).primeFactorsList
+    have hqs : ∀ q ∈ qs, q.Prime := fun q hq => Nat.prime_of_mem_primeFactorsList hq
+    have hqlt : ∀ q ∈ qs, q < p := fun q hq =>
+      lt_of_le_of_lt (Nat.le_of_mem_primeFactorsList hq) (by omega)
+    obtain ⟨c, hc, hmem⟩ := exists_cert_list qs (fun q hq => ih q (hqlt q hq) (hqs q hq))
+    let e : PrattEntry := ⟨p, a.val, qs⟩
+    refine ⟨c ++ [e], ?_, by simp [e]⟩
+    rw [checkCert_append, hc, Bool.true_and]
+    simp only [checkCert, Bool.and_true]
+    have : Fact (1 < p) := ⟨hp2⟩
+    have hcast : ((a.val : ℕ) : ZMod p) = a := ZMod.natCast_zmod_val a
+    simp only [checkEntry, e, Bool.and_eq_true, decide_eq_true_eq, beq_iff_eq, List.all_eq_true,
+      bne_iff_ne, ne_eq]
+    refine ⟨⟨⟨⟨hp2, Nat.prod_primeFactorsList (by omega)⟩, fun q hq => ?_⟩, ?_⟩, fun q hq => ?_⟩
+    · simp only [List.mem_append, List.mem_reverse]; left; exact hmem q hq
+    · rw [powmod_nat_eq_one_iff _ _ _ hp2, hcast]; exact ha
+    · rw [powmod_nat_eq_one_iff _ _ _ hp2, hcast]
+      exact hord q (hqs q hq) (Nat.dvd_of_mem_primeFactorsList hq)
+
+/-- **Deterministic certification is exact**: `n` is prime exactly when some certificate for `n`
+checks. -/
+theorem prime_iff_exists_cert (n : ℕ) : n.Prime ↔ ∃ c, Certifies c n :=
+  ⟨exists_cert n, fun ⟨_, h⟩ => checkCert_sound h⟩
+
+/-! ## Checked examples (evaluated by the kernel, no compiled code trusted) -/
+
+example : isPrime 97 = true := by decide +kernel
+example : isPrime 91 = false := by decide +kernel
+example : Certifies [⟨2, 1, []⟩, ⟨3, 2, [2]⟩, ⟨7, 3, [2, 3]⟩] 7 :=
+  ⟨by decide +kernel, by decide⟩
+
+end LatticeCalc.Verified

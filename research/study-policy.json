@@ -1,0 +1,23 @@
+{
+  "objective": "Lossless reduction of candidate space before complete hashing; Q-to-k compression and difficulty scaling are central.",
+  "requirements": [
+    "Never discard a valid candidate in the claimed domain.",
+    "Retain candidates when a solver times out or a proof is incomplete.",
+    "Freeze exclusions before computing reference answers.",
+    "Count complete hashes to first success on retained candidates and the same ordering without pruning.",
+    "Report exhausted no-hit domains separately; do not invent a finite time to success.",
+    "Measure how retained size and verification attempts change with target difficulty, word width, rounds and unknown input bits.",
+    "Account for symbolic constraint work and dictionary/model construction separately.",
+    "Use disjoint training and evaluation headers for probability ranking.",
+    "Every result must state whether it is added to production miner code, research only, rejected or incomplete.",
+    "A toy theorem cannot be treated as a Bitcoin SHA256d theorem without a validated connection."
+  ],
+  "difficulty_ladder_zero_bits": [
+    8,
+    10,
+    12,
+    14
+  ],
+  "scaled_q_modulus": 3024000,
+  "source_request_date": "2026-09-30"
+}

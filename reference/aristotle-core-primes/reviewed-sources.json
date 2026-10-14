@@ -1,0 +1,29 @@
+{
+  "reviewed_at_utc": "2026-09-29T21:16:06.762853+00:00",
+  "task_id": "acfd50e8-1951-4593-986d-30a11b056e92",
+  "sources": {
+    "RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "LatticeCalc/Verified/OrderSplit.lean": "8a5c7ad1f7b2fb1fdeaa2f89625ac70d6987a6cc168f9d6c3251874954f396ea",
+    "LatticeCalc/Verified/PowSqrtPrime.lean": "0951562cb2268aace2e89a3d5712ddb0c2f70143189bacae8d6818aee770c2bc",
+    "CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46"
+  },
+  "implementation": {
+    "btcminer/pqmath.py": "12644df08111af1ec3e81f3f18d081771dea9e7bd1024367bab2071d5c07667b",
+    "btcminer/thesis2.py": "9c71ca766572244fd433da56d62261fe7d4d7f47b3b9f9c6fd74babf8de23b90",
+    "btcminer/coreprimes.py": "6e757e4f02ed07fec837ff5abe8152d32cce4608d523e49ab21237684282ca48",
+    "btcminer/rodmath.py": "3664aedfa87719bd79934e57f899e21d13ad34b860c684f284d237d28a2285d6"
+  },
+  "scope": "Dynamic rods in traversal-prime selection; ellipse and selected core-prime calculations in math inspection. No hash-success predictor or nonce exclusion.",
+  "proof_validation": "See validation/aristotle-current/latest-validation.json; integration is current only if validation passes."
+}

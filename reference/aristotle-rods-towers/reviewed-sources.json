@@ -1,0 +1,49 @@
+{
+  "task_id": "81f0a318-7967-4c28-80cd-dd06e558ae4d",
+  "sources": {
+    "RequestProject/EllipseSearch.lean": "dbde6fa368a4542a5e796c5149e55e3ab4536617878e39cc9d36949a4b8b0d6e",
+    "RequestProject/PQEllipse.lean": "cd243304a065003ddb0f0176474406056ccfc69b6283d74455363cf6c43f9e97",
+    "RequestProject/DynamicRods.lean": "69afaafd61194c93e8fc0a043e3fb340a0c6b2661338b967ae9cafe72b29163a",
+    "LatticeCalc/Rods.lean": "a2a2af45571a5059cfe670f76cededdb4f1d8e0a1f6316cd879678650f1b2dcf",
+    "RequestProject/CorePrimes.lean": "51383114496d60de144fdf712792df7384d5bea59980c1f214ad60c27953e9db",
+    "RequestProject/JacobiTwoSquares.lean": "27b9be9ea5114e6000bae10616bcc1f5f8965d11109176a587f7bfe42306e13b",
+    "RequestProject/DivisorRecursion.lean": "6817226a18846a97b9e397aac911e66e95e801d3df6f612def0287db3e210aa2",
+    "RequestProject/JacobiHex.lean": "dac9e79b9e10fe278e0773447dc89425573bd6249682b78243e937cd2b986305",
+    "RequestProject/EisensteinInt.lean": "5ad1ed8f72043014538267144612538681957df0f7e4e6c2eaaadf172c6bd5b1",
+    "RequestProject/TowerFold.lean": "7a272bd29c3d103316a772d67748474107a0996e1b41433285892a64a24d7654",
+    "RequestProject/UnitsSquareOne.lean": "a89aa1c654b80f548b97aae898c30baea016e940316ddddc7992821488d33a76",
+    "LatticeCalc/Verified/OrderSplit.lean": "8a5c7ad1f7b2fb1fdeaa2f89625ac70d6987a6cc168f9d6c3251874954f396ea",
+    "LatticeCalc/Verified/PowSqrtPrime.lean": "0951562cb2268aace2e89a3d5712ddb0c2f70143189bacae8d6818aee770c2bc",
+    "RequestProject/RodCircles.lean": "55b3bf1b77b74d226c8c1d2a575ffbf310f58fc4e6820a638486efb1bc72acb8",
+    "RequestProject/RodScaling.lean": "c09597469a069fb72029a65568f1e818d6a5c9d6f4500cd767407fd5e9cd761c",
+    "RequestProject/ShellEnrichment.lean": "4a75394afafce2cde35650151ff1d4eae39b16f15d49ff240ce21acb28f65fbc",
+    "RequestProject/TowerCollapse.lean": "3845a902321dff2ff39861ec59c72b1d3553b7a37a8bba0113b9616474a12c9b",
+    "RequestProject/BaseDensity.lean": "cd52283236e465b91b1991958d770c934a6bfe82e03360ef0691f624d4867264",
+    "RequestProject/KeyExponent.lean": "6c47c7b6800302ce2491a1ffaa526e109fcc2d77b053a86d045172ef735047cd",
+    "RequestProject/TemporalLattice.lean": "39f9ab1422407d95af4665c4b6d6846249f143ef61007b5c6187573b42c95cb2",
+    "RequestProject/DualSmooth.lean": "86fc9d0859bfbafe820d35b7bb93b2c3594f51e6738a3886f71fe0cc537a713f",
+    "RequestProject/RodsPrinciple.lean": "5c82bb16d481e5acc4af543373609c4dc8f4cd298d9b6c87139b1d3b5f6fa9c9",
+    "RequestProject/RodOrders.lean": "093abc71e0baf297aff125c5dff0d4da0b4dd06f39f5651cf69eeec73fcc89ba",
+    "CORE_PRIMES.md": "33bb77b1ef00dc729d5150dbb7bbaefcdb161aa46d3328c0d263a3f54be3ab1d",
+    "ELLIPSE_AND_RODS.md": "cf7664d332f32355c56d54604df9b8af6977611191223b6c70c93c86cfa98c46",
+    "RODS_FLOWERS_TOWERS.md": "30198d38a916c4a2d20185be0883f50eefc156723649ffb2ef14fbab42e99eed"
+  },
+  "implementation": {
+    "btcminer/pqmath.py": "12644df08111af1ec3e81f3f18d081771dea9e7bd1024367bab2071d5c07667b",
+    "btcminer/thesis2.py": "9c71ca766572244fd433da56d62261fe7d4d7f47b3b9f9c6fd74babf8de23b90",
+    "btcminer/coreprimes.py": "6e757e4f02ed07fec837ff5abe8152d32cce4608d523e49ab21237684282ca48",
+    "btcminer/rodmath.py": "3664aedfa87719bd79934e57f899e21d13ad34b860c684f284d237d28a2285d6"
+  },
+  "reviewed_at_utc": "2026-09-29T23:06:43.990955+00:00",
+  "scope": "Selected Python ports and diagnostic integration reviewed; formal validation is a separate mandatory monitor gate.",
+  "tests": {
+    "count": 129,
+    "ok": true,
+    "log_sha256": "6e218f9857d557cdf7167e2ddb0aab56b4b258f2d0577b3b91986deea706ce53"
+  },
+  "limitations": [
+    "Python ports are not Lean-extracted or formally verified.",
+    "Shell recurrence geometric interpretation is independently tested, not formally established by the source.",
+    "No nonce exclusions or SHA256d acceleration follow from this math."
+  ]
+}

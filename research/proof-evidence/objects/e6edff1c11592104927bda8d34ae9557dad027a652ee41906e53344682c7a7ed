@@ -1,0 +1,2261 @@
+{
+  "schema": "miner-proof-api-support-v1",
+  "started_at_utc": "2026-10-07T19:12:50.920394+00:00",
+  "base_url": "https://provider.invalid",
+  "scope": "Live discovery and finite scalar crosschecks supporting RodCircles, RodScaling and TowerCollapse. MUST NOT treat provider verified/certified flags or finite values as Lean proofs. No provider issue/formula/status mutations performed. Authentication secret and session token remain memory-only.",
+  "docs": [
+    {
+      "url": "https://provider.invalid/api/docs/living_openapi.json",
+      "http_status": 200,
+      "bytes": 6771,
+      "sha256": "5170c00cee2a4fbe18f01acb28a0ba0be06a75b1b519638d3a3ad2b1a677ba29",
+      "matches_previous_snapshot": true,
+      "previous_snapshot": "/source/user/Desktop/bitcoin-algorithm-observatory-2026-10-07/api-contract/openapi.json",
+      "routes": {
+        "/api/admin/api-keys": {
+          "get": {
+            "summary": "GET /api/admin/api-keys",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          },
+          "post": {
+            "summary": "POST /api/admin/api-keys",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/admin/overview": {
+          "get": {
+            "summary": "GET /api/admin/overview",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/calculate/capabilities": {
+          "get": {
+            "summary": "GET /api/calculate/capabilities",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/formulas": {
+          "get": {
+            "summary": "GET /api/formulas with discovery filters",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            },
+            "description": "Returns user-authorized formulas plus discovery facets for standard solution lookup.",
+            "parameters": [
+              {
+                "name": "q",
+                "in": "query",
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Case-insensitive text search across name, category, project, specification, and notes."
+              },
+              {
+                "name": "category",
+                "in": "query",
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Comma-separated formula categories to include."
+              },
+              {
+                "name": "status",
+                "in": "query",
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Comma-separated formula statuses to include."
+              },
+              {
+                "name": "project",
+                "in": "query",
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Comma-separated project names to include."
+              },
+              {
+                "name": "phase",
+                "in": "query",
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Exact thesis phase filter."
+              },
+              {
+                "name": "limit",
+                "in": "query",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 200
+                },
+                "description": "Maximum returned formulas after filtering."
+              },
+              {
+                "name": "verifiedOnly",
+                "in": "query",
+                "schema": {
+                  "type": "boolean"
+                },
+                "description": "When true, only return verified formulas."
+              }
+            ]
+          }
+        },
+        "/health": {
+          "get": {
+            "summary": "GET /health",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/calculate": {
+          "post": {
+            "summary": "POST /api/calculate",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/requests": {
+          "get": {
+            "summary": "GET /api/requests",
+            "description": "Returns the authenticated user's issue and feature requests from the separate request database.",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          },
+          "post": {
+            "summary": "POST /api/requests",
+            "description": "Creates an issue or feature request for the authenticated user.",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/login": {
+          "post": {
+            "summary": "POST /api/login",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        },
+        "/api/signup": {
+          "post": {
+            "summary": "POST /api/signup",
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "400": {
+                "description": "Bad Request"
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "https://provider.invalid/api/docs/living_asyncapi.json",
+      "http_status": 200,
+      "bytes": 3114,
+      "sha256": "4a5f071428dd200cc5e2c49a889bf02d5a1eefa08e8d02fa0bb2e2abb2869f0f",
+      "matches_previous_snapshot": true,
+      "previous_snapshot": "/source/user/Desktop/bitcoin-algorithm-observatory-2026-10-07/api-contract/asyncapi.json"
+    },
+    {
+      "url": "https://provider.invalid/api/docs/living_api_capability_report.md",
+      "http_status": 200,
+      "bytes": 1950,
+      "sha256": "f504c51654479c5ed45c256f7149126e092c0e2a45e7d2aa83e7f5899bf0becd",
+      "matches_previous_snapshot": true,
+      "previous_snapshot": "/source/user/Desktop/bitcoin-algorithm-observatory-2026-10-07/api-contract/living_api_capability_report.md",
+      "text": "# Living API Capability Report\n\n- source_surface_status: captured\n- rest_endpoint_count: 11\n- websocket_client_message_count: 10\n- websocket_server_message_count: 8\n- websocket_forensic_status: PASS\n- websocket_contract_status: PASS\n\n## REST Endpoints\n\n| method | path |\n|---|---|\n| GET | /api/admin/api-keys |\n| GET | /api/admin/overview |\n| GET | /api/calculate/capabilities |\n| GET | /api/formulas |\n| GET | /api/requests |\n| GET | /health |\n| POST | /api/admin/api-keys |\n| POST | /api/calculate |\n| POST | /api/login |\n| POST | /api/requests |\n| POST | /api/signup |\n\n## Standard Discovery Notes\n\n- `GET /api/formulas` now supports query discovery via `q`, `category`, `status`, `project`, `phase`, `limit`, and `verifiedOnly`.\n- Authenticated users can submit and retrieve issue/feature requests via `POST /api/requests` and `GET /api/requests`, backed by a separate SQLite database keyed by the authenticated user id.\n- WebSocket clients can pair `openSession` with `preloadFormulas` and consume `formulaList`, `forensicEvent`, and `modelSnapshot` to build local modeling interfaces.\n- Formula discovery is bounded by user-linked access control and should be treated as a standard capability surface for solution lookup.\n\n## WebSocket Client Message Types\n\n- cloneAbacus\n- mergeAbacus\n- openSession\n- preloadFormulas\n- requestProperties\n- selectObjects\n- setView\n- submitExpression\n- tapModel\n- updateFormulaStatus\n\n## WebSocket Server Message Types\n\n- abacusState\n- error\n- forensicEvent\n- formulaList\n- modelSnapshot\n- objectProperties\n- runtimeEvent\n- sessionReady\n\n## Evidence Inputs\n\n- Thesis/support/generated/websocket_forensic_audit.json\n- Thesis/support/generated/math_websocket_api_contract_audit.json\n\n## Scope Truth\n\n- This document enumerates exposed capability surface from source and does not claim universal mathematical validity.\n- Release authority must come from gate_living_api_docs.py artifacts, not this source snapshot.\n"
+    }
+  ],
+  "discovery": [
+    {
+      "q": "",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 39,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": [
+          {
+            "id": 9331,
+            "name": "cos(0.785)",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "cos(0.785)",
+            "specification": "cos(0.785)",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7196,
+            "name": "abacus_relation_by_rod",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "decide f = g by comparing the two columns on every rod, with no long number",
+            "specification": "decide f = g by comparing the two columns on every rod, with no long number",
+            "notes": "ABACUS_SYSTEM.md:19; NO_CODE (Thesis/math symbol pending; C name lc_abacus_col_equal covered by 15_clib_cost.jsonl); aggregation of the per-rod tests is a conjunction with early exit",
+            "verifiedAt": null
+          },
+          {
+            "id": 7195,
+            "name": "abacus_program_run",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+            "specification": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+            "notes": "ABACUS_SYSTEM.md:18; NO_CODE (Thesis/math symbol pending); program of steps over slots, later steps reuse earlier results",
+            "verifiedAt": null
+          },
+          {
+            "id": 7194,
+            "name": "abacus_formula_system_run",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+            "specification": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+            "notes": "ABACUS_SYSTEM.md:16-17; NO_CODE (Thesis/math symbol pending; C name lc_abacus_run is covered by 15_clib_cost.jsonl); Lean names opened in AbacusSystem.lean",
+            "verifiedAt": null
+          },
+          {
+            "id": 7181,
+            "name": "soddy_count_recurrence",
+            "category": "geometry",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+            "specification": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); depth-3 linear recurrence. CORRECTION by 14_geometry_lean: Lean soddyB_recurrence is proved by `simp only [soddyB, soddyU]` (SoddyCounts.lean line 49), i.e. by unfolding the defining clause of RodJump.soddyU (RodJump.lean line 80), so its status is RESTATES_DEFINITION; the geometric content is soddy_new_spheres_count",
+            "verifiedAt": null
+          },
+          {
+            "id": 7180,
+            "name": "order_law_lcm_rods",
+            "category": "number_theory",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+            "specification": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7179,
+            "name": "eisenstein_norm",
+            "category": "geometry",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "N(a + b omega) = a^2 - ab + b^2; N(zw) = N(z) N(w)",
+            "specification": "N(a + b omega) = a^2 - ab + b^2; N(zw) = N(z) N(w)",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); norm is multiplicative",
+            "verifiedAt": null
+          },
+          {
+            "id": 7178,
+            "name": "hex_shell_population",
+            "category": "geometry",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+            "specification": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); ring population 6k (CONFLICT-001: code uses 10n^2+2, no source)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7177,
+            "name": "linrec_jump",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+            "specification": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor LINREC; matrix power per rod",
+            "verifiedAt": null
+          },
+          {
+            "id": 7176,
+            "name": "series_geom",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+            "specification": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor GEOM; UNPROVEN",
+            "verifiedAt": null
+          },
+          {
+            "id": 7175,
+            "name": "series_arith",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+            "specification": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor ARITH; UNPROVEN",
+            "verifiedAt": null
+          },
+          {
+            "id": 7174,
+            "name": "garner_readback",
+            "category": "number_theory",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+            "specification": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 1); BOUNDARY only, output cost R(R-1)/2; Lean theorem not found (UNPROVEN)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7173,
+            "name": "rod_pow",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+            "specification": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (pending Wave 1); public exponent only (class PC)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7172,
+            "name": "rod_mul",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+            "specification": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7171,
+            "name": "rod_add",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+            "specification": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7170,
+            "name": "crt_capacity_law",
+            "category": "number_theory",
+            "status": "review",
+            "phase": 1,
+            "project": "Thesis",
+            "expression": "x in (-M/2, M/2] is recovered from its column iff M >= 2B+1 where |x| <= B",
+            "specification": "x in (-M/2, M/2] is recovered from its column iff M >= 2B+1 where |x| <= B",
+            "notes": "Prime Directives 0.2; NO_CODE (a law, enforced by every operation's capacity check)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7169,
+            "name": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+            "specification": "abs(3*4+4*3) + sqrt(5)^2 - 5",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7168,
+            "name": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+            "specification": "sqrt(4^2+13^2+15^2) + sqrt(5)^2 - 5",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7167,
+            "name": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+            "specification": "sum_{k=1}^{9}(k^2) + integral_0^1(t^3 dt) + det([[1,2],[3,5]])",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7166,
+            "name": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+            "specification": "((x1+x2+x3+x4)^2 - (x1^2+x2^2+x3^2+x4^2)) / 2 + pi*phi",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7165,
+            "name": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+            "specification": "((a^3 + b^3 + c^3) / (a + b + c)) + sqrt(144) - ln(7)",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7164,
+            "name": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+            "specification": "sin(x)^2 + cos(x)^2 + tanh(z/3) - exp(-y)",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7163,
+            "name": "2*x+3",
+            "category": "analysis",
+            "status": "draft",
+            "phase": 5,
+            "project": "thesis-web-unknown-formula",
+            "expression": "2*x+3",
+            "specification": "2*x+3",
+            "notes": "auto-registered from submitExpression pending formal proof",
+            "verifiedAt": null
+          },
+          {
+            "id": 7162,
+            "name": "no_single_encoding",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7161,
+            "name": "no_mul_to_add_with_zero",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7160,
+            "name": "logAngle_injective",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7159,
+            "name": "logAngle_div",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7158,
+            "name": "logAngle_mul",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7157,
+            "name": "logPolar_injective",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7156,
+            "name": "logPolar_div",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7155,
+            "name": "logPolar_mul",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7154,
+            "name": "sub_eq_add_halfTurn",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7153,
+            "name": "quarter_quarter",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7152,
+            "name": "neg_eq_halfTurn",
+            "category": "algebra",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "specification": "Aristotle RequestProject theorem declaration from VectorArithmetic.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7151,
+            "name": "depth_seven_class",
+            "category": "core",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7150,
+            "name": "depth_seven_band",
+            "category": "core",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7149,
+            "name": "weights_360_361",
+            "category": "core",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7148,
+            "name": "tdepth_two_pow",
+            "category": "core",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          },
+          {
+            "id": 7147,
+            "name": "tdepth_two_mul_three_pow",
+            "category": "core",
+            "status": "verified",
+            "phase": 0,
+            "project": "Aristotle",
+            "expression": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "specification": "Aristotle RequestProject theorem declaration from TotientDepth.lean",
+            "notes": "Synced from Aristotle latest update (proof declaration, no sorry/admit in RequestProject snapshot).",
+            "verifiedAt": "2026-10-02T02:48:38.464576"
+          }
+        ]
+      }
+    },
+    {
+      "q": "circle",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "circle",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 1,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": [
+          {
+            "id": 7178,
+            "name": "hex_shell_population",
+            "category": "geometry",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+            "specification": "ring k of the hexagonal lattice holds 6k circles; rings 0..n hold 1 + 3n(n+1)",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); ring population 6k (CONFLICT-001: code uses 10n^2+2, no source)",
+            "verifiedAt": null
+          }
+        ]
+      }
+    },
+    {
+      "q": "conic",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "conic",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 0,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": []
+      }
+    },
+    {
+      "q": "tower",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "tower",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 0,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": []
+      }
+    },
+    {
+      "q": "rod",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "rod",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 12,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": [
+          {
+            "id": 7196,
+            "name": "abacus_relation_by_rod",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "decide f = g by comparing the two columns on every rod, with no long number",
+            "specification": "decide f = g by comparing the two columns on every rod, with no long number",
+            "notes": "ABACUS_SYSTEM.md:19; NO_CODE (Thesis/math symbol pending; C name lc_abacus_col_equal covered by 15_clib_cost.jsonl); aggregation of the per-rod tests is a conjunction with early exit",
+            "verifiedAt": null
+          },
+          {
+            "id": 7195,
+            "name": "abacus_program_run",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+            "specification": "run a program of formula steps over slots on every rod; shared intermediate results are computed once",
+            "notes": "ABACUS_SYSTEM.md:18; NO_CODE (Thesis/math symbol pending); program of steps over slots, later steps reuse earlier results",
+            "verifiedAt": null
+          },
+          {
+            "id": 7194,
+            "name": "abacus_formula_system_run",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Aristotle",
+            "expression": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+            "specification": "run formulas on every rod of one resident frame; each output column is the column of the true value",
+            "notes": "ABACUS_SYSTEM.md:16-17; NO_CODE (Thesis/math symbol pending; C name lc_abacus_run is covered by 15_clib_cost.jsonl); Lean names opened in AbacusSystem.lean",
+            "verifiedAt": null
+          },
+          {
+            "id": 7181,
+            "name": "soddy_count_recurrence",
+            "category": "geometry",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+            "specification": "b(n+4) = 3 b(n+3) + 3 b(n+2) - 6 b(n+1)",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5); depth-3 linear recurrence. CORRECTION by 14_geometry_lean: Lean soddyB_recurrence is proved by `simp only [soddyB, soddyU]` (SoddyCounts.lean line 49), i.e. by unfolding the defining clause of RodJump.soddyU (RodJump.lean line 80), so its status is RESTATES_DEFINITION; the geometric content is soddy_new_spheres_count",
+            "verifiedAt": null
+          },
+          {
+            "id": 7180,
+            "name": "order_law_lcm_rods",
+            "category": "number_theory",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+            "specification": "for coprime m, n: ord_{mn}(x) = lcm(ord_m(x), ord_n(x))",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 5)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7177,
+            "name": "linrec_jump",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+            "specification": "a linear recurrence of depth d reaches index N as T^N v rod-wise by repeated squaring",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor LINREC; matrix power per rod",
+            "verifiedAt": null
+          },
+          {
+            "id": 7176,
+            "name": "series_geom",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+            "specification": "sum_{k=0..n-1} r^k = (r^n - 1)(r - 1)^{-1} rod-wise when r-1 is a unit",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor GEOM; UNPROVEN",
+            "verifiedAt": null
+          },
+          {
+            "id": 7175,
+            "name": "series_arith",
+            "category": "algebra",
+            "status": "review",
+            "phase": 9,
+            "project": "Thesis",
+            "expression": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+            "specification": "sum_{k=1..n} k = n(n+1)/2 computed rod-wise as n (n+1) 2^{-1} mod m_i",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 4); descriptor ARITH; UNPROVEN",
+            "verifiedAt": null
+          },
+          {
+            "id": 7174,
+            "name": "garner_readback",
+            "category": "number_theory",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+            "specification": "mixed-radix digits d_k of a column, then x = sum d_k prod_{j<k} m_j",
+            "notes": "Prime Directives 0.2; NO_CODE (pending Wave 1); BOUNDARY only, output cost R(R-1)/2; Lean theorem not found (UNPROVEN)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7173,
+            "name": "rod_pow",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+            "specification": "z_i = x_i^e mod m_i by square-and-multiply on every rod",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (pending Wave 1); public exponent only (class PC)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7172,
+            "name": "rod_mul",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+            "specification": "z_i = (x_i * y_i) mod m_i on every rod i; no carries",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+            "verifiedAt": null
+          },
+          {
+            "id": 7171,
+            "name": "rod_add",
+            "category": "core",
+            "status": "review",
+            "phase": 3,
+            "project": "Thesis",
+            "expression": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+            "specification": "z_i = (x_i + y_i) mod m_i on every rod i; no carries",
+            "notes": "Prime Directives 0.2; layer L1; NO_CODE (Thesis/math symbol pending Wave 1; Aristotle reference in sources)",
+            "verifiedAt": null
+          }
+        ]
+      }
+    },
+    {
+      "q": "scaling",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "scaling",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 0,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": []
+      }
+    },
+    {
+      "q": "lift",
+      "http_status": 200,
+      "response": {
+        "ok": true,
+        "userId": 3,
+        "userName": "example-account",
+        "query": {
+          "q": "lift",
+          "categories": [],
+          "statuses": [],
+          "projects": [],
+          "phase": null,
+          "limit": 200,
+          "verifiedOnly": false
+        },
+        "totalAvailable": 39,
+        "filteredCount": 0,
+        "facets": {
+          "total": 39,
+          "categoryCounts": {
+            "analysis": 8,
+            "core": 11,
+            "geometry": 3,
+            "number_theory": 3,
+            "algebra": 14
+          },
+          "statusCounts": {
+            "draft": 8,
+            "review": 15,
+            "verified": 16
+          },
+          "projectCounts": {
+            "thesis-web-unknown-formula": 8,
+            "Aristotle": 19,
+            "Thesis": 12
+          },
+          "phaseCounts": {
+            "0": 16,
+            "1": 1,
+            "3": 7,
+            "5": 8,
+            "9": 7
+          }
+        },
+        "formulas": []
+      }
+    }
+  ],
+  "scalar_checks": [
+    {
+      "expression": "11*12",
+      "expected": 132,
+      "expected_method": "Python arbitrary-precision math.prod of listed integer factors",
+      "factors": [
+        11,
+        12
+      ],
+      "http_status": 200,
+      "actual": 132,
+      "matches_expected": true,
+      "response": {
+        "ok": true,
+        "expression": "11*12",
+        "variables": {},
+        "evaluation": {
+          "ok": true,
+          "value": 132,
+          "normalized": "11*12"
+        },
+        "analysis": {
+          "normalized": "11*12",
+          "tokenCount": 3,
+          "operatorCount": 1,
+          "variableCount": 0,
+          "numberCount": 2,
+          "trigCount": 0,
+          "exponentCount": 0,
+          "maxDepth": 0,
+          "complexityScore": 9,
+          "spectralIndex": 0.297309
+        },
+        "modelPreview": {
+          "nodeCount": 1,
+          "edgeCount": 0,
+          "faceCount": 1,
+          "frameFingerprint": "dc6a8bd0-9-16-3",
+          "timeIndex": 1,
+          "rootProperties": {
+            "expressionNormalized": "11*12",
+            "tokenCount": 3,
+            "operatorCount": 1,
+            "variableCount": 0,
+            "numberCount": 2,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 9,
+            "spectralIndex": 0.297309,
+            "nodeCount": 9,
+            "edgeCount": 16,
+            "faceCount": 3,
+            "frameFingerprint": "dc6a8bd0-9-16-3",
+            "timeIndex": 0
+          }
+        },
+        "telemetry": {
+          "requestId": "calc-3697970128",
+          "kind": "snapshot",
+          "phase": "evaluate",
+          "sequence": 4,
+          "progress": {
+            "current": 4,
+            "total": 4,
+            "percent": 100
+          },
+          "metrics": {
+            "tokenCount": 3,
+            "operatorCount": 1,
+            "variableCount": 0,
+            "numberCount": 2,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 9,
+            "spectralIndex": 0.297309,
+            "nodeCount": 1,
+            "edgeCount": 0,
+            "faceCount": 1,
+            "timeIndex": 1
+          },
+          "cost": {
+            "cpuMs": 16.95,
+            "cpuShare": 0.0375,
+            "samples": 3
+          },
+          "model": {
+            "frameFingerprint": "dc6a8bd0-9-16-3",
+            "rootProperties": {
+              "expressionNormalized": "11*12",
+              "tokenCount": 3,
+              "operatorCount": 1,
+              "variableCount": 0,
+              "numberCount": 2,
+              "trigCount": 0,
+              "exponentCount": 0,
+              "maxDepth": 0,
+              "complexityScore": 9,
+              "spectralIndex": 0.297309,
+              "nodeCount": 9,
+              "edgeCount": 16,
+              "faceCount": 3,
+              "frameFingerprint": "dc6a8bd0-9-16-3",
+              "timeIndex": 0
+            }
+          },
+          "forensicSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "timestamp": "2026-10-07T19:13:07.681Z"
+        },
+        "forensicPreview": {
+          "stagedSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "websocketWorkflow": [
+            "openSession",
+            "preloadFormulas",
+            "submitExpression",
+            "forensicEvent",
+            "modelSnapshot",
+            "objectProperties"
+          ]
+        },
+        "daemonPreview": {
+          "sessionId": "preview-session",
+          "abacusId": "8037",
+          "opened": true,
+          "closed": true,
+          "snapshot": {
+            "sessionId": "preview-session",
+            "abacusId": "8037",
+            "timeIndex": 1,
+            "viewMode": "2d",
+            "nodes": [
+              {
+                "id": "8037",
+                "kind": "abacus",
+                "label": "default-root",
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "formulaId": null,
+                "status": "active"
+              }
+            ],
+            "edges": [],
+            "faces": [
+              {
+                "id": "face-8037",
+                "nodeIds": [
+                  "8037"
+                ],
+                "label": "root",
+                "fill": "#58c7ff"
+              }
+            ],
+            "selectedObjectIds": []
+          },
+          "forensicEvents": [
+            {
+              "type": "forensicEvent",
+              "event": {
+                "sessionId": "preview-session",
+                "abacusId": "8037",
+                "level": "info",
+                "step": "evaluate",
+                "expressionFragment": "11*12",
+                "intermediateValue": "rebuilt=-19; fingerprint=14628942935361206814",
+                "abacusDelta": {
+                  "added": 1,
+                  "removed": 0,
+                  "merged": 0,
+                  "clonedFrom": null
+                },
+                "message": "rebuilt=-19; fingerprint=14628942935361206814",
+                "timestamp": "2026-10-02T00:00:00Z"
+              }
+            }
+          ]
+        }
+      },
+      "scope": "Finite arithmetic crosscheck only, not proof of count or general theorem."
+    },
+    {
+      "expression": "19*18",
+      "expected": 342,
+      "expected_method": "Python arbitrary-precision math.prod of listed integer factors",
+      "factors": [
+        19,
+        18
+      ],
+      "http_status": 200,
+      "actual": 342,
+      "matches_expected": true,
+      "response": {
+        "ok": true,
+        "expression": "19*18",
+        "variables": {},
+        "evaluation": {
+          "ok": true,
+          "value": 342,
+          "normalized": "19*18"
+        },
+        "analysis": {
+          "normalized": "19*18",
+          "tokenCount": 3,
+          "operatorCount": 1,
+          "variableCount": 0,
+          "numberCount": 2,
+          "trigCount": 0,
+          "exponentCount": 0,
+          "maxDepth": 0,
+          "complexityScore": 9,
+          "spectralIndex": 0.174089
+        },
+        "modelPreview": {
+          "nodeCount": 1,
+          "edgeCount": 0,
+          "faceCount": 1,
+          "frameFingerprint": "8cf05006-9-16-3",
+          "timeIndex": 1,
+          "rootProperties": {
+            "expressionNormalized": "19*18",
+            "tokenCount": 3,
+            "operatorCount": 1,
+            "variableCount": 0,
+            "numberCount": 2,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 9,
+            "spectralIndex": 0.174089,
+            "nodeCount": 9,
+            "edgeCount": 16,
+            "faceCount": 3,
+            "frameFingerprint": "8cf05006-9-16-3",
+            "timeIndex": 0
+          }
+        },
+        "telemetry": {
+          "requestId": "calc-2364559366",
+          "kind": "snapshot",
+          "phase": "evaluate",
+          "sequence": 4,
+          "progress": {
+            "current": 4,
+            "total": 4,
+            "percent": 100
+          },
+          "metrics": {
+            "tokenCount": 3,
+            "operatorCount": 1,
+            "variableCount": 0,
+            "numberCount": 2,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 9,
+            "spectralIndex": 0.174089,
+            "nodeCount": 1,
+            "edgeCount": 0,
+            "faceCount": 1,
+            "timeIndex": 1
+          },
+          "cost": {
+            "cpuMs": 16.95,
+            "cpuShare": 0.0375,
+            "samples": 3
+          },
+          "model": {
+            "frameFingerprint": "8cf05006-9-16-3",
+            "rootProperties": {
+              "expressionNormalized": "19*18",
+              "tokenCount": 3,
+              "operatorCount": 1,
+              "variableCount": 0,
+              "numberCount": 2,
+              "trigCount": 0,
+              "exponentCount": 0,
+              "maxDepth": 0,
+              "complexityScore": 9,
+              "spectralIndex": 0.174089,
+              "nodeCount": 9,
+              "edgeCount": 16,
+              "faceCount": 3,
+              "frameFingerprint": "8cf05006-9-16-3",
+              "timeIndex": 0
+            }
+          },
+          "forensicSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "timestamp": "2026-10-07T19:13:09.146Z"
+        },
+        "forensicPreview": {
+          "stagedSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "websocketWorkflow": [
+            "openSession",
+            "preloadFormulas",
+            "submitExpression",
+            "forensicEvent",
+            "modelSnapshot",
+            "objectProperties"
+          ]
+        },
+        "daemonPreview": {
+          "sessionId": "preview-session",
+          "abacusId": "8038",
+          "opened": true,
+          "closed": true,
+          "snapshot": {
+            "sessionId": "preview-session",
+            "abacusId": "8038",
+            "timeIndex": 1,
+            "viewMode": "2d",
+            "nodes": [
+              {
+                "id": "8038",
+                "kind": "abacus",
+                "label": "default-root",
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "formulaId": null,
+                "status": "active"
+              }
+            ],
+            "edges": [],
+            "faces": [
+              {
+                "id": "face-8038",
+                "nodeIds": [
+                  "8038"
+                ],
+                "label": "root",
+                "fill": "#58c7ff"
+              }
+            ],
+            "selectedObjectIds": []
+          },
+          "forensicEvents": [
+            {
+              "type": "forensicEvent",
+              "event": {
+                "sessionId": "preview-session",
+                "abacusId": "8038",
+                "level": "info",
+                "step": "evaluate",
+                "expressionFragment": "19*18",
+                "intermediateValue": "rebuilt=-5; fingerprint=14628942935361206814",
+                "abacusDelta": {
+                  "added": 1,
+                  "removed": 0,
+                  "merged": 0,
+                  "clonedFrom": null
+                },
+                "message": "rebuilt=-5; fingerprint=14628942935361206814",
+                "timestamp": "2026-10-02T00:00:00Z"
+              }
+            }
+          ]
+        }
+      },
+      "scope": "Finite arithmetic crosscheck only, not proof of count or general theorem."
+    },
+    {
+      "expression": "11*19*71*97*109",
+      "expected": 156892747,
+      "expected_method": "Python arbitrary-precision math.prod of listed integer factors",
+      "factors": [
+        11,
+        19,
+        71,
+        97,
+        109
+      ],
+      "http_status": 200,
+      "actual": 156892747,
+      "matches_expected": true,
+      "response": {
+        "ok": true,
+        "expression": "11*19*71*97*109",
+        "variables": {},
+        "evaluation": {
+          "ok": true,
+          "value": 156892747,
+          "normalized": "11*19*71*97*109"
+        },
+        "analysis": {
+          "normalized": "11*19*71*97*109",
+          "tokenCount": 9,
+          "operatorCount": 4,
+          "variableCount": 0,
+          "numberCount": 5,
+          "trigCount": 0,
+          "exponentCount": 0,
+          "maxDepth": 0,
+          "complexityScore": 27,
+          "spectralIndex": 0.431213
+        },
+        "modelPreview": {
+          "nodeCount": 1,
+          "edgeCount": 0,
+          "faceCount": 1,
+          "frameFingerprint": "8fd21cbf-15-28-6",
+          "timeIndex": 1,
+          "rootProperties": {
+            "expressionNormalized": "11*19*71*97*109",
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.431213,
+            "nodeCount": 15,
+            "edgeCount": 28,
+            "faceCount": 6,
+            "frameFingerprint": "8fd21cbf-15-28-6",
+            "timeIndex": 0
+          }
+        },
+        "telemetry": {
+          "requestId": "calc-2412911807",
+          "kind": "snapshot",
+          "phase": "evaluate",
+          "sequence": 4,
+          "progress": {
+            "current": 4,
+            "total": 4,
+            "percent": 100
+          },
+          "metrics": {
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.431213,
+            "nodeCount": 1,
+            "edgeCount": 0,
+            "faceCount": 1,
+            "timeIndex": 1
+          },
+          "cost": {
+            "cpuMs": 49.35,
+            "cpuShare": 0.1125,
+            "samples": 9
+          },
+          "model": {
+            "frameFingerprint": "8fd21cbf-15-28-6",
+            "rootProperties": {
+              "expressionNormalized": "11*19*71*97*109",
+              "tokenCount": 9,
+              "operatorCount": 4,
+              "variableCount": 0,
+              "numberCount": 5,
+              "trigCount": 0,
+              "exponentCount": 0,
+              "maxDepth": 0,
+              "complexityScore": 27,
+              "spectralIndex": 0.431213,
+              "nodeCount": 15,
+              "edgeCount": 28,
+              "faceCount": 6,
+              "frameFingerprint": "8fd21cbf-15-28-6",
+              "timeIndex": 0
+            }
+          },
+          "forensicSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "timestamp": "2026-10-07T19:13:09.681Z"
+        },
+        "forensicPreview": {
+          "stagedSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "websocketWorkflow": [
+            "openSession",
+            "preloadFormulas",
+            "submitExpression",
+            "forensicEvent",
+            "modelSnapshot",
+            "objectProperties"
+          ]
+        },
+        "daemonPreview": {
+          "sessionId": "preview-session",
+          "abacusId": "8039",
+          "opened": true,
+          "closed": true,
+          "snapshot": {
+            "sessionId": "preview-session",
+            "abacusId": "8039",
+            "timeIndex": 1,
+            "viewMode": "2d",
+            "nodes": [
+              {
+                "id": "8039",
+                "kind": "abacus",
+                "label": "default-root",
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "formulaId": null,
+                "status": "active"
+              }
+            ],
+            "edges": [],
+            "faces": [
+              {
+                "id": "face-8039",
+                "nodeIds": [
+                  "8039"
+                ],
+                "label": "root",
+                "fill": "#58c7ff"
+              }
+            ],
+            "selectedObjectIds": []
+          },
+          "forensicEvents": [
+            {
+              "type": "forensicEvent",
+              "event": {
+                "sessionId": "preview-session",
+                "abacusId": "8039",
+                "level": "info",
+                "step": "evaluate",
+                "expressionFragment": "11*19*71*97*109",
+                "intermediateValue": "rebuilt=20; fingerprint=14628942935361206814",
+                "abacusDelta": {
+                  "added": 1,
+                  "removed": 0,
+                  "merged": 0,
+                  "clonedFrom": null
+                },
+                "message": "rebuilt=20; fingerprint=14628942935361206814",
+                "timestamp": "2026-10-02T00:00:00Z"
+              }
+            }
+          ]
+        }
+      },
+      "scope": "Finite arithmetic crosscheck only, not proof of count or general theorem."
+    },
+    {
+      "expression": "12*20*72*96*108",
+      "expected": 179159040,
+      "expected_method": "Python arbitrary-precision math.prod of listed integer factors",
+      "factors": [
+        12,
+        20,
+        72,
+        96,
+        108
+      ],
+      "http_status": 200,
+      "actual": 179159040,
+      "matches_expected": true,
+      "response": {
+        "ok": true,
+        "expression": "12*20*72*96*108",
+        "variables": {},
+        "evaluation": {
+          "ok": true,
+          "value": 179159040,
+          "normalized": "12*20*72*96*108"
+        },
+        "analysis": {
+          "normalized": "12*20*72*96*108",
+          "tokenCount": 9,
+          "operatorCount": 4,
+          "variableCount": 0,
+          "numberCount": 5,
+          "trigCount": 0,
+          "exponentCount": 0,
+          "maxDepth": 0,
+          "complexityScore": 27,
+          "spectralIndex": 0.677821
+        },
+        "modelPreview": {
+          "nodeCount": 1,
+          "edgeCount": 0,
+          "faceCount": 1,
+          "frameFingerprint": "c00adc6f-15-28-6",
+          "timeIndex": 1,
+          "rootProperties": {
+            "expressionNormalized": "12*20*72*96*108",
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.677821,
+            "nodeCount": 15,
+            "edgeCount": 28,
+            "faceCount": 6,
+            "frameFingerprint": "c00adc6f-15-28-6",
+            "timeIndex": 0
+          }
+        },
+        "telemetry": {
+          "requestId": "calc-3221937263",
+          "kind": "snapshot",
+          "phase": "evaluate",
+          "sequence": 4,
+          "progress": {
+            "current": 4,
+            "total": 4,
+            "percent": 100
+          },
+          "metrics": {
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.677821,
+            "nodeCount": 1,
+            "edgeCount": 0,
+            "faceCount": 1,
+            "timeIndex": 1
+          },
+          "cost": {
+            "cpuMs": 49.35,
+            "cpuShare": 0.1125,
+            "samples": 9
+          },
+          "model": {
+            "frameFingerprint": "c00adc6f-15-28-6",
+            "rootProperties": {
+              "expressionNormalized": "12*20*72*96*108",
+              "tokenCount": 9,
+              "operatorCount": 4,
+              "variableCount": 0,
+              "numberCount": 5,
+              "trigCount": 0,
+              "exponentCount": 0,
+              "maxDepth": 0,
+              "complexityScore": 27,
+              "spectralIndex": 0.677821,
+              "nodeCount": 15,
+              "edgeCount": 28,
+              "faceCount": 6,
+              "frameFingerprint": "c00adc6f-15-28-6",
+              "timeIndex": 0
+            }
+          },
+          "forensicSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "timestamp": "2026-10-07T19:13:09.970Z"
+        },
+        "forensicPreview": {
+          "stagedSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "websocketWorkflow": [
+            "openSession",
+            "preloadFormulas",
+            "submitExpression",
+            "forensicEvent",
+            "modelSnapshot",
+            "objectProperties"
+          ]
+        },
+        "daemonPreview": {
+          "sessionId": "preview-session",
+          "abacusId": "8041",
+          "opened": true,
+          "closed": true,
+          "snapshot": {
+            "sessionId": "preview-session",
+            "abacusId": "8041",
+            "timeIndex": 1,
+            "viewMode": "2d",
+            "nodes": [
+              {
+                "id": "8041",
+                "kind": "abacus",
+                "label": "default-root",
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "formulaId": null,
+                "status": "active"
+              }
+            ],
+            "edges": [],
+            "faces": [
+              {
+                "id": "face-8041",
+                "nodeIds": [
+                  "8041"
+                ],
+                "label": "root",
+                "fill": "#58c7ff"
+              }
+            ],
+            "selectedObjectIds": []
+          },
+          "forensicEvents": [
+            {
+              "type": "forensicEvent",
+              "event": {
+                "sessionId": "preview-session",
+                "abacusId": "8041",
+                "level": "info",
+                "step": "evaluate",
+                "expressionFragment": "12*20*72*96*108",
+                "intermediateValue": "rebuilt=-27; fingerprint=14628942935361206814",
+                "abacusDelta": {
+                  "added": 1,
+                  "removed": 0,
+                  "merged": 0,
+                  "clonedFrom": null
+                },
+                "message": "rebuilt=-27; fingerprint=14628942935361206814",
+                "timestamp": "2026-10-02T00:00:00Z"
+              }
+            }
+          ]
+        }
+      },
+      "scope": "Finite arithmetic crosscheck only, not proof of count or general theorem."
+    },
+    {
+      "expression": "12*18*72*96*108",
+      "expected": 161243136,
+      "expected_method": "Python arbitrary-precision math.prod of listed integer factors",
+      "factors": [
+        12,
+        18,
+        72,
+        96,
+        108
+      ],
+      "http_status": 200,
+      "actual": 161243136,
+      "matches_expected": true,
+      "response": {
+        "ok": true,
+        "expression": "12*18*72*96*108",
+        "variables": {},
+        "evaluation": {
+          "ok": true,
+          "value": 161243136,
+          "normalized": "12*18*72*96*108"
+        },
+        "analysis": {
+          "normalized": "12*18*72*96*108",
+          "tokenCount": 9,
+          "operatorCount": 4,
+          "variableCount": 0,
+          "numberCount": 5,
+          "trigCount": 0,
+          "exponentCount": 0,
+          "maxDepth": 0,
+          "complexityScore": 27,
+          "spectralIndex": 0.181786
+        },
+        "modelPreview": {
+          "nodeCount": 15,
+          "edgeCount": 28,
+          "faceCount": 6,
+          "frameFingerprint": "49fb2ec0-15-28-6",
+          "timeIndex": 0,
+          "rootProperties": {
+            "expressionNormalized": "12*18*72*96*108",
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.181786,
+            "nodeCount": 15,
+            "edgeCount": 28,
+            "faceCount": 6,
+            "frameFingerprint": "49fb2ec0-15-28-6",
+            "timeIndex": 0
+          }
+        },
+        "telemetry": {
+          "requestId": "calc-1241198272",
+          "kind": "snapshot",
+          "phase": "evaluate",
+          "sequence": 4,
+          "progress": {
+            "current": 4,
+            "total": 4,
+            "percent": 100
+          },
+          "metrics": {
+            "tokenCount": 9,
+            "operatorCount": 4,
+            "variableCount": 0,
+            "numberCount": 5,
+            "trigCount": 0,
+            "exponentCount": 0,
+            "maxDepth": 0,
+            "complexityScore": 27,
+            "spectralIndex": 0.181786,
+            "nodeCount": 15,
+            "edgeCount": 28,
+            "faceCount": 6,
+            "timeIndex": 0
+          },
+          "cost": {
+            "cpuMs": 59.85,
+            "cpuShare": 0.1125,
+            "samples": 9
+          },
+          "model": {
+            "frameFingerprint": "49fb2ec0-15-28-6",
+            "rootProperties": {
+              "expressionNormalized": "12*18*72*96*108",
+              "tokenCount": 9,
+              "operatorCount": 4,
+              "variableCount": 0,
+              "numberCount": 5,
+              "trigCount": 0,
+              "exponentCount": 0,
+              "maxDepth": 0,
+              "complexityScore": 27,
+              "spectralIndex": 0.181786,
+              "nodeCount": 15,
+              "edgeCount": 28,
+              "faceCount": 6,
+              "frameFingerprint": "49fb2ec0-15-28-6",
+              "timeIndex": 0
+            }
+          },
+          "forensicSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "timestamp": "2026-10-07T19:13:11.394Z"
+        },
+        "forensicPreview": {
+          "stagedSteps": [
+            "submitExpression:parse",
+            "submitExpression:analyze",
+            "submitExpression:synthesize",
+            "evaluate"
+          ],
+          "websocketWorkflow": [
+            "openSession",
+            "preloadFormulas",
+            "submitExpression",
+            "forensicEvent",
+            "modelSnapshot",
+            "objectProperties"
+          ]
+        },
+        "daemonPreview": {
+          "sessionId": "preview-session",
+          "abacusId": "8042",
+          "opened": true,
+          "closed": true,
+          "snapshot": null,
+          "forensicEvents": []
+        }
+      },
+      "scope": "Finite arithmetic crosscheck only, not proof of count or general theorem."
+    }
+  ],
+  "capabilities": {
+    "http_status": 200,
+    "response": {
+      "ok": true,
+      "supportedFunctions": [
+        "sin",
+        "cos",
+        "tan",
+        "asin",
+        "acos",
+        "atan",
+        "sinh",
+        "cosh",
+        "tanh",
+        "abs",
+        "sqrt",
+        "log",
+        "ln",
+        "exp",
+        "pow",
+        "hypot",
+        "floor",
+        "ceil",
+        "round",
+        "min",
+        "max",
+        "det",
+        "sum"
+      ],
+      "supportedConstants": [
+        "pi",
+        "e",
+        "phi"
+      ],
+      "metrics": [
+        "tokenCount",
+        "operatorCount",
+        "variableCount",
+        "numberCount",
+        "trigCount",
+        "exponentCount",
+        "maxDepth",
+        "complexityScore",
+        "spectralIndex",
+        "nodeCount",
+        "edgeCount",
+        "faceCount",
+        "frameFingerprint",
+        "timeIndex"
+      ],
+      "websocketWorkflow": [
+        "openSession",
+        "preloadFormulas",
+        "submitExpression",
+        "forensicEvent",
+        "modelSnapshot",
+        "objectProperties"
+      ],
+      "notes": [
+        "Use POST /api/calculate for scientific evaluation with metrics, plus a daemon-backed preview session for model metadata.",
+        "Use websocket for realtime forensic analysis and model-state evolution.",
+        "For symbolic or unsupported notation, normalize into explicit functions such as det(), pow(), sqrt(), sin(), log(), and variables payloads."
+      ]
+    }
+  },
+  "findings": {
+    "new_documented_endpoints": false,
+    "conic_tower_scaling_lifting_entries_found": false,
+    "related_formula_ids": [
+      7170,
+      7171,
+      7172,
+      7173,
+      7174,
+      7177,
+      7180
+    ],
+    "provider_source_or_lean_certificate_endpoint_found": false,
+    "recommended_use": "Use local source-bound kernel proofs. Catalog modular exponent/order laws suggest decomposition and period checks but currently expose prose, review/NO_CODE status, and no conic-lifting theorem."
+  },
+  "finished_at_utc": "2026-10-07T19:13:11.286806+00:00"
+}

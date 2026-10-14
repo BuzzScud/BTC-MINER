@@ -1,0 +1,168 @@
+BTC NETWORK DIFFICULTY — INVESTIGATION AND PROTOTYPE
+October 12, 2026
+
+OPEN
+  In the miner console: /target dif
+  From this project: python3 -B -m btcminer target dif
+  Print the path only: python3 -B -m btcminer target dif --no-open
+  Direct file: src/ui/network_difficulty.html
+
+The console's generic command dispatch already passes /target dif to the CLI;
+typing it does not require restarting mining. New help/autocomplete entries are
+loaded next time the console is opened. The HTML is a self-contained recorded
+prototype, with no server, automatic refresh, external font, CDN, or browser RPC.
+
+AGREED REQUIREMENTS
+  - Open an HTML page from the miner with /target dif.
+  - Three tabs: network history, my miner, and how difficulty works.
+  - Switch between public data with local cache and Core-only data.
+  - Desktop first, detailed all-history exploration.
+  - This pass: investigation, implementation options, local prototype.
+
+WHAT IS IMPLEMENTED
+  The How it works tab also contains the supplied image's style of hexagonal
+  graph, with prime classes, exact miner flower labels and a 61-digit view of
+  256-bit values. Read HEX-CORRESPONDENCE.txt for its definitions, checks and
+  the existing SHA abacus replay and its formal implementation-proof boundary.
+
+  The single HTML file embeds separate recorded datasets for both source modes.
+  Default: Core, all history, logarithmic scale. Controls provide 90-day, 1-year,
+  all-history and linear/log views, a keyboard-accessible epoch selector, table,
+  and CSV export. The desktop dashboard sits in a centered, rounded container up to 1,480
+  pixels wide, with internal scrolling and pinned navigation. The chart adapts
+  between 330 and 448 CSS pixels high. A definition panel pairs D = T1 / T
+  with the exact recorded Core target.
+
+  Mainnet history is a step function. Linear starts at zero; log distance measures
+  ratios. Difficulty is dimensionless; T means 10^12, not TH/s. Core's current
+  epoch panel uses a plainly labeled, frozen pace estimate. The public history
+  endpoint does not provide a current tip, so public-mode height and forecast
+  explicitly show unavailable rather than borrowing Core fields.
+
+  The miner tab uses captured local rate observations, not a new benchmark.
+  Expected work and probability use the captured Core nBits. Both sources agreed
+  on current difficulty at capture. The normalized waiting curve is the rare-event
+  model 1-exp(-t/mean). It is not a promise of when a block will be found.
+  Best observed hash difficulty, network difficulty, and pool share difficulty
+  have different meanings; missing pool/best observations are labeled.
+
+CODEBASE FINDINGS
+  src/pool/protocol.py:
+    Work holds network_target, target, bits, height and the block header.
+    Core work validates the target against nBits; pool work retains the network
+    target independently of its assigned share threshold. Reuse these definitions.
+  src/pool/rpc.py:
+    Existing Core authentication and RPC transport can supply read-only headers.
+    Keep credentials in the Python process, never in the HTML or cache.
+  src/hash/difficulty.py:
+    The /difficulty command changes an additional local regtest work multiplier.
+    It is not a source of Bitcoin mainnet consensus difficulty history.
+  src/workers/engine.py:
+    Engine.snapshot() supplies rate windows and best_difficulty, but does not
+    expose a complete current target observation or historical epochs.
+  src/stats/observatory_telemetry.py:
+    Samples include targets and headers, but samples are not a canonical chain
+    index and cannot establish all historical difficulty adjustments.
+  src/tools/modelling.py and src/ui/modelling.html:
+    Existing browser infrastructure graphs experiments and controls lab workers.
+    Reuse the local serving/launch pattern, not the experimental worker lifecycle.
+  src/main/cli.py and src/ui/tui.py:
+    The prototype adds the target dif command, help entry and recent-command text.
+  scripts/build.py:
+    Release assets are explicit. Live integration must add its HTML, module and
+    documentation, preserve canonical src/ paths and compatibility mappings, and
+    pass the existing isolated release gates. This pass did not build a release.
+
+IMPLEMENTATION OPTIONS — MOST COMPREHENSIVE TO SIMPLEST
+
+1. Complete network and miner observatory
+   1) Define a versioned API schema with network, source, fetched_at, tip identity,
+      epoch identity, exact target hex, decimal difficulty, and separate timestamps
+      for history, forecast and miner observations.
+   2) Create read-only Core and public adapters. Backfill epoch headers in bounded
+      batches. Public mode additionally fetches tip/adjustment data. Core-only
+      mode never makes public requests.
+   3) Store observations in SQLite, indexed by chain/source/height/hash. Revalidate
+      recent canonical hashes; roll back affected epochs on reorgs. Recheck the
+      tip anchor after backfill before publishing a consistent snapshot.
+   4) Add minimal target metadata to engine observations outside the hash loop.
+      Keep confirmed tip difficulty separate from the next-block job's target.
+   5) Serve a read-only local API with loopback binding, allowed Host checks,
+      request deadlines, bounded response sizes and a restricted response schema.
+      The viewer must never call start/stop/configuration/submission endpoints.
+   6) Add date/height zoom, time-range controls, aligned hashrate context, exact
+      epoch detail, estimates, exports and status per source. Keep both source
+      caches separate and discard old responses after source changes.
+   7) Test source outages, 429/backoff, stale/partial caches, node sync, retarget
+      boundaries, reorgs and source disagreement; measure observational overhead,
+      then package through the release gate.
+
+2. Focused read-only local viewer — recommended first live implementation
+   1) Keep the prototype's three tabs, step graph, dimensions and /target dif flow.
+   2) Implement both source adapters behind one observation schema; store a small
+      atomic JSON cache of difficulty epochs/changes, separated by source/network.
+   3) Serve the page and cached snapshot from a dedicated local Python service.
+      Poll at approximately 60 seconds, with deadlines and backoff. Update epoch
+      history when a new boundary appears; do not query once per rendered frame.
+   4) Add the minimal missing target observation; reuse existing measured rate
+      windows for the miner tab. Explicitly show missing or stale measurements.
+   5) Keep the last valid snapshot and its original timestamp after failures.
+      Compute an explicitly estimated forecast only with adequate timing data.
+   6) Verify mathematical vectors, source/cache behavior, command isolation and
+      browser interaction, then add explicit release inputs and build in staging.
+
+3. Self-contained recorded HTML — implemented in this pass
+   1) Capture public history and one Core header per 2,016-block epoch.
+   2) Compare public records against Core; capture only allowlisted miner fields.
+   3) Embed both datasets in a local HTML page with the requested tabs and switch.
+   4) Open with /target dif, explore/export offline, and refresh by recapturing
+      deliberately. This is the smallest useful implementation for design review.
+
+LIVE EDGE CASE CONTRACT
+  - Keep 256-bit targets as hex/integer strings; floats are display estimates.
+  - Treat the first/last timestamps of the epoch as 2,015 intervals. Exact Core
+    retargeting includes timespan clamps, integer division and compact rounding.
+  - Next boundary height is (floor(tip_height/2016)+1)*2016. At the epoch's first
+    block, progress since that block is zero. Define this convention explicitly.
+  - Confirmed tip height and job height are different. At a boundary the current
+    mining job may already have the next target; do not label it as the tip target.
+  - Mainnet, testnet3, testnet4 and regtest have distinct rules. The prototype is
+    explicitly fixed to mainnet. Never combine their histories or forecasts.
+  - Do not turn unavailable values into zero. Handle empty, single-point and
+    corrupt history, stale rates, stopped/disconnected miners and mismatched chains.
+  - Suppress time-to-block estimates for unusable hashrate. Valid estimates state
+    their rate window and constant-rate/constant-target assumptions.
+  - On an outage retain the last good snapshot with its original timestamp.
+    Show source disagreement and node sync status; never silently mix sources.
+  - A UI source switch changes observation only. It must never change miner
+    network/configuration, its regtest multiplier, or its operating state.
+
+REFRESH THE RECORDED PROTOTYPE
+  python3 -B scripts/capture_network_difficulty.py
+    Requires a configured synced mainnet Core node and public API access.
+    Uses two bounded read-only header readers; writes only task evidence and HTML.
+    No mining, wallet, configuration, or submission methods are called.
+  python3 -B scripts/capture_network_difficulty.py --render-only
+    Re-embed the existing snapshot without network access.
+
+VALIDATION
+  validation/network-difficulty-design-20261012/snapshot.json:
+    482 Core epoch headers and 467 public records. Every public record matched
+    Core height, timestamp and difficulty (relative tolerance 1e-12). Tip chain
+    anchor rechecked. Recorded mainnet height 971130, difficulty 132716002350731.3.
+  30 targeted command and terminal-UI tests passed:
+    env PYTHONPATH=tests python3 -B -m unittest test_target_view test_tui test_tui_layout
+  check_browser.mjs / browser-result.json:
+    Both sources, all ranges, linear/log step paths, three tabs, exact target,
+    keyboard controls, CSV export, no external browser requests, missing history,
+    stopped/zero-rate state, and widths 1280, 1440, 1920 and 768 CSS pixels passed.
+    Screenshots: network-tab.png, miner-tab.png, explanation-tab.png.
+  Native mining code and production lifecycle were not modified or exercised.
+  A live refresh service, fault-injected live adapters, release packaging, Safari
+  QA and long-running overhead measurement remain outside this prototype pass.
+
+AUTHORITATIVE REFERENCES
+  https://github.com/bitcoin/bitcoin/blob/master/src/pow.cpp
+  https://bitcoincore.org/en/doc/30.0.0/rpc/blockchain/getblockheader/
+  https://mempool.space/docs/api/rest
+  https://mempool.space/api/v1/mining/hashrate/all

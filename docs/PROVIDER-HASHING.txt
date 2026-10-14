@@ -1,0 +1,66 @@
+PROVIDER SHA256d INTEGRATION — 2026-10-12
+
+The miner's provider command can compute an exact supplied 80-byte Bitcoin
+header through the calculator service's compression integrity API:
+
+  /provider hash --header-hex <160 hexadecimal characters>
+  /provider hash --header-hex <160 hexadecimal characters> --hash-mode remote
+
+The same arguments work after `python3 -B -m btcminer` from the project folder.
+Optional --output saves a credential-redacted JSON receipt.
+
+Default compare mode computes both remote and local SHA256d and compares BOTH
+the first and final digests. Any mismatch makes the command unsuccessful.
+Remote mode obtains both SHA256 computations from the provider and performs no
+local SHA256 calculation. It checks response metadata and decompresses each
+returned TCMP frame to bind the reply to the exact supplied bytes. That binding
+does not independently prove that a remote digest is correct. Remote-only
+output explicitly says local_verification=not_performed; it is not a block
+acceptance assertion. Errors do not silently fall back to a local hash.
+
+Wire mapping:
+  d1 = POST /api/compression/compress?codec=coprime&mode=auto
+       body = the 80 raw header bytes; read x-original-sha256 as 32 bytes.
+  d2 = the same endpoint with d1's 32 raw bytes (not its hexadecimal text).
+  Bitcoin display hash = reverse(d2).hex().
+The provider reports the digest of the original input; the compressed-frame
+digest is a different value and is never used as the block hash.
+
+The byte-length limit in this adapter is 80 because it serves Bitcoin headers
+and their 32-byte intermediate digests. It is not a cap on nonce values, target
+difficulty, the current miner's search or the mathematical domain of SHA256.
+No target threshold or difficulty affects this header-to-digest mapping.
+
+LIVE EVIDENCE
+validation/provider-hashing-20261012/live-comparisons.json records genesis,
+three accepted headers at heights969130,970149,971167 and a nonce-mutated
+public-header control. Both remote stages matched local hashlib in all five
+comparisons. A sixth remote-only computation matched its separately recorded
+network hash. Empty and abc single-SHA vectors also matched. CLI compare and
+remote modes were then independently exercised on genesis.
+Measured two-request latency was about0.2 seconds/header in this small sample;
+this is an observation, not a server throughput guarantee or a math-validity
+criterion. Four scalar calculator probes passed for uint32 maximum, modular
+carry, rotate-right and high-bit extraction. They do not establish a complete
+calculator-expression SHA implementation.
+
+CURRENT CAPABILITY BOUNDARY
+The fresh API catalogue exposes no dedicated SHA256/SHA256d, nonce-range scan,
+mining-job, cancellation or batch-hashing endpoint. The current account's hash
+and sha256 formula searches returned zero entries; that is account-scoped.
+The workaround uses the API's ordinary SHA256 integrity metadata. It is not
+evidence that the calculator's geometric model/daemon computes SHA256.
+
+This integration is an explicit supplied-header command, available inside the
+miner. It does not replace the live worker, divide nonce ranges with a remote
+miner, automatically stream candidate headers, alter nonce order or submit
+blocks. The current production worker continues local ARM SHA256 and THESIS2.
+Remote computation could supply individual candidate digests in a future
+worker adapter. Production delegation needs job identity, stale-work handling,
+failure/retry accounting, independent winning-candidate validation, and an
+agreed service interface. There is no supported cooperative scanning contract
+to claim deployed today.
+
+The live compression capability document differs from its OpenAPI description
+in available codecs, mode names and size limits. This is a documentation/schema
+consistency finding; these small probes establish no incorrect arithmetic.

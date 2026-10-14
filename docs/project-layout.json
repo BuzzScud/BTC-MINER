@@ -1,0 +1,466 @@
+{
+  "schema": "btc-project-layout/v1",
+  "purpose": "One editable source per file. Original paths are compatibility aliases for imports, existing commands, current processes and historical evidence. Portable releases may materialize identical compatibility copies; the release gate requires byte equality.",
+  "files": [
+    {
+      "compatibility_path": "btcminer/abacus.py",
+      "source_path": "math-library/python/abacus.py",
+      "before_sha256": "d889143fc0299001551b015273b5008c01cb3b4b0296fcaeec347ee0273de842"
+    },
+    {
+      "compatibility_path": "btcminer/abacus_lab.py",
+      "source_path": "math-library/python/abacus_lab.py",
+      "before_sha256": "f9a9c87ae12d2609c8e8ce299f616a1eca0344da658abc973509392177ad0fbe"
+    },
+    {
+      "compatibility_path": "btcminer/adaptive.py",
+      "source_path": "src/workers/adaptive.py",
+      "before_sha256": "da85f6ba571c5bd3f5ac50013741a7c811bcfb698704670a77e8e1d88d91900c"
+    },
+    {
+      "compatibility_path": "btcminer/archive_math.py",
+      "source_path": "math-library/python/archive_math.py",
+      "before_sha256": "84a48fa6845af578b4b60dd0f4d3570df295e38205ff9db45e3709c39f4c5d20"
+    },
+    {
+      "compatibility_path": "btcminer/capacity_reals.py",
+      "source_path": "math-library/python/capacity_reals.py",
+      "before_sha256": "587a99b5ff5e366d3e82e0ddf13ab6e0f38f81916df423d6c035ef22794e0b74"
+    },
+    {
+      "compatibility_path": "btcminer/claim_calculus.py",
+      "source_path": "math-library/python/claim_calculus.py",
+      "before_sha256": "db6bfab1b2ef2cc5d1032a49aa4546b0d8cdcec1c045249399bbfecf2517a6e4"
+    },
+    {
+      "compatibility_path": "btcminer/cli.py",
+      "source_path": "src/main/cli.py",
+      "before_sha256": "61ffa816e8e31da74923cb9c4b2ff6d0514433b6c3245a7ccfc1bfc46cff4a72"
+    },
+    {
+      "compatibility_path": "btcminer/connections.py",
+      "source_path": "src/pool/connections.py",
+      "before_sha256": "f6094ce0dbe64984762118e044ca2f59429487a492747218f3a476314484ae51"
+    },
+    {
+      "compatibility_path": "btcminer/constraintmodel.py",
+      "source_path": "src/hash/constraintmodel.py",
+      "before_sha256": "9d1b59fafb5b5b365ad4bae5ff12dd0425bc05bd10a9fdbd6ad2aa1a07bf8d6d"
+    },
+    {
+      "compatibility_path": "btcminer/copper.py",
+      "source_path": "src/ui/copper.py",
+      "before_sha256": "917f0cc56e4dc9bded4bfbd34b6743ce14a3e83aa22b72227ec6277f36793a9e"
+    },
+    {
+      "compatibility_path": "btcminer/coreprimes.py",
+      "source_path": "math-library/python/coreprimes.py",
+      "before_sha256": "a5c9d977626e75d83176476c71a692bcf24428ac3b3c6f1f5c81e5a5a65d6bc2"
+    },
+    {
+      "compatibility_path": "btcminer/diagnostics.py",
+      "source_path": "src/tools/diagnostics.py",
+      "before_sha256": "db421c734c20f60120fa17183cb4c3747fb8cda7eeaa6eac08cc055137226e26"
+    },
+    {
+      "compatibility_path": "btcminer/difficulty.py",
+      "source_path": "src/hash/difficulty.py",
+      "before_sha256": "88de2209ea4776bff5f77ecf4fe029a9637f24e40102e2b9d3c762b2187f7137"
+    },
+    {
+      "compatibility_path": "btcminer/engine.py",
+      "source_path": "src/workers/engine.py",
+      "before_sha256": "5af2bb8ac0f7fd4b6e95566f212a1702fbadc7525640afdeaf26d9c971bd019d"
+    },
+    {
+      "compatibility_path": "btcminer/exact_tower.py",
+      "source_path": "math-library/python/exact_tower.py",
+      "before_sha256": "3b73f6bf39c0eac4bf2e2fbbbc664ef1debb4a18308bd0910a57e13707913d0a"
+    },
+    {
+      "compatibility_path": "btcminer/hub.py",
+      "source_path": "src/ui/hub.py",
+      "before_sha256": "8eb6bc344802046e959b6f36419b8b88c766621e96c3e5ace170ce0e14538b3e"
+    },
+    {
+      "compatibility_path": "btcminer/math_catalogue.py",
+      "source_path": "math-library/python/math_catalogue.py",
+      "before_sha256": "bf675895447b667879b8bd2af54bc14ee10870dde33ad90b081262c0757b0be8"
+    },
+    {
+      "compatibility_path": "btcminer/mathrevision.py",
+      "source_path": "math-library/python/mathrevision.py",
+      "before_sha256": "0266be37156ca8c0b1fd9196c30becb577347cc629d7e7583ce57eb6b808255d"
+    },
+    {
+      "compatibility_path": "btcminer/native.py",
+      "source_path": "src/backends/native.py",
+      "before_sha256": "2ca5e12debcc2070e4109dcddf8f3fe054100214d08cf667d97e4f7a010d7c94"
+    },
+    {
+      "compatibility_path": "btcminer/networks.py",
+      "source_path": "src/config/networks.py",
+      "before_sha256": "e903538f94743a2bee9034226f2f01a606ecd07386cc95d510f007ec45c32e3f"
+    },
+    {
+      "compatibility_path": "btcminer/observatory_telemetry.py",
+      "source_path": "src/stats/observatory_telemetry.py",
+      "before_sha256": "5a4290de5466e0e0b0ed479c8948ac37cced9387400c681a839aac78460178ac"
+    },
+    {
+      "compatibility_path": "btcminer/pqmath.py",
+      "source_path": "math-library/python/pqmath.py",
+      "before_sha256": "a98ddd73d1b3cbf60414b548b87c9d82463c73e8b9e2c7b66ecb7f73b49e3d85"
+    },
+    {
+      "compatibility_path": "btcminer/prime_structure.py",
+      "source_path": "math-library/python/prime_structure.py",
+      "before_sha256": "e06b6b265f1c85d14061f3a499da647e2bcf47d40104053921ef78752e213d0a"
+    },
+    {
+      "compatibility_path": "btcminer/priority.py",
+      "source_path": "src/workers/priority.py",
+      "before_sha256": "6243917c12d23e23732c5d989f4efb2010b7334b16adb46a3c373031eeb8c3ce"
+    },
+    {
+      "compatibility_path": "btcminer/product_tree_crt.py",
+      "source_path": "math-library/python/product_tree_crt.py",
+      "before_sha256": "69e907ec302d503d59fb950a8bf7e3d8e9316316a4b0b1e1e8fc082ab94e022e"
+    },
+    {
+      "compatibility_path": "btcminer/project_browser.py",
+      "source_path": "src/ui/project_browser.py",
+      "before_sha256": "da8e9d41f3ae3e4bdcb6dab4a577bb46ab05e93a58f1350a67b69746612699e8"
+    },
+    {
+      "compatibility_path": "btcminer/proof_evidence.py",
+      "source_path": "math-library/python/proof_evidence.py",
+      "before_sha256": "8dbcbc43eb6e220286e215e763570befb8042e00963c5feaba6a99a7134d533f"
+    },
+    {
+      "compatibility_path": "btcminer/protocol.py",
+      "source_path": "src/pool/protocol.py",
+      "before_sha256": "e8029396c9accf08f83a9d0ed4f9340f0dcd37b43b09ae6a67b6216b50de4c42"
+    },
+    {
+      "compatibility_path": "btcminer/pruning.py",
+      "source_path": "src/workers/pruning.py",
+      "before_sha256": "c9a4aff43abc22ae7b35eb364ec385de13f4e6ffb7fb24a71742c672b5944ac3"
+    },
+    {
+      "compatibility_path": "btcminer/pruning_worker.py",
+      "source_path": "src/workers/pruning_worker.py",
+      "before_sha256": "73d30878d7872a50ad8c20c98c053a47c205f86609de19a3489fc1765ae9f7ec"
+    },
+    {
+      "compatibility_path": "btcminer/recurrence.py",
+      "source_path": "math-library/python/recurrence.py",
+      "before_sha256": "0f841378bf7293f0fd274d50dd3f7b3614ecfc7767e082fe0299cc9cb7b2dcee"
+    },
+    {
+      "compatibility_path": "btcminer/research_system.py",
+      "source_path": "math-library/python/research_system.py",
+      "before_sha256": "a8993855ff366c9dee60d02b74d77a22c19bc552413e62a403a5eb4017ba96bd"
+    },
+    {
+      "compatibility_path": "btcminer/rodmath.py",
+      "source_path": "math-library/python/rodmath.py",
+      "before_sha256": "3664aedfa87719bd79934e57f899e21d13ad34b860c684f284d237d28a2285d6"
+    },
+    {
+      "compatibility_path": "btcminer/rpc.py",
+      "source_path": "src/pool/rpc.py",
+      "before_sha256": "ee09b1b464214815e8fd9cc8d87b426f9be327560b00e33b6cfa233f9623a82f"
+    },
+    {
+      "compatibility_path": "btcminer/scaled_abacus.py",
+      "source_path": "math-library/python/scaled_abacus.py",
+      "before_sha256": "5824c5637dae837109b44eb933d68d7b0d405a4ba4b430d0a48270df0a5de6d5"
+    },
+    {
+      "compatibility_path": "btcminer/serialization.py",
+      "source_path": "src/pool/serialization.py",
+      "before_sha256": "2acb1580a159a3a472003d48af9eba7579f40c1c50416de15139e8fa6a34d9e3"
+    },
+    {
+      "compatibility_path": "btcminer/service.py",
+      "source_path": "src/main/service.py",
+      "before_sha256": "73519ff09c88792c2a6bca5a6f70d369d76524b3973382a167b1756da46d9f49"
+    },
+    {
+      "compatibility_path": "btcminer/settings.py",
+      "source_path": "src/config/settings.py",
+      "before_sha256": "da16a42f1b6d200073fea1f61fa61c3c7af24f0365853085ba86297767ecb044"
+    },
+    {
+      "compatibility_path": "btcminer/shared_abacus.py",
+      "source_path": "math-library/python/shared_abacus.py",
+      "before_sha256": "8d0b81b0aa15ed44f5d27e49e5f6f9d4a8ca3a8fd6a2f80468b334a522c626d5"
+    },
+    {
+      "compatibility_path": "btcminer/theorem_calculations.py",
+      "source_path": "math-library/python/theorem_calculations.py",
+      "before_sha256": "8e1ef1349e1ed534bf00b206499ff69d32eaae4ca81145338193fb57182bcb80"
+    },
+    {
+      "compatibility_path": "btcminer/thesis2.py",
+      "source_path": "src/workers/thesis2.py",
+      "before_sha256": "1856cf1cd5a62220279ee4af3e54afc1ee71dc8596dd180880157de855f7b813"
+    },
+    {
+      "compatibility_path": "btcminer/tui.py",
+      "source_path": "src/ui/tui.py",
+      "before_sha256": "c910f71039ff53ccacd373dc5977ab7ce9c052f053970a4ae78585fbb5580a74"
+    },
+    {
+      "compatibility_path": "btcminer/ui_support.py",
+      "source_path": "src/ui/ui_support.py",
+      "before_sha256": "7c03f9a46201a3dcc8080c746679abb4cd801097caf0f6bce2d6115ca66accb9"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/backtest_last_100_blocks.py",
+      "source_path": "src/legacy/backtest_last_100_blocks.py",
+      "before_sha256": "623e774fbc10236bf016d81260237b43fd99dc1391b603f1ec7438025308cb8e"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/btc_rpc.py",
+      "source_path": "src/legacy/btc_rpc.py",
+      "before_sha256": "52f1e0decd5f096eb53795acc1adf696319ec6f7677b9870dbad44ed6264c1c7"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/config.py",
+      "source_path": "src/legacy/config.py",
+      "before_sha256": "bb0473e1b47a045f3cb39c411fcf610df83f51a57432acb968a6cfef9ccf567f"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/log_utils.py",
+      "source_path": "src/legacy/log_utils.py",
+      "before_sha256": "2972f4cecccb4413567c2d5c6f3f9a1a7c9b7ffb5bbbf09c5c65f81460d7be06"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/nonce_logger.py",
+      "source_path": "src/legacy/nonce_logger.py",
+      "before_sha256": "72e26b7677633856b89b09ed3dde74d98a690a1dd7b99255cc73c99073d2cafd"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/supt_probe.py",
+      "source_path": "src/legacy/supt_probe.py",
+      "before_sha256": "db517f66d5033c97847a8b7f17004de01a520397f9ded2df97bd7ec6727d6e7a"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/supt_streams.py",
+      "source_path": "src/legacy/supt_streams.py",
+      "before_sha256": "ff2182a097ace47c505c9f58ce93badc4b8c2bac1bb50a69eaba52e7921a5b85"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/thesis_constants.py",
+      "source_path": "src/legacy/thesis_constants.py",
+      "before_sha256": "08de223623204aa0a595069bf8396fa77954d8e9eb0be2b5ea10e79e617e9eed"
+    },
+    {
+      "compatibility_path": "btcminer/legacy/thesis_mining.py",
+      "source_path": "src/legacy/thesis_mining.py",
+      "before_sha256": "e452e2c21a2478540f1fee8df33b71d586a05709b8d2a8886062c9586faa53b1"
+    },
+    {
+      "compatibility_path": "native/latcalc/PROVENANCE.json",
+      "source_path": "math-library/native/latcalc/PROVENANCE.json",
+      "before_sha256": "cc7d00f2d60be478ce307b55ed6b16d0aa65a57b2332cfe80a51180b79ca6346"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/abacus.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/abacus.h",
+      "before_sha256": "aac32f1650fa53337195ca452601edc7b4ae1e51e59aea097e9506a104d3f51a"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/bigint.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/bigint.h",
+      "before_sha256": "3f1741446291177e754cc2a0d17b2b2e16665b0ec302b50a1a94cc87fbd66017"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/binrods.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/binrods.h",
+      "before_sha256": "f5fbef25151bca39d42ec20d1ddd81420de83a98e267831c6deaa5bd9eb23388"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/common.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/common.h",
+      "before_sha256": "35ea12166c5be7745d823e341ea2714b14d2d5ef648239a265f6ef26a84c11ec"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/dial.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/dial.h",
+      "before_sha256": "0c4f6e4574908f8d926d4b7092bbd4557ce22bcbebc0275e738a537d02bdc7c6"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/eisenstein.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/eisenstein.h",
+      "before_sha256": "f594594d1e4648afbbb9fb97f0e2d506cf25c4c450047b12ad6b8f76a3ecab44"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/latcalc.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/latcalc.h",
+      "before_sha256": "f0f52311ffcb0623d9743728993f75f222fa462fab52c543e3823551e01b690e"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/ordersplit.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/ordersplit.h",
+      "before_sha256": "4f1a73c32bf1aead67ca321f5283aff79920751642b5f9f3ce7600a62208ea99"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/rational.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/rational.h",
+      "before_sha256": "e3a2dc6bc4b718c9d0aa787473d7030a77d857caadcc0ec5be84ede9d32817ac"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/rns.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/rns.h",
+      "before_sha256": "54d9541b75cd63b2d1dbc2df3c8cff172050f36de64950ee39090ed9d95d9656"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/rodsieve.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/rodsieve.h",
+      "before_sha256": "0646f13570aa0d69a243b3a8a6caf44d207dae01018a4c91d12e60d6027dcd29"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/scaled.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/scaled.h",
+      "before_sha256": "740866875a722f6116b987076a578dd8d041b334a192bbc8bbf2675b6d29c1f9"
+    },
+    {
+      "compatibility_path": "native/latcalc/include/latcalc/sexa.h",
+      "source_path": "math-library/native/latcalc/include/latcalc/sexa.h",
+      "before_sha256": "cdc1196e918463809e51ab80184dd85e941739e44c730ff7a2083c3a63ed73b8"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/abacus.c",
+      "source_path": "math-library/native/latcalc/src/abacus.c",
+      "before_sha256": "d9aab60b8180f4027d3035ee2663094054479ab3e7a29d3d6f29f635f355852c"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/bigint.c",
+      "source_path": "math-library/native/latcalc/src/bigint.c",
+      "before_sha256": "13208acccb1f3d491364440441d42647d2f32cc8ece220fa8066fec32338a59d"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/binrods.c",
+      "source_path": "math-library/native/latcalc/src/binrods.c",
+      "before_sha256": "1c686f125f46c6237e0037803339951c31940fa91fb8496581ccdedc9e9c3ae9"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/common.c",
+      "source_path": "math-library/native/latcalc/src/common.c",
+      "before_sha256": "683d92fb6d3297457690f7f0c92486a3ef8e1efc25186e2fa5afc434dfbcd8fb"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/dial.c",
+      "source_path": "math-library/native/latcalc/src/dial.c",
+      "before_sha256": "170058e7ab736cbaaa343e48ab65de10a5ed1dc5e36cd6e4fb0b4285fd2a382f"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/eisenstein.c",
+      "source_path": "math-library/native/latcalc/src/eisenstein.c",
+      "before_sha256": "c8a5d3ac94b3907cc3379112a20e2d40f7918551d8aa751a044c6bead86b5d76"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/ordersplit.c",
+      "source_path": "math-library/native/latcalc/src/ordersplit.c",
+      "before_sha256": "4a6e355ccb3f6d03dfa01ae5fcb86eb5d401c95fc7976904bbb6523ddc6ff059"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/rational.c",
+      "source_path": "math-library/native/latcalc/src/rational.c",
+      "before_sha256": "65fd38e3c45a0abe7f10dd00e34a612703ea5703d1f9816c46f80149efbfd2e8"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/rns.c",
+      "source_path": "math-library/native/latcalc/src/rns.c",
+      "before_sha256": "1cabe59e249fc8256c2d8a8e91257f726d47acc353ac31bbe3e8990331398b68"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/rodsieve.c",
+      "source_path": "math-library/native/latcalc/src/rodsieve.c",
+      "before_sha256": "6a99211b219dc30937673ace786b2d7dc3f518bbc7a43fe39c9aba5e7735a4d0"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/scaled.c",
+      "source_path": "math-library/native/latcalc/src/scaled.c",
+      "before_sha256": "20639d14e1b9a4ddfb6979420a2cc164d1419fce75c7cf4d2b010c0061c8b0d3"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/sexa.c",
+      "source_path": "math-library/native/latcalc/src/sexa.c",
+      "before_sha256": "64c8bd8e1900f84a8c64d9e91dac1e51e91b09bbc7c04c84733c9b7fc7b64e29"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/strbuf.c",
+      "source_path": "math-library/native/latcalc/src/strbuf.c",
+      "before_sha256": "6de9228d97a4b9489bc9153d1356609634a6ac2e1315f14f25e95c1245485dd0"
+    },
+    {
+      "compatibility_path": "native/latcalc/src/strbuf.h",
+      "source_path": "math-library/native/latcalc/src/strbuf.h",
+      "before_sha256": "a258f08cae5c731a781c4682437a748f45e0fa2bc385a0a88e0cceb1c0c580f7"
+    },
+    {
+      "compatibility_path": "native/hasher_fast.c",
+      "source_path": "src/backends/hasher_fast.c",
+      "before_sha256": "a43bdcd974d80b10e779844d595c9d70f576f2d26d9a1893640815c995de938b"
+    },
+    {
+      "compatibility_path": "btcminer/loop_view.py",
+      "source_path": "src/ui/loop_view.py",
+      "before_sha256": "9aa3c09471792054b8d88af862cb9fb9bdf6eaf875f3c0f24d8fc17f115d1c0f"
+    },
+    {
+      "compatibility_path": "btcminer/geometry_codec.py",
+      "source_path": "math-library/python/geometry_codec.py",
+      "before_sha256": "01dc463ec6334efdffdd982cd8949c61341e1ed1cd4fc0b4e3805bca4b2082c0"
+    },
+    {
+      "compatibility_path": "btcminer/geometry_predictive.py",
+      "source_path": "math-library/python/geometry_predictive.py",
+      "before_sha256": "00f0308289079ec5525b8a0e64e8a62cfccdde1ec01affe67abdc2028fa2c33e"
+    },
+    {
+      "compatibility_path": "btcminer/scale_graph.py",
+      "source_path": "math-library/python/scale_graph.py",
+      "before_sha256": null,
+      "added": "2026-10-11; tested runtime translation of pinned FractalAbacus definitions"
+    },
+    {
+      "compatibility_path": "btcminer/modelling.py",
+      "source_path": "src/tools/modelling.py",
+      "before_sha256": null,
+      "added": "2026-10-11; local live modelling lab"
+    },
+    {
+      "compatibility_path": "btcminer/provider.py",
+      "source_path": "src/tools/provider.py"
+    },
+    {
+      "compatibility_path": "btcminer/tcmp.py",
+      "source_path": "src/tools/tcmp.py"
+    },
+    {
+      "compatibility_path": "btcminer/provider_runtime.py",
+      "source_path": "src/tools/provider_runtime.py"
+    },
+    {
+      "compatibility_path": "btcminer/block_validation.py",
+      "source_path": "src/hash/block_validation.py"
+    },
+    {
+      "compatibility_path": "btcminer/resources.py",
+      "source_path": "src/workers/resources.py"
+    },
+    {
+      "compatibility_path": "btcminer/provider_telemetry.py",
+      "source_path": "src/tools/provider_telemetry.py"
+    },
+    {
+      "compatibility_path": "btcminer/system_metrics.py",
+      "source_path": "src/tools/system_metrics.py"
+    }
+  ]
+}

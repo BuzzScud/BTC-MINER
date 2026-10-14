@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "MinerProofRepair",
+ "options": {},
+ "name": "LatticeCalc.Verified.PowSqrtPrime",
+ "isModule": true,
+ "importArts": {},
+ "dynlibs": []}
