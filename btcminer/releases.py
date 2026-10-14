@@ -153,9 +153,13 @@ class Repository:
             def read(name):
                 return archive.extractfile(files[name]).read()
             try:
-                inventory = json.loads(read('PUBLIC_FILES.json'))
-                hashes = json.loads(read('FILES.sha256.json'))
-                if set(files) != set(inventory)|{'FILES.sha256.json'} or set(hashes) != set(inventory):
+                public_name = '.github/manifests/PUBLIC_FILES.json' if '.github/manifests/PUBLIC_FILES.json' in files else 'PUBLIC_FILES.json'
+                hash_name = public_name.replace('PUBLIC_FILES.json', 'FILES.sha256.json')
+                if public_name != 'PUBLIC_FILES.json' and ('PUBLIC_FILES.json' in files or 'FILES.sha256.json' in files):
+                    raise UpdateError('Release contains ambiguous old and new manifests.')
+                inventory = json.loads(read(public_name))
+                hashes = json.loads(read(hash_name))
+                if set(files) != set(inventory)|{hash_name} or set(hashes) != set(inventory):
                     raise UpdateError('Release inventory is incomplete or contains unexpected files.')
                 for name in files:
                     payload = read(name)
@@ -172,7 +176,10 @@ class Repository:
 
     def dependencies_match(self, stage):
         try:
-            for line in (stage/'requirements.txt').read_text().splitlines():
+            requirements = stage/'scripts/requirements.txt'
+            if not requirements.is_file():
+                requirements = stage/'requirements.txt'
+            for line in requirements.read_text().splitlines():
                 if not line.strip() or line.startswith('#'):
                     continue
                 name, expected = line.split('==')
@@ -198,7 +205,7 @@ class Repository:
         if not same:
             if on_open:
                 raise UpdateError('New dependencies need approval; run btc-miner update in a terminal.')
-            print('This release needs the pinned packages in its requirements.txt, in a new isolated environment.')
+            print('This release needs its pinned packages in a new isolated environment.')
             if not yes and (not sys.stdin.isatty() or input('Download and install them? [y/N] ').strip().lower() not in ('y','yes')):
                 raise UpdateError('Dependency installation declined; current version retained.')
             environment = self.area/('env-'+uuid.uuid4().hex)
@@ -388,12 +395,13 @@ class Repository:
             for args in (['scripts/audit_public.py'], ['scripts/check_math_integrity.py'],
                          ['scripts/verify_proof_evidence.py'], ['scripts/sync_layout.py','--check']):
                 self.run([sys.executable,*args],self.root,log)
-            self.run([scanner,'git','--redact','--log-opts=--all'],self.root,log)
+            scanner_config = ['--config', str(self.root/'.github/gitleaks.toml')] if (self.root/'.github/gitleaks.toml').is_file() else []
+            self.run([scanner,'git','--redact','--log-opts=--all',*scanner_config],self.root,log)
             stage = self.area/('release-'+uuid.uuid4().hex)
             stage.mkdir()
             try:
                 self.export(sha, stage)
-                self.run([scanner,'dir','--redact',stage],self.root,log)
+                self.run([scanner,'dir','--redact',*scanner_config,stage],self.root,log)
             finally:
                 shutil.rmtree(stage)
             print('Release reviewed commit '+sha[:12]+' to all followers via stable.')

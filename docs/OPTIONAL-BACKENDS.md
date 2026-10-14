@@ -3,7 +3,8 @@
 The source backup does not include `libalgorithms` or OBJECTIVE 28 recovery.
 The complete Python thesis strategies and the independent native SHA-256 engine are included.
 
-If you later recover the original compatible libraries, put their full directory tree here:
+If you later recover the original compatible libraries, create this directory tree
+relative to the repository root (these local libraries are excluded from Git):
 
 ```
 optional/c. math/algorithms/libalgorithms.dylib

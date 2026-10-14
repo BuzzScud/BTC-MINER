@@ -776,7 +776,7 @@ class App:
 
 def run():
     if not sys.stdin.isatty() or not sys.stdout.isatty():
-        print("Open launchers/macos/Start BTC Miner.command in Terminal, or use ./bin/btc-miner --help.")
+        print("Open bin/launchers/macos/Start BTC Miner.command in Terminal, or use ./bin/btc-miner --help.")
         return 1
     App().loop()
     return 0

@@ -3,10 +3,11 @@
 Never add machine.local.json, network-profiles.local.json, .env files, wallets,
 RPC cookies, private keys, tokens, runtime logs/databases, .venv or .build to Git.
 Do not run `git add .` against an operational miner installation. Work in a clean
-checkout and export only the reviewed PUBLIC_FILES.json inventory.
+checkout and export only the reviewed .github/manifests/PUBLIC_FILES.json inventory.
 
 Run scripts/audit_public.py against the staged index before committing, and run
-Gitleaks against the index export and all Git history. Inspect findings locally
+Gitleaks against the index export and all Git history with
+`--config .github/gitleaks.toml`. Inspect findings locally
 without printing credential values. A scan is a review aid, not a universal
 promise that arbitrary future content is safe. The checked-in Gitleaks exceptions
 cover only reviewed checksum records and one catalogue function description.

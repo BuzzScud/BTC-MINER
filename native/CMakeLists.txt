@@ -1,16 +1,17 @@
 cmake_minimum_required(VERSION 3.20)
 project(btc_miner_native LANGUAGES C)
+get_filename_component(BTC_SOURCE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-add_library(hasher_fast SHARED src/backends/hasher_fast.c)
-file(GLOB LATCALC CONFIGURE_DEPENDS math-library/native/latcalc/src/*.c)
+add_library(hasher_fast SHARED ${BTC_SOURCE_ROOT}/src/backends/hasher_fast.c)
+file(GLOB LATCALC CONFIGURE_DEPENDS ${BTC_SOURCE_ROOT}/math-library/native/latcalc/src/*.c)
 add_library(abacus SHARED ${LATCALC})
-add_library(rodsieve SHARED math-library/native/latcalc/src/bigint.c
-  math-library/native/latcalc/src/rns.c math-library/native/latcalc/src/common.c
-  math-library/native/latcalc/src/rodsieve.c)
+add_library(rodsieve SHARED ${BTC_SOURCE_ROOT}/math-library/native/latcalc/src/bigint.c
+  ${BTC_SOURCE_ROOT}/math-library/native/latcalc/src/rns.c ${BTC_SOURCE_ROOT}/math-library/native/latcalc/src/common.c
+  ${BTC_SOURCE_ROOT}/math-library/native/latcalc/src/rodsieve.c)
 foreach(target hasher_fast abacus rodsieve)
-  target_include_directories(${target} PRIVATE math-library/native/latcalc/include)
+  target_include_directories(${target} PRIVATE ${BTC_SOURCE_ROOT}/math-library/native/latcalc/include)
   set_target_properties(${target} PROPERTIES PREFIX "lib")
   if(NOT WIN32)
     target_compile_options(${target} PRIVATE -O3)

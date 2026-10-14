@@ -23,7 +23,7 @@ class ReleaseContracts(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         root = Path(temporary.name)
         proof = verify(ROOT)
-        for name in build.release_files(ROOT,proof)+['FILES.sha256.json']:
+        for name in build.release_files(ROOT,proof)+['.github/manifests/FILES.sha256.json']:
             destination = root/name
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/name,destination)

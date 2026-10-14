@@ -114,6 +114,15 @@ it is not required for mining or bundled in this release.
 
 ## Send and receive updates
 
+The repository now stores release manifests under `.github/manifests/` and pinned
+dependencies in `scripts/requirements.txt`. An updater from before this layout
+cannot read the new manifests. When this layout is published to `stable`, existing
+installations need a one-time manual `git pull --ff-only origin stable` followed
+by `sh setup.sh --no-wizard` (or `./setup.ps1 --no-wizard` on Windows). Review and preserve local source
+edits first; do not force a checkout. After that, normal `update` commands work
+with both the older and current layouts. Changes on `main` alone do not update
+existing installations.
+
 This follows the XMR miner's main/follower model. `stable` is the release channel;
 a push to `main` alone does not update followers. Every Git installation defaults
 to follower. It checks for a release when the dashboard opens, or with `update`.
@@ -200,7 +209,7 @@ from having a block accepted by Bitcoin Core.
 ## Development
 
 See [public release design and checks](PUBLIC-RELEASE.md),
-[security and publication](../SECURITY.md), and [source provenance](project/SOURCE-NOTES.md).
+[security and publication](../.github/SECURITY.md), and [source provenance](project/SOURCE-NOTES.md).
 CI builds native libraries and runs tests on macOS, Linux, and Windows.
 `docs/HISTORICAL-README.md` preserves the earlier research narrative; paths to
 unbundled private experiments are historical references, not setup prerequisites.

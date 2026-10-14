@@ -119,7 +119,7 @@ def refresh(root, observatory=None):
         'proof_manifest_sha256':proof['manifest_sha256']})
     write_preserved(root, 'research/integration-status.json', ledger)
     names = release_files(root, proof)
-    write_preserved(root, 'FILES.sha256.json', {name:digest(root/name) for name in names})
+    write_preserved(root, '.github/manifests/FILES.sha256.json', {name:digest(root/name) for name in names})
     return {'status':'refreshed', 'files':len(names), 'named_theorems':len(entries), 'executable_translations':len(supported),
             'live_process_restarted':False, 'proof_manifest_sha256':proof['manifest_sha256']}
 

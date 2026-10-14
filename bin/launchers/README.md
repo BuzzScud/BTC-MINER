@@ -8,7 +8,7 @@ On macOS, open **macos/BTC Miner.app** or **macos/Start BTC Miner.command** to o
 the terminal dashboard. **macos/install.command** runs setup. If macOS blocks a
 launcher, right-click it and choose Open.
 
-For a PowerShell launcher, run `./launchers/windows/btc-miner.ps1 ui` from the
+For a PowerShell launcher, run `./bin/launchers/windows/btc-miner.ps1 ui` from the
 repository root. The root `btc-miner.cmd` also works in PowerShell and CMD.
 
 Opening the dashboard does not start mining. Closing it leaves an explicitly

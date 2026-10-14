@@ -7,11 +7,11 @@ repository root.
 ## Guides
 
 - [User guide](usage.md)
-- [Desktop launchers](../launchers/README.md)
+- [Desktop launchers](../bin/launchers/README.md)
 - [Calculator integration](PROVIDER-API.txt)
 - [Distributed workers](FRACTAL-DISTRIBUTION.txt)
 - [Resource controls](RESOURCE-CONTROL.txt)
-- [Security](../SECURITY.md)
+- [Security](../.github/SECURITY.md)
 
 ## Development and evidence
 

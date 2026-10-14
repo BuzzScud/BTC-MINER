@@ -1,4 +1,6 @@
 BTC MINER/
+├── .github/                 CI, security policy, secret-scan configuration
+│   └── manifests/           Reviewed public inventory and source hashes
 ├── machine.local.json       Local settings: connection, payout, worker and CPU options
 ├── src/                     Miner application
 │   ├── main/                CLI entry and service lifecycle
@@ -15,9 +17,10 @@ BTC MINER/
 │   ├── python/              CRT, rods, geometry, certified intervals and proof gates
 │   └── native/latcalc/       C arithmetic, headers and residue operations
 ├── tests/                   Offline miner and mathematics regression tests
-├── scripts/                 Build and audit commands (build.py creates the package)
+├── scripts/                 Build/audit commands and pinned requirements.txt
 ├── bin/                     Stable terminal launch commands
-├── launchers/               Optional macOS app/commands and PowerShell launcher
+│   └── launchers/           Optional macOS app/commands and PowerShell launcher
+├── native/                  CMake build definition and compatibility sources
 ├── research/                Formula catalogue, consumer relationships and proof registry
 ├── reference/               Preserved mathematical source material
 ├── validation/              Versioned test, audit and proof evidence

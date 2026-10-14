@@ -35,8 +35,8 @@ running miner running.
 
 - [User guide](docs/usage.md) — requirements, connections, commands, and updates
 - [Documentation index](docs/README.md) — development, mathematics, and evidence
-- [Optional desktop launchers](launchers/README.md)
-- [Security and credentials](SECURITY.md)
+- [Optional desktop launchers](bin/launchers/README.md)
+- [Security and credentials](.github/SECURITY.md)
 
 `stable` is the release channel. Development changes on `main` reach followers
 only after release checks pass and a release is published.

@@ -568,7 +568,7 @@ SUPT probes, Z0 views and mode comparisons are diagnostics. Their labels and ref
 anchors are inherited research conventions, not mining-performance evidence.
 
 Original optional `libalgorithms`/OBJECTIVE 28 sources are not included in the backup.
-See `optional/README.md`. The bundled ARM hashing library is separate and fully included.
+See `docs/OPTIONAL-BACKENDS.md`. The bundled ARM hashing library is separate and fully included.
 
 ## Sessions, reconnects and logs
 
@@ -696,7 +696,7 @@ for another destination. Existing unrelated HTML files are never overwritten.
 In the miner terminal interface, `/files` opens the browser; run the continuous
 watcher in a separate Terminal so it does not occupy the interface command queue.
 
-Release comparisons use `FILES.sha256.json`. Other change detection uses size
+Release comparisons use `.github/manifests/FILES.sha256.json`. Other change detection uses size
 and modification time, supplemented by hashes for source previews. Matching
 hashes are identity checks, not test or proof results. Run the relevant tests
 after edits; the browser never changes source files or controls mining.

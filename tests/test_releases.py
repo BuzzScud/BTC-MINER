@@ -76,6 +76,53 @@ class ReleaseTests(unittest.TestCase):
         git(self.owner,'push','origin','HEAD:main','HEAD:stable')
         return git(self.owner,'rev-parse','HEAD')
 
+    def publish_nested_layout(self, ambiguous=False):
+        folder = self.owner/'.github/manifests'
+        folder.mkdir(parents=True)
+        (self.owner/'scripts').mkdir()
+        (self.owner/'requirements.txt').rename(self.owner/'scripts/requirements.txt')
+        public_name = '.github/manifests/PUBLIC_FILES.json'
+        names = ['.gitignore', 'README.md', 'scripts/requirements.txt', public_name]
+        if ambiguous:
+            names.append('PUBLIC_FILES.json')
+        else:
+            (self.owner/'PUBLIC_FILES.json').unlink()
+        (self.owner/'FILES.sha256.json').unlink()
+        (self.owner/public_name).write_text(json.dumps(names))
+        (folder/'FILES.sha256.json').write_text(json.dumps({
+            name:hashlib.sha256((self.owner/name).read_bytes()).hexdigest() for name in names}))
+        git(self.owner, 'add', '-A'); git(self.owner, 'commit', '-m', 'Nested release metadata')
+        git(self.owner, 'push', 'origin', 'HEAD:main', 'HEAD:stable')
+        return git(self.owner, 'rev-parse', 'HEAD')
+
+    def test_nested_layout_update_preserves_private_settings_and_dependencies(self):
+        target = self.publish_nested_layout()
+        self.assertTrue(self.repo.update())
+        self.assertEqual(git(self.root, 'rev-parse', 'HEAD'), target)
+        self.assertTrue((self.root/'.github/manifests/PUBLIC_FILES.json').is_file())
+        self.assertFalse((self.root/'PUBLIC_FILES.json').exists())
+        self.assertTrue(self.repo.dependencies_match(self.root))
+        self.assertEqual((self.root/'machine.local.json').read_text(), '{"fixture":"local-only"}')
+        self.assertEqual((self.root/'.env').read_text(), 'LOCAL_FIXTURE=retained\n')
+        self.assertEqual(self.stop.call_count, 1)
+
+    def test_ambiguous_old_and_new_manifests_are_rejected_before_stop(self):
+        self.publish_nested_layout(ambiguous=True)
+        with self.assertRaisesRegex(releases.UpdateError, 'ambiguous'):
+            self.repo.update()
+        self.stop.assert_not_called()
+        self.assertEqual(git(self.root, 'rev-parse', 'HEAD'), self.before)
+
+    def test_nested_manifest_digest_failure_is_rejected_before_stop(self):
+        self.publish_nested_layout()
+        (self.owner/'README.md').write_text('changed without refreshed hashes')
+        git(self.owner, 'add', 'README.md'); git(self.owner, 'commit', '-m', 'Invalid fixture')
+        git(self.owner, 'push', 'origin', 'HEAD:main', 'HEAD:stable')
+        with self.assertRaisesRegex(releases.UpdateError, 'digest mismatch'):
+            self.repo.update()
+        self.stop.assert_not_called()
+        self.assertEqual(git(self.root, 'rev-parse', 'HEAD'), self.before)
+
     def test_real_fetch_switch_and_private_data_preservation(self):
         target=self.publish()
         self.assertTrue(self.repo.update())

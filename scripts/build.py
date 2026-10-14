@@ -40,7 +40,7 @@ def run(args, cwd, env, logfile=None):
 
 def release_files(root, evidence):
     """The explicit export boundary excludes operational/private files."""
-    public = root/'PUBLIC_FILES.json'
+    public = root/'.github/manifests/PUBLIC_FILES.json'
     if public.is_file():
         files = json.loads(public.read_text())
         require(isinstance(files,list) and len(files)==len(set(files)), 'Invalid public export inventory')
@@ -50,11 +50,11 @@ def release_files(root, evidence):
     # third-party libraries from entering a distributable archive.
     files = ["README.md", "LICENSE", "docs/project/SOURCE-NOTES.md", ".gitignore",
              "docs/project/BUILD-ASSESSMENT.md", "docs/project/IMPLEMENTATION-PLAN.md",
-             "launchers/macos/Start BTC Miner.command", "launchers/macos/install.command",
-             "docs/project/THESIS2 Implementation Report.html", "optional/README.md",
+             "bin/launchers/macos/Start BTC Miner.command", "bin/launchers/macos/install.command",
+             "docs/project/THESIS2 Implementation Report.html", "docs/OPTIONAL-BACKENDS.md",
              "native/build.sh", "native/hasher_fast.c", "scripts/build.py", "scripts/regtest.py",
              "bin/btc-miner", "bin/minerctl.sh", "bin/miner-ui.sh",
-             "launchers/macos/BTC Miner.app/Contents/Info.plist", "launchers/macos/BTC Miner.app/Contents/MacOS/launcher"]
+             "bin/launchers/macos/BTC Miner.app/Contents/Info.plist", "bin/launchers/macos/BTC Miner.app/Contents/MacOS/launcher"]
     files += [str(path.relative_to(root)) for path in (root / "btcminer").rglob("*.py")]
     files += ["docs/GEOMETRY-CODEC.txt", "research/geometry-codec-contract.json"]
     files += ["docs/SCALE-GRAPH-TRAVERSAL.txt", "research/scale-graph-runtime.json"]
@@ -138,7 +138,7 @@ def check_release_inputs(root, *, check_manifest=True):
                 entry['execution_status'] == ('accepted_closed_Nat_translation' if entry['theorem'] in supported else 'proof_only_translation_unimplemented') and
                 entry['bitcoin_exclusion_authority'] is False, 'Proof registry scope differs')
     if check_manifest:
-        manifest = json.loads((root/'FILES.sha256.json').read_text())
+        manifest = json.loads((root/'.github/manifests/FILES.sha256.json').read_text())
         expected = release_files(root, proof)
         require(set(expected) <= set(manifest), 'Release source inventory differs; refresh metadata after review')
         for relative in expected:
@@ -164,7 +164,7 @@ def main():
             shutil.copy2(ROOT / name, dest)
         # Copied artifacts MUST independently pass; source check alone is not a
         # release acceptance. The stage gets its own generated full-file manifest.
-        shutil.copy2(ROOT / "FILES.sha256.json", stage / "FILES.sha256.json")
+        shutil.copy2(ROOT / ".github/manifests/FILES.sha256.json", stage / ".github/manifests/FILES.sha256.json")
         staged_proof = check_release_inputs(stage)
         require(staged_proof['manifest_sha256'] == proof['manifest_sha256'], 'Stage proof differs')
         (stage / "logs").mkdir()
@@ -172,7 +172,7 @@ def main():
         print("Building native SHA256d in a clean staging folder...", flush=True)
         run([sys.executable, "scripts/build_native.py"], stage, env)
         if platform.system() == "Darwin":
-            run(["codesign", "--force", "--sign", "-", "launchers/macos/BTC Miner.app"], stage, env)
+            run(["codesign", "--force", "--sign", "-", "bin/launchers/macos/BTC Miner.app"], stage, env)
         print("Checking native hashing and the regression suite...", flush=True)
         run([sys.executable, "-B", "-m", "btcminer", "self-test", "--require-native"], stage, env)
         unit_result = run([sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests"], stage, env,
@@ -204,11 +204,11 @@ def main():
             [p.relative_to(stage).as_posix() for p in (stage/'native').iterdir()
              if p.suffix in ('.dylib','.so','.dll')]))
         manifest = {name:hashlib.sha256((stage/name).read_bytes()).hexdigest() for name in package_names}
-        (stage / "FILES.sha256.json").write_text(json.dumps(manifest, indent=2)+"\n")
+        (stage / ".github/manifests/FILES.sha256.json").write_text(json.dumps(manifest, indent=2)+"\n")
         name = f"BTC-Miner-{VERSION}-{platform.system().lower()}-{platform.machine()}.zip"
         archive = Path(temp) / name
         with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as bundle:
-            for relative in package_names + ['FILES.sha256.json']:
+            for relative in package_names + ['.github/manifests/FILES.sha256.json']:
                 path = stage/relative
                 bundle.write(path, path.relative_to(stage.parent))
         # Publish only after compilation and tests succeed. The temporary file

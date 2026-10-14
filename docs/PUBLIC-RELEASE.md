@@ -73,7 +73,7 @@ exactly one miner-accepted block containing a signed transaction. It checks exac
 SHA256d, the engine's Core/Merkle/witness readback, and Core verifychain level 4.
 It does not use a caller-provided datadir or control an existing node.
 
-Review additions to PUBLIC_FILES.json, then run scripts/public_manifest.py to
+Review additions to .github/manifests/PUBLIC_FILES.json, then run scripts/public_manifest.py to
 refresh current source identities. This does not upgrade historical evidence.
 Run scripts/audit_public.py after staging and Gitleaks on both the public export
 and all Git history before pushing. Generated native binaries and user data stay

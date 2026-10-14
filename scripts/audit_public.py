@@ -19,8 +19,8 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--worktree',action='store_true');args=p.parse_args()
     def read(name):
         return (ROOT/name).read_bytes() if args.worktree else subprocess.check_output(['git','show',':'+name],cwd=ROOT)
-    names=json.loads(read('PUBLIC_FILES.json'))
-    expected=set(names)|{'FILES.sha256.json'}
+    names=json.loads(read('.github/manifests/PUBLIC_FILES.json'))
+    expected=set(names)|{'.github/manifests/FILES.sha256.json'}
     if not args.worktree:
         rows=subprocess.check_output(['git','ls-files','--stage','-z'],cwd=ROOT).decode().split('\0')
         actual=set()
@@ -29,7 +29,7 @@ def main():
             if meta.split()[0] not in ('100644','100755'):raise ValueError('Unexpected Git object type: '+name)
             actual.add(name)
         if actual!=expected:raise ValueError('Staged paths differ from public inventory: '+str(sorted(actual^expected)))
-    manifest=json.loads(read('FILES.sha256.json'))
+    manifest=json.loads(read('.github/manifests/FILES.sha256.json'))
     if set(manifest)!=set(names):raise ValueError('Source hash inventory differs')
     total=0
     for name in sorted(expected):

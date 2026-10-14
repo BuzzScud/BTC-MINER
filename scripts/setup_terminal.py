@@ -55,11 +55,11 @@ def main():
         try: venv.EnvBuilder(with_pip=True).create(env)
         except Exception as error:
             raise SystemExit('Cannot create .venv. Install your OS Python venv/ensurepip package, then rerun. '+type(error).__name__)
-    check=subprocess.run([str(python),'-c', "from importlib.metadata import version; from pathlib import Path; pairs=[line.split('==') for line in Path('requirements.txt').read_text().splitlines() if '==' in line]; assert all(version(name)==expected for name,expected in pairs)"],cwd=ROOT,capture_output=True)
+    check=subprocess.run([str(python),'-c', "from importlib.metadata import version; from pathlib import Path; pairs=[line.split('==') for line in Path('scripts/requirements.txt').read_text().splitlines() if '==' in line]; assert all(version(name)==expected for name,expected in pairs)"],cwd=ROOT,capture_output=True)
     if check.returncode:
-        print('The private .venv needs the pinned packages listed in requirements.txt.')
+        print('The private .venv needs the pinned packages listed in scripts/requirements.txt.')
         if args.no_install or not yes('Download and install these dependencies?',args.yes): raise SystemExit('Dependencies need installation; run a manual update or setup.')
-        run([str(python),'-m','pip','install','--disable-pip-version-check','-r','requirements.txt'])
+        run([str(python),'-m','pip','install','--disable-pip-version-check','-r','scripts/requirements.txt'])
     run([str(python),'scripts/sync_layout.py','--check'])
     run([str(python),'scripts/build_native.py'])
     run([str(python),'-B','-m','btcminer','self-test','--require-native'])

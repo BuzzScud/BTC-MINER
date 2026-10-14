@@ -53,5 +53,5 @@ jobs:
           grep ' gitleaks_8.30.1_linux_x64.tar.gz$' gitleaks-checksums.txt | sed 's|gitleaks_8.30.1_linux_x64.tar.gz|gitleaks.tar.gz|' | sha256sum -c -
           tar -xzf gitleaks.tar.gz gitleaks
           cd "$GITHUB_WORKSPACE"
-          /tmp/gitleaks git --redact --log-opts=--all
-          /tmp/gitleaks dir --redact .
+          /tmp/gitleaks git --redact --log-opts=--all --config .github/gitleaks.toml
+          /tmp/gitleaks dir --redact --config .github/gitleaks.toml .

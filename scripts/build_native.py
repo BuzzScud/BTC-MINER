@@ -13,8 +13,8 @@ def main():
     sibling = Path(sys.executable).parent/('cmake.exe' if os.name == 'nt' else 'cmake')
     if sibling.is_file(): cmake = str(sibling)
     if not cmake: raise SystemExit('CMake missing. Run setup again.')
-    build = ROOT/'.build'/('native-'+platform.system()+'-'+platform.machine())
-    command = [cmake, '-S', str(ROOT), '-B', str(build), '-DCMAKE_BUILD_TYPE=Release']
+    build = ROOT/'.build'/('native-layout2-'+platform.system()+'-'+platform.machine())
+    command = [cmake, '-S', str(ROOT/'native'), '-B', str(build), '-DCMAKE_BUILD_TYPE=Release']
     if os.name == 'nt':
         command += ['-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'ClangCL']
     subprocess.run(command, check=True)

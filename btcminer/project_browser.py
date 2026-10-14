@@ -143,7 +143,9 @@ def inventory(root, *, excluded=(), previous=None):
         except (OSError, ValueError, KeyError, TypeError) as error:
             issues.append('Project layout unavailable: ' + str(error))
             aliases = {}
-    manifest_path = root / 'FILES.sha256.json'
+    manifest_path = root / '.github/manifests/FILES.sha256.json'
+    if not manifest_path.is_file():
+        manifest_path = root / 'FILES.sha256.json'  # Older release snapshots.
     try:
         if manifest_path.is_symlink():
             raise ValueError('Manifest is a symbolic link')
