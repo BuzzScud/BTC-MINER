@@ -10,6 +10,7 @@ import ctypes
 from datetime import datetime, timezone
 from fractions import Fraction
 import hashlib
+import ipaddress
 import json
 import os
 from pathlib import Path
@@ -86,12 +87,31 @@ class ProviderClient:
         if (parsed.scheme not in ('http', 'https') or not parsed.hostname or parsed.username or parsed.password
                 or parsed.query or parsed.fragment or parsed.path not in ('', '/')):
             raise ValueError('Set BTC_PROVIDER_URL to your provider HTTP(S) origin without credentials')
+        try:
+            local = ipaddress.ip_address(parsed.hostname).is_loopback
+        except ValueError:
+            local = parsed.hostname == 'localhost'
+        if parsed.scheme == 'http' and not local:
+            raise ValueError('Remote calculator providers require HTTPS; HTTP is allowed only through a loopback tunnel')
         if not 0 < timeout <= 60 or not 0 < limit <= LIMIT:
             raise ValueError('Invalid provider timeout or response limit')
         self.base_url, self.token, self.user = base_url.rstrip('/'), token, user
         self.timeout, self.limit = timeout, limit
         self.metrics = []
-        self.opener = urllib.request.build_opener(NoRedirect)
+        self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
+
+    def login(self, password):
+        """Create and verify a session; never retain or persist the password."""
+        result = self.json('POST', '/api/login', {'userName': self.user, 'password': password}, authenticated=False)
+        token = result.get('sessionId')
+        if result.get('ok') is not True or not isinstance(token, str) or not token or any(ord(c) < 33 or ord(c) > 126 for c in token):
+            raise ProviderError('Provider login returned an invalid session')
+        self.token = token
+        try:
+            self.formulas(limit=1)
+        except BaseException:
+            self.token = None
+            raise
 
     def authenticate(self):
         supplied = bool(self.token)
@@ -99,6 +119,9 @@ class ProviderClient:
         if not self.token:
             if environment_token:
                 self.token = environment_token
+            elif os.environ.get('BTC_PROVIDER_PASSWORD') and self.base_url == BASE_URL.rstrip('/'):
+                self.login(os.environ['BTC_PROVIDER_PASSWORD'])
+                return
             elif self.base_url == BASE_URL:
                 self.token = keychain(self.user, SESSION_SERVICE+':'+hashlib.sha256(self.base_url.encode()).hexdigest()[:16])
             else:
@@ -109,11 +132,10 @@ class ProviderClient:
             if error.status != 401 or supplied or environment_token or self.base_url != BASE_URL:
                 raise
             password = keychain(self.user, PASSWORD_SERVICE+':'+hashlib.sha256(self.base_url.encode()).hexdigest()[:16])
-            result = self.json('POST', '/api/login', {'userName': self.user, 'password': password}, authenticated=False)
-            if result.get('ok') is not True or not result.get('sessionId'):
-                raise ProviderError('Provider login failed')
-            self.token = result['sessionId']  # Retained only in memory.
-            self.formulas(limit=1)
+            try:
+                self.login(password)
+            finally:
+                del password
 
     def request(self, method, path, *, data=None, authenticated=True, headers=None):
         if not path.startswith('/') or path.startswith('//') or '#' in path:

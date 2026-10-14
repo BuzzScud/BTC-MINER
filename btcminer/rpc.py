@@ -2,6 +2,7 @@ import base64
 import json
 import os
 import http.client
+import ipaddress
 import re
 import socket
 import time
@@ -12,6 +13,19 @@ from .platform_support import bitcoin_directory
 
 PORTS = {"mainnet":8332,"testnet":18332,"testnet4":48332,"regtest":18443}
 CHAIN = {"mainnet":"main","testnet":"test","testnet4":"testnet4","regtest":"regtest"}
+
+def is_local(host):
+    if host.lower() == 'localhost':
+        return True
+    try:
+        return ipaddress.ip_address(host.strip('[]')).is_loopback
+    except ValueError:
+        return False
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        raise ValueError('Bitcoin Core RPC redirects are refused')
 
 class RPCError(RuntimeError):
     """Safe transport diagnostics: never retain params, auth or response text."""
@@ -37,7 +51,10 @@ class RPC:
         host = config["rpc_host"]
         if ":" in host:
             host = "[" + host.strip("[]") + "]"
-        self.url = f"http://{host}:{config['rpc_port'] or PORTS[config['network']]}/"
+        scheme = 'https' if config.get('rpc_tls', False) else 'http'
+        self.url = f"{scheme}://{host}:{config['rpc_port'] or PORTS[config['network']]}/"
+        # Do not route local cookies through an environment-configured proxy.
+        self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
 
     def cookie(self):
         if self.c["rpc_cookie"]:
@@ -78,6 +95,11 @@ class RPC:
         return user + ":" + password if user and password else None
 
     def call(self, method, params=None, timeout=None):
+        if not is_local(self.c['rpc_host']):
+            if not self.c.get('rpc_tls', False):
+                raise ValueError('Remote Core RPC requires rpc_tls=on with a trusted HTTPS proxy, or a local secure tunnel')
+            if not (self.c['rpc_user'] or self.c['rpc_cookie']):
+                raise ValueError('Remote Core RPC requires an explicit RPC username or cookie path; local cookie discovery is disabled')
         user = self.c["rpc_user"]
         if user:
             password = os.environ.get(self.c["rpc_password_env"], "")
@@ -100,7 +122,7 @@ class RPC:
         def failure(kind, code=None):
             return RPCError(method, kind, time.monotonic()-started, deadline, status, code)
         try:
-            with urllib.request.urlopen(req, timeout=deadline) as response:
+            with self.opener.open(req, timeout=deadline) as response:
                 result = json.load(response)
         except urllib.error.HTTPError as e:
             status = e.code

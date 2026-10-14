@@ -16,7 +16,7 @@ DEFAULTS = {
     "worker": "btc-m2-8gb", "address": "",
     "rpc_host": "127.0.0.1", "rpc_port": 0, "rpc_datadir": "",
     "rpc_cookie": "", "rpc_user": "", "rpc_password_env": "BTC_RPC_PASSWORD",
-    "rpc_timeout": 15, "template_refresh": 15,
+    "rpc_timeout": 15, "rpc_tls": False, "template_refresh": 15,
     "pool": "", "backup": "", "pool_user": "", "pool_password": "x",
     "pool_password_env": "BTC_POOL_PASSWORD", "tls": True,
     "pool_difficulty": 0, "connect_timeout": 10, "retry_seconds": 5,
@@ -29,7 +29,7 @@ DEFAULTS = {
     # Optional observational journal; bounded queue and four background replay
     # hashes per completed batch. It never grants candidate exclusion authority.
     "observatory_telemetry": True,
-    "provider_enabled": False, "provider_user": "",
+    "provider_enabled": False, "provider_user": "", "provider_url": "",
     "stop_after_block": False, "keep_awake": True,
     "max_rounds": 0, "run_seconds": 0,
     "thesis2_step": 7, "thesis2_prime": 19, "thesis2_order": "flower",
@@ -71,17 +71,17 @@ BOUNDS = {"workers": (1, os.cpu_count() or 8), "batch_size": (64, 1000000),
           "resource_rss_mib": (64,65536), "resource_peer_rss_mib": (16,65536),
           "resource_swap_growth_mib": (1,4096)}
 
-def atomic_json(path, value):
+def atomic_json(path, value, private=False):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix=".write-", dir=path.parent)
     try:
         with os.fdopen(fd, "w") as f:
+            if os.name == "nt" and (private or path.suffix == ".sock" or path.name in ("machine.local.json", "network-profiles.local.json")):
+                from .platform_support import private_file
+                private_file(tmp)
             json.dump(value, f, indent=2, allow_nan=False)
             f.write("\n")
-        if os.name == "nt" and (path.suffix == ".sock" or path.name in ("machine.local.json", "network-profiles.local.json")):
-            from .platform_support import private_file
-            private_file(tmp)
         os.replace(tmp, path)
     finally:
         if os.path.exists(tmp):
@@ -134,6 +134,9 @@ def validate(config):
         raise ValueError("worker: use letters, numbers, dots, underscores or hyphens")
     if "://" in out["rpc_host"] or "/" in out["rpc_host"] or "@" in out["rpc_host"]:
         raise ValueError("rpc_host must be a hostname or IP, without a URL or credentials")
+    if out['provider_url']:
+        from .provider import ProviderClient
+        ProviderClient(out['provider_url'])
     return out
 
 def load():

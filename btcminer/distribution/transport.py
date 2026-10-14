@@ -14,6 +14,7 @@ import urllib.request
 import uuid
 
 from ..settings import atomic_json
+from ..platform_support import check_private_file
 from .geometry import canonical
 from .store import Rejected
 
@@ -40,8 +41,7 @@ def loopback(host):
 
 def read_tokens(path):
     path = Path(path)
-    if os.name != 'nt' and path.stat().st_mode & 0o077:
-        raise ValueError('Worker credentials file must have mode 600')
+    check_private_file(path)
     tokens = strict_json(path.read_bytes())
     if not isinstance(tokens,dict) or not tokens: raise ValueError('Credentials map required')
     if any(not isinstance(p,str) or not re.fullmatch(r'[A-Za-z0-9_.-]{1,64}',p) or p in ('.','..') or

@@ -354,8 +354,10 @@ miner can use `rpcuser`/`rpcpassword` from the local data folder's `bitcoin.conf
 when its RPC port matches. The credentials remain in Core's file and are never
 copied into miner settings. Config includes/custom config paths require explicit
 authentication settings.
-RPC uses HTTP; local cookie authentication is the default. For a remote node, use your
-own secure network/tunnel rather than exposing RPC to the public internet.
+Current public releases allow HTTP only on loopback. Remote Core RPC requires
+rpc_tls=on, a trusted HTTPS proxy, and explicit authentication; alternatively use
+a secure tunnel ending on loopback. Automatic cookie discovery remains local
+only, and redirects are refused. Do not expose Core RPC to the public internet.
 
 ```bash
 ./bin/btc-miner config set connection=core network=mainnet 'address=YOUR_BTC_ADDRESS'

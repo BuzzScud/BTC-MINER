@@ -20,7 +20,7 @@ def run(folder,provider=True):
     folder.mkdir(parents=True,exist_ok=True)
     if (folder/'auth.json').exists(): raise ValueError('Choose a fresh demo output folder')
     tokens={p:secrets.token_hex(32) for p in ('peer-A','peer-B')}
-    atomic_json(folder/'auth.json',tokens)
+    atomic_json(folder/'auth.json',tokens,private=True)
     children=[];handles=[];server=None
     def start(name,arguments,node=None):
         log=(folder/(name+'.log')).open('a');handles.append(log)

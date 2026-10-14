@@ -101,9 +101,9 @@ def main(argv=None):
     p = sub.add_parser("self-test"); p.add_argument("--require-native",action="store_true")
     sub.add_parser("pruning",help="Show live lossless filter settings and counters")
     p = sub.add_parser("provider", help="Discover and use the Thesis calculator API")
-    p.add_argument("action", choices=("capabilities", "refresh", "formulas", "calculate", "watch", "check", "hash"), nargs="?", default="capabilities")
+    p.add_argument("action", choices=("login", "capabilities", "refresh", "formulas", "calculate", "watch", "check", "hash"), nargs="?", default="capabilities")
     p.add_argument("--base-url", default=os.environ.get("BTC_PROVIDER_URL", ""))
-    p.add_argument("--user", default="")
+    p.add_argument("--user", default=os.environ.get('BTC_PROVIDER_USER', ''))
     p.add_argument("--query", help="Search formulas visible to the selected account")
     p.add_argument("--expression", help="Expression for provider calculate")
     p.add_argument("--variables", default="{}", help="JSON object for expression variables")
@@ -134,6 +134,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "provider":
+            if args.action == 'login':
+                from .onboarding import provider_login
+                return provider_login(args.base_url, args.user)
             from .provider import run_command
             result = run_command(args)
             print_result(result)

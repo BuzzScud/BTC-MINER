@@ -6,7 +6,7 @@ from .settings import ROOT, CHOICES, DEFAULTS, atomic_json, load, save, validate
 
 PROFILES = ROOT / "network-profiles.local.json"
 FIELDS = ("connection", "address", "rpc_host", "rpc_port", "rpc_datadir",
-          "rpc_cookie", "rpc_user", "rpc_password_env", "pool", "backup",
+          "rpc_cookie", "rpc_user", "rpc_password_env", "rpc_tls", "pool", "backup",
           "pool_user", "pool_password", "pool_password_env", "tls")
 
 

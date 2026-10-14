@@ -70,6 +70,7 @@ class ProviderRuntime:
     def __init__(self, config, logs):
         self.enabled = config.get('provider_enabled', False)
         self.user = config.get('provider_user', '')
+        self.base_url = config.get('provider_url', '')
         self.metrics_path = config.get('provider_metrics_path','')
         self.metrics_ws_path = config.get('provider_metrics_ws_path','')
         self.folder = Path(logs) / 'provider-runtime'
@@ -84,11 +85,14 @@ class ProviderRuntime:
             return
         try:
             self.folder.mkdir(parents=True, exist_ok=True)
+            environment = dict(os.environ)
+            if not environment.get('BTC_PROVIDER_URL') and self.base_url:
+                environment['BTC_PROVIDER_URL'] = self.base_url
             self.process = subprocess.Popen([sys.executable, '-B', '-m', 'btcminer.provider_runtime',
                 '--folder', str(self.folder), '--session', self.session, '--user', self.user,
                 '--parent', str(os.getpid()), '--metrics-path', self.metrics_path,
                 '--metrics-ws-path',self.metrics_ws_path], cwd=ROOT, stdin=subprocess.DEVNULL,
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=environment)
         except OSError as error:
             self.error = type(error).__name__
 
@@ -182,11 +186,10 @@ async def worker(folder, session, user, parent, metrics_path='',metrics_ws_path=
                     else:
                         password=os.environ.get('BTC_PROVIDER_PASSWORD')
                         if not password:password=await asyncio.to_thread(keychain,user,PASSWORD_SERVICE+':'+hashlib.sha256(client.base_url.encode()).hexdigest()[:16])
-                        login=await asyncio.to_thread(client.json,'POST','/api/login',
-                            {'userName':user,'password':password},authenticated=False)
-                        del password
-                        client.token=login.get('sessionId')
-                        if not client.token:raise ProviderError('Dedicated provider session unavailable')
+                        try:
+                            await asyncio.to_thread(client.login, password)
+                        finally:
+                            del password
                         state['dedicated_session']=True
                     authenticated.set()
                 if time.monotonic() >= next_refresh:

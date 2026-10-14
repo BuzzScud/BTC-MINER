@@ -49,6 +49,10 @@ only when you press **s** in the dashboard or explicitly run `start`.
   wizard detects the usual OS data directory; select another path if necessary.
   Prefer Core's local cookie authentication. The miner does not create a wallet,
   download the blockchain, change Core settings, or request a wallet seed.
+  Remote Core connections require `rpc_tls=on`, a trusted HTTPS reverse proxy,
+  and an explicit RPC username or cookie path. Core itself serves HTTP; a secure
+  tunnel ending on loopback is the alternative. RPC redirects are refused and
+  automatic local cookie discovery is never used for a remote host.
 - **Pool:** enter the pool's Bitcoin Stratum V1 endpoint and its required worker
   name/password. `stratum+ssl://` enables TLS; `stratum+tcp://` is plaintext.
   An optional backup endpoint supports failover. Stratum V2-only pools need a
@@ -85,11 +89,22 @@ Dashboard keys: **s** start, **t** stop, **p** pause/resume, **q** close the vie
 Closing the view leaves a running miner running. Configuration changes to a running
 miner can restart it; stop first when preparing a different connection.
 
-Optional calculator integration uses your own `BTC_PROVIDER_URL` and
-`BTC_PROVIDER_SESSION`; enable with `config set provider_enabled=on provider_user=YOUR_ACCOUNT`.
+For guided calculator login, run `./bin/btc-miner provider login` (Windows:
+`.\btc-miner.cmd provider login`). Enter your provider endpoint, existing account
+and password at the hidden prompt. Login verifies the account, saves only the
+endpoint/account and enable setting, and opens the dashboard. Mining still needs
+an explicit start. The password stays in memory and is inherited by this
+dashboard's miner processes; no password or session token is saved to disk.
+Use `provider login` again after reopening the app. Account registration and
+password recovery remain on the provider's website. Stop the miner before
+changing accounts.
+
+For automation, optional calculator integration uses your own `BTC_PROVIDER_URL`
+and `BTC_PROVIDER_SESSION`; enable with `config set provider_enabled=on provider_user=YOUR_ACCOUNT`.
 Use a dedicated provider token; closing a shared session can affect its other consumers.
 Alternatively set BTC_PROVIDER_PASSWORD to let the runtime create its own session.
-Use HTTPS or a trusted local tunnel for credentials. It verifies sampled job math
+Remote calculator endpoints must use HTTPS; HTTP is accepted only on loopback
+for a trusted local tunnel. It verifies sampled job math
 and observes models; the native backend performs mining hashes. Unavailable
 provider telemetry is not evidence of a failed arithmetic identity.
 See [provider details](docs/PROVIDER-API.txt) and

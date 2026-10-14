@@ -1,6 +1,6 @@
 """Node tooling. Production coordinator is owned by the normal mining engine."""
 import argparse
-from ..platform_support import fcntl
+from ..platform_support import fcntl, private_file
 import json
 import os
 from pathlib import Path
@@ -41,8 +41,11 @@ def main(argv=None):
         path=Path(args.auth); path.parent.mkdir(parents=True,exist_ok=True)
         tokens={node:secrets.token_hex(32) for node in args.node}
         fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
-        with os.fdopen(fd,'w') as handle: json.dump(tokens,handle); handle.write('\n')
-        try: read_tokens(path)
+        try:
+            with os.fdopen(fd,'w') as handle:
+                private_file(path)
+                json.dump(tokens,handle); handle.write('\n')
+            read_tokens(path)
         except BaseException:
             path.unlink(); raise
         print(json.dumps(dict(auth=str(path),nodes=args.node)))

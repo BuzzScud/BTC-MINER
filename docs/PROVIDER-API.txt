@@ -3,8 +3,8 @@ THESIS PROVIDER INTEGRATION — 2026-10-12
 AUTOMATIC MINING-SESSION INTEGRATION
 
 provider_enabled=on starts a dedicated provider process with the mining engine.
-provider_user selects the saved account (YOUR_ACCOUNT by default). This installation
-has the integration enabled; portable installs default off until configured.
+provider_user selects the configured account. Portable installs default off
+with an empty account and endpoint until configured.
 The process refreshes capabilities and the account's formula catalogue every five
 minutes, receives TCMP WebSocket model events, and checks one sampled flower/rod
 offset for each new mining job, at most once every ten seconds. Results are tied
@@ -41,14 +41,27 @@ corrupt frame or oversized response fails explicitly. It never replays writes.
 
 AUTHENTICATION
 
-Public capabilities do not require credentials. Other actions reuse the existing
-YOUR_ACCOUNT account's provider session in macOS Keychain. --user selects another
-account. An expired saved session can log in with that account's existing Keychain
-password; the replacement session stays in memory. Credentials are never command
-arguments, JSON snapshots, terminal output or release inputs. On another platform,
-or with --base-url pointing to another origin, supply BTC_PROVIDER_SESSION in the
-process environment. Saved default-provider credentials are never sent to another
-origin. HTTP and WebSocket redirects are refused.
+Run ./bin/btc-miner provider login (Windows: .\btc-miner.cmd provider login) in an
+interactive terminal. The wizard prompts for the endpoint, existing account and
+hidden password, verifies account identity, saves only nonsecret configuration,
+and opens the dashboard. It does not start mining. Passwords and tokens are not
+saved to disk; the password is retained in the dashboard's process environment
+and inherited by its miner processes for dedicated sessions and reconnects.
+Repeat provider login when reopening. Account creation/recovery belongs to the
+provider website. Stop the miner before changing accounts. Closing the dashboard
+does not stop a miner you explicitly started.
+
+Public capabilities do not require credentials. For automation supply
+BTC_PROVIDER_URL, BTC_PROVIDER_SESSION and --user (or BTC_PROVIDER_USER for CLI
+commands); runtime identity is configured with provider_user. Alternatively
+BTC_PROVIDER_PASSWORD allows a fresh login to BTC_PROVIDER_URL. A preexisting
+macOS Keychain session/password can still be used, bound to account and origin.
+Explicit tokens are never silently replaced with a password login after a 401.
+Credentials are never command arguments, JSON snapshots, terminal output or
+release inputs. Remote endpoints require HTTPS; loopback HTTP supports trusted
+local tunnels. HTTP/WebSocket redirects and environment HTTP proxies are refused.
+The saved provider_url is used by the mining runtime unless BTC_PROVIDER_URL
+overrides it. Standalone provider tools remain independent of miner settings.
 
 TRANSPORT AND MEASUREMENTS
 

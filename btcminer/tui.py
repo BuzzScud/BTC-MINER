@@ -330,6 +330,8 @@ class App:
                            ("rpc_port","RPC port; 0 means network default",str(self.c["rpc_port"])),
                            ("rpc_datadir","Core data folder; blank uses macOS default",self.c["rpc_datadir"]),
                            ("rpc_cookie","Explicit cookie path; blank means automatic",self.c["rpc_cookie"])]
+                fields += [("rpc_tls","HTTPS for Core RPC: on/off (required for remote hosts)","on" if self.c["rpc_tls"] else "off"),
+                           ("rpc_user","RPC username; password comes from BTC_RPC_PASSWORD",self.c["rpc_user"])]
             else:
                 fields += [("pool","BTC pool endpoint: stratum+ssl://host:port or stratum+tcp://host:port",self.c["pool"]),
                            ("pool_user","Pool username / address.worker",self.c["pool_user"]),
@@ -341,6 +343,10 @@ class App:
                 value = int(value)
             except ValueError:
                 self.note("Enter a port number.","error"); self.setup_fields.insert(0,(key,label,default)); self.buf=""; return
+        if key == 'rpc_tls':
+            if value.lower() not in ('on', 'off'):
+                self.note('Choose on or off.', 'error'); self.setup_fields.insert(0,(key,label,default)); self.buf=''; return
+            value = value.lower() == 'on'
         try:
             validate(dict(self.setup_draft, **{key:value}))
             if key == "address":

@@ -60,14 +60,49 @@ def private_file(path):
     if not WINDOWS:
         os.chmod(path, 0o600)
         return
-    import csv
-    row = list(csv.reader(subprocess.check_output(
-        ['whoami', '/user', '/fo', 'csv', '/nh'], text=True).splitlines()))[0]
-    sid = row[-1]
-    if not sid.startswith('S-1-'):
-        raise OSError('Cannot identify current Windows user')
-    subprocess.run(['icacls', str(path), '/inheritance:r', '/grant:r', '*'+sid+':F'],
-                   check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Replace the complete DACL, including any explicit grants to other users.
+    # Pass paths as environment data, never interpolate them into shell code.
+    _windows_acl(path, """
+$acl = New-Object System.Security.AccessControl.FileSecurity
+$acl.SetOwner($sid)
+$acl.SetAccessRuleProtection($true, $false)
+$rule = New-Object System.Security.AccessControl.FileSystemAccessRule($sid, 'FullControl', 'Allow')
+$acl.AddAccessRule($rule)
+Set-Acl -LiteralPath $env:BTC_PRIVATE_ACL_PATH -AclObject $acl
+""")
+    check_private_file(path)
+
+
+def _windows_acl(path, body):
+    script = """
+$ErrorActionPreference = 'Stop'
+$sid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User
+""" + body
+    subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', script],
+                   env=dict(os.environ, BTC_PRIVATE_ACL_PATH=str(path)), check=True, timeout=15,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def check_private_file(path):
+    """Reject shared credential files before reading their contents."""
+    if not WINDOWS:
+        if os.stat(path).st_mode & 0o077:
+            raise ValueError('Credential file must have mode 600')
+        return
+    _windows_acl(path, """
+$acl = Get-Acl -LiteralPath $env:BTC_PRIVATE_ACL_PATH
+if ($acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value -ne $sid.Value) { throw 'Wrong owner' }
+if (-not $acl.AreAccessRulesProtected) { throw 'Inherited access is not allowed' }
+$rules = $acl.GetAccessRules($true, $true, [System.Security.Principal.SecurityIdentifier])
+$own = $false
+foreach ($rule in $rules) {
+    if ($rule.AccessControlType -eq 'Allow') {
+        if ($rule.IdentityReference.Value -ne $sid.Value) { throw 'Shared credential file' }
+        $own = $true
+    }
+}
+if (-not $own) { throw 'Missing owner access' }
+""")
 
 
 def pipe_read(pipe, size, timeout):

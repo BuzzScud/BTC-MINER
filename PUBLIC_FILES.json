@@ -480,6 +480,7 @@
   "tests/fixtures/core-accepted-block/raw.hex",
   "tests/test_archive_calculations.py",
   "tests/test_aristotle_monitor.py",
+  "tests/test_authentication.py",
   "tests/test_block_validation.py",
   "tests/test_capacity_reals.py",
   "tests/test_connections.py",
